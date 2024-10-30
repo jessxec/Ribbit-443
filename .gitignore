@@ -1,0 +1,9 @@
+# Xcode user-specific files
+*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
+
+# Exclude all user data within the project file
+Ribbit.xcodeproj/xcuserdata/
+Ribbit.xcodeproj/project.xcworkspace/xcuserdata/
+
