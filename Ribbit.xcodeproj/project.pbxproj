@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,6 +19,7 @@
 		A76F46A92CD03DD700182ABE /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = A76F46A82CD03DD700182ABE /* FirebaseCore */; };
 		A76F46AB2CD0408C00182ABE /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F46AA2CD0408C00182ABE /* Module.swift */; };
 		A76F46AD2CD040B200182ABE /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F46AC2CD040B200182ABE /* Badge.swift */; };
+		CB4A37C32CD1F9DC00D44467 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4A37C22CD1F9DC00D44467 /* UserViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +53,13 @@
 		A76F46A22CD03B9E00182ABE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A76F46AA2CD0408C00182ABE /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		A76F46AC2CD040B200182ABE /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		CB4A37C22CD1F9DC00D44467 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserViewModel.swift; path = Ribbit/UserViewModel.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		CB4A37BE2CD1F91C00D44467 /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };
+		CB4A37CA2CD1FAC300D44467 /* ViewModelsTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModelsTests; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		5D600CF42CD036A50068F75F /* Frameworks */ = {
@@ -105,7 +112,8 @@
 		5D600CF92CD036A50068F75F /* Ribbit */ = {
 			isa = PBXGroup;
 			children = (
-				A76F46A12CD03B6000182ABE /* ModelViews */,
+				CB4A37BE2CD1F91C00D44467 /* Services */,
+				A76F46A12CD03B6000182ABE /* ViewModels */,
 				A76F46A02CD03B5600182ABE /* Views */,
 				A76F469E2CD03B3D00182ABE /* Models */,
 				5D600CFA2CD036A50068F75F /* RibbitApp.swift */,
@@ -127,6 +135,7 @@
 		5D600D0A2CD036A80068F75F /* RibbitTests */ = {
 			isa = PBXGroup;
 			children = (
+				CB4A37CA2CD1FAC300D44467 /* ViewModelsTests */,
 				5D600D0B2CD036A80068F75F /* RibbitTests.swift */,
 			);
 			path = RibbitTests;
@@ -158,11 +167,12 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		A76F46A12CD03B6000182ABE /* ModelViews */ = {
+		A76F46A12CD03B6000182ABE /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				CB4A37C22CD1F9DC00D44467 /* UserViewModel.swift */,
 			);
-			path = ModelViews;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		A76F46A52CD03DD300182ABE /* Frameworks */ = {
@@ -187,6 +197,9 @@
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				CB4A37BE2CD1F91C00D44467 /* Services */,
+			);
 			name = Ribbit;
 			packageProductDependencies = (
 				A76F46A62CD03DD300182ABE /* FirebaseFirestore */,
@@ -208,6 +221,9 @@
 			);
 			dependencies = (
 				5D600D092CD036A80068F75F /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				CB4A37CA2CD1FAC300D44467 /* ViewModelsTests */,
 			);
 			name = RibbitTests;
 			productName = RibbitTests;
@@ -313,6 +329,7 @@
 				A76F46AD2CD040B200182ABE /* Badge.swift in Sources */,
 				A76F46AB2CD0408C00182ABE /* Module.swift in Sources */,
 				5D600CFB2CD036A50068F75F /* RibbitApp.swift in Sources */,
+				CB4A37C32CD1F9DC00D44467 /* UserViewModel.swift in Sources */,
 				A76F46A32CD03B9E00182ABE /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
