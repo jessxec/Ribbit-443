@@ -19,6 +19,10 @@
 		A76F46A92CD03DD700182ABE /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = A76F46A82CD03DD700182ABE /* FirebaseCore */; };
 		A76F46AB2CD0408C00182ABE /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F46AA2CD0408C00182ABE /* Module.swift */; };
 		A76F46AD2CD040B200182ABE /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F46AC2CD040B200182ABE /* Badge.swift */; };
+		A76F46B02CD1C9D800182ABE /* LessonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F46AF2CD1C9D800182ABE /* LessonListView.swift */; };
+		A76F46B32CD1D75900182ABE /* PinyinViewP1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F46B22CD1D75900182ABE /* PinyinViewP1.swift */; };
+		A76F46B52CD1DCF300182ABE /* PinyinViewP2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F46B42CD1DCF300182ABE /* PinyinViewP2.swift */; };
+		A76F46BA2CD3240A00182ABE /* ProgressBarBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F46B92CD3240A00182ABE /* ProgressBarBackButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +56,10 @@
 		A76F46A22CD03B9E00182ABE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A76F46AA2CD0408C00182ABE /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		A76F46AC2CD040B200182ABE /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		A76F46AF2CD1C9D800182ABE /* LessonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonListView.swift; sourceTree = "<group>"; };
+		A76F46B22CD1D75900182ABE /* PinyinViewP1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinyinViewP1.swift; sourceTree = "<group>"; };
+		A76F46B42CD1DCF300182ABE /* PinyinViewP2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinyinViewP2.swift; sourceTree = "<group>"; };
+		A76F46B92CD3240A00182ABE /* ProgressBarBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarBackButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +162,9 @@
 		A76F46A02CD03B5600182ABE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A76F46B62CD3230E00182ABE /* Partials */,
+				A76F46B12CD1D6E000182ABE /* Basics */,
+				A76F46AF2CD1C9D800182ABE /* LessonListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -170,6 +181,23 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A76F46B12CD1D6E000182ABE /* Basics */ = {
+			isa = PBXGroup;
+			children = (
+				A76F46B22CD1D75900182ABE /* PinyinViewP1.swift */,
+				A76F46B42CD1DCF300182ABE /* PinyinViewP2.swift */,
+			);
+			path = Basics;
+			sourceTree = "<group>";
+		};
+		A76F46B62CD3230E00182ABE /* Partials */ = {
+			isa = PBXGroup;
+			children = (
+				A76F46B92CD3240A00182ABE /* ProgressBarBackButton.swift */,
+			);
+			path = Partials;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,10 +338,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D600CFD2CD036A50068F75F /* ContentView.swift in Sources */,
+				A76F46B52CD1DCF300182ABE /* PinyinViewP2.swift in Sources */,
 				A76F46AD2CD040B200182ABE /* Badge.swift in Sources */,
 				A76F46AB2CD0408C00182ABE /* Module.swift in Sources */,
 				5D600CFB2CD036A50068F75F /* RibbitApp.swift in Sources */,
+				A76F46B32CD1D75900182ABE /* PinyinViewP1.swift in Sources */,
+				A76F46B02CD1C9D800182ABE /* LessonListView.swift in Sources */,
 				A76F46A32CD03B9E00182ABE /* User.swift in Sources */,
+				A76F46BA2CD3240A00182ABE /* ProgressBarBackButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
