@@ -19,7 +19,9 @@
 		A76F46A92CD03DD700182ABE /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = A76F46A82CD03DD700182ABE /* FirebaseCore */; };
 		A76F46AB2CD0408C00182ABE /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F46AA2CD0408C00182ABE /* Module.swift */; };
 		A76F46AD2CD040B200182ABE /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F46AC2CD040B200182ABE /* Badge.swift */; };
-		CB4A37C32CD1F9DC00D44467 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4A37C22CD1F9DC00D44467 /* UserViewModel.swift */; };
+		CB4A37D32CD3559800D44467 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4A37D22CD3559800D44467 /* UserViewModel.swift */; };
+		CB4A37D82CD5EACB00D44467 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */; };
+		CB4A37DE2CD66DC600D44467 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +55,8 @@
 		A76F46A22CD03B9E00182ABE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A76F46AA2CD0408C00182ABE /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		A76F46AC2CD040B200182ABE /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
-		CB4A37C22CD1F9DC00D44467 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserViewModel.swift; path = Ribbit/UserViewModel.swift; sourceTree = SOURCE_ROOT; };
+		CB4A37D22CD3559800D44467 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -96,6 +99,7 @@
 				5D600D142CD036A80068F75F /* RibbitUITests */,
 				5D600CF82CD036A50068F75F /* Products */,
 				A76F46A52CD03DD300182ABE /* Frameworks */,
+				CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -170,7 +174,7 @@
 		A76F46A12CD03B6000182ABE /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				CB4A37C22CD1F9DC00D44467 /* UserViewModel.swift */,
+				CB4A37D22CD3559800D44467 /* UserViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -301,6 +305,7 @@
 			files = (
 				5D600D022CD036A70068F75F /* Preview Assets.xcassets in Resources */,
 				5D600CFF2CD036A70068F75F /* Assets.xcassets in Resources */,
+				CB4A37D82CD5EACB00D44467 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +313,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB4A37DE2CD66DC600D44467 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,9 +333,9 @@
 			files = (
 				5D600CFD2CD036A50068F75F /* ContentView.swift in Sources */,
 				A76F46AD2CD040B200182ABE /* Badge.swift in Sources */,
+				CB4A37D32CD3559800D44467 /* UserViewModel.swift in Sources */,
 				A76F46AB2CD0408C00182ABE /* Module.swift in Sources */,
 				5D600CFB2CD036A50068F75F /* RibbitApp.swift in Sources */,
-				CB4A37C32CD1F9DC00D44467 /* UserViewModel.swift in Sources */,
 				A76F46A32CD03B9E00182ABE /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
