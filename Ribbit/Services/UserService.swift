@@ -5,131 +5,83 @@
 //  Created by Jorge Urias on 10/30/24.
 //
 
-//import Foundation
-//import FirebaseFirestore
-//
-//class UserService: UserServiceProtocol {
-//    private let db = Firestore.firestore()
-//    
-//    func fetchUser(by id: String, completion: @escaping (Result<User, Error>) -> Void) {
-//        db.collection("users").document(id).getDocument { (document, error) in
-//            if let error = error {
-//                completion(.failure(error))
-//                return
-//            }
-//            
-//            do {
-//                if let user = try document?.data(as: User.self) {
-//                    completion(.success(user))
-//                } else {
-//                    completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "User not found."])))
-//                }
-//            } catch {
-//                completion(.failure(error))
-//            }
-//        }
-//    }
-//
-//    func createUser(_ user: User, completion: @escaping (Error?) -> Void) {
-//        do {
-//            let userData = try Firestore.Encoder().encode(user)
-//            db.collection("users").document(user.id ?? UUID().uuidString).setData(userData) { error in
-//                completion(error)
-//            }
-//        } catch {
-//            completion(error)
-//        }
-//    }
-//    
-//    func updateUserProgress(userId: String, progress: LessonProgress, completion: @escaping (Error?) -> Void) {
-//        let updateData: [String: Any] = [
-//            "currentModule": progress.lessonName,
-//            "currentLesson": try? Firestore.Encoder().encode(progress)
-//        ]
-//        db.collection("users").document(userId).updateData(updateData) { error in
-//            completion(error)
-//        }
-//    }
-//}
-
-import Foundation
 import FirebaseFirestore
 
 class UserService: UserServiceProtocol {
     private let db = Firestore.firestore()
     
-    // Fetch user data asynchronously from Firebase.
     func fetchUser(by id: String) async throws -> User {
-        try await withCheckedThrowingContinuation { continuation in
-            db.collection("Users").document(id).getDocument { document, error in
-                if let error = error {
-                    continuation.resume(throwing: error)
-                } else {
-                    do {
-                        if let user = try document?.data(as: User.self) {
-                            continuation.resume(returning: user)
-                        } else {
-                            let error = NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "User not found."])
-                            continuation.resume(throwing: error)
-                        }
-                    } catch {
-                        continuation.resume(throwing: error)
-                    }
-                }
-            }
+        let userDoc = db.collection("Users").document(id)
+        let snapshot = try await userDoc.getDocument()
+        guard let user = try? snapshot.data(as: User.self) else {
+            throw NSError(domain: "UserService", code: 404, userInfo: [NSLocalizedDescriptionKey: "User not found"])
         }
-    }
-
-    // Add a new user to Firebase asynchronously.
-    func createUser(_ user: User) async throws {
-        return try await withCheckedThrowingContinuation { continuation in
-            do {
-                try db.collection("Users").document(user.id ?? UUID().uuidString).setData(from: user) { error in
-                    if let error = error {
-                        continuation.resume(throwing: error)
-                    } else {
-                        continuation.resume()
-                    }
-                }
-            } catch {
-                continuation.resume(throwing: error)
-            }
-        }
+        return user
     }
     
-    // Update user progress asynchronously in Firebase.
-    func updateUserProgress(userId: String, progress: LessonProgress) async throws {
-        let updateData: [String: Any] = [
-            "currentModule": progress.lessonName,
-            "currentLesson": [
-                "lessonName": progress.lessonName,
-                "totalStarsCollected": progress.totalStarsCollected,
-                "accuracy": progress.accuracy,
-                "feedback": progress.feedback
+    func createUser(_ user: User) async throws {
+        let userDoc = db.collection("Users").document(user.id ?? "")
+        try userDoc.setData(from: user)
+    }
+
+    func updateUserProgress(userId: String, moduleId: String, moduleProgress: ModuleProgress) async throws {
+        let userDoc = db.collection("Users").document(userId)
+        try await userDoc.updateData([
+            "progress.\(moduleId)": [
+                "completed": moduleProgress.completed,
+                "starsCollected": moduleProgress.starsCollected,
+                "lessons": moduleProgress.lessons.mapValues { lessonProgress in
+                    [
+                        "accuracy": lessonProgress.accuracy,
+                        "completed": lessonProgress.completed,
+                        "starsCollected": lessonProgress.starsCollected
+                    ]
+                }
             ]
-        ]
-        
-        return try await withCheckedThrowingContinuation { continuation in
-            db.collection("Users").document(userId).updateData(updateData) { error in
-                if let error = error {
-                    continuation.resume(throwing: error)
-                } else {
-                    continuation.resume()
-                }
-            }
-        }
+        ])
     }
+    
+    func updateUserDailyGoals(userId: String, dailyGoals: [String: DailyGoal]) async throws {
+        let userDoc = db.collection("Users").document(userId)
+        try await userDoc.updateData(["dailyGoals": dailyGoals.mapValues { goal in
+            [
+                "completed": goal.completed,
+                "lesson": goal.lesson,
+                "module": goal.module
+            ]
+        }])
+    }
+    
   
- 
-    func deleteUser(by id: String) async throws {
-        return try await withCheckedThrowingContinuation { continuation in
-            db.collection("Users").document(id).delete { error in
-                if let error = error {
-                    continuation.resume(throwing: error)
-                } else {
-                    continuation.resume()
-                }
-            }
+    func updateUserBadgeProgress(userId: String, badgeId: Int, progress: BadgeProgress) async throws {
+        let userDoc = db.collection("Users").document(userId)
+        
+        // Fetch the current user data
+        let snapshot = try await userDoc.getDocument()
+        guard var user = try? snapshot.data(as: User.self) else {
+            throw NSError(domain: "UserService", code: 404, userInfo: [NSLocalizedDescriptionKey: "User not found"])
         }
+        
+        // Ensure the badge index is within bounds
+        guard badgeId < user.badges.count else {
+            throw NSError(domain: "UserService", code: 400, userInfo: [NSLocalizedDescriptionKey: "Badge index out of bounds"])
+        }
+        
+        // Update the specific badge in the array
+        user.badges[badgeId] = progress
+        
+        // Write the entire badges array back to Firestore
+        try await userDoc.updateData([
+            "badges": user.badges.map { badge in
+                [
+                    "completed": badge.completed,
+                    "completedDate": badge.completedDate ?? Timestamp(),
+                    "description": badge.description,
+                    "name": badge.name,
+                    "progress": badge.progress
+                ]
+            }
+        ])
     }
+
 }
