@@ -51,7 +51,9 @@ struct Lesson: Codable, Identifiable {
 
 struct Word: Codable, Identifiable {
     var id: String
-    var text: String
+    var pinyin: String
+    var word: String
+    var translation: String
     var audioPath: String
     var starsForAccuracy: [String: Int] // Dictionary with accuracy ranges as keys and star values as Int
     var feedback: Feedback
