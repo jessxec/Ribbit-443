@@ -1,3 +1,6 @@
+# macOS system files
+.DS_Store
+
 # Xcode user-specific files
 *.xcuserstate
 *.xccheckout
@@ -7,7 +10,6 @@
 Ribbit.xcodeproj/xcuserdata/
 Ribbit.xcodeproj/project.xcworkspace/xcuserdata/
 
-# Xcode
 ## User settings
 xcuserdata/
 
@@ -37,4 +39,3 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
-.DS_Store
