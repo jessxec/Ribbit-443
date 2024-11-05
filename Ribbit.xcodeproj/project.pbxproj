@@ -14,6 +14,12 @@
 		5D600D0C2CD036A80068F75F /* RibbitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600D0B2CD036A80068F75F /* RibbitTests.swift */; };
 		5D600D162CD036A80068F75F /* RibbitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600D152CD036A80068F75F /* RibbitUITests.swift */; };
 		5D600D182CD036A80068F75F /* RibbitUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600D172CD036A80068F75F /* RibbitUITestsLaunchTests.swift */; };
+		5D600D322CD32EB20068F75F /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600D312CD32EB20068F75F /* QuestionView.swift */; };
+		5D600D342CD32ECF0068F75F /* WordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600D332CD32ECF0068F75F /* WordView.swift */; };
+		5D600D392CD32F390068F75F /* VisualizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600D382CD32F390068F75F /* VisualizationView.swift */; };
+		5D600D3E2CD693000068F75F /* WordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600D3D2CD693000068F75F /* WordViewController.swift */; };
+		5D600D412CD699D30068F75F /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600D402CD699D30068F75F /* Word.swift */; };
+		5D600D482CD982260068F75F /* tone1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D600D462CD980CF0068F75F /* tone1.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +50,12 @@
 		5D600D112CD036A80068F75F /* RibbitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RibbitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D600D152CD036A80068F75F /* RibbitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RibbitUITests.swift; sourceTree = "<group>"; };
 		5D600D172CD036A80068F75F /* RibbitUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RibbitUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5D600D312CD32EB20068F75F /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
+		5D600D332CD32ECF0068F75F /* WordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordView.swift; sourceTree = "<group>"; };
+		5D600D382CD32F390068F75F /* VisualizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationView.swift; sourceTree = "<group>"; };
+		5D600D3D2CD693000068F75F /* WordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewController.swift; sourceTree = "<group>"; };
+		5D600D402CD699D30068F75F /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
+		5D600D462CD980CF0068F75F /* tone1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tone1.mp3; path = Ribbit/tone1.mp3; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +106,11 @@
 		5D600CF92CD036A50068F75F /* Ribbit */ = {
 			isa = PBXGroup;
 			children = (
+				5D600D462CD980CF0068F75F /* tone1.mp3 */,
+				5D600D442CD977F10068F75F /* AudioSamples */,
+				5D600D3F2CD6996D0068F75F /* Models */,
+				5D600D3C2CD692E60068F75F /* ViewControllers */,
+				5D600D2F2CD32E8A0068F75F /* Views */,
 				5D600CFA2CD036A50068F75F /* RibbitApp.swift */,
 				5D600CFC2CD036A50068F75F /* ContentView.swift */,
 				5D600CFE2CD036A70068F75F /* Assets.xcassets */,
@@ -125,6 +142,47 @@
 				5D600D172CD036A80068F75F /* RibbitUITestsLaunchTests.swift */,
 			);
 			path = RibbitUITests;
+			sourceTree = "<group>";
+		};
+		5D600D2F2CD32E8A0068F75F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5D600D302CD32E920068F75F /* LessonQuestions */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5D600D302CD32E920068F75F /* LessonQuestions */ = {
+			isa = PBXGroup;
+			children = (
+				5D600D382CD32F390068F75F /* VisualizationView.swift */,
+				5D600D312CD32EB20068F75F /* QuestionView.swift */,
+				5D600D332CD32ECF0068F75F /* WordView.swift */,
+			);
+			path = LessonQuestions;
+			sourceTree = "<group>";
+		};
+		5D600D3C2CD692E60068F75F /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				5D600D3D2CD693000068F75F /* WordViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		5D600D3F2CD6996D0068F75F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5D600D402CD699D30068F75F /* Word.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5D600D442CD977F10068F75F /* AudioSamples */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AudioSamples;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +291,7 @@
 			files = (
 				5D600D022CD036A70068F75F /* Preview Assets.xcassets in Resources */,
 				5D600CFF2CD036A70068F75F /* Assets.xcassets in Resources */,
+				5D600D482CD982260068F75F /* tone1.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,8 +316,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D600D342CD32ECF0068F75F /* WordView.swift in Sources */,
+				5D600D412CD699D30068F75F /* Word.swift in Sources */,
+				5D600D392CD32F390068F75F /* VisualizationView.swift in Sources */,
 				5D600CFD2CD036A50068F75F /* ContentView.swift in Sources */,
+				5D600D322CD32EB20068F75F /* QuestionView.swift in Sources */,
 				5D600CFB2CD036A50068F75F /* RibbitApp.swift in Sources */,
+				5D600D3E2CD693000068F75F /* WordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
