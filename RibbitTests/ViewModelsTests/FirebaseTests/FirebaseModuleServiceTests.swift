@@ -18,11 +18,11 @@ class FirebaseModuleServiceTests: XCTestCase {
         moduleService = ModuleService()
     }
 
-//    override func tearDown() async throws {
-//        try await deleteTestModules()
-//        moduleService = nil
-//        try await super.tearDown()
-//    }
+    override func tearDown() async throws {
+        try await deleteTestModules()
+        moduleService = nil
+        try await super.tearDown()
+    }
 
     // Helper function to create a test module in Firebase
     private func createTestModule(module: Module) async throws {

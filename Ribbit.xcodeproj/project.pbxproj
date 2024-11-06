@@ -29,6 +29,9 @@
 		5D600D182CD036A80068F75F /* RibbitUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600D172CD036A80068F75F /* RibbitUITestsLaunchTests.swift */; };
 		A76F46A72CD03DD300182ABE /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A76F46A62CD03DD300182ABE /* FirebaseFirestore */; };
 		A76F46A92CD03DD700182ABE /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = A76F46A82CD03DD700182ABE /* FirebaseCore */; };
+		CB170CA12CDC0BF70065CCA1 /* ModuleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB170CA02CDC0BEC0065CCA1 /* ModuleViewModel.swift */; };
+		CB170CA32CDC0C220065CCA1 /* LessonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB170CA22CDC0C190065CCA1 /* LessonViewModel.swift */; };
+		CB170CA52CDC0E880065CCA1 /* WordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB170CA42CDC0E800065CCA1 /* WordViewModel.swift */; };
 		CB4A37D82CD5EACB00D44467 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */; };
 		CB4A37DE2CD66DC600D44467 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */; };
 		CB4A38262CDAE0A400D44467 /* DataPopulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4A38252CDAE09E00D44467 /* DataPopulation.swift */; };
@@ -75,6 +78,9 @@
 		5D600D112CD036A80068F75F /* RibbitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RibbitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D600D152CD036A80068F75F /* RibbitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RibbitUITests.swift; sourceTree = "<group>"; };
 		5D600D172CD036A80068F75F /* RibbitUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RibbitUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CB170CA02CDC0BEC0065CCA1 /* ModuleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleViewModel.swift; sourceTree = "<group>"; };
+		CB170CA22CDC0C190065CCA1 /* LessonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewModel.swift; sourceTree = "<group>"; };
+		CB170CA42CDC0E800065CCA1 /* WordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewModel.swift; sourceTree = "<group>"; };
 		CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB4A38252CDAE09E00D44467 /* DataPopulation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPopulation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -158,6 +164,9 @@
 		4EEA728C2CDAA80B00AE9F5A /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				CB170CA42CDC0E800065CCA1 /* WordViewModel.swift */,
+				CB170CA22CDC0C190065CCA1 /* LessonViewModel.swift */,
+				CB170CA02CDC0BEC0065CCA1 /* ModuleViewModel.swift */,
 				4EEA728B2CDAA80B00AE9F5A /* UserViewModel.swift */,
 			);
 			path = ViewModels;
@@ -389,8 +398,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB170CA52CDC0E880065CCA1 /* WordViewModel.swift in Sources */,
 				4EEA72972CDAA80B00AE9F5A /* RibbitApp.swift in Sources */,
 				4EEA72982CDAA80B00AE9F5A /* QuestionView.swift in Sources */,
+				CB170CA12CDC0BF70065CCA1 /* ModuleViewModel.swift in Sources */,
 				4EEA72992CDAA80B00AE9F5A /* ModuleService.swift in Sources */,
 				4EEA729A2CDAA80B00AE9F5A /* User.swift in Sources */,
 				CB4A38262CDAE0A400D44467 /* DataPopulation.swift in Sources */,
@@ -402,6 +413,7 @@
 				4EEA72A02CDAA80B00AE9F5A /* Badge.swift in Sources */,
 				4EEA72A12CDAA80B00AE9F5A /* ModuleServiceProtocol.swift in Sources */,
 				4EEA72A22CDAA80B00AE9F5A /* UserViewModel.swift in Sources */,
+				CB170CA32CDC0C220065CCA1 /* LessonViewModel.swift in Sources */,
 				4EEA72A32CDAA80B00AE9F5A /* WordView.swift in Sources */,
 				4EEA72A52CDAA80B00AE9F5A /* VisualizationView.swift in Sources */,
 			);
