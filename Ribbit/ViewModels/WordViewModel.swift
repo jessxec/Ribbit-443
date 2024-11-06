@@ -17,7 +17,7 @@
 //    @Published var isLoading = false
 //    @Published var errorMessage: String?
 //    @Published var isPlaying: Bool = false
-//    
+//
 //    init(moduleService: ModuleServiceProtocol = ModuleService(), audioService: AudioServiceProtocol = AudioService()) {
 //        self.moduleService = moduleService
 //        self.audioService = audioService
@@ -37,7 +37,7 @@
 //        }
 //        isLoading = false
 //    }
-//    
+//
 //    // Update word progress
 //    func updateWordProgress(moduleId: String, lessonId: String, wordId: String, starsEarned: Int, transcriptionCheck: String?, voiceProcessingCheck: String?) async {
 //        isLoading = true

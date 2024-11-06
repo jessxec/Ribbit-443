@@ -22,6 +22,10 @@
 		CB4A37D32CD3559800D44467 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4A37D22CD3559800D44467 /* UserViewModel.swift */; };
 		CB4A37D82CD5EACB00D44467 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */; };
 		CB4A37DE2CD66DC600D44467 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */; };
+		CB93FC4B2CDC1FAD00377C95 /* ModuleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93FC4A2CDC1FA600377C95 /* ModuleViewModel.swift */; };
+		CB93FC4D2CDC1FCF00377C95 /* LessonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93FC4C2CDC1FC600377C95 /* LessonViewModel.swift */; };
+		CB93FC512CDC20B400377C95 /* WordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93FC502CDC20AF00377C95 /* WordViewModel.swift */; };
+		CB93FC642CDC22B400377C95 /* AudioStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93FC632CDC22B000377C95 /* AudioStatus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,11 +61,17 @@
 		A76F46AC2CD040B200182ABE /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		CB4A37D22CD3559800D44467 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CB93FC4A2CDC1FA600377C95 /* ModuleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleViewModel.swift; sourceTree = "<group>"; };
+		CB93FC4C2CDC1FC600377C95 /* LessonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewModel.swift; sourceTree = "<group>"; };
+		CB93FC502CDC20AF00377C95 /* WordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewModel.swift; sourceTree = "<group>"; };
+		CB93FC632CDC22B000377C95 /* AudioStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStatus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		CB4A37BE2CD1F91C00D44467 /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };
 		CB4A37CA2CD1FAC300D44467 /* ViewModelsTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModelsTests; sourceTree = "<group>"; };
+		CB93FC522CDC211E00377C95 /* LessonQuestions */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = LessonQuestions; sourceTree = "<group>"; };
+		CB93FC5F2CDC224900377C95 /* ViewControllers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewControllers; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +128,7 @@
 			children = (
 				CB4A37BE2CD1F91C00D44467 /* Services */,
 				A76F46A12CD03B6000182ABE /* ViewModels */,
+				CB93FC5F2CDC224900377C95 /* ViewControllers */,
 				A76F46A02CD03B5600182ABE /* Views */,
 				A76F469E2CD03B3D00182ABE /* Models */,
 				5D600CFA2CD036A50068F75F /* RibbitApp.swift */,
@@ -157,6 +168,7 @@
 		A76F469E2CD03B3D00182ABE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CB93FC632CDC22B000377C95 /* AudioStatus.swift */,
 				A76F46A22CD03B9E00182ABE /* User.swift */,
 				A76F46AA2CD0408C00182ABE /* Module.swift */,
 				A76F46AC2CD040B200182ABE /* Badge.swift */,
@@ -167,6 +179,7 @@
 		A76F46A02CD03B5600182ABE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CB93FC522CDC211E00377C95 /* LessonQuestions */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -174,6 +187,9 @@
 		A76F46A12CD03B6000182ABE /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				CB93FC502CDC20AF00377C95 /* WordViewModel.swift */,
+				CB93FC4C2CDC1FC600377C95 /* LessonViewModel.swift */,
+				CB93FC4A2CDC1FA600377C95 /* ModuleViewModel.swift */,
 				CB4A37D22CD3559800D44467 /* UserViewModel.swift */,
 			);
 			path = ViewModels;
@@ -203,6 +219,8 @@
 			);
 			fileSystemSynchronizedGroups = (
 				CB4A37BE2CD1F91C00D44467 /* Services */,
+				CB93FC522CDC211E00377C95 /* LessonQuestions */,
+				CB93FC5F2CDC224900377C95 /* ViewControllers */,
 			);
 			name = Ribbit;
 			packageProductDependencies = (
@@ -331,12 +349,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB93FC512CDC20B400377C95 /* WordViewModel.swift in Sources */,
 				5D600CFD2CD036A50068F75F /* ContentView.swift in Sources */,
 				A76F46AD2CD040B200182ABE /* Badge.swift in Sources */,
+				CB93FC642CDC22B400377C95 /* AudioStatus.swift in Sources */,
 				CB4A37D32CD3559800D44467 /* UserViewModel.swift in Sources */,
 				A76F46AB2CD0408C00182ABE /* Module.swift in Sources */,
+				CB93FC4D2CDC1FCF00377C95 /* LessonViewModel.swift in Sources */,
 				5D600CFB2CD036A50068F75F /* RibbitApp.swift in Sources */,
 				A76F46A32CD03B9E00182ABE /* User.swift in Sources */,
+				CB93FC4B2CDC1FAD00377C95 /* ModuleViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
