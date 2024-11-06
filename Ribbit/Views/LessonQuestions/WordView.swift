@@ -31,20 +31,20 @@ struct WordView: View {
             Button(action: {
                 playbackPressed.toggle() // Toggle the playback state
                 if playbackPressed {
-                    audio.playWord(word: "\(word.word)")
-                    startAnimation(duration: audio.audioDuration)
+                    audio.playSampleWord(word: "\(word.word)")
+                  startAnimation(duration: audio.audioDuration)
                 } else {
                     audio.stopPlayback()
                     resetAnimation()
                 }
             }) {
-                Image(systemName: audio.isPlaying ? "stop.circle.fill" : "play.circle.fill")
+              Image(systemName: audio.status == .playing ? "stop.circle.fill" : "play.circle.fill")
                     .resizable()
                     .frame(width: 40, height: 40) // Optional: Change size of the image
-                    .foregroundColor(audio.isPlaying ? .red : .blue) // Optional: Change color based on state
+                    .foregroundColor(audio.status == .playing ? .red : .blue) // Optional: Change color based on state
             }
-            .onChange(of: audio.isPlaying) { newValue in // Listen for changes to isPlaying
-              if !newValue {
+            .onChange(of: audio.status) { newValue  in // Listen for changes to isPlaying
+              if newValue == .stopped {
                   playbackPressed = false // Reset button state when playback finishes
                   resetAnimation() // Reset the animation as well
               }
