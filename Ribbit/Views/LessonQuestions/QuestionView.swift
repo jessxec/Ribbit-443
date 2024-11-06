@@ -21,6 +21,7 @@ struct QuestionView: View {
             WordView(word: Word(pinyin: "ni3 hao3", word: "你好", translation: "hello", audio: "ni3hao3"), animationProgress: $animationProgress)
           }.padding()
           VisualizationView(animationProgress: $animationProgress)
+          ActionsView(word: Word(pinyin: "ni3 hao3", word: "你好", translation: "hello", audio: "ni3hao3"))
         }
       }
       

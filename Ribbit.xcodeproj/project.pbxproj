@@ -20,6 +20,8 @@
 		5D600D3E2CD693000068F75F /* WordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600D3D2CD693000068F75F /* WordViewController.swift */; };
 		5D600D412CD699D30068F75F /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600D402CD699D30068F75F /* Word.swift */; };
 		5D600D482CD982260068F75F /* tone1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5D600D462CD980CF0068F75F /* tone1.mp3 */; };
+		5DFEAE0F2CDBC8D9005DDACC /* ActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFEAE0E2CDBC8D9005DDACC /* ActionsView.swift */; };
+		5DFEAE112CDBD3A5005DDACC /* AudioStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFEAE102CDBD3A5005DDACC /* AudioStatus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +58,8 @@
 		5D600D3D2CD693000068F75F /* WordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewController.swift; sourceTree = "<group>"; };
 		5D600D402CD699D30068F75F /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		5D600D462CD980CF0068F75F /* tone1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tone1.mp3; path = Ribbit/tone1.mp3; sourceTree = SOURCE_ROOT; };
+		5DFEAE0E2CDBC8D9005DDACC /* ActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsView.swift; sourceTree = "<group>"; };
+		5DFEAE102CDBD3A5005DDACC /* AudioStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStatus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +162,7 @@
 				5D600D382CD32F390068F75F /* VisualizationView.swift */,
 				5D600D312CD32EB20068F75F /* QuestionView.swift */,
 				5D600D332CD32ECF0068F75F /* WordView.swift */,
+				5DFEAE0E2CDBC8D9005DDACC /* ActionsView.swift */,
 			);
 			path = LessonQuestions;
 			sourceTree = "<group>";
@@ -174,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				5D600D402CD699D30068F75F /* Word.swift */,
+				5DFEAE102CDBD3A5005DDACC /* AudioStatus.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -316,7 +322,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DFEAE0F2CDBC8D9005DDACC /* ActionsView.swift in Sources */,
 				5D600D342CD32ECF0068F75F /* WordView.swift in Sources */,
+				5DFEAE112CDBD3A5005DDACC /* AudioStatus.swift in Sources */,
 				5D600D412CD699D30068F75F /* Word.swift in Sources */,
 				5D600D392CD32F390068F75F /* VisualizationView.swift in Sources */,
 				5D600CFD2CD036A50068F75F /* ContentView.swift in Sources */,
@@ -489,6 +497,7 @@
 				DEVELOPMENT_TEAM = M9H56SZYZG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -518,6 +527,7 @@
 				DEVELOPMENT_TEAM = M9H56SZYZG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
