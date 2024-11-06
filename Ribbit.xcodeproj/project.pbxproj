@@ -38,6 +38,7 @@
 		A77BB50B2CDB26490060E5C3 /* tone2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A77BB5072CDB26490060E5C3 /* tone2.mp3 */; };
 		A77BB50C2CDB26490060E5C3 /* tone3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A77BB5082CDB26490060E5C3 /* tone3.mp3 */; };
 		A77BB50D2CDB26490060E5C3 /* tone1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A77BB5092CDB26490060E5C3 /* tone1.mp3 */; };
+		A77BB50F2CDBDE3A0060E5C3 /* HomeScreenP1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77BB50E2CDBDE3A0060E5C3 /* HomeScreenP1.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		A77BB5072CDB26490060E5C3 /* tone2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tone2.mp3; path = ../tone2.mp3; sourceTree = "<group>"; };
 		A77BB5082CDB26490060E5C3 /* tone3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tone3.mp3; path = ../tone3.mp3; sourceTree = "<group>"; };
 		A77BB5092CDB26490060E5C3 /* tone1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tone1.mp3; path = ../tone1.mp3; sourceTree = "<group>"; };
+		A77BB50E2CDBDE3A0060E5C3 /* HomeScreenP1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenP1.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +204,7 @@
 				A76F46AF2CD1C9D800182ABE /* LessonListView.swift */,
 				A77BB4FF2CD9EA0C0060E5C3 /* LessonRow.swift */,
 				A77BB5012CDABC300060E5C3 /* ReviewComplete.swift */,
+				A77BB50E2CDBDE3A0060E5C3 /* HomeScreenP1.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				A76F46AB2CD0408C00182ABE /* Module.swift in Sources */,
 				5D600CFB2CD036A50068F75F /* RibbitApp.swift in Sources */,
 				A77BB5002CD9EA0C0060E5C3 /* LessonRow.swift in Sources */,
+				A77BB50F2CDBDE3A0060E5C3 /* HomeScreenP1.swift in Sources */,
 				A735400E2CD69D4000EAE9FA /* PinyinTable.swift in Sources */,
 				A73540142CD6A4CD00EAE9FA /* PinyinViewP6.swift in Sources */,
 				A76F46B32CD1D75900182ABE /* PinyinViewP1.swift in Sources */,

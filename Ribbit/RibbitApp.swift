@@ -11,7 +11,7 @@ import SwiftUI
 struct RibbitApp: App {
     var body: some Scene {
         WindowGroup {
-            LessonListView()
+            HomeScreenP1()
         }
     }
 }
