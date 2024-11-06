@@ -1,15 +1,15 @@
 //
-//  LessonView.swift
+//  ReviewComplete.swift
 //  Ribbit
 //
-//  Created by Tracy Yang on 10/29/24.
+//  Created by Tracy Yang on 11/5/24.
 //
 
 import Foundation
 import SwiftUI
 import FirebaseFirestore
 
-struct LessonListView: View {
+struct ReviewComplete: View {
     var body: some View {
         NavigationStack {
             ZStack {
@@ -25,23 +25,30 @@ struct LessonListView: View {
                             .foregroundColor(Color(hex: "#554C5D"))
                         
                         NavigationLink(destination: PinyinViewP1()) {
-                            VStack(alignment: .center) {
-                                Image(systemName: "book.fill")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 100, height: 100)
-                                    .foregroundColor(.orange)
+                          HStack(alignment: .center) {
+                              VStack(alignment: .leading, spacing: 4) {
                                 Text("The Basics of Mandarin Chinese")
                                     .font(.title)
-                                    .multilineTextAlignment(.center)
+                                    .fontWeight(.semibold)
                                     .foregroundColor(Color(hex: "554C5D"))
+                                    .multilineTextAlignment(.leading)
+                                
                                 Text("review")
                                     .font(.title2)
                                     .foregroundColor(Color(hex: "2B5B81"))
+                                }
+                              
+                              Spacer()
+                              
+                              Image(systemName: "book.fill")
+                                  .resizable()
+                                  .scaledToFit()
+                                  .frame(width: 50, height: 50)
+                                  .foregroundColor(.orange)
                             }
                             .frame(maxWidth: 312, maxHeight: 240)
                             .padding()
-                            .background(.white)
+                            .background(Color(hex: "F2FBC4"))
                             .cornerRadius(12)
                             .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color(hex: "#917FA2"), lineWidth: 3))
                         }
@@ -52,12 +59,12 @@ struct LessonListView: View {
                           .font(.title)
                           .fontWeight(.semibold)
                           .padding(.leading)
-                          .padding(.bottom, 10)
                           .padding(.top, 10)
+                          .padding(.bottom, 10)
                           .foregroundColor(Color(hex: "#554C5D"))
                         
                         VStack(spacing: 15) {
-                          LessonRow(number: 1, title: "Tone One", description: "flat tone", example: "ā", isUnlocked: false)
+                          LessonRow(number: 1, title: "Tone One", description: "flat tone", example: "ā", isUnlocked: true)
                           LessonRow(number: 2, title: "Tone Two", description: "rising tone", example: "á", isUnlocked: false)
                           LessonRow(number: 3, title: "Tone Three", description: "dip tone", example: "ǎ", isUnlocked: false)
                           LessonRow(number: 4, title: "Tone Four", description: "falling tone", example: "à", isUnlocked: false)
@@ -66,6 +73,7 @@ struct LessonListView: View {
                     }
                 }
                 .navigationBarTitleDisplayMode(.inline)
+                .navigationBarBackButtonHidden(true)
                 .navigationBarItems(leading: Button(action: {
                 }) {
                   HStack(spacing: 2) {
@@ -82,6 +90,6 @@ struct LessonListView: View {
 
 //struct ContentView_Previews: PreviewProvider {
 //    static var previews: some View {
-//      LessonListView()
+//      ReviewComplete()
 //    }
 //}

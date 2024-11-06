@@ -10,52 +10,48 @@ import SwiftUI
 
 struct PinyinViewP1: View {
     var body: some View {
+      NavigationStack {
         VStack(spacing: 20) {
-            ProgressBarBackButton()
+          ProgressBarBackButton(currentPage: 1, totalPages: 6)
           
-            VStack(alignment: .center, spacing: 10) {
-                Text("The Basics of\nMandarin Chinese:")
-                    .font(.title2)
-                    .multilineTextAlignment(.center)
-                    .padding(.top, 50)
-              
-                Text("Pinyin")
-                    .font(.title)
-                    .foregroundColor(.purple)
-                
-                Text("The word pīnyīn (拼音) in Chinese literally means \"spell-sounds\".")
-                    .font(.body)
-                    .multilineTextAlignment(.center)
-                    .padding(.top, 50)
-                
-                Text("It's the most commonly used system for transcribing or spelling out the Chinese sounds, and it uses the letters in the Latin alphabet that you are already familiar with.")
-                    .font(.body)
-                    .multilineTextAlignment(.center)
-                    .padding(.top, 10)
-            }
-            .padding(.horizontal, 30)
+          VStack(alignment: .center, spacing: 10) {
+            Text("The Basics of\nMandarin Chinese:")
+              .font(.title)
+              .multilineTextAlignment(.center)
+              .foregroundColor(Color(hex: "#554C5D"))
+              .padding(.top, 50)
             
-            Spacer()
+            Text("Pinyin")
+              .font(.title)
+              .foregroundColor(Color(hex: "#917FA2"))
             
-            NavigationLink(destination: PinyinViewP2()) {
-              Text("Continue")
-                  .font(.headline)
-                  .foregroundColor(.white)
-                  .frame(maxWidth: .infinity)
-                  .padding()
-                  .background(Color.purple)
-                  .cornerRadius(10)
-            }
-            .padding(.horizontal, 50)
-            .padding(.bottom, 170)
+            (Text("The word ") +
+             Text("pīnyīn (拼音) ").foregroundColor(Color(hex: "B79313")) +
+             Text("in Chinese literally means \"spell-sounds\"."))
+              .font(.system(size: 18))
+              .padding(.top, 50)
+              .foregroundColor(Color(hex: "#554C5D"))
+            
+            Text("It's the most commonly used system for transcribing or spelling out the Chinese sounds, and it uses the letters in the Latin alphabet that you are already familiar with.")
+              .font(.system(size: 18))
+              .padding(.top, 20)
+              .foregroundColor(Color(hex: "#554C5D"))
+          }
+          .padding(.horizontal, 30)
+          
+          Spacer()
+          
+          ContinueButton(destination: PinyinViewP2())
         }
-        .background(Color(.systemGray6))
+        .background(Color(hex: "FFFAF3"))
         .ignoresSafeArea()
+      }
+      .navigationBarBackButtonHidden(true)
     }
 }
 
-struct PinyinIntroView_Previews: PreviewProvider {
-    static var previews: some View {
-        PinyinViewP2()
-    }
-}
+//struct PinyinIntroView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    PinyinViewP1()
+//  }
+//}
