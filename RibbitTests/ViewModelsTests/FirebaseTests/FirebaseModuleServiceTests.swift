@@ -145,7 +145,9 @@ class FirebaseModuleServiceTests: XCTestCase {
                 Lesson(id: testLessonId, title: "Lesson 1", lessonOrder: 1, totalStarsAvailable: 50, words: [
                     Word(
                         id: testWordId,
-                        text: "妈",
+                        pinyin: "mā",
+                        word: "妈",
+                        translation: "mom",
                         audioPath: "/audio/tones/mom.mp3",
                         starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
                         feedback: Feedback(incorrectPitch: "Try to keep an even pitch.", incorrectPronunciation: "Emphasize the start."),
