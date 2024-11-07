@@ -13,12 +13,12 @@ struct VisualizationView: View {
   
   @Binding var animationProgress: Double
   
-  var characterPos: (x: Double, y: Double)
+  let word: Word
   
   // initialize character at starting position
-  init(animationProgress: Binding<Double>) {
+  init(word: Word, animationProgress: Binding<Double>) {
     self._animationProgress = animationProgress
-    self.characterPos = (x: 0, y: 0)
+    self.word = word
   }
   
   var body: some View {

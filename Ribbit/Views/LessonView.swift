@@ -15,15 +15,10 @@ struct LessonView: View {
     var body: some View {
         VStack {
             if let word = viewModel.currentWord {
-                QuestionView(word: word)
+              LessonDetailView(word: word, nextWordAction: viewModel.nextWord)
             } else {
                 Text("Loading words...")
             }
-            
-            Button("Next Question") {
-                viewModel.nextWord()
-            }
-            .padding()
         }
         .onAppear {
             Task {

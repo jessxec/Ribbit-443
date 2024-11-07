@@ -7,9 +7,9 @@
 
 import AVFoundation
 import Foundation
-import SwiftUI
+import FirebaseStorage
 
-class WordViewController: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
+class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
   @Published var status: AudioStatus = .recordingStopped
   @Published var hasRecorded: Bool = false
   @Published var hasMicAccess = false
@@ -54,20 +54,33 @@ class WordViewController: NSObject, ObservableObject, AVAudioRecorderDelegate, A
   
   
   // MARK: Playing Audio
-  func playSampleWord(word: String) {
-    guard let sampleURL = Bundle.main.url(forResource: "tone1", withExtension: "mp3")
-    else {
-      print("Audio file not found")
-      return
-    }
-    do {
-      audioPlayer = try AVAudioPlayer(contentsOf: sampleURL)
-      audioPlayer?.delegate = self
-      audioPlayer?.play()
-      status = .playing
-    } catch {
-      print("Error playing audio: \(error.localizedDescription)")
-    }
+  func playSampleWord(for samplePath: String) {
+    let storageRef = Storage.storage().reference().child("\(samplePath)")
+        
+        // Create a unique temporary URL for this audio file
+        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("\(UUID().uuidString).m4a")
+        
+        storageRef.write(toFile: tempURL) { [weak self] url, error in
+            guard let self = self, error == nil else {
+                print("Error fetching audio URL from Firebase: \(error?.localizedDescription ?? "Unknown error")")
+                return
+            }
+            
+            // Check if file exists at tempURL
+            guard FileManager.default.fileExists(atPath: tempURL.path) else {
+                print("Downloaded file does not exist at path: \(tempURL.path)")
+                return
+            }
+            
+            do {
+                self.audioPlayer = try AVAudioPlayer(contentsOf: tempURL)
+                self.audioPlayer?.delegate = self
+                self.audioPlayer?.play()
+                self.status = .playing
+            } catch {
+                print("Error playing audio: \(error.localizedDescription)")
+            }
+        }
   }
   
   func playRecording() {
@@ -178,7 +191,7 @@ class WordViewController: NSObject, ObservableObject, AVAudioRecorderDelegate, A
 
 
 
-extension WordViewController {
+extension WordAudioController {
 
   // MARK: AVAudioPlayerDelegate Method
   func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
