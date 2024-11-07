@@ -22,6 +22,8 @@
 		CB4A37D32CD3559800D44467 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4A37D22CD3559800D44467 /* UserViewModel.swift */; };
 		CB4A37D82CD5EACB00D44467 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */; };
 		CB4A37DE2CD66DC600D44467 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */; };
+		CB72A4512CDC2C7700644FB9 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72A4502CDC2C7300644FB9 /* Word.swift */; };
+		CB72A4702CDC3D6100644FB9 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CB72A46F2CDC3D6100644FB9 /* FirebaseStorage */; };
 		CB93FC4B2CDC1FAD00377C95 /* ModuleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93FC4A2CDC1FA600377C95 /* ModuleViewModel.swift */; };
 		CB93FC4D2CDC1FCF00377C95 /* LessonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93FC4C2CDC1FC600377C95 /* LessonViewModel.swift */; };
 		CB93FC512CDC20B400377C95 /* WordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93FC502CDC20AF00377C95 /* WordViewModel.swift */; };
@@ -61,6 +63,7 @@
 		A76F46AC2CD040B200182ABE /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		CB4A37D22CD3559800D44467 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CB72A4502CDC2C7300644FB9 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		CB93FC4A2CDC1FA600377C95 /* ModuleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleViewModel.swift; sourceTree = "<group>"; };
 		CB93FC4C2CDC1FC600377C95 /* LessonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewModel.swift; sourceTree = "<group>"; };
 		CB93FC502CDC20AF00377C95 /* WordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewModel.swift; sourceTree = "<group>"; };
@@ -81,6 +84,7 @@
 			files = (
 				A76F46A92CD03DD700182ABE /* FirebaseCore in Frameworks */,
 				A76F46A72CD03DD300182ABE /* FirebaseFirestore in Frameworks */,
+				CB72A4702CDC3D6100644FB9 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +172,7 @@
 		A76F469E2CD03B3D00182ABE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CB72A4502CDC2C7300644FB9 /* Word.swift */,
 				CB93FC632CDC22B000377C95 /* AudioStatus.swift */,
 				A76F46A22CD03B9E00182ABE /* User.swift */,
 				A76F46AA2CD0408C00182ABE /* Module.swift */,
@@ -226,6 +231,7 @@
 			packageProductDependencies = (
 				A76F46A62CD03DD300182ABE /* FirebaseFirestore */,
 				A76F46A82CD03DD700182ABE /* FirebaseCore */,
+				CB72A46F2CDC3D6100644FB9 /* FirebaseStorage */,
 			);
 			productName = Ribbit;
 			productReference = 5D600CF72CD036A50068F75F /* Ribbit.app */;
@@ -357,6 +363,7 @@
 				A76F46AB2CD0408C00182ABE /* Module.swift in Sources */,
 				CB93FC4D2CDC1FCF00377C95 /* LessonViewModel.swift in Sources */,
 				5D600CFB2CD036A50068F75F /* RibbitApp.swift in Sources */,
+				CB72A4512CDC2C7700644FB9 /* Word.swift in Sources */,
 				A76F46A32CD03B9E00182ABE /* User.swift in Sources */,
 				CB93FC4B2CDC1FAD00377C95 /* ModuleViewModel.swift in Sources */,
 			);
@@ -525,6 +532,7 @@
 				DEVELOPMENT_TEAM = M9H56SZYZG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Ribbit requires that you have your microhphone turned on";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -554,6 +562,7 @@
 				DEVELOPMENT_TEAM = M9H56SZYZG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Ribbit requires that you have your microhphone turned on";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -710,6 +719,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A76F46A42CD03DB400182ABE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCore;
+		};
+		CB72A46F2CDC3D6100644FB9 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A76F46A42CD03DB400182ABE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

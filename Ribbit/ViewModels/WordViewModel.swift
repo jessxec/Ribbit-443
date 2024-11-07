@@ -75,3 +75,56 @@
 //        isPlaying = false
 //    }
 //}
+
+import Foundation
+import AVFoundation
+
+@MainActor
+class WordViewModel: ObservableObject {
+    private let moduleService: ModuleServiceProtocol
+    @Published var words: [Word] = []
+    @Published var currentWord: Word?
+    @Published var isLoading = false
+    @Published var errorMessage: String?
+    private var currentIndex = 0
+    private var firebaseAudioController = FirebaseAudioController() // Using FirebaseAudioController for Firebase audio
+
+    init(moduleService: ModuleServiceProtocol = ModuleService()) {
+        self.moduleService = moduleService
+    }
+
+    // Fetch words for a specific lesson using the API
+    func fetchWords(forModuleId moduleId: String, lessonId: String) async {
+        isLoading = true
+        do {
+            let module = try await moduleService.fetchModule(by: moduleId)
+            if let lesson = module.lessons.first(where: { $0.id == lessonId }) {
+                self.words = lesson.words
+                self.currentIndex = 0
+                self.currentWord = words.isEmpty ? nil : words[0]
+            }
+        } catch {
+            errorMessage = "Failed to fetch words: \(error.localizedDescription)"
+            print(errorMessage ?? "Unknown error")
+        }
+        isLoading = false
+    }
+
+    // Advance to the next word in the lesson
+    func nextWord() {
+        guard currentIndex + 1 < words.count else { return }
+        currentIndex += 1
+        currentWord = words[currentIndex]
+    }
+
+    // Play audio for the current word using Firebase
+    func playCurrentWordAudio() {
+        guard let word = currentWord else { return }
+        firebaseAudioController.playFirebaseAudio(for: word.audioPath)
+    }
+
+    // Stop audio playback
+    func stopCurrentWordAudio() {
+        firebaseAudioController.stopPlayback()
+    }
+}
