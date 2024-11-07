@@ -1,4 +1,4 @@
-//
+  //
 //  Module.swift
 //  Ribbit
 //
@@ -37,6 +37,8 @@ struct Word: Codable, Identifiable {
     var voiceProcessingCheck: String? // Placeholder for the voice processing check
     var starValue: Int
     var replayAllowed: Bool
+    var samplePitchVectors: [Double] // Array of pitch data for the sample
+    var userPitchVectors: [Double]? // Array of pitch data for the user recording
 }
 
 struct Feedback: Codable {
