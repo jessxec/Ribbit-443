@@ -17,6 +17,7 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   @Published var duration = 3
   @Published var durationTimer: Timer?
   
+  var hasSentAPIRequest = false // Flag to prevent multiple API calls
   var audioPlayer: AVAudioPlayer?
   var audioRecorder: AVAudioRecorder?
   var timer: Timer?
@@ -155,15 +156,18 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   func stopRecording(completion: @escaping (String) -> Void) {
       audioRecorder?.stop()
       status = .recordingStopped
+    
+      guard !hasSentAPIRequest else {
+          print("API request already sent. Skipping...")
+          return
+      }
       
       if FileManager.default.fileExists(atPath: urlForRecording.path) {
           if let attributes = try? FileManager.default.attributesOfItem(atPath: urlForRecording.path),
-             let fileSize = attributes[.size] as? UInt64, fileSize > 0 {
-              
+              let fileSize = attributes[.size] as? UInt64, fileSize > 0 {
+              hasSentAPIRequest = true // Mark as sent to avoid re-calls
               // Define a sample pitch (replace with actual values as needed)
               let samplePitch: [Double] = [154.4,150.0,148.1,148.6,148.4,147.8,148.3,149.3,150.0,150.6,150.3,150.4,150.9,150.6,148.7,147.3,148.4,150.1,152.8,155.5]
-              
-              // Send the audio to the API
               sendAudioToAPI(samplePitch: samplePitch) { result in
                   switch result {
                   case .success(let response):
@@ -171,6 +175,7 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
                   case .failure(let error):
                       print("API call failed: \(error.localizedDescription)")
                   }
+                  self.hasSentAPIRequest = false
               }
           } else {
               print("Recorded file is empty.")
@@ -225,29 +230,30 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
           
           do {
               if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                  // Print the full JSON response for debugging
                   print("Full JSON response: \(json)")
-                  
-                  // Check for pitch values and feedback in the response
-                  if let pitchValues = json["pitch_values"] as? [Double],
-                     let feedback = json["feedback"] as? [String: Any],
-                     let averageFeedback = feedback["average_feedback"] as? String,
-                     let detailedFeedback = feedback["detailed_feedback"] as? [String] {
-                      
-                      // Assign feedback message for UI
-                      DispatchQueue.main.async {
-                          self.feedbackMessage = "Average feedback: \(averageFeedback)\nDetails:\n" + detailedFeedback.joined(separator: "\n")
-                      }
-                      
-                      // Print pitch values and feedback for debugging
-                      print("Pitch Values: \(pitchValues)")
-                      print("Feedback - Average: \(averageFeedback)")
-                      print("Feedback - Details: \(detailedFeedback)")
-                      
-                      completion(.success("Feedback and pitch values received successfully"))
-                  } else {
+
+                  // Extract `pitch_values` and `feedback`
+                  guard let pitchValues = json["pitch_values"] as? [Double],
+                        let feedback = json["feedback"] as? [String: Any],
+                        let averageFeedback = feedback["average_feedback"] as? String,
+                        let sectionFeedback = feedback["section_feedback"] as? [String],
+                        let tonePatternFeedback = feedback["tone_pattern_feedback"] as? String else {
+                            
+                      print("Error: Missing expected fields in JSON response")
                       completion(.failure(NSError(domain: "Invalid JSON structure", code: 0, userInfo: nil)))
+                      return
                   }
+
+                  // Assign feedback message for UI
+                  DispatchQueue.main.async {
+                      self.feedbackMessage = """
+                      Average Feedback: \(averageFeedback)
+                      Tone Pattern: \(tonePatternFeedback)
+                      Section Details:
+                      \(sectionFeedback.joined(separator: "\n"))
+                      """
+                  }
+                  completion(.success("Feedback and pitch values received successfully"))
               } else {
                   completion(.failure(NSError(domain: "Invalid JSON", code: 0, userInfo: nil)))
               }
