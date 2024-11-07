@@ -9,12 +9,8 @@ import AVFoundation
 import Foundation
 import FirebaseStorage
 
-<<<<<<< HEAD:Ribbit/ViewControllers/WordAudioController.swift
 class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
-=======
-class WordViewController: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
   @Published var feedbackMessage: String?
->>>>>>> 4d9c023 (Added API connections between Python Anywhere and Swift):Ribbit/ViewControllers/WordViewController.swift
   @Published var status: AudioStatus = .recordingStopped
   @Published var hasRecorded: Bool = false
   @Published var hasMicAccess = false
