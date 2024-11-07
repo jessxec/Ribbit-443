@@ -16,8 +16,9 @@ struct LessonRow: View {
     var example: String
     var isUnlocked: Bool
     
+    
     var body: some View {
-        HStack {
+      NavigationLink(destination: LessonView(moduleId: "foundationsIsland", lessonId: "lesson1")) {
             VStack(alignment: .leading, spacing: 4) {
                 Text("\(number). \(title)")
                     .font(.title)
@@ -40,6 +41,7 @@ struct LessonRow: View {
                 .stroke(Color(hex: "917FA2"), lineWidth: isUnlocked ? 7 : 0)
         )
         .cornerRadius(10)
+        .navigationBarBackButtonHidden(true)
     }
 }
 

@@ -22,11 +22,12 @@ struct ActionsView: View {
     VStack(spacing: 20) {
       
       // Display current status
-      Text("Status: \(statusText)")
+      Text("\(statusText)")
         .font(.body)
-        .foregroundColor(statusColor)
+        .foregroundColor(Color(hex: "#96C7C9"))
+        .padding(.bottom, 20)
       
-      HStack {
+      HStack(spacing: 50) {
         // Display retry, playback, next button
         if finishedRecording || audio.hasRecorded {
           // retry button
@@ -35,6 +36,9 @@ struct ActionsView: View {
             audio.hasRecorded = false
           }) {
             Image(systemName: "arrow.2.circlepath.circle")
+              .resizable()
+              .frame(width: 40, height: 40)
+              .foregroundColor(Color(hex: "#D2C0E2"))
           }
           
           // playback Button
@@ -42,6 +46,9 @@ struct ActionsView: View {
             handlePlayButton()
           }) {
             Image(systemName: audio.status == .playing ? "stop.circle.fill" : "play.circle.fill")
+              .resizable()
+              .frame(width: 60, height: 60)
+              .foregroundColor(Color(hex: "#917FA2"))
           }
           
           // next Button switch to next word question
@@ -50,12 +57,18 @@ struct ActionsView: View {
             nextWordAction()
           }) {
             Image(systemName: "arrow.right.circle")
+              .resizable()
+              .frame(width: 40, height: 40)
+              .foregroundColor(Color(hex: "#D2C0E2"))
           }
         } else {
           Button(action: {
             handleRecordButton()
           }) {
             Image(systemName: audio.status == .recording ? "stop.circle" : "mic.circle")
+              .resizable()
+              .frame(width: 60, height: 60)
+              .foregroundColor(Color(hex: "#917FA2"))
           }
         }
       }
@@ -67,9 +80,9 @@ struct ActionsView: View {
     private var statusText: String {
       if audio.status == .recordingStopped {
         if audio.hasRecorded {
-          return "Playback your Recording"
+          return "Playback your recording"
         } else {
-          return "Start Recording"
+          return "Start recording"
         }
       } else if audio.status == .recording {
           return "Recording..."
@@ -78,15 +91,6 @@ struct ActionsView: View {
       } else {
         return ""
       }
-    }
-    
-    private var statusColor: Color {
-        switch audio.status {
-        case .recordingStopped: return .blue
-        case .recording: return .red
-        case .playing: return .green
-        case .stopped: return .primary
-        }
     }
     
     private func handleRecordButton() {

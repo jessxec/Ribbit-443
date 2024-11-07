@@ -15,7 +15,7 @@ class WordViewModel: ObservableObject {
   @Published var currentWord: Word?
   @Published var isLoading = false
   @Published var errorMessage: String?
-  private var currentIndex = 0
+  @Published var currentIndex = 0
  
 
   init(moduleService: ModuleServiceProtocol = ModuleService()) {

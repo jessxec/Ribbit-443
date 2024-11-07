@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import FirebaseFirestore
 
-struct LessonListView: View {
+struct LessonListView: View {  
     var body: some View {
         NavigationStack {
             ZStack {

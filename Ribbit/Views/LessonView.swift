@@ -13,17 +13,21 @@ struct LessonView: View {
     let lessonId: String
 
     var body: some View {
-        VStack {
+        ZStack {
             if let word = viewModel.currentWord {
-              LessonDetailView(word: word, nextWordAction: viewModel.nextWord)
+              LessonDetailView(word: word, lessonCount: viewModel.words.count, currentIndex: viewModel.currentIndex, nextWordAction: viewModel.nextWord)
             } else {
                 Text("Loading words...")
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color(hex: "FFFAF3"))
+        .ignoresSafeArea()
         .onAppear {
             Task {
                 await viewModel.fetchWords(forModuleId: moduleId, lessonId: lessonId)
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }

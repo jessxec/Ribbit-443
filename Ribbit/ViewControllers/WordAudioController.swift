@@ -97,6 +97,24 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
     }
   }
   
+  // MARK: play asset audio files
+  func playAssetAudio(forTone tone: Int) {
+    let toneSound = "tone\(tone).mp3"
+    print("Attempting to play sound: \(toneSound)")
+    
+    if let soundURL = Bundle.main.url(forResource: toneSound, withExtension: "mp3") {
+        do {
+            print("Playing sound: \(toneSound)")
+            audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+            audioPlayer?.play()
+        } catch {
+            print("Error playing sound: \(error)")
+        }
+    } else {
+        print("Sound not found for \(toneSound)")
+    }
+  }
+  
   func stopPlayback() {
     audioPlayer?.stop()
     status = .stopped // Update the playback state

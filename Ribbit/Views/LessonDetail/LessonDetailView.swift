@@ -10,22 +10,34 @@ import SwiftUI
 struct LessonDetailView: View {
     @State private var animationProgress: Double = 0
     let word: Word // Accept a `Word` as a parameter
+    let lessonCount: Int
+    let currentIndex: Int
     let nextWordAction: () -> Void
     
     var body: some View {
-        ZStack {
-            // Background color layer
-              Color(red: 255 / 255, green: 250 / 255, blue: 243 / 255)
-                .ignoresSafeArea()
+        VStack {
+            // Top progress bar
+            ProgressBarBackButton(currentPage: currentIndex, totalPages: lessonCount)
+                .padding(.top, 20) // Optional: add top padding for spacing
             
+          Spacer()
+          
+          
             // Main content
-            VStack {
-                HStack {
-                  WordView(audio: WordAudioController(word: word), animationProgress: $animationProgress, word: word)
-                }.padding()
-              VisualizationView(word: word, animationProgress: $animationProgress)
-              ActionsView(audio: WordAudioController(word: word), word: word, nextWordAction: nextWordAction) // Pass the current word to ActionsView
+            VStack() {
+                WordView(audio: WordAudioController(word: word), animationProgress: $animationProgress, word: word)
+                .padding(.bottom, 40)
+              
+                VisualizationView(word: word, animationProgress: $animationProgress)
+                .padding(.bottom, 40)
+              
+                ActionsView(audio: WordAudioController(word: word), word: word, nextWordAction: nextWordAction)
+                .padding(.bottom, 60)
             }
+            .padding(.horizontal, 30)
+            
+            Spacer()
         }
     }
 }
+

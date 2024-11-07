@@ -15,6 +15,10 @@
 		5D600D162CD036A80068F75F /* RibbitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600D152CD036A80068F75F /* RibbitUITests.swift */; };
 		5D600D182CD036A80068F75F /* RibbitUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600D172CD036A80068F75F /* RibbitUITestsLaunchTests.swift */; };
 		5DFEAE252CDC68DC005DDACC /* LessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFEAE202CDC68DC005DDACC /* LessonView.swift */; };
+		5DFEAE5F2CDD2BCB005DDACC /* tone1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DFEAE5E2CDD2BCB005DDACC /* tone1.mp3 */; };
+		5DFEAE612CDD3DAA005DDACC /* tone2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DFEAE602CDD3DAA005DDACC /* tone2.mp3 */; };
+		5DFEAE632CDD3DC0005DDACC /* tone3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DFEAE622CDD3DC0005DDACC /* tone3.mp3 */; };
+		5DFEAE652CDD3DDD005DDACC /* tone4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DFEAE642CDD3DDD005DDACC /* tone4.mp3 */; };
 		A735400C2CD6993D00EAE9FA /* PinyinViewP3.swift in Sources */ = {isa = PBXBuildFile; fileRef = A735400B2CD6993D00EAE9FA /* PinyinViewP3.swift */; };
 		A735400E2CD69D4000EAE9FA /* PinyinTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A735400D2CD69D4000EAE9FA /* PinyinTable.swift */; };
 		A73540102CD6A4B400EAE9FA /* PinyinViewP4.swift in Sources */ = {isa = PBXBuildFile; fileRef = A735400F2CD6A4B400EAE9FA /* PinyinViewP4.swift */; };
@@ -27,14 +31,6 @@
 		A76F46A92CD03DD700182ABE /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = A76F46A82CD03DD700182ABE /* FirebaseCore */; };
 		A76F46AB2CD0408C00182ABE /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F46AA2CD0408C00182ABE /* Module.swift */; };
 		A76F46AD2CD040B200182ABE /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F46AC2CD040B200182ABE /* Badge.swift */; };
-		CB4A37D32CD3559800D44467 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4A37D22CD3559800D44467 /* UserViewModel.swift */; };
-		CB4A37D82CD5EACB00D44467 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */; };
-		CB4A37DE2CD66DC600D44467 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */; };
-		CB72A4702CDC3D6100644FB9 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CB72A46F2CDC3D6100644FB9 /* FirebaseStorage */; };
-		CB93FC4B2CDC1FAD00377C95 /* ModuleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93FC4A2CDC1FA600377C95 /* ModuleViewModel.swift */; };
-		CB93FC4D2CDC1FCF00377C95 /* LessonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93FC4C2CDC1FC600377C95 /* LessonViewModel.swift */; };
-		CB93FC512CDC20B400377C95 /* WordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93FC502CDC20AF00377C95 /* WordViewModel.swift */; };
-		CB93FC642CDC22B400377C95 /* AudioStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93FC632CDC22B000377C95 /* AudioStatus.swift */; };
 		A76F46B02CD1C9D800182ABE /* LessonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F46AF2CD1C9D800182ABE /* LessonListView.swift */; };
 		A76F46B32CD1D75900182ABE /* PinyinViewP1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F46B22CD1D75900182ABE /* PinyinViewP1.swift */; };
 		A76F46B52CD1DCF300182ABE /* PinyinViewP2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F46B42CD1DCF300182ABE /* PinyinViewP2.swift */; };
@@ -43,11 +39,15 @@
 		A77BB5002CD9EA0C0060E5C3 /* LessonRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77BB4FF2CD9EA0C0060E5C3 /* LessonRow.swift */; };
 		A77BB5022CDABC300060E5C3 /* ReviewComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77BB5012CDABC300060E5C3 /* ReviewComplete.swift */; };
 		A77BB5042CDB21310060E5C3 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77BB5032CDB21310060E5C3 /* AudioPlayer.swift */; };
-		A77BB50A2CDB26490060E5C3 /* tone4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A77BB5062CDB26480060E5C3 /* tone4.mp3 */; };
-		A77BB50B2CDB26490060E5C3 /* tone2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A77BB5072CDB26490060E5C3 /* tone2.mp3 */; };
-		A77BB50C2CDB26490060E5C3 /* tone3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A77BB5082CDB26490060E5C3 /* tone3.mp3 */; };
-		A77BB50D2CDB26490060E5C3 /* tone1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A77BB5092CDB26490060E5C3 /* tone1.mp3 */; };
 		A77BB50F2CDBDE3A0060E5C3 /* HomeScreenP1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77BB50E2CDBDE3A0060E5C3 /* HomeScreenP1.swift */; };
+		CB4A37D32CD3559800D44467 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4A37D22CD3559800D44467 /* UserViewModel.swift */; };
+		CB4A37D82CD5EACB00D44467 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */; };
+		CB4A37DE2CD66DC600D44467 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */; };
+		CB72A4702CDC3D6100644FB9 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CB72A46F2CDC3D6100644FB9 /* FirebaseStorage */; };
+		CB93FC4B2CDC1FAD00377C95 /* ModuleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93FC4A2CDC1FA600377C95 /* ModuleViewModel.swift */; };
+		CB93FC4D2CDC1FCF00377C95 /* LessonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93FC4C2CDC1FC600377C95 /* LessonViewModel.swift */; };
+		CB93FC512CDC20B400377C95 /* WordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93FC502CDC20AF00377C95 /* WordViewModel.swift */; };
+		CB93FC642CDC22B400377C95 /* AudioStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93FC632CDC22B000377C95 /* AudioStatus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,15 +79,10 @@
 		5D600D152CD036A80068F75F /* RibbitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RibbitUITests.swift; sourceTree = "<group>"; };
 		5D600D172CD036A80068F75F /* RibbitUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RibbitUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		5DFEAE202CDC68DC005DDACC /* LessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonView.swift; sourceTree = "<group>"; };
-		A76F46A22CD03B9E00182ABE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		A76F46AA2CD0408C00182ABE /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
-		A76F46AC2CD040B200182ABE /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
-		CB4A37D22CD3559800D44467 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
-		CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		CB93FC4A2CDC1FA600377C95 /* ModuleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleViewModel.swift; sourceTree = "<group>"; };
-		CB93FC4C2CDC1FC600377C95 /* LessonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewModel.swift; sourceTree = "<group>"; };
-		CB93FC502CDC20AF00377C95 /* WordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewModel.swift; sourceTree = "<group>"; };
-		CB93FC632CDC22B000377C95 /* AudioStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStatus.swift; sourceTree = "<group>"; };
+		5DFEAE5E2CDD2BCB005DDACC /* tone1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tone1.mp3; path = Ribbit/Assets.xcassets/tone1.dataset/tone1.mp3; sourceTree = "<group>"; };
+		5DFEAE602CDD3DAA005DDACC /* tone2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tone2.mp3; path = Ribbit/Assets.xcassets/tone2.dataset/tone2.mp3; sourceTree = "<group>"; };
+		5DFEAE622CDD3DC0005DDACC /* tone3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tone3.mp3; path = Ribbit/Assets.xcassets/tone3.dataset/tone3.mp3; sourceTree = "<group>"; };
+		5DFEAE642CDD3DDD005DDACC /* tone4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tone4.mp3; path = Ribbit/Assets.xcassets/tone4.dataset/tone4.mp3; sourceTree = "<group>"; };
 		A735400B2CD6993D00EAE9FA /* PinyinViewP3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinyinViewP3.swift; sourceTree = "<group>"; };
 		A735400D2CD69D4000EAE9FA /* PinyinTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinyinTable.swift; sourceTree = "<group>"; };
 		A735400F2CD6A4B400EAE9FA /* PinyinViewP4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinyinViewP4.swift; sourceTree = "<group>"; };
@@ -106,11 +101,13 @@
 		A77BB4FF2CD9EA0C0060E5C3 /* LessonRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonRow.swift; sourceTree = "<group>"; };
 		A77BB5012CDABC300060E5C3 /* ReviewComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewComplete.swift; sourceTree = "<group>"; };
 		A77BB5032CDB21310060E5C3 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
-		A77BB5062CDB26480060E5C3 /* tone4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tone4.mp3; path = ../tone4.mp3; sourceTree = "<group>"; };
-		A77BB5072CDB26490060E5C3 /* tone2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tone2.mp3; path = ../tone2.mp3; sourceTree = "<group>"; };
-		A77BB5082CDB26490060E5C3 /* tone3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tone3.mp3; path = ../tone3.mp3; sourceTree = "<group>"; };
-		A77BB5092CDB26490060E5C3 /* tone1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tone1.mp3; path = ../tone1.mp3; sourceTree = "<group>"; };
 		A77BB50E2CDBDE3A0060E5C3 /* HomeScreenP1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenP1.swift; sourceTree = "<group>"; };
+		CB4A37D22CD3559800D44467 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CB93FC4A2CDC1FA600377C95 /* ModuleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleViewModel.swift; sourceTree = "<group>"; };
+		CB93FC4C2CDC1FC600377C95 /* LessonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewModel.swift; sourceTree = "<group>"; };
+		CB93FC502CDC20AF00377C95 /* WordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewModel.swift; sourceTree = "<group>"; };
+		CB93FC632CDC22B000377C95 /* AudioStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStatus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -151,10 +148,10 @@
 		5D600CEE2CD036A50068F75F = {
 			isa = PBXGroup;
 			children = (
-				A77BB5092CDB26490060E5C3 /* tone1.mp3 */,
-				A77BB5072CDB26490060E5C3 /* tone2.mp3 */,
-				A77BB5082CDB26490060E5C3 /* tone3.mp3 */,
-				A77BB5062CDB26480060E5C3 /* tone4.mp3 */,
+				5DFEAE642CDD3DDD005DDACC /* tone4.mp3 */,
+				5DFEAE622CDD3DC0005DDACC /* tone3.mp3 */,
+				5DFEAE602CDD3DAA005DDACC /* tone2.mp3 */,
+				5DFEAE5E2CDD2BCB005DDACC /* tone1.mp3 */,
 				5D600CF92CD036A50068F75F /* Ribbit */,
 				5D600D0A2CD036A80068F75F /* RibbitTests */,
 				5D600D142CD036A80068F75F /* RibbitUITests */,
@@ -185,7 +182,6 @@
 				5D600CFA2CD036A50068F75F /* RibbitApp.swift */,
 				5D600CFC2CD036A50068F75F /* ContentView.swift */,
 				5D600CFE2CD036A70068F75F /* Assets.xcassets */,
-				A77BB5052CDB25950060E5C3 /* Tones */,
 				5D600D002CD036A70068F75F /* Preview Content */,
 			);
 			path = Ribbit;
@@ -285,21 +281,6 @@
 				A77BB5032CDB21310060E5C3 /* AudioPlayer.swift */,
 			);
 			path = Partials;
-			sourceTree = "<group>";
-		};
-		A77BB4F92CD96C170060E5C3 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = ViewModels;
-			path = ModelViews/Ribbit/ModelViews/ViewModels;
-			sourceTree = "<group>";
-		};
-		A77BB5052CDB25950060E5C3 /* Tones */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tones;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -422,13 +403,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DFEAE652CDD3DDD005DDACC /* tone4.mp3 in Resources */,
+				5DFEAE632CDD3DC0005DDACC /* tone3.mp3 in Resources */,
+				5DFEAE612CDD3DAA005DDACC /* tone2.mp3 in Resources */,
+				5DFEAE5F2CDD2BCB005DDACC /* tone1.mp3 in Resources */,
 				5D600D022CD036A70068F75F /* Preview Assets.xcassets in Resources */,
 				5D600CFF2CD036A70068F75F /* Assets.xcassets in Resources */,
 				CB4A37D82CD5EACB00D44467 /* GoogleService-Info.plist in Resources */,
-				A77BB50A2CDB26490060E5C3 /* tone4.mp3 in Resources */,
-				A77BB50B2CDB26490060E5C3 /* tone2.mp3 in Resources */,
-				A77BB50C2CDB26490060E5C3 /* tone3.mp3 in Resources */,
-				A77BB50D2CDB26490060E5C3 /* tone1.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
