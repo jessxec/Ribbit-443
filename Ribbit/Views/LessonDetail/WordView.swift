@@ -35,6 +35,12 @@ struct WordView: View {
                   .font(.system(size: 18))
                   .fontWeight(.light)
                   .foregroundColor(Color(hex: "#A0A0A0"))
+              Text("Feedback: \(audio.feedbackMessage)")
+                              .padding()
+                              .foregroundColor(.gray)
+                              .font(.caption2) // Smaller font
+                              .multilineTextAlignment(.center)
+                              .fixedSize(horizontal: false, vertical: true) // Allow text to wrap
           }
           .padding(.leading, 40)
           

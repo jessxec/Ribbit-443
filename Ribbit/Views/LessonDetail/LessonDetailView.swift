@@ -37,7 +37,7 @@ struct LessonDetailView: View {
                 WordView(audio: audio, word: word)
                 .padding(.bottom, 40)
               
-              VisualizationView(audio: audio, word: word, correctVector: word.samplePitchVectors, userVector: word.userPitchVectors)
+              VisualizationView(audio: audio, word: word, correctVector: word.samplePitchVectors, userVector: audio.pitchValues)
                 .padding(.bottom, 40)
               
               ActionsView(audio: audio, word: word, nextWordAction: nextWordAction)
