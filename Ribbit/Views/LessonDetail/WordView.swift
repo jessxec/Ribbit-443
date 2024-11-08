@@ -11,13 +11,16 @@ import AVFoundation
 
 struct WordView: View {
     @ObservedObject var audio: WordAudioController
-    @Binding var animationProgress: Double
     
     let word: Word
 
     var body: some View {
         HStack {
           VStack {
+            Text("Pitch Values: \(audio.pitchValues.description)")
+                               .padding()
+                               .foregroundColor(.blue)
+                               .font(.caption)
               Text("\(word.pinyin)")
                   .font(.system(size: 18))
                   .foregroundColor(Color(hex: "#554C5D"))
@@ -42,7 +45,7 @@ struct WordView: View {
             }
             .onChange(of: audio.status == .playing) { newValue in
                 if !newValue {
-                    resetAnimation()
+                  audio.resetAnimation()
                 }
             }
         }
@@ -51,21 +54,10 @@ struct WordView: View {
     private func togglePlayback() {
         if audio.status == .playing {
             audio.stopPlayback()
-            resetAnimation()
+
         } else {
           audio.playSampleWord(for: word.audioPath)
-            startAnimation(duration: audio.audioDuration)
         }
     }
 
-    private func startAnimation(duration: TimeInterval) {
-        animationProgress = 0
-        withAnimation(.easeInOut(duration: duration)) {
-            animationProgress = 1.0
-        }
-    }
-
-    private func resetAnimation() {
-        animationProgress = 0
-    }
 }

@@ -8,18 +8,11 @@
 import SwiftUI
 
 struct VisualizationView: View {
- // should be using an observedObject for vectorArrays
-  var correctVector: [Double] = [154.8,153.0,152.4,152.0,151.7,151.5,151.4,151.3,151.3,151.3,151.3,151.4,151.5,151.7,151.9,152.0,152.3,152.7,153.1,153.6,154.2,154.8,155.4,155.9,156.5,157.0,157.5,157.9,158.3,158.6,158.9,159.1,159.3,159.5,159.7,159.9,160.3,160.8,161.6]
-  
-  @Binding var animationProgress: Double
-  
+  @ObservedObject var audio: WordAudioController
+    
   let word: Word
-  
-  // initialize character at starting position
-  init(word: Word, animationProgress: Binding<Double>) {
-    self._animationProgress = animationProgress
-    self.word = word
-  }
+  var correctVector: [Double]
+  var userVector: [Double]?
   
   var body: some View {
     ZStack {
@@ -33,7 +26,7 @@ struct VisualizationView: View {
         )
       LineGraph(dataPoints: correctVector)
         .frame(width: 280, height: 180)
-      AnimatedGraph(dataPoints: correctVector, progress: animationProgress)
+      AnimatedGraph(dataPoints: audio.playingUserAudio ? (userVector ?? correctVector) : correctVector, progress: $audio.animationProgress)
         .frame(width: 280, height: 180)
       DrawStars(dataPoints: correctVector)
         .frame(width: 280, height: 180)
@@ -69,9 +62,11 @@ struct DrawStars: View {
 
 struct AnimatedGraph: View {
     var dataPoints: [Double]
-    var progress: Double // Use progress to control drawing
+    @Binding var progress: Double // Use progress to control drawing
     
     var body: some View {
+        ZStack {
+          Text("\(progress)")}
         GeometryReader { geometry in
             let maxY = 0.0
             let minY = 300.0
@@ -82,6 +77,7 @@ struct AnimatedGraph: View {
                 let visiblePoints = Int(progress * Double(dataPoints.count)) // Calculate visible points based on progress
                 
                 for index in dataPoints.indices.prefix(visiblePoints) {
+                    print(progress)
                     let xPosition = geometry.size.width * CGFloat(index) / CGFloat(dataPoints.count - 1)
                     let yPosition = geometry.size.height * CGFloat(1 - (dataPoints[index] - minY) / rangeY)
                     
@@ -134,7 +130,7 @@ struct LineGraph: View {
                 }
             }
             .stroke(Color(red: 141 / 255, green: 126 / 255, blue: 215 / 255)
-                .opacity(0.58), lineWidth: 25)
+                .opacity(0.58), lineWidth: 20)
           
         }
     }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LessonView: View {
     @StateObject private var viewModel = WordViewModel()
+    
     let moduleId: String
     let lessonId: String
 

@@ -29,7 +29,7 @@ struct ActionsView: View {
       
       HStack(spacing: 50) {
         // Display retry, playback, next button
-        if finishedRecording || audio.hasRecorded {
+        if (finishedRecording || audio.hasRecorded) && audio.status != .playing {
           // retry button
           Button(action: {
             finishedRecording = false
@@ -61,6 +61,8 @@ struct ActionsView: View {
               .frame(width: 40, height: 40)
               .foregroundColor(Color(hex: "#D2C0E2"))
           }
+        } else if (finishedRecording || audio.hasRecorded) && audio.status == .playing {
+            // do nothing
         } else {
           Button(action: {
             handleRecordButton()
@@ -109,11 +111,11 @@ struct ActionsView: View {
     }
     
     private func handlePlayButton() {
-        if audio.status == .playing {
-            audio.stopPlayback()
-        } else {
-          audio.playRecording()
-        }
+      if audio.status == .playing {
+        audio.stopPlayback()
+      } else {
+        audio.playRecording()
+      }
     }
 }
 

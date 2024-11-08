@@ -8,6 +8,7 @@
 import AVFoundation
 import Foundation
 import FirebaseStorage
+import SwiftUI
 
 class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
   @Published var feedbackMessage: String?
@@ -16,6 +17,10 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   @Published var hasMicAccess = false
   @Published var duration = 3
   @Published var durationTimer: Timer?
+  @Published var playingUserAudio: Bool = false
+  @Published var animationProgress: Double = 0.0
+  @Published var pitchValues: [Double] = []
+  
   
   var hasSentAPIRequest = false // Flag to prevent multiple API calls
   var audioPlayer: AVAudioPlayer?
@@ -79,6 +84,9 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
                 self.audioPlayer?.delegate = self
                 self.audioPlayer?.play()
                 self.status = .playing
+                playingUserAudio = false
+                startAnimation(duration: audioDuration)
+              print(playingUserAudio)
             } catch {
                 print("Error playing audio: \(error.localizedDescription)")
             }
@@ -92,6 +100,8 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
       audioPlayer?.delegate = self
       audioPlayer?.play()
       status = .playing
+      playingUserAudio = true
+      startAnimation(duration: audioDuration)
     } catch {
       print("Error playing recorded audio: \(error.localizedDescription)")
     }
@@ -118,6 +128,7 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   func stopPlayback() {
     audioPlayer?.stop()
     status = .stopped // Update the playback state
+    resetAnimation()
   }
   
   
@@ -174,6 +185,8 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   func stopRecording(completion: @escaping (String) -> Void) {
       audioRecorder?.stop()
       status = .recordingStopped
+      // automatic recorded playback
+      playRecording()
     
       guard !hasSentAPIRequest else {
           print("API request already sent. Skipping...")
@@ -183,6 +196,9 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
       if FileManager.default.fileExists(atPath: urlForRecording.path) {
           if let attributes = try? FileManager.default.attributesOfItem(atPath: urlForRecording.path),
               let fileSize = attributes[.size] as? UInt64, fileSize > 0 {
+              
+              
+            
               hasSentAPIRequest = true // Mark as sent to avoid re-calls
               // Define a sample pitch (replace with actual values as needed)
               let samplePitch: [Double] = [154.4,150.0,148.1,148.6,148.4,147.8,148.3,149.3,150.0,150.6,150.3,150.4,150.9,150.6,148.7,147.3,148.4,150.1,152.8,155.5]
@@ -264,6 +280,7 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
 
                   // Assign feedback message for UI
                   DispatchQueue.main.async {
+                    self.pitchValues = pitchValues
                       self.feedbackMessage = """
                       Average Feedback: \(averageFeedback)
                       Tone Pattern: \(tonePatternFeedback)
@@ -285,6 +302,19 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   
   var audioDuration: TimeInterval {
     audioPlayer?.duration ?? 0
+  }
+  
+  func startAnimation(duration: TimeInterval) {
+      animationProgress = 0
+      withAnimation(.easeInOut(duration: duration)) {
+        animationProgress = 1.0
+    }
+    print(animationProgress)
+  }
+  
+  func resetAnimation() {
+    animationProgress = 0
+    print("end: \(animationProgress)")
   }
   
 
