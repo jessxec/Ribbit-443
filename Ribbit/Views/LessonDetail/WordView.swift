@@ -21,6 +21,7 @@ struct WordView: View {
                                .padding()
                                .foregroundColor(.blue)
                                .font(.caption)
+
               Text("\(word.pinyin)")
                   .font(.system(size: 18))
                   .foregroundColor(Color(hex: "#554C5D"))

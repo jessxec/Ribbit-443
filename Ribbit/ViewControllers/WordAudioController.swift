@@ -21,7 +21,6 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   @Published var animationProgress: Double = 0.0
   @Published var pitchValues: [Double] = []
   
-  
   var hasSentAPIRequest = false // Flag to prevent multiple API calls
   var audioPlayer: AVAudioPlayer?
   var audioRecorder: AVAudioRecorder?
@@ -167,7 +166,7 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   
   func startRecording(for duration: TimeInterval, completion: @escaping (String) -> Void) {
     setupRecorder()
-    
+    print("Self Pitch at Start Recording: \(self.pitchValues)")
     if let recorder = audioRecorder, recorder.prepareToRecord() {
       recorder.record()
       status = .recording
@@ -185,7 +184,6 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   func stopRecording(completion: @escaping (String) -> Void) {
       audioRecorder?.stop()
       status = .recordingStopped
-      // automatic recorded playback
       playRecording()
     
       guard !hasSentAPIRequest else {
@@ -205,6 +203,7 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
               sendAudioToAPI(samplePitch: samplePitch) { result in
                   switch result {
                   case .success(let response):
+                      print("Self Pitch at Stop Recording ending: \(self.pitchValues)")
                       print("API call success: \(response)")
                   case .failure(let error):
                       print("API call failed: \(error.localizedDescription)")
@@ -281,6 +280,7 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
                   // Assign feedback message for UI
                   DispatchQueue.main.async {
                     self.pitchValues = pitchValues
+
                       self.feedbackMessage = """
                       Average Feedback: \(averageFeedback)
                       Tone Pattern: \(tonePatternFeedback)

@@ -84,7 +84,9 @@ struct WordView: View {
     var body: some View {
         VStack {
             HStack {
+          
                 VStack {
+                  Text(audio.)
                     Text("\(word.pinyin)")
                     Text("\(word.word)")
                     Text("\(word.translation)")
@@ -111,6 +113,7 @@ struct WordView: View {
                     }
                 }
             }
+            
             
             // Display feedback message if available
             if let feedback = audio.feedbackMessage {
