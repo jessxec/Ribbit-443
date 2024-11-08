@@ -8,12 +8,21 @@
 import SwiftUI
 
 struct LessonDetailView: View {
-    @State private var animationProgress: Double = 0
     let word: Word // Accept a `Word` as a parameter
     let lessonCount: Int
     let currentIndex: Int
     let nextWordAction: () -> Void
     
+  @StateObject var audio: WordAudioController
+  
+  init(word: Word, lessonCount: Int, currentIndex: Int, nextWordAction: @escaping () -> Void) {
+          self.word = word
+          self.lessonCount = lessonCount
+          self.currentIndex = currentIndex
+          self.nextWordAction = nextWordAction
+          _audio = StateObject(wrappedValue: WordAudioController(word: word))
+      }
+  
     var body: some View {
         VStack {
             // Top progress bar
@@ -25,13 +34,13 @@ struct LessonDetailView: View {
           
             // Main content
             VStack() {
-                WordView(audio: WordAudioController(word: word), animationProgress: $animationProgress, word: word)
+                WordView(audio: audio, word: word)
                 .padding(.bottom, 40)
               
-                VisualizationView(word: word, animationProgress: $animationProgress)
+              VisualizationView(audio: audio, word: word, correctVector: word.samplePitchVectors, userVector: word.userPitchVectors)
                 .padding(.bottom, 40)
               
-                ActionsView(audio: WordAudioController(word: word), word: word, nextWordAction: nextWordAction)
+              ActionsView(audio: audio, word: word, nextWordAction: nextWordAction)
                 .padding(.bottom, 60)
             }
             .padding(.horizontal, 30)
