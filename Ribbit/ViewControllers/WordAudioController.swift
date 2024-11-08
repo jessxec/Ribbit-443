@@ -20,6 +20,8 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   @Published var playingUserAudio: Bool = false
   @Published var animationProgress: Double = 0.0
   @Published var pitchValues: [Double] = []
+  @Published var collectedStars: Int = 0
+  @Published var totalCollectedStars: Int = 0
   
   var hasSentAPIRequest = false // Flag to prevent multiple API calls
   var audioPlayer: AVAudioPlayer?
@@ -62,34 +64,34 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   // MARK: Playing Audio
   func playSampleWord(for samplePath: String) {
     let storageRef = Storage.storage().reference().child("\(samplePath)")
-        
-        // Create a unique temporary URL for this audio file
-        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("\(UUID().uuidString).m4a")
-        
-        storageRef.write(toFile: tempURL) { [weak self] url, error in
-            guard let self = self, error == nil else {
-                print("Error fetching audio URL from Firebase: \(error?.localizedDescription ?? "Unknown error")")
-                return
-            }
-            
-            // Check if file exists at tempURL
-            guard FileManager.default.fileExists(atPath: tempURL.path) else {
-                print("Downloaded file does not exist at path: \(tempURL.path)")
-                return
-            }
-            
-            do {
-                self.audioPlayer = try AVAudioPlayer(contentsOf: tempURL)
-                self.audioPlayer?.delegate = self
-                self.audioPlayer?.play()
-                self.status = .playing
-                playingUserAudio = false
-                startAnimation(duration: audioDuration)
-              print(playingUserAudio)
-            } catch {
-                print("Error playing audio: \(error.localizedDescription)")
-            }
-        }
+    
+    // Create a unique temporary URL for this audio file
+    let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("\(UUID().uuidString).m4a")
+    
+    storageRef.write(toFile: tempURL) { [weak self] url, error in
+      guard let self = self, error == nil else {
+        print("Error fetching audio URL from Firebase: \(error?.localizedDescription ?? "Unknown error")")
+        return
+      }
+      
+      // Check if file exists at tempURL
+      guard FileManager.default.fileExists(atPath: tempURL.path) else {
+        print("Downloaded file does not exist at path: \(tempURL.path)")
+        return
+      }
+      
+      do {
+        self.audioPlayer = try AVAudioPlayer(contentsOf: tempURL)
+        self.audioPlayer?.delegate = self
+        self.audioPlayer?.play()
+        self.status = .playing
+        playingUserAudio = false
+        startAnimation(duration: audioDuration)
+        print(playingUserAudio)
+      } catch {
+        print("Error playing audio: \(error.localizedDescription)")
+      }
+    }
   }
   
   func playRecording() {
@@ -101,6 +103,7 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
       status = .playing
       playingUserAudio = true
       startAnimation(duration: audioDuration)
+      collectedStars = calculateHighlightedStars(userPitchValues: pitchValues, correctValues: word.samplePitchVectors)
     } catch {
       print("Error playing recorded audio: \(error.localizedDescription)")
     }
@@ -112,15 +115,15 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
     print("Attempting to play sound: \(toneSound)")
     
     if let soundURL = Bundle.main.url(forResource: toneSound, withExtension: "mp3") {
-        do {
-            print("Playing sound: \(toneSound)")
-            audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
-            audioPlayer?.play()
-        } catch {
-            print("Error playing sound: \(error)")
-        }
+      do {
+        print("Playing sound: \(toneSound)")
+        audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+        audioPlayer?.play()
+      } catch {
+        print("Error playing sound: \(error)")
+      }
     } else {
-        print("Sound not found for \(toneSound)")
+      print("Sound not found for \(toneSound)")
     }
   }
   
@@ -182,139 +185,169 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   }
   
   func stopRecording(completion: @escaping (String) -> Void) {
-      audioRecorder?.stop()
-      status = .recordingStopped
-      playRecording()
+    audioRecorder?.stop()
+    status = .recordingStopped
+    playRecording()
     
-      guard !hasSentAPIRequest else {
-          print("API request already sent. Skipping...")
-          return
-      }
-      
-      if FileManager.default.fileExists(atPath: urlForRecording.path) {
-          if let attributes = try? FileManager.default.attributesOfItem(atPath: urlForRecording.path),
-              let fileSize = attributes[.size] as? UInt64, fileSize > 0 {
-              
-              
-            
-              hasSentAPIRequest = true // Mark as sent to avoid re-calls
-              // Define a sample pitch (replace with actual values as needed)
-              let samplePitch: [Double] = [154.4,150.0,148.1,148.6,148.4,147.8,148.3,149.3,150.0,150.6,150.3,150.4,150.9,150.6,148.7,147.3,148.4,150.1,152.8,155.5]
-              sendAudioToAPI(samplePitch: samplePitch) { result in
-                  switch result {
-                  case .success(let response):
-                      print("Self Pitch at Stop Recording ending: \(self.pitchValues)")
-                      print("API call success: \(response)")
-                  case .failure(let error):
-                      print("API call failed: \(error.localizedDescription)")
-                  }
-                  self.hasSentAPIRequest = false
-              }
-          } else {
-              print("Recorded file is empty.")
-              completion("Error")
+    guard !hasSentAPIRequest else {
+      print("API request already sent. Skipping...")
+      return
+    }
+    
+    if FileManager.default.fileExists(atPath: urlForRecording.path) {
+      if let attributes = try? FileManager.default.attributesOfItem(atPath: urlForRecording.path),
+         let fileSize = attributes[.size] as? UInt64, fileSize > 0 {
+        
+        
+        
+        hasSentAPIRequest = true // Mark as sent to avoid re-calls
+        // Define a sample pitch (replace with actual values as needed)
+        let samplePitch: [Double] = word.samplePitchVectors
+        sendAudioToAPI(samplePitch: samplePitch) { result in
+          switch result {
+          case .success(let response):
+            print("Self Pitch at Stop Recording ending: \(self.pitchValues)")
+            print("API call success: \(response)")
+          case .failure(let error):
+            print("API call failed: \(error.localizedDescription)")
           }
+          self.hasSentAPIRequest = false
+        }
       } else {
-          print("Recorded file does not exist.")
-          completion("Error")
+        print("Recorded file is empty.")
+        completion("Error")
       }
+    } else {
+      print("Recorded file does not exist.")
+      completion("Error")
+    }
   }
-
-
+  
+  
   
   func sendAudioToAPI(samplePitch: [Double], completion: @escaping (Result<String, Error>) -> Void) {
-      let url = URL(string: "https://jacksun815.pythonanywhere.com/process_audio")!
-      var request = URLRequest(url: url)
-      request.httpMethod = "POST"
+    let url = URL(string: "https://jacksun815.pythonanywhere.com/process_audio")!
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    
+    let boundary = "Boundary-\(UUID().uuidString)"
+    request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+    
+    var data = Data()
+    
+    // Add audio file
+    data.append("--\(boundary)\r\n".data(using: .utf8)!)
+    data.append("Content-Disposition: form-data; name=\"audio\"; filename=\"\(urlForRecording.lastPathComponent)\"\r\n".data(using: .utf8)!)
+    data.append("Content-Type: audio/wav\r\n\r\n".data(using: .utf8)!)
+    data.append(try! Data(contentsOf: urlForRecording))
+    data.append("\r\n".data(using: .utf8)!)
+    
+    // Add sample pitch values
+    let samplePitchString = samplePitch.map { "\($0)" }.joined(separator: ",")
+    data.append("--\(boundary)\r\n".data(using: .utf8)!)
+    data.append("Content-Disposition: form-data; name=\"sample_pitch\"\r\n\r\n".data(using: .utf8)!)
+    data.append("[\(samplePitchString)]".data(using: .utf8)!)
+    data.append("\r\n".data(using: .utf8)!)
+    
+    data.append("--\(boundary)--\r\n".data(using: .utf8)!)
+    request.httpBody = data
+    
+    // Send the request
+    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+      if let error = error {
+        completion(.failure(error))
+        return
+      }
       
-      let boundary = "Boundary-\(UUID().uuidString)"
-      request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+      guard let data = data else {
+        completion(.failure(NSError(domain: "No data", code: 0, userInfo: nil)))
+        return
+      }
       
-      var data = Data()
-      
-      // Add audio file
-      data.append("--\(boundary)\r\n".data(using: .utf8)!)
-      data.append("Content-Disposition: form-data; name=\"audio\"; filename=\"\(urlForRecording.lastPathComponent)\"\r\n".data(using: .utf8)!)
-      data.append("Content-Type: audio/wav\r\n\r\n".data(using: .utf8)!)
-      data.append(try! Data(contentsOf: urlForRecording))
-      data.append("\r\n".data(using: .utf8)!)
-      
-      // Add sample pitch values
-      let samplePitchString = samplePitch.map { "\($0)" }.joined(separator: ",")
-      data.append("--\(boundary)\r\n".data(using: .utf8)!)
-      data.append("Content-Disposition: form-data; name=\"sample_pitch\"\r\n\r\n".data(using: .utf8)!)
-      data.append("[\(samplePitchString)]".data(using: .utf8)!)
-      data.append("\r\n".data(using: .utf8)!)
-      
-      data.append("--\(boundary)--\r\n".data(using: .utf8)!)
-      request.httpBody = data
-      
-      // Send the request
-      let task = URLSession.shared.dataTask(with: request) { data, response, error in
-          if let error = error {
-              completion(.failure(error))
-              return
+      do {
+        if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+          print("Full JSON response: \(json)")
+          
+          // Extract `pitch_values` and `feedback`
+          guard let pitchValues = json["pitch_values"] as? [Double],
+                let feedback = json["feedback"] as? [String: Any],
+                let averageFeedback = feedback["average_feedback"] as? String,
+                let sectionFeedback = feedback["section_feedback"] as? [String],
+                let tonePatternFeedback = feedback["tone_pattern_feedback"] as? String else {
+            
+            print("Error: Missing expected fields in JSON response")
+            completion(.failure(NSError(domain: "Invalid JSON structure", code: 0, userInfo: nil)))
+            return
           }
           
-          guard let data = data else {
-              completion(.failure(NSError(domain: "No data", code: 0, userInfo: nil)))
-              return
-          }
-          
-          do {
-              if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                  print("Full JSON response: \(json)")
-
-                  // Extract `pitch_values` and `feedback`
-                  guard let pitchValues = json["pitch_values"] as? [Double],
-                        let feedback = json["feedback"] as? [String: Any],
-                        let averageFeedback = feedback["average_feedback"] as? String,
-                        let sectionFeedback = feedback["section_feedback"] as? [String],
-                        let tonePatternFeedback = feedback["tone_pattern_feedback"] as? String else {
-                            
-                      print("Error: Missing expected fields in JSON response")
-                      completion(.failure(NSError(domain: "Invalid JSON structure", code: 0, userInfo: nil)))
-                      return
-                  }
-
-                  // Assign feedback message for UI
-                  DispatchQueue.main.async {
-                    self.pitchValues = pitchValues
-
-                      self.feedbackMessage = """
+          // Assign feedback message for UI
+          DispatchQueue.main.async {
+            self.pitchValues = pitchValues
+            
+            self.feedbackMessage = """
                       Average Feedback: \(averageFeedback)
                       Tone Pattern: \(tonePatternFeedback)
                       Section Details:
                       \(sectionFeedback.joined(separator: "\n"))
                       """
-                  }
-                  completion(.success("Feedback and pitch values received successfully"))
-              } else {
-                  completion(.failure(NSError(domain: "Invalid JSON", code: 0, userInfo: nil)))
-              }
-          } catch {
-              completion(.failure(error))
           }
+          completion(.success("Feedback and pitch values received successfully"))
+        } else {
+          completion(.failure(NSError(domain: "Invalid JSON", code: 0, userInfo: nil)))
+        }
+      } catch {
+        completion(.failure(error))
       }
-      task.resume()
+    }
+    task.resume()
   }
-
+  
   
   var audioDuration: TimeInterval {
     audioPlayer?.duration ?? 0
   }
   
   func startAnimation(duration: TimeInterval) {
-      animationProgress = 0
-      withAnimation(.easeInOut(duration: duration)) {
-        animationProgress = 1.0
+    // Reset progress
+    animationProgress = 0.0
+    
+    // Timer interval to increment progress
+    let timerInterval = 0.01
+    let increment = timerInterval / duration
+    
+    Timer.scheduledTimer(withTimeInterval: timerInterval, repeats: true) { timer in
+      if self.animationProgress < 1.0 {
+        self.animationProgress += increment
+      } else {
+        self.animationProgress = 1.0
+        timer.invalidate() // Stop the timer when done
+      }
     }
-    print(animationProgress)
   }
   
   func resetAnimation() {
-    animationProgress = 0
+    animationProgress = 0.0
     print("end: \(animationProgress)")
+  }
+  
+  func resetForNextWord() {
+    feedbackMessage = ""
+    totalCollectedStars += collectedStars
+    collectedStars = 0
+    hasRecorded = false
+    playingUserAudio = false
+    pitchValues.removeAll()
+  }
+  
+  func calculateHighlightedStars(userPitchValues: [Double], correctValues: [Double]) -> Int {
+    var count = 0
+    for index in 0..<5 {
+      let starIndex = (correctValues.count - 1) * index / 4
+      if userPitchValues.indices.contains(starIndex) && abs(userPitchValues[starIndex] - correctValues[starIndex]) <= 15 {
+        count += 1
+      }
+    }
+    return count
   }
   
 

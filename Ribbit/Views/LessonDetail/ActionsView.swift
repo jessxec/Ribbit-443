@@ -33,7 +33,7 @@ struct ActionsView: View {
           // retry button
           Button(action: {
             finishedRecording = false
-            audio.hasRecorded = false
+            audio.resetForNextWord()
           }) {
             Image(systemName: "arrow.2.circlepath.circle")
               .resizable()
@@ -55,6 +55,8 @@ struct ActionsView: View {
           Button(action: {
             print("Next Word")
             nextWordAction()
+            audio.resetAnimation()
+            audio.resetForNextWord()
           }) {
             Image(systemName: "arrow.right.circle")
               .resizable()
@@ -91,7 +93,7 @@ struct ActionsView: View {
       } else if audio.status == .playing {
         return "Playing..."
       } else {
-        return ""
+        return " "
       }
     }
     

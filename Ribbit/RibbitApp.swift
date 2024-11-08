@@ -24,8 +24,8 @@ struct RibbitApp: App {
   @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
-            //HomeScreenP1()
-            ContentView()
+            HomeScreenP1()
+            //ContentView()
         }
     }
 }
