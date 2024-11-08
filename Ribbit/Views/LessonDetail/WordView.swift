@@ -18,6 +18,11 @@ struct WordView: View {
     var body: some View {
         HStack {
           VStack {
+              Text("Pitch Values: \(audio.pitchValues.description)")
+                    .padding()
+                    .foregroundColor(.blue)
+                    .font(.caption)
+            
               Text("\(word.pinyin)")
                   .font(.system(size: 18))
                   .foregroundColor(Color(hex: "#554C5D"))

@@ -17,6 +17,7 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   @Published var duration = 3
   @Published var durationTimer: Timer?
   
+  @Published var pitchValues: [Double] = [] // New property to store pitch values
   var hasSentAPIRequest = false // Flag to prevent multiple API calls
   var audioPlayer: AVAudioPlayer?
   var audioRecorder: AVAudioRecorder?
@@ -156,7 +157,7 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   
   func startRecording(for duration: TimeInterval, completion: @escaping (String) -> Void) {
     setupRecorder()
-    
+    print("Self Pitch at Start Recording: \(self.pitchValues)")
     if let recorder = audioRecorder, recorder.prepareToRecord() {
       recorder.record()
       status = .recording
@@ -174,7 +175,8 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   func stopRecording(completion: @escaping (String) -> Void) {
       audioRecorder?.stop()
       status = .recordingStopped
-    
+//      print("Self Pitch at Stop Recording beginning: \(self.pitchValues)")
+
       guard !hasSentAPIRequest else {
           print("API request already sent. Skipping...")
           return
@@ -189,6 +191,7 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
               sendAudioToAPI(samplePitch: samplePitch) { result in
                   switch result {
                   case .success(let response):
+                      print("Self Pitch at Stop Recording ending: \(self.pitchValues)")
                       print("API call success: \(response)")
                   case .failure(let error):
                       print("API call failed: \(error.localizedDescription)")
@@ -264,6 +267,8 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
 
                   // Assign feedback message for UI
                   DispatchQueue.main.async {
+                      self.pitchValues = pitchValues
+
                       self.feedbackMessage = """
                       Average Feedback: \(averageFeedback)
                       Tone Pattern: \(tonePatternFeedback)

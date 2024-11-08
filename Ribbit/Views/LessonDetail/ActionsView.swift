@@ -99,6 +99,7 @@ struct ActionsView: View {
           alertMessage = message
           showAlert = true
           finishedRecording = true
+          
         }
       } else {
         audio.startRecording(for: 2) { message in
