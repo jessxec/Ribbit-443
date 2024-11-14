@@ -32,4 +32,6 @@ protocol ModuleServiceProtocol {
 
     /// Placeholder for sending audio to transcription and voice processing services
     func sendAudioForProcessing(audioData: Data) async throws -> (transcription: String, feedback: String)
+  
+    func updateUserPitchVectors(moduleId: String, lessonId: String, wordId: String, userPitchVectors: [Double]) async throws
 }

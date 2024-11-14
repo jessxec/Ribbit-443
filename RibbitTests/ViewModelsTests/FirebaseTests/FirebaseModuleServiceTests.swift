@@ -18,11 +18,11 @@ class FirebaseModuleServiceTests: XCTestCase {
         moduleService = ModuleService()
     }
 
-//    override func tearDown() async throws {
-//        try await deleteTestModules()
-//        moduleService = nil
-//        try await super.tearDown()
-//    }
+    override func tearDown() async throws {
+        try await deleteTestModules()
+        moduleService = nil
+        try await super.tearDown()
+    }
 
     // Helper function to create a test module in Firebase
     private func createTestModule(module: Module) async throws {
@@ -129,7 +129,7 @@ class FirebaseModuleServiceTests: XCTestCase {
         XCTAssertEqual(fetchedModule.lessons.first?.totalStarsAvailable, 20)
     }
 
-    // Test case for updating word progress within a lesson
+    // Existing test for updating word progress within a lesson
     func testUpdateWordProgress() async throws {
         // Arrange
         let testModuleId = "testModuleWord"
@@ -145,14 +145,18 @@ class FirebaseModuleServiceTests: XCTestCase {
                 Lesson(id: testLessonId, title: "Lesson 1", lessonOrder: 1, totalStarsAvailable: 50, words: [
                     Word(
                         id: testWordId,
-                        text: "妈",
+                        pinyin: "mā",
+                        word: "妈",
+                        translation: "mom",
                         audioPath: "/audio/tones/mom.mp3",
                         starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
                         feedback: Feedback(incorrectPitch: "Try to keep an even pitch.", incorrectPronunciation: "Emphasize the start."),
                         transcriptionCheck: nil,
                         voiceProcessingCheck: nil,
                         starValue: 5,
-                        replayAllowed: true
+                        replayAllowed: true,
+                        samplePitchVectors: [120.0, 130.5, 125.4],
+                        userPitchVectors: []
                     )
                 ])
             ]
@@ -177,6 +181,56 @@ class FirebaseModuleServiceTests: XCTestCase {
         XCTAssertEqual(updatedWord?.starValue, 5)
     }
 
+    // New test for updating userPitchVectors
+    func testUpdateUserPitchVectors() async throws {
+        // Arrange
+        let testModuleId = "testModuleUserPitch"
+        let testLessonId = "lesson2"
+        let testWordId = "word2"
+        let testModule = Module(
+            id: testModuleId,
+            title: "Pitch Vectors Test Module",
+            starsRequired: 10,
+            isUnlocked: true,
+            totalStarsAvailable: 100,
+            lessons: [
+                Lesson(id: testLessonId, title: "Lesson 2", lessonOrder: 2, totalStarsAvailable: 50, words: [
+                    Word(
+                        id: testWordId,
+                        pinyin: "bā",
+                        word: "爸",
+                        translation: "dad",
+                        audioPath: "/audio/tones/dad.mp3",
+                        starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
+                        feedback: Feedback(incorrectPitch: "Try to keep an even pitch.", incorrectPronunciation: "Emphasize the start."),
+                        transcriptionCheck: nil,
+                        voiceProcessingCheck: nil,
+                        starValue: 5,
+                        replayAllowed: true,
+                        samplePitchVectors: [110.0, 115.5, 117.4],
+                        userPitchVectors: []
+                    )
+                ])
+            ]
+        )
+
+        // Act
+        try await createTestModule(module: testModule)
+        let newUserPitchVectors: [Double] = [111.0, 118.5, 120.4]
+        try await moduleService.updateUserPitchVectors(
+            moduleId: testModuleId,
+            lessonId: testLessonId,
+            wordId: testWordId,
+            userPitchVectors: newUserPitchVectors
+        )
+        let fetchedModule = try await moduleService.fetchModule(by: testModuleId)
+        let updatedWord = fetchedModule.lessons.first?.words.first
+
+        // Assert
+        XCTAssertEqual(updatedWord?.userPitchVectors, newUserPitchVectors)
+        XCTAssertEqual(updatedWord?.samplePitchVectors, [110.0, 115.5, 117.4]) // samplePitchVectors should remain unchanged
+    }
+
     // Test case for placeholder audio processing
     func testSendAudioForProcessing() async throws {
         // Arrange
@@ -189,4 +243,6 @@ class FirebaseModuleServiceTests: XCTestCase {
         XCTAssertEqual(transcription, "transcribed text")
         XCTAssertEqual(feedback, "feedback message")
     }
+  
+  
 }

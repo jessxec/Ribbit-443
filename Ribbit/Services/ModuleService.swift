@@ -81,4 +81,23 @@ class ModuleService: ModuleServiceProtocol {
         // This would normally send the audio data to an external service and return the results
         return ("transcribed text", "feedback message")
     }
+  
+    func updateUserPitchVectors(moduleId: String, lessonId: String, wordId: String, userPitchVectors: [Double]) async throws {
+        let moduleDoc = db.collection("Modules").document(moduleId)
+        let moduleSnapshot = try await moduleDoc.getDocument()
+        
+        guard var moduleData = moduleSnapshot.data(),
+              var lessons = moduleData["lessons"] as? [[String: Any]],
+              let lessonIndex = lessons.firstIndex(where: { $0["id"] as? String == lessonId }),
+              var words = lessons[lessonIndex]["words"] as? [[String: Any]],
+              let wordIndex = words.firstIndex(where: { $0["id"] as? String == wordId }) else {
+            throw NSError(domain: "ModuleService", code: 404, userInfo: [NSLocalizedDescriptionKey: "Word not found"])
+        }
+        
+        words[wordIndex]["userPitchVectors"] = userPitchVectors
+        lessons[lessonIndex]["words"] = words
+        moduleData["lessons"] = lessons
+        
+        try await moduleDoc.setData(moduleData, merge: true)
+    }
 }

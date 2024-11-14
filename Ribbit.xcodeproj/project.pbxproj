@@ -14,14 +14,41 @@
 		5D600D0C2CD036A80068F75F /* RibbitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600D0B2CD036A80068F75F /* RibbitTests.swift */; };
 		5D600D162CD036A80068F75F /* RibbitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600D152CD036A80068F75F /* RibbitUITests.swift */; };
 		5D600D182CD036A80068F75F /* RibbitUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600D172CD036A80068F75F /* RibbitUITestsLaunchTests.swift */; };
+		5DFEAE252CDC68DC005DDACC /* LessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFEAE202CDC68DC005DDACC /* LessonView.swift */; };
+		5DFEAE5F2CDD2BCB005DDACC /* tone1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DFEAE5E2CDD2BCB005DDACC /* tone1.mp3 */; };
+		5DFEAE612CDD3DAA005DDACC /* tone2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DFEAE602CDD3DAA005DDACC /* tone2.mp3 */; };
+		5DFEAE632CDD3DC0005DDACC /* tone3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DFEAE622CDD3DC0005DDACC /* tone3.mp3 */; };
+		5DFEAE652CDD3DDD005DDACC /* tone4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5DFEAE642CDD3DDD005DDACC /* tone4.mp3 */; };
+		A735400C2CD6993D00EAE9FA /* PinyinViewP3.swift in Sources */ = {isa = PBXBuildFile; fileRef = A735400B2CD6993D00EAE9FA /* PinyinViewP3.swift */; };
+		A735400E2CD69D4000EAE9FA /* PinyinTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A735400D2CD69D4000EAE9FA /* PinyinTable.swift */; };
+		A73540102CD6A4B400EAE9FA /* PinyinViewP4.swift in Sources */ = {isa = PBXBuildFile; fileRef = A735400F2CD6A4B400EAE9FA /* PinyinViewP4.swift */; };
+		A73540122CD6A4C100EAE9FA /* PinyinViewP5.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73540112CD6A4C100EAE9FA /* PinyinViewP5.swift */; };
+		A73540142CD6A4CD00EAE9FA /* PinyinViewP6.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73540132CD6A4CD00EAE9FA /* PinyinViewP6.swift */; };
+		A735401A2CD6AB8600EAE9FA /* ContinueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73540192CD6AB8600EAE9FA /* ContinueButton.swift */; };
+		A735406D2CD91AF900EAE9FA /* ToneCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = A735406C2CD91AF900EAE9FA /* ToneCards.swift */; };
 		A76F46A32CD03B9E00182ABE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F46A22CD03B9E00182ABE /* User.swift */; };
 		A76F46A72CD03DD300182ABE /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A76F46A62CD03DD300182ABE /* FirebaseFirestore */; };
 		A76F46A92CD03DD700182ABE /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = A76F46A82CD03DD700182ABE /* FirebaseCore */; };
 		A76F46AB2CD0408C00182ABE /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F46AA2CD0408C00182ABE /* Module.swift */; };
 		A76F46AD2CD040B200182ABE /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F46AC2CD040B200182ABE /* Badge.swift */; };
+		A76F46B02CD1C9D800182ABE /* LessonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F46AF2CD1C9D800182ABE /* LessonListView.swift */; };
+		A76F46B32CD1D75900182ABE /* PinyinViewP1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F46B22CD1D75900182ABE /* PinyinViewP1.swift */; };
+		A76F46B52CD1DCF300182ABE /* PinyinViewP2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F46B42CD1DCF300182ABE /* PinyinViewP2.swift */; };
+		A76F46BA2CD3240A00182ABE /* ProgressBarBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F46B92CD3240A00182ABE /* ProgressBarBackButton.swift */; };
+		A77BB4FE2CD97BDB0060E5C3 /* ColorHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77BB4FD2CD97BDB0060E5C3 /* ColorHex.swift */; };
+		A77BB5002CD9EA0C0060E5C3 /* LessonRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77BB4FF2CD9EA0C0060E5C3 /* LessonRow.swift */; };
+		A77BB5022CDABC300060E5C3 /* ReviewComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77BB5012CDABC300060E5C3 /* ReviewComplete.swift */; };
+		A77BB5042CDB21310060E5C3 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77BB5032CDB21310060E5C3 /* AudioPlayer.swift */; };
+		A77BB50F2CDBDE3A0060E5C3 /* HomeScreenP1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77BB50E2CDBDE3A0060E5C3 /* HomeScreenP1.swift */; };
 		CB4A37D32CD3559800D44467 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4A37D22CD3559800D44467 /* UserViewModel.swift */; };
 		CB4A37D82CD5EACB00D44467 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */; };
 		CB4A37DE2CD66DC600D44467 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */; };
+		CB72A4702CDC3D6100644FB9 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CB72A46F2CDC3D6100644FB9 /* FirebaseStorage */; };
+		CB72A4E12CDD5A6600644FB9 /* populateDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72A4E02CDD5A5F00644FB9 /* populateDatabase.swift */; };
+		CB93FC4B2CDC1FAD00377C95 /* ModuleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93FC4A2CDC1FA600377C95 /* ModuleViewModel.swift */; };
+		CB93FC4D2CDC1FCF00377C95 /* LessonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93FC4C2CDC1FC600377C95 /* LessonViewModel.swift */; };
+		CB93FC512CDC20B400377C95 /* WordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93FC502CDC20AF00377C95 /* WordViewModel.swift */; };
+		CB93FC642CDC22B400377C95 /* AudioStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93FC632CDC22B000377C95 /* AudioStatus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,16 +79,44 @@
 		5D600D112CD036A80068F75F /* RibbitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RibbitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D600D152CD036A80068F75F /* RibbitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RibbitUITests.swift; sourceTree = "<group>"; };
 		5D600D172CD036A80068F75F /* RibbitUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RibbitUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5DFEAE202CDC68DC005DDACC /* LessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonView.swift; sourceTree = "<group>"; };
+		5DFEAE5E2CDD2BCB005DDACC /* tone1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tone1.mp3; path = Ribbit/Assets.xcassets/tone1.dataset/tone1.mp3; sourceTree = "<group>"; };
+		5DFEAE602CDD3DAA005DDACC /* tone2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tone2.mp3; path = Ribbit/Assets.xcassets/tone2.dataset/tone2.mp3; sourceTree = "<group>"; };
+		5DFEAE622CDD3DC0005DDACC /* tone3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tone3.mp3; path = Ribbit/Assets.xcassets/tone3.dataset/tone3.mp3; sourceTree = "<group>"; };
+		5DFEAE642CDD3DDD005DDACC /* tone4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = tone4.mp3; path = Ribbit/Assets.xcassets/tone4.dataset/tone4.mp3; sourceTree = "<group>"; };
+		A735400B2CD6993D00EAE9FA /* PinyinViewP3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinyinViewP3.swift; sourceTree = "<group>"; };
+		A735400D2CD69D4000EAE9FA /* PinyinTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinyinTable.swift; sourceTree = "<group>"; };
+		A735400F2CD6A4B400EAE9FA /* PinyinViewP4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinyinViewP4.swift; sourceTree = "<group>"; };
+		A73540112CD6A4C100EAE9FA /* PinyinViewP5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinyinViewP5.swift; sourceTree = "<group>"; };
+		A73540132CD6A4CD00EAE9FA /* PinyinViewP6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinyinViewP6.swift; sourceTree = "<group>"; };
+		A73540192CD6AB8600EAE9FA /* ContinueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueButton.swift; sourceTree = "<group>"; };
+		A735406C2CD91AF900EAE9FA /* ToneCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToneCards.swift; sourceTree = "<group>"; };
 		A76F46A22CD03B9E00182ABE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A76F46AA2CD0408C00182ABE /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		A76F46AC2CD040B200182ABE /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		A76F46AF2CD1C9D800182ABE /* LessonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonListView.swift; sourceTree = "<group>"; };
+		A76F46B22CD1D75900182ABE /* PinyinViewP1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinyinViewP1.swift; sourceTree = "<group>"; };
+		A76F46B42CD1DCF300182ABE /* PinyinViewP2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinyinViewP2.swift; sourceTree = "<group>"; };
+		A76F46B92CD3240A00182ABE /* ProgressBarBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarBackButton.swift; sourceTree = "<group>"; };
+		A77BB4FD2CD97BDB0060E5C3 /* ColorHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorHex.swift; sourceTree = "<group>"; };
+		A77BB4FF2CD9EA0C0060E5C3 /* LessonRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonRow.swift; sourceTree = "<group>"; };
+		A77BB5012CDABC300060E5C3 /* ReviewComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewComplete.swift; sourceTree = "<group>"; };
+		A77BB5032CDB21310060E5C3 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		A77BB50E2CDBDE3A0060E5C3 /* HomeScreenP1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenP1.swift; sourceTree = "<group>"; };
 		CB4A37D22CD3559800D44467 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CB72A4E02CDD5A5F00644FB9 /* populateDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = populateDatabase.swift; sourceTree = "<group>"; };
+		CB93FC4A2CDC1FA600377C95 /* ModuleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleViewModel.swift; sourceTree = "<group>"; };
+		CB93FC4C2CDC1FC600377C95 /* LessonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewModel.swift; sourceTree = "<group>"; };
+		CB93FC502CDC20AF00377C95 /* WordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewModel.swift; sourceTree = "<group>"; };
+		CB93FC632CDC22B000377C95 /* AudioStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStatus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		CB4A37BE2CD1F91C00D44467 /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };
 		CB4A37CA2CD1FAC300D44467 /* ViewModelsTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModelsTests; sourceTree = "<group>"; };
+		CB93FC522CDC211E00377C95 /* LessonDetail */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = LessonDetail; sourceTree = "<group>"; };
+		CB93FC5F2CDC224900377C95 /* ViewControllers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewControllers; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +126,7 @@
 			files = (
 				A76F46A92CD03DD700182ABE /* FirebaseCore in Frameworks */,
 				A76F46A72CD03DD300182ABE /* FirebaseFirestore in Frameworks */,
+				CB72A4702CDC3D6100644FB9 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +150,10 @@
 		5D600CEE2CD036A50068F75F = {
 			isa = PBXGroup;
 			children = (
+				5DFEAE642CDD3DDD005DDACC /* tone4.mp3 */,
+				5DFEAE622CDD3DC0005DDACC /* tone3.mp3 */,
+				5DFEAE602CDD3DAA005DDACC /* tone2.mp3 */,
+				5DFEAE5E2CDD2BCB005DDACC /* tone1.mp3 */,
 				5D600CF92CD036A50068F75F /* Ribbit */,
 				5D600D0A2CD036A80068F75F /* RibbitTests */,
 				5D600D142CD036A80068F75F /* RibbitUITests */,
@@ -116,8 +176,10 @@
 		5D600CF92CD036A50068F75F /* Ribbit */ = {
 			isa = PBXGroup;
 			children = (
+				CB72A4E02CDD5A5F00644FB9 /* populateDatabase.swift */,
 				CB4A37BE2CD1F91C00D44467 /* Services */,
 				A76F46A12CD03B6000182ABE /* ViewModels */,
+				CB93FC5F2CDC224900377C95 /* ViewControllers */,
 				A76F46A02CD03B5600182ABE /* Views */,
 				A76F469E2CD03B3D00182ABE /* Models */,
 				5D600CFA2CD036A50068F75F /* RibbitApp.swift */,
@@ -157,6 +219,7 @@
 		A76F469E2CD03B3D00182ABE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CB93FC632CDC22B000377C95 /* AudioStatus.swift */,
 				A76F46A22CD03B9E00182ABE /* User.swift */,
 				A76F46AA2CD0408C00182ABE /* Module.swift */,
 				A76F46AC2CD040B200182ABE /* Badge.swift */,
@@ -167,6 +230,14 @@
 		A76F46A02CD03B5600182ABE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5DFEAE202CDC68DC005DDACC /* LessonView.swift */,
+				CB93FC522CDC211E00377C95 /* LessonDetail */,
+				A76F46B62CD3230E00182ABE /* Partials */,
+				A76F46B12CD1D6E000182ABE /* Basics */,
+				A76F46AF2CD1C9D800182ABE /* LessonListView.swift */,
+				A77BB4FF2CD9EA0C0060E5C3 /* LessonRow.swift */,
+				A77BB5012CDABC300060E5C3 /* ReviewComplete.swift */,
+				A77BB50E2CDBDE3A0060E5C3 /* HomeScreenP1.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -174,6 +245,9 @@
 		A76F46A12CD03B6000182ABE /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				CB93FC502CDC20AF00377C95 /* WordViewModel.swift */,
+				CB93FC4C2CDC1FC600377C95 /* LessonViewModel.swift */,
+				CB93FC4A2CDC1FA600377C95 /* ModuleViewModel.swift */,
 				CB4A37D22CD3559800D44467 /* UserViewModel.swift */,
 			);
 			path = ViewModels;
@@ -184,6 +258,39 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A76F46B12CD1D6E000182ABE /* Basics */ = {
+			isa = PBXGroup;
+			children = (
+				A76F46B22CD1D75900182ABE /* PinyinViewP1.swift */,
+				A76F46B42CD1DCF300182ABE /* PinyinViewP2.swift */,
+				A735400B2CD6993D00EAE9FA /* PinyinViewP3.swift */,
+				A735400F2CD6A4B400EAE9FA /* PinyinViewP4.swift */,
+				A73540112CD6A4C100EAE9FA /* PinyinViewP5.swift */,
+				A73540132CD6A4CD00EAE9FA /* PinyinViewP6.swift */,
+			);
+			path = Basics;
+			sourceTree = "<group>";
+		};
+		A76F46B62CD3230E00182ABE /* Partials */ = {
+			isa = PBXGroup;
+			children = (
+				A76F46B92CD3240A00182ABE /* ProgressBarBackButton.swift */,
+				A735400D2CD69D4000EAE9FA /* PinyinTable.swift */,
+				A73540192CD6AB8600EAE9FA /* ContinueButton.swift */,
+				A735406C2CD91AF900EAE9FA /* ToneCards.swift */,
+				A77BB4FD2CD97BDB0060E5C3 /* ColorHex.swift */,
+				A77BB5032CDB21310060E5C3 /* AudioPlayer.swift */,
+			);
+			path = Partials;
+			sourceTree = "<group>";
+		};
+		A77BB5052CDB25950060E5C3 /* Tones */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tones;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,11 +310,14 @@
 			);
 			fileSystemSynchronizedGroups = (
 				CB4A37BE2CD1F91C00D44467 /* Services */,
+				CB93FC522CDC211E00377C95 /* LessonDetail */,
+				CB93FC5F2CDC224900377C95 /* ViewControllers */,
 			);
 			name = Ribbit;
 			packageProductDependencies = (
 				A76F46A62CD03DD300182ABE /* FirebaseFirestore */,
 				A76F46A82CD03DD700182ABE /* FirebaseCore */,
+				CB72A46F2CDC3D6100644FB9 /* FirebaseStorage */,
 			);
 			productName = Ribbit;
 			productReference = 5D600CF72CD036A50068F75F /* Ribbit.app */;
@@ -303,6 +413,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DFEAE652CDD3DDD005DDACC /* tone4.mp3 in Resources */,
+				5DFEAE632CDD3DC0005DDACC /* tone3.mp3 in Resources */,
+				5DFEAE612CDD3DAA005DDACC /* tone2.mp3 in Resources */,
+				5DFEAE5F2CDD2BCB005DDACC /* tone1.mp3 in Resources */,
 				5D600D022CD036A70068F75F /* Preview Assets.xcassets in Resources */,
 				5D600CFF2CD036A70068F75F /* Assets.xcassets in Resources */,
 				CB4A37D82CD5EACB00D44467 /* GoogleService-Info.plist in Resources */,
@@ -331,12 +445,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB93FC512CDC20B400377C95 /* WordViewModel.swift in Sources */,
+				A735401A2CD6AB8600EAE9FA /* ContinueButton.swift in Sources */,
+				A77BB4FE2CD97BDB0060E5C3 /* ColorHex.swift in Sources */,
 				5D600CFD2CD036A50068F75F /* ContentView.swift in Sources */,
+				A76F46B52CD1DCF300182ABE /* PinyinViewP2.swift in Sources */,
+				A77BB5022CDABC300060E5C3 /* ReviewComplete.swift in Sources */,
+				A77BB5042CDB21310060E5C3 /* AudioPlayer.swift in Sources */,
 				A76F46AD2CD040B200182ABE /* Badge.swift in Sources */,
+				CB93FC642CDC22B400377C95 /* AudioStatus.swift in Sources */,
 				CB4A37D32CD3559800D44467 /* UserViewModel.swift in Sources */,
+				A73540102CD6A4B400EAE9FA /* PinyinViewP4.swift in Sources */,
 				A76F46AB2CD0408C00182ABE /* Module.swift in Sources */,
+				CB93FC4D2CDC1FCF00377C95 /* LessonViewModel.swift in Sources */,
 				5D600CFB2CD036A50068F75F /* RibbitApp.swift in Sources */,
+				A77BB5002CD9EA0C0060E5C3 /* LessonRow.swift in Sources */,
+				A77BB50F2CDBDE3A0060E5C3 /* HomeScreenP1.swift in Sources */,
+				A735400E2CD69D4000EAE9FA /* PinyinTable.swift in Sources */,
+				A73540142CD6A4CD00EAE9FA /* PinyinViewP6.swift in Sources */,
+				CB72A4E12CDD5A6600644FB9 /* populateDatabase.swift in Sources */,
+				A76F46B32CD1D75900182ABE /* PinyinViewP1.swift in Sources */,
+				A73540122CD6A4C100EAE9FA /* PinyinViewP5.swift in Sources */,
+				A735400C2CD6993D00EAE9FA /* PinyinViewP3.swift in Sources */,
+				A735406D2CD91AF900EAE9FA /* ToneCards.swift in Sources */,
+				A76F46B02CD1C9D800182ABE /* LessonListView.swift in Sources */,
 				A76F46A32CD03B9E00182ABE /* User.swift in Sources */,
+				5DFEAE252CDC68DC005DDACC /* LessonView.swift in Sources */,
+				CB93FC4B2CDC1FAD00377C95 /* ModuleViewModel.swift in Sources */,
+				A76F46BA2CD3240A00182ABE /* ProgressBarBackButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +639,7 @@
 				DEVELOPMENT_TEAM = M9H56SZYZG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Ribbit requires that you have your microhphone turned on";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -532,6 +669,7 @@
 				DEVELOPMENT_TEAM = M9H56SZYZG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Ribbit requires that you have your microhphone turned on";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -688,6 +826,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A76F46A42CD03DB400182ABE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCore;
+		};
+		CB72A46F2CDC3D6100644FB9 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A76F46A42CD03DB400182ABE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -16,25 +16,25 @@ class FirebaseUserServiceTests: XCTestCase {
     override func setUp() async throws {
         try await super.setUp()
         userService = UserService()
-//        try await deleteTestUsers() // Clean up any existing test data
+        try await deleteTestUsers() // Clean up any existing test data
     }
 
-//    override func tearDown() async throws {
-//        try await deleteTestUsers() // Clean up after each test
-//        userService = nil
-//        try await super.tearDown()
-//    }
+    override func tearDown() async throws {
+        try await deleteTestUsers() // Clean up after each test
+        userService = nil
+        try await super.tearDown()
+    }
 
-    // Helper function to delete test users after each test
-//    private func deleteTestUsers() async throws {
-//        let usersCollection = db.collection("Users")
-//        let snapshot = try await usersCollection.getDocuments()
-//        for document in snapshot.documents {
-//            if document.documentID.starts(with: "test") {
-//                try await usersCollection.document(document.documentID).delete()
-//            }
-//        }
-//    }
+//     Helper function to delete test users after each test
+    private func deleteTestUsers() async throws {
+        let usersCollection = db.collection("Users")
+        let snapshot = try await usersCollection.getDocuments()
+        for document in snapshot.documents {
+            if document.documentID.starts(with: "test") {
+                try await usersCollection.document(document.documentID).delete()
+            }
+        }
+    }
 
     // Test case for fetching a user by ID
     func testFetchUser() async throws {
