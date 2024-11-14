@@ -28,7 +28,10 @@ struct LessonDetailView: View {
         VStack {
           // Top progress bar
           ProgressBarBackButton(currentPage: currentIndex, totalPages: lessonCount - 1)
-          
+          Text("Word \(currentIndex + 1) / \(lessonCount)")
+                             .font(.subheadline)
+                             .foregroundColor(.gray)
+                             .padding(.top, 10)
           Spacer()
           
           
