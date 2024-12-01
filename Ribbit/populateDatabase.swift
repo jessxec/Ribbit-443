@@ -225,7 +225,197 @@ func createModules() async throws {
                         userPitchVectors: []
                     )
                 ]
-            )
+            ),
+            Lesson(
+                id: "lesson3",
+                title: "Lesson 3 - Third Tone",
+                lessonOrder: 3,
+                totalStarsAvailable: 25,
+                content: [
+                    "The Third Tone is called 三声 (sānshēng), meaning 'the third sound.' This tone is the most dynamic and complex, as it starts at a medium pitch, dips down, and then rises again. It is also called 'The Dipping Tone.'",
+                    "However, Tone Three is rarely pronounced exactly as the ideal graph shows. During the dip, your voice naturally becomes too low, irregular, and creaky for some pitch detection algorithms to capture accurately. In real speech, Tone Three often sounds like a low, flat tone, especially in fast or casual conversation.",
+                    "To master Tone Three, imagine a deep, thoughtful 'Hmm' sound. Your pitch will start mid-level, drop low, and then rise slightly at the end. When pronounced in isolation, Tone Three should always include the rising part. But when combined with other tones, the rising component may be less pronounced."
+                ],
+                words: [
+                    Word(
+                        id: "word1",
+                        pinyin: "mǎ",
+                        word: "马",
+                        translation: "Horse",
+                        audioPath: "/audio/foundations/M1L3_ma3.wav",
+                        starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
+                        feedback: Feedback(
+                            incorrectPitch: "Ensure your pitch dips and rises slightly.",
+                            incorrectPronunciation: "Your tone should have a noticeable dip before rising slightly."
+                        ),
+                        transcriptionCheck: Formants(F1: 781.9, F2: 1193.7),
+                        voiceProcessingCheck: nil,
+                        starValue: 5,
+                        replayAllowed: true,
+                        samplePitchVectors: [154.5, 155.0, 152.8, 149.9, 147.9, 142.0, 139.6, 139.2, 138.5, 137.5, 138.0, 138.8, 140.5, 144.6, 148.5, 153.5, 158.7, 164.3, 170.2, 185.3],
+                        userPitchVectors: []
+                    ),
+                    Word(
+                        id: "word2",
+                        pinyin: "tǎ",
+                        word: "塔",
+                        translation: "Tower",
+                        audioPath: "/audio/foundations/M1L3_ta3.wav",
+                        starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
+                        feedback: Feedback(
+                            incorrectPitch: "Ensure your pitch dips and rises slightly.",
+                            incorrectPronunciation: "Your tone should have a noticeable dip before rising slightly."
+                        ),
+                        transcriptionCheck: Formants(F1: 835.4, F2: 1216.6),
+                        voiceProcessingCheck: nil,
+                        starValue: 5,
+                        replayAllowed: true,
+                        samplePitchVectors: [158.1, 159.2, 150.1, 146.6, 143.6, 141.7, 138.1, 138.7, 140.4, 140.5, 142.2, 142.8, 143.5, 143.4, 145.5, 151.5, 156.9, 164.7, 172.0, 179.6],
+                        userPitchVectors: []
+                    ),
+                    Word(
+                        id: "word3",
+                        pinyin: "mǐ",
+                        word: "米",
+                        translation: "Rice",
+                        audioPath: "/audio/foundations/M1L3_mi3.wav",
+                        starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
+                        feedback: Feedback(
+                            incorrectPitch: "Ensure your pitch dips and rises slightly.",
+                            incorrectPronunciation: "Your tone should have a noticeable dip before rising slightly."
+                        ),
+                        transcriptionCheck: Formants(F1: 260.1, F2: 2274.3),
+                        voiceProcessingCheck: nil,
+                        starValue: 5,
+                        replayAllowed: true,
+                        samplePitchVectors: [156.0, 158.6, 158.0, 156.8, 154.5, 151.1, 148.6, 143.4, 140.2, 138.8, 138.3, 140.7, 142.8, 144.2, 145.4, 148.1, 155.0, 158.1, 160.5, 161.6],
+                        userPitchVectors: []
+                    ),
+                    Word(
+                        id: "word4",
+                        pinyin: "nǐ",
+                        word: "你",
+                        translation: "You",
+                        audioPath: "/audio/foundations/M1L3_ni3.wav",
+                        starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
+                        feedback: Feedback(
+                            incorrectPitch: "Ensure your pitch dips and rises slightly.",
+                            incorrectPronunciation: "Your tone should have a noticeable dip before rising slightly."
+                        ),
+                        transcriptionCheck: Formants(F1: 279.5, F2: 2207.2),
+                        voiceProcessingCheck: nil,
+                        starValue: 5,
+                        replayAllowed: true,
+                        samplePitchVectors: [153.6, 158.3, 157.3, 155.2, 152.6, 149.6, 145.2, 142.9, 140.7, 138.1, 137.3, 137.6, 138.1, 140.9, 145.3, 150.7, 154.1, 160.7, 168.3, 173.1],
+                        userPitchVectors: []
+                    ),
+                    Word(
+                        id: "word5",
+                        pinyin: "lǐ",
+                        word: "李",
+                        translation: "Plum / Last Name: Li",
+                        audioPath: "/audio/foundations/M1L3_li3.wav",
+                        starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
+                        feedback: Feedback(
+                            incorrectPitch: "Ensure your pitch dips and rises slightly.",
+                            incorrectPronunciation: "Your tone should have a noticeable dip before rising slightly."
+                        ),
+                        transcriptionCheck: Formants(F1: 261.0, F2: 2192.6),
+                        voiceProcessingCheck: nil,
+                        starValue: 5,
+                        replayAllowed: true,
+                        samplePitchVectors: [165.5, 155.1, 151.1, 147.9, 151.7, 150.0, 147.5, 144.2, 143.3, 141.7, 140.4, 139.3, 139.2, 140.9, 141.4, 146.6, 155.2, 161.5, 170.6, 167.7],
+                        userPitchVectors: []
+                    )
+                ]
+            ),
+            // Lesson 4 - Fourth Tone
+            Lesson(
+                id: "lesson4",
+                title: "Lesson 4 - Fourth Tone",
+                lessonOrder: 4,
+                totalStarsAvailable: 25,
+                content: [
+                    "The Fourth Tone is called 四声 (sìshēng), meaning 'the fourth sound.' It is sharp, decisive, and forceful, starting high and dropping quickly. This is why it is also known as 'The Falling Tone.'",
+                    "Tone Four is the easiest to recognize because of its dramatic, abrupt descent. Imagine giving a command like 'Stop!' or expressing frustration with 'No!' in English. Your voice falls quickly and firmly—this is exactly how Tone Four works in Mandarin.",
+                    "In Mandarin, Tone Four conveys emotions like decisiveness, urgency, or even irritation. However, it can also be neutral and factual depending on context."
+                ],
+                words: [
+                    Word(
+                        id: "word1",
+                        pinyin: "mà",
+                        word: "骂",
+                        translation: "Scold",
+                        audioPath: "/audio/foundations/M1L4_ma4.wav",
+                        starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
+                        feedback: Feedback(
+                            incorrectPitch: "Your pitch should fall sharply.",
+                            incorrectPronunciation: "Ensure your tone falls quickly and decisively."
+                        ),
+                        transcriptionCheck: Formants(F1: 852.2, F2: 1501.3),
+                        voiceProcessingCheck: nil,
+                        starValue: 5,
+                        replayAllowed: true,
+                        samplePitchVectors: [94.6, 93.2, 165.9, 167.2, 168.7, 169.5, 170.2, 170.6, 170.2, 169.2, 168.6, 167.1, 165.9, 164.8, 163.1, 160.4, 118.7, 119.0, 119.4, 113.8],
+                        userPitchVectors: []
+                    ),
+                    Word(
+                        id: "word2",
+                        pinyin: "nà",
+                        word: "那",
+                        translation: "There",
+                        audioPath: "/audio/foundations/M1L4_na4.wav",
+                        starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
+                        feedback: Feedback(
+                            incorrectPitch: "Your pitch should fall sharply.",
+                            incorrectPronunciation: "Ensure your tone falls quickly and decisively."
+                        ),
+                        transcriptionCheck: Formants(F1: 700.0, F2: 1529.4),
+                        voiceProcessingCheck: nil,
+                        starValue: 5,
+                        replayAllowed: true,
+                        samplePitchVectors: [161.5, 162.6, 164.2, 166.9, 167.7, 168.6, 168.3, 166.5, 163.4, 162.0, 159.7, 158.6, 155.8, 140.4, 140.8, 125.3, 125.3, 114.0, 114.3, 114.7],
+                        userPitchVectors: []
+                    ),
+                    Word(
+                        id: "word3",
+                        pinyin: "yì",
+                        word: "翼",
+                        translation: "Wing",
+                        audioPath: "/audio/foundations/M1L4_yi4.wav",
+                        starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
+                        feedback: Feedback(
+                            incorrectPitch: "Your pitch should fall sharply.",
+                            incorrectPronunciation: "Ensure your tone falls quickly and decisively."
+                        ),
+                        transcriptionCheck: Formants(F1: 252.3, F2: 2405.6),
+                        voiceProcessingCheck: nil,
+                        starValue: 5,
+                        replayAllowed: true,
+                        samplePitchVectors: [158.7, 158.7, 161.0, 164.5, 170.1, 170.8, 170.5, 168.5, 161.4, 160.5, 159.4, 155.3, 145.9, 142.2, 138.7, 135.5, 125.6, 121.2, 117.5, 114.8],
+                        userPitchVectors: []
+                    ),
+                    Word(
+                        id: "word4",
+                        pinyin: "dì",
+                        word: "弟",
+                        translation: "Little Brother",
+                        audioPath: "/audio/foundations/M1L4_di4.wav",
+                        starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
+                        feedback: Feedback(
+                            incorrectPitch: "Your pitch should fall sharply.",
+                            incorrectPronunciation: "Ensure your tone falls quickly and decisively."
+                        ),
+                        transcriptionCheck: Formants(F1: 264.7, F2: 2370.0),
+                        voiceProcessingCheck: nil,
+                        starValue: 5,
+                        replayAllowed: true,
+                        samplePitchVectors: [169.8, 170.7, 172.0, 172.7, 173.3, 172.9, 168.0, 164.3, 161.2, 156.9, 151.8, 147.5, 140.9, 135.9, 132.7, 129.6, 126.0, 121.5, 117.3, 114.9],
+                        userPitchVectors: []
+                    )
+                ]
+            ),
+
         ]
     )
 

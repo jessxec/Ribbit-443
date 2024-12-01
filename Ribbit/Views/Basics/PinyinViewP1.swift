@@ -37,6 +37,7 @@ struct PinyinViewP1: View {
               .padding(.top, 20)
               .foregroundColor(Color(hex: "#554C5D"))
           }
+          .padding()
           
           Spacer()
           
