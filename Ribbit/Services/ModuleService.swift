@@ -19,6 +19,14 @@ class ModuleService: ModuleServiceProtocol {
         }
         return module
     }
+  
+    func fetchLesson(moduleId: String, lessonId: String) async throws -> Lesson {
+        let module = try await fetchModule(by: moduleId)
+        guard let lesson = module.lessons.first(where: { $0.id == lessonId }) else {
+            throw NSError(domain: "ModuleService", code: 404, userInfo: [NSLocalizedDescriptionKey: "Lesson not found"])
+        }
+        return lesson
+    }
 
     func fetchAllModules() async throws -> [Module] {
         let modulesSnapshot = try await db.collection("Modules").getDocuments()

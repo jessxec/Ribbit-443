@@ -14,7 +14,16 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
-  
+    
+    // Comment out when updating firebase 
+//        Task {
+//          do {
+//             try await createModules()
+//           }
+//           catch {
+//            print("Error")
+//           }
+//        }
     return true
   }
 }
@@ -29,3 +38,4 @@ struct RibbitApp: App {
         }
     }
 }
+

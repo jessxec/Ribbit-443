@@ -22,6 +22,7 @@ struct Lesson: Codable, Identifiable {
     var title: String
     var lessonOrder: Int
     var totalStarsAvailable: Int
+    var content: [String]
     var words: [Word]
 }
 
@@ -33,7 +34,7 @@ struct Word: Codable, Identifiable {
     var audioPath: String
     var starsForAccuracy: [String: Int] // Dictionary with accuracy ranges as keys and star values as Int
     var feedback: Feedback
-    var transcriptionCheck: String? // Placeholder for the transcription check
+    var transcriptionCheck: Formants // Placeholder for the transcription check
     var voiceProcessingCheck: String? // Placeholder for the voice processing check
     var starValue: Int
     var replayAllowed: Bool
@@ -44,4 +45,9 @@ struct Word: Codable, Identifiable {
 struct Feedback: Codable {
     var incorrectPitch: String
     var incorrectPronunciation: String
+}
+
+struct Formants: Codable {
+  var F1: Double
+  var F2: Double
 }
