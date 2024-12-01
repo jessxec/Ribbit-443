@@ -9,16 +9,23 @@ import SwiftUI
 
 struct LessonView: View {
     @StateObject private var viewModel = WordViewModel()
-    
+    @State private var showPractice = false
+
     let moduleId: String
     let lessonId: String
 
     var body: some View {
         ZStack {
-            if let word = viewModel.currentWord {
-              LessonDetailView(word: word, lessonCount: viewModel.words.count, currentIndex: viewModel.currentIndex, nextWordAction: viewModel.nextWord)
+            if showPractice {
+                if let word = viewModel.currentWord {
+                    LessonDetailView(word: word, lessonCount: viewModel.words.count, currentIndex: viewModel.currentIndex, nextWordAction: viewModel.nextWord)
+                } else {
+                    Text("Loading words...")
+                }
             } else {
-                Text("Loading words...")
+                LessonContentView(viewModel: viewModel, startPracticeAction: {
+                    showPractice = true
+                })
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

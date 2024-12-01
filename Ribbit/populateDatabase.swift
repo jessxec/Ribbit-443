@@ -139,7 +139,7 @@ func createModules() async throws {
                         pinyin: "má",
                         word: "麻",
                         translation: "Hemp",
-                        audioPath: "/audio/foundations/ma2_MV1_MP3.mp3",
+                        audioPath: "/audio/foundations/M1L2_ma2.wav",
                         starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
                         feedback: Feedback(
                             incorrectPitch: "Your pitch should rise steadily.",
@@ -157,7 +157,7 @@ func createModules() async throws {
                         pinyin: "yá",
                         word: "牙",
                         translation: "Teeth",
-                        audioPath: "/audio/foundations/ya2_MV1_MP3.mp3",
+                        audioPath: "/audio/foundations/M1L2_ya2.wav",
                         starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
                         feedback: Feedback(
                             incorrectPitch: "Your pitch should rise steadily.",
@@ -175,7 +175,7 @@ func createModules() async throws {
                         pinyin: "chá",
                         word: "茶",
                         translation: "Tea",
-                        audioPath: "/audio/foundations/cha2_MV1_MP3.mp3",
+                        audioPath: "/audio/foundations/M1L2_cha2.wav",
                         starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
                         feedback: Feedback(
                             incorrectPitch: "Your pitch should rise steadily.",
@@ -193,7 +193,7 @@ func createModules() async throws {
                         pinyin: "lí",
                         word: "梨",
                         translation: "Pear",
-                        audioPath: "/audio/foundations/li2_MV1_MP3.mp3",
+                        audioPath: "/audio/foundations/M1L2_li2.wav",
                         starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
                         feedback: Feedback(
                             incorrectPitch: "Your pitch should rise steadily.",
@@ -211,7 +211,7 @@ func createModules() async throws {
                         pinyin: "dí",
                         word: "笛",
                         translation: "Flute",
-                        audioPath: "/audio/foundations/di2_MV1_MP3.mp3",
+                        audioPath: "/audio/foundations/M1L2_di2.wav",
                         starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
                         feedback: Feedback(
                             incorrectPitch: "Your pitch should rise steadily.",

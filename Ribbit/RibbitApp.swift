@@ -15,7 +15,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
     
-    // Comment out when updating firebase 
+    // Comment out when updating firebase
 //        Task {
 //          do {
 //             try await createModules()

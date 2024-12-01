@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4EBFD0122CFCF61700856425 /* LessonContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBFD0112CFCF61000856425 /* LessonContentView.swift */; };
 		5D600CFB2CD036A50068F75F /* RibbitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600CFA2CD036A50068F75F /* RibbitApp.swift */; };
 		5D600CFD2CD036A50068F75F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600CFC2CD036A50068F75F /* ContentView.swift */; };
 		5D600CFF2CD036A70068F75F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D600CFE2CD036A70068F75F /* Assets.xcassets */; };
@@ -69,6 +70,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4EBFD0112CFCF61000856425 /* LessonContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonContentView.swift; sourceTree = "<group>"; };
 		5D600CF72CD036A50068F75F /* Ribbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ribbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D600CFA2CD036A50068F75F /* RibbitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RibbitApp.swift; sourceTree = "<group>"; };
 		5D600CFC2CD036A50068F75F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 		A76F46A02CD03B5600182ABE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4EBFD0112CFCF61000856425 /* LessonContentView.swift */,
 				5DFEAE202CDC68DC005DDACC /* LessonView.swift */,
 				CB93FC522CDC211E00377C95 /* LessonDetail */,
 				A76F46B62CD3230E00182ABE /* Partials */,
@@ -284,13 +287,6 @@
 				A77BB5032CDB21310060E5C3 /* AudioPlayer.swift */,
 			);
 			path = Partials;
-			sourceTree = "<group>";
-		};
-		A77BB5052CDB25950060E5C3 /* Tones */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tones;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -453,6 +449,7 @@
 				A77BB5022CDABC300060E5C3 /* ReviewComplete.swift in Sources */,
 				A77BB5042CDB21310060E5C3 /* AudioPlayer.swift in Sources */,
 				A76F46AD2CD040B200182ABE /* Badge.swift in Sources */,
+				4EBFD0122CFCF61700856425 /* LessonContentView.swift in Sources */,
 				CB93FC642CDC22B400377C95 /* AudioStatus.swift in Sources */,
 				CB4A37D32CD3559800D44467 /* UserViewModel.swift in Sources */,
 				A73540102CD6A4B400EAE9FA /* PinyinViewP4.swift in Sources */,

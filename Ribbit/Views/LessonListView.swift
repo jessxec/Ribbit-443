@@ -57,10 +57,42 @@ struct LessonListView: View {
                           .foregroundColor(Color(hex: "#554C5D"))
                         
                         VStack(spacing: 15) {
-                          LessonRow(number: 1, title: "Tone One", description: "flat tone", example: "ā", isUnlocked: false)
-                          LessonRow(number: 2, title: "Tone Two", description: "rising tone", example: "á", isUnlocked: false)
-                          LessonRow(number: 3, title: "Tone Three", description: "dip tone", example: "ǎ", isUnlocked: false)
-                          LessonRow(number: 4, title: "Tone Four", description: "falling tone", example: "à", isUnlocked: false)
+                            LessonRow(
+                                number: 1,
+                                title: "Tone One",
+                                description: "flat tone",
+                                example: "ā",
+                                isUnlocked: true, // Update with actual unlock logic
+                                moduleId: "foundationsIsland",
+                                lessonId: "lesson1"
+                            )
+                            LessonRow(
+                                number: 2,
+                                title: "Tone Two",
+                                description: "rising tone",
+                                example: "á",
+                                isUnlocked: true, // Update with actual unlock logic
+                                moduleId: "foundationsIsland",
+                                lessonId: "lesson2"
+                            )
+                            LessonRow(
+                                number: 3,
+                                title: "Tone Three",
+                                description: "dip tone",
+                                example: "ǎ",
+                                isUnlocked: false, // Update with actual unlock logic
+                                moduleId: "foundationsIsland",
+                                lessonId: "lesson2"
+                            )
+                            LessonRow(
+                                number: 4,
+                                title: "Tone Four",
+                                description: "falling tone",
+                                example: "à",
+                                isUnlocked: false, // Update with actual unlock logic
+                                moduleId: "foundationsIsland",
+                                lessonId: "lesson2"
+                            )
                         }
                         .padding(.horizontal)
                     }
