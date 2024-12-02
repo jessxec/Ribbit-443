@@ -26,6 +26,11 @@
 		A73540142CD6A4CD00EAE9FA /* PinyinViewP6.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73540132CD6A4CD00EAE9FA /* PinyinViewP6.swift */; };
 		A735401A2CD6AB8600EAE9FA /* ContinueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73540192CD6AB8600EAE9FA /* ContinueButton.swift */; };
 		A735406D2CD91AF900EAE9FA /* ToneCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = A735406C2CD91AF900EAE9FA /* ToneCards.swift */; };
+		A747FEF12CFD01F900893D0A /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747FEF02CFD01EE00893D0A /* ProfilePage.swift */; };
+		A747FEF32CFD021C00893D0A /* BadgesPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747FEF22CFD020C00893D0A /* BadgesPage.swift */; };
+		A747FEF52CFD023300893D0A /* BadgeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747FEF42CFD022E00893D0A /* BadgeDetailView.swift */; };
+		A747FEF72CFD026000893D0A /* BadgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747FEF62CFD025400893D0A /* BadgeViewModel.swift */; };
+		A747FEF92CFD028600893D0A /* BadgeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747FEF82CFD027A00893D0A /* BadgeListView.swift */; };
 		A76F46A32CD03B9E00182ABE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F46A22CD03B9E00182ABE /* User.swift */; };
 		A76F46A72CD03DD300182ABE /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A76F46A62CD03DD300182ABE /* FirebaseFirestore */; };
 		A76F46A92CD03DD700182ABE /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = A76F46A82CD03DD700182ABE /* FirebaseCore */; };
@@ -91,6 +96,11 @@
 		A73540132CD6A4CD00EAE9FA /* PinyinViewP6.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinyinViewP6.swift; sourceTree = "<group>"; };
 		A73540192CD6AB8600EAE9FA /* ContinueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueButton.swift; sourceTree = "<group>"; };
 		A735406C2CD91AF900EAE9FA /* ToneCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToneCards.swift; sourceTree = "<group>"; };
+		A747FEF02CFD01EE00893D0A /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
+		A747FEF22CFD020C00893D0A /* BadgesPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesPage.swift; sourceTree = "<group>"; };
+		A747FEF42CFD022E00893D0A /* BadgeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeDetailView.swift; sourceTree = "<group>"; };
+		A747FEF62CFD025400893D0A /* BadgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeViewModel.swift; sourceTree = "<group>"; };
+		A747FEF82CFD027A00893D0A /* BadgeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeListView.swift; sourceTree = "<group>"; };
 		A76F46A22CD03B9E00182ABE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A76F46AA2CD0408C00182ABE /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		A76F46AC2CD040B200182ABE /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
@@ -230,7 +240,11 @@
 		A76F46A02CD03B5600182ABE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A747FEF82CFD027A00893D0A /* BadgeListView.swift */,
 				5DFEAE202CDC68DC005DDACC /* LessonView.swift */,
+				A747FEF02CFD01EE00893D0A /* ProfilePage.swift */,
+				A747FEF22CFD020C00893D0A /* BadgesPage.swift */,
+				A747FEF42CFD022E00893D0A /* BadgeDetailView.swift */,
 				CB93FC522CDC211E00377C95 /* LessonDetail */,
 				A76F46B62CD3230E00182ABE /* Partials */,
 				A76F46B12CD1D6E000182ABE /* Basics */,
@@ -245,6 +259,7 @@
 		A76F46A12CD03B6000182ABE /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				A747FEF62CFD025400893D0A /* BadgeViewModel.swift */,
 				CB93FC502CDC20AF00377C95 /* WordViewModel.swift */,
 				CB93FC4C2CDC1FC600377C95 /* LessonViewModel.swift */,
 				CB93FC4A2CDC1FA600377C95 /* ModuleViewModel.swift */,
@@ -284,13 +299,6 @@
 				A77BB5032CDB21310060E5C3 /* AudioPlayer.swift */,
 			);
 			path = Partials;
-			sourceTree = "<group>";
-		};
-		A77BB5052CDB25950060E5C3 /* Tones */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Tones;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -462,6 +470,11 @@
 				A77BB5002CD9EA0C0060E5C3 /* LessonRow.swift in Sources */,
 				A77BB50F2CDBDE3A0060E5C3 /* HomeScreenP1.swift in Sources */,
 				A735400E2CD69D4000EAE9FA /* PinyinTable.swift in Sources */,
+				A747FEF52CFD023300893D0A /* BadgeDetailView.swift in Sources */,
+				A747FEF32CFD021C00893D0A /* BadgesPage.swift in Sources */,
+				A747FEF12CFD01F900893D0A /* ProfilePage.swift in Sources */,
+				A747FEF92CFD028600893D0A /* BadgeListView.swift in Sources */,
+				A747FEF72CFD026000893D0A /* BadgeViewModel.swift in Sources */,
 				A73540142CD6A4CD00EAE9FA /* PinyinViewP6.swift in Sources */,
 				CB72A4E12CDD5A6600644FB9 /* populateDatabase.swift in Sources */,
 				A76F46B32CD1D75900182ABE /* PinyinViewP1.swift in Sources */,
