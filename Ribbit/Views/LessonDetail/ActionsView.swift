@@ -30,16 +30,6 @@ struct ActionsView: View {
       HStack(spacing: 50) {
         // Display retry, playback, next button
         if (finishedRecording || audio.hasRecorded) && audio.status != .playing {
-          // retry button
-          Button(action: {
-            finishedRecording = false
-            audio.resetForNextWord()
-          }) {
-            Image(systemName: "arrow.2.circlepath.circle")
-              .resizable()
-              .frame(width: 40, height: 40)
-              .foregroundColor(Color(hex: "#D2C0E2"))
-          }
           
           // playback Button
           Button(action: {
@@ -49,6 +39,17 @@ struct ActionsView: View {
               .resizable()
               .frame(width: 60, height: 60)
               .foregroundColor(Color(hex: "#917FA2"))
+          }
+          
+          // retry button
+          Button(action: {
+            finishedRecording = false
+            audio.resetForNextWord()
+          }) {
+            Image(systemName: "arrow.2.circlepath.circle")
+              .resizable()
+              .frame(width: 40, height: 40)
+              .foregroundColor(Color(hex: "#D2C0E2"))
           }
           
           // next Button switch to next word question

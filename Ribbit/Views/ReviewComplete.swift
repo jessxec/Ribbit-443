@@ -10,6 +10,9 @@ import SwiftUI
 import FirebaseFirestore
 
 struct ReviewComplete: View {
+  
+    @Environment(\.presentationMode) var presentationMode // To handle manual back navigation
+  
     var body: some View {
         NavigationStack {
             ZStack {
@@ -107,6 +110,7 @@ struct ReviewComplete: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarBackButtonHidden(true)
                 .navigationBarItems(leading: Button(action: {
+                    presentationMode.wrappedValue.dismiss() // Navigate back
                 }) {
                   HStack(spacing: 2) {
                       Image(systemName: "chevron.left")

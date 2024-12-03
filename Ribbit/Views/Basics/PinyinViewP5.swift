@@ -15,7 +15,7 @@ struct PinyinViewP5: View {
     @StateObject private var audioPlayer = AudioPlayer()
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 10) {
                 ProgressBarBackButton(currentPage: 5, totalPages: 6)
 

@@ -424,3 +424,57 @@ func createModules() async throws {
     try await db.collection("Modules").document(foundationsModule.id!).setData(moduleData)
     print("Module and lesson content uploaded successfully.")
 }
+
+func createBadges() async throws {
+    let db = Firestore.firestore()
+
+    let badges = [
+        Badge(
+            id: "foundations-complete",
+            title: "Foundations Master",
+            description: "Completed all lessons in the Foundations Island module.",
+            icon: "foundations-complete-icon",
+            dateReceived: nil
+        ),
+        Badge(
+            id: "baby-steps",
+            title: "Baby Steps",
+            description: "Completed your first lesson.",
+            icon: "baby-steps-icon",
+            dateReceived: nil
+        ),
+        Badge(
+            id: "airport-navigator",
+            title: "Airport Navigator",
+            description: "Completed the Airports module.",
+            icon: "airport-navigator-icon",
+            dateReceived: nil
+        ),
+        Badge(
+            id: "cafe-lover",
+            title: "Cafe Lover",
+            description: "Completed the Cafe module.",
+            icon: "cafe-lover-icon",
+            dateReceived: nil
+        ),
+        Badge(
+            id: "language-explorer",
+            title: "Language Explorer",
+            description: "Completed a total of 10 lessons.",
+            icon: "language-explorer-icon",
+            dateReceived: nil
+        )
+    ]
+
+    for badge in badges {
+        let badgeRef = db.collection("Badges").document(badge.id)
+        do {
+            try badgeRef.setData(from: badge)
+            print("Badge \(badge.title) added successfully!")
+        } catch {
+            print("Error adding badge \(badge.title): \(error.localizedDescription)")
+        }
+    }
+}
+
+

@@ -15,7 +15,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
     
-    // Comment out when updating firebase
+    // Comment out when updating firebase for populating Modules
 //        Task {
 //          do {
 //             try await createModules()
@@ -24,17 +24,29 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 //            print("Error")
 //           }
 //        }
+    // Comment out when updating firebase for populating Badges
+//    Task {
+//        try await createBadges()
+//    }
+
     return true
   }
 }
 
 @main
 struct RibbitApp: App {
-  @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @State private var hasCompletedWelcome = false // Tracks navigation state
+  
     var body: some Scene {
         WindowGroup {
-            HomeScreenP1()
-            //ContentView()
+            if hasCompletedWelcome {
+                MainTabView() // Show tabbed navigation after welcome/review
+            } else {
+//                WelcomeFlowView(hasCompletedWelcome: $hasCompletedWelcome) // Welcome and review flow
+                HomeScreenP1()
+            }
+            
         }
     }
 }

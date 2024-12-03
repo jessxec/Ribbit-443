@@ -33,7 +33,8 @@ struct PinyinViewP6: View {
             
             Spacer()
             
-            ContinueButton(destination: ReviewComplete())
+//            ContinueButton(destination: ReviewComplete())
+              ContinueButton(destination: LessonListView())
         }
         .background(Color(hex: "FFFAF3"))
         .ignoresSafeArea()

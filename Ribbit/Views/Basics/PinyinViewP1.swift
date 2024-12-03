@@ -50,8 +50,8 @@ struct PinyinViewP1: View {
     }
 }
 
-//struct PinyinIntroView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    PinyinViewP1()
-//  }
-//}
+struct PinyinIntroView_Previews: PreviewProvider {
+  static var previews: some View {
+    PinyinViewP1()
+  }
+}
