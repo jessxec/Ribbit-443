@@ -41,14 +41,7 @@ struct RibbitApp: App {
     var body: some Scene {
         WindowGroup {
             ProfilePage()
-            //ContentView()
-//            if hasCompletedWelcome {
-//                MainTabView() // Show tabbed navigation after welcome/review
-//            } else {
-////                WelcomeFlowView(hasCompletedWelcome: $hasCompletedWelcome) // Welcome and review flow
-//                HomeScreenP1()
-//            }
-            
+//            HomeScreenP1()
         }
     }
 }
