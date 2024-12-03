@@ -10,6 +10,9 @@ import SwiftUI
 import FirebaseFirestore
 
 struct ReviewComplete: View {
+  
+    @Environment(\.presentationMode) var presentationMode // To handle manual back navigation
+  
     var body: some View {
         NavigationStack {
             ZStack {
@@ -64,10 +67,42 @@ struct ReviewComplete: View {
                           .foregroundColor(Color(hex: "#554C5D"))
                         
                         VStack(spacing: 15) {
-                          LessonRow(number: 1, title: "Tone One", description: "flat tone", example: "ā", isUnlocked: true)
-                          LessonRow(number: 2, title: "Tone Two", description: "rising tone", example: "á", isUnlocked: false)
-                          LessonRow(number: 3, title: "Tone Three", description: "dip tone", example: "ǎ", isUnlocked: false)
-                          LessonRow(number: 4, title: "Tone Four", description: "falling tone", example: "à", isUnlocked: false)
+                            LessonRow(
+                                number: 1,
+                                title: "Tone One",
+                                description: "flat tone",
+                                example: "ā",
+                                isUnlocked: true, // Update with actual unlock logic
+                                moduleId: "foundationsIsland",
+                                lessonId: "lesson1"
+                            )
+                            LessonRow(
+                                number: 2,
+                                title: "Tone Two",
+                                description: "rising tone",
+                                example: "á",
+                                isUnlocked: true, // Update with actual unlock logic
+                                moduleId: "foundationsIsland",
+                                lessonId: "lesson2"
+                            )
+                            LessonRow(
+                                number: 3,
+                                title: "Tone Three",
+                                description: "dip tone",
+                                example: "ǎ",
+                                isUnlocked: false, // Update with actual unlock logic
+                                moduleId: "foundationsIsland",
+                                lessonId: "lesson2"
+                            )
+                            LessonRow(
+                                number: 4,
+                                title: "Tone Four",
+                                description: "falling tone",
+                                example: "à",
+                                isUnlocked: false, // Update with actual unlock logic
+                                moduleId: "foundationsIsland",
+                                lessonId: "lesson2"
+                            )
                         }
                         .padding(.horizontal)
                     }
@@ -75,6 +110,7 @@ struct ReviewComplete: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarBackButtonHidden(true)
                 .navigationBarItems(leading: Button(action: {
+                    presentationMode.wrappedValue.dismiss() // Navigate back
                 }) {
                   HStack(spacing: 2) {
                       Image(systemName: "chevron.left")

@@ -37,6 +37,7 @@ struct PinyinViewP1: View {
               .padding(.top, 20)
               .foregroundColor(Color(hex: "#554C5D"))
           }
+          .padding()
           
           Spacer()
           
@@ -49,8 +50,8 @@ struct PinyinViewP1: View {
     }
 }
 
-//struct PinyinIntroView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    PinyinViewP1()
-//  }
-//}
+struct PinyinIntroView_Previews: PreviewProvider {
+  static var previews: some View {
+    PinyinViewP1()
+  }
+}
