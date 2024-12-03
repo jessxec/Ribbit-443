@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Charts
 
 struct ProfilePage: View {
     var body: some View {
@@ -18,6 +19,7 @@ struct ProfilePage: View {
                         .strokeBorder(Color(hex: "FF9F9F"), lineWidth: 4)
                         .frame(width: 90, height: 90)
                         .overlay(Text("C").font(.largeTitle))
+                        .foregroundColor(Color(hex: "#554C5D"))
                         .padding()
                     
                     Spacer()
@@ -37,9 +39,10 @@ struct ProfilePage: View {
                         Text("Connor")
                             .font(.title)
                             .bold()
+                            .foregroundColor(Color(hex: "#554C5D"))
                         
                         Text("@connorxD")
-                            .foregroundColor(.gray)
+                            .foregroundColor(Color(hex: "#554C5D"))
                     }
                     .padding(.leading)
                     .padding(.top, 15)
@@ -57,27 +60,24 @@ struct ProfilePage: View {
                 }
                 .padding(.horizontal)
                 
-                // Achievements Section
+                // Accuracy Tracker Section
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("Achievements")
+                    Text("Accuracy Tracker")
                         .font(.title2)
                         .padding(.leading, 25)
+                        .foregroundColor(Color(hex: "#554C5D"))
                     
-                    // Box with shadow effect
-                    HStack(spacing: 30) {
-                        AchievementView(count: 312, color: .purple)
-                        AchievementView(count: 159, color: .yellow)
-                        AchievementView(count: 74, color: .gray)
-                        AchievementView(count: 98, color: .gray.opacity(0.7))
-                    }
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(
-                        RoundedRectangle(cornerRadius: 15)
-                            .fill(Color(hex: "FFFAF3"))
-                            .shadow(color: Color(hex: "917FA2"), radius: 10, x: 2, y: 10)
-                    )
-                    .padding(.horizontal, 20)
+                    // Chart Box with Box Shadow Effect
+                    AccuracyChartView()
+                        .frame(height: 200)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .fill(Color(hex: "FFFAF3"))
+                                .shadow(color: Color(hex: "917FA2"), radius: 10, x: 2, y: 10)
+                        )
+                        .padding(.horizontal, 20)
                 }
                 .padding(.top)
                 
@@ -87,6 +87,7 @@ struct ProfilePage: View {
                         Text("Badges")
                             .font(.title2)
                             .padding(.leading, 25)
+                            .foregroundColor(Color(hex: "#554C5D"))
                         Spacer()
                         NavigationLink(destination: BadgesPage()) {
                             Text("see more")
@@ -122,21 +123,25 @@ struct ProfilePage: View {
     }
 }
 
-struct AchievementView: View {
-    let count: Int
-    let color: Color
-    
+// Accuracy Chart View
+struct AccuracyChartView: View {
+    let data = [
+        (tone: "Tone 1", accuracy: 78),
+        (tone: "Tone 2", accuracy: 100),
+        (tone: "Tone 3", accuracy: 100),
+        (tone: "Tone 4", accuracy: 78)
+    ]
+
     var body: some View {
-        VStack {
-            Circle()
-                .fill(color)
-                .frame(width: 50, height: 50)
-                .overlay(
-                    Image(systemName: "checkmark")
-                        .foregroundColor(.white)
-                )
-            Text("\(count)")
-                .font(.subheadline)
+        Chart(data, id: \.tone) { item in
+            BarMark(
+                x: .value("Tone", item.tone),
+                y: .value("Accuracy", item.accuracy)
+            )
+            .foregroundStyle(Color(hex: "917FA2"))
+        }
+        .chartYAxis {
+            AxisMarks(position: .leading)
         }
     }
 }
