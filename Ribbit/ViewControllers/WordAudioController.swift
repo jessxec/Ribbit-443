@@ -60,6 +60,19 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
     }
   }
   
+  // Helper Function to Parse the Response
+  func parseResponse(data: Data) -> [String: Any]? {
+      do {
+          if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+              return json
+          }
+      } catch {
+          print("JSON parsing error: \(error.localizedDescription)")
+      }
+      return nil
+  }
+
+  
   
   // MARK: Playing Audio
   func playSampleWord(for samplePath: String) {
@@ -185,122 +198,164 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   }
   
   func stopRecording(completion: @escaping (String) -> Void) {
-    audioRecorder?.stop()
-    status = .recordingStopped
-    playRecording()
-    
-    guard !hasSentAPIRequest else {
-      print("API request already sent. Skipping...")
-      return
-    }
-    
-    if FileManager.default.fileExists(atPath: urlForRecording.path) {
-      if let attributes = try? FileManager.default.attributesOfItem(atPath: urlForRecording.path),
-         let fileSize = attributes[.size] as? UInt64, fileSize > 0 {
-        
-        
-        
-        hasSentAPIRequest = true // Mark as sent to avoid re-calls
-        // Define a sample pitch (replace with actual values as needed)
-        let samplePitch: [Double] = word.samplePitchVectors
-        sendAudioToAPI(samplePitch: samplePitch) { result in
+      audioRecorder?.stop()
+      status = .recordingStopped
+      playRecording()
+      
+      guard FileManager.default.fileExists(atPath: urlForRecording.path) else {
+          print("Recorded file does not exist.")
+          return
+      }
+      
+      let formantReferences = (F1: word.transcriptionCheck.F1, F2: word.transcriptionCheck.F2)
+      
+      // Call Formants API
+      sendFormantsToAPI(referenceFormants: formantReferences) { [weak self] result in
+          guard let self = self else { return }
           switch result {
           case .success(let response):
-            print("Self Pitch at Stop Recording ending: \(self.pitchValues)")
-            print("API call success: \(response)")
+              DispatchQueue.main.async {
+                  self.feedbackMessage = """
+                  **Formant Feedback**
+                  Feedback: \(response.feedback.joined(separator: "\n"))
+                  Extracted F1: \(response.formants.F1), F2: \(response.formants.F2)
+                  """
+              }
           case .failure(let error):
-            print("API call failed: \(error.localizedDescription)")
+              print("Formant API error: \(error.localizedDescription)")
+              DispatchQueue.main.async {
+                  self.feedbackMessage = "Formant analysis failed. Try again."
+              }
           }
-          self.hasSentAPIRequest = false
-        }
-      } else {
-        print("Recorded file is empty.")
-        completion("Error")
       }
-    } else {
-      print("Recorded file does not exist.")
-      completion("Error")
-    }
+      
+      // Call Pitch API
+      sendPitchToAPI(samplePitch: word.samplePitchVectors) { [weak self] result in
+          guard let self = self else { return }
+          switch result {
+          case .success(let response):
+              DispatchQueue.main.async {
+                  // Update the pitch-related UI and graph data
+                  self.pitchValues = response.pitch_values
+                  self.feedbackMessage = (self.feedbackMessage ?? "") + """
+                                  
+                  **Pitch Feedback**
+                  Average Feedback: \(response.feedback.average_feedback)
+                  \(response.feedback.section_feedback.joined(separator: "\n"))
+                  """
+
+                  // Trigger graph update (assuming a method exists to update the graph)
+//                  self.plotGraph(with: self.pitchValues)
+              }
+          case .failure(let error):
+              print("Pitch API error: \(error.localizedDescription)")
+              DispatchQueue.main.async {
+                self.feedbackMessage = (self.feedbackMessage ?? "") + "\nPitch analysis failed. Try again."
+              }
+          }
+      }
+  }
+
+
+  
+  
+  
+  // MARK: API Calls for Pitch and Formant Analysis
+  func sendPitchToAPI(samplePitch: [Double], completion: @escaping (Result<PitchResponse, Error>) -> Void) {
+      let url = URL(string: "https://jacksun815.pythonanywhere.com/process_audio")!
+      var request = URLRequest(url: url)
+      request.httpMethod = "POST"
+      
+      let boundary = "Boundary-\(UUID().uuidString)"
+      request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+      
+      var data = Data()
+      data.append("--\(boundary)\r\n".data(using: .utf8)!)
+      data.append("Content-Disposition: form-data; name=\"audio\"; filename=\"\(urlForRecording.lastPathComponent)\"\r\n".data(using: .utf8)!)
+      data.append("Content-Type: audio/wav\r\n\r\n".data(using: .utf8)!)
+      data.append(try! Data(contentsOf: urlForRecording))
+      data.append("\r\n".data(using: .utf8)!)
+      
+      let samplePitchString = samplePitch.map { "\($0)" }.joined(separator: ",")
+      data.append("--\(boundary)\r\n".data(using: .utf8)!)
+      data.append("Content-Disposition: form-data; name=\"sample_pitch\"\r\n\r\n".data(using: .utf8)!)
+      data.append("[\(samplePitchString)]".data(using: .utf8)!)
+      data.append("\r\n".data(using: .utf8)!)
+      data.append("--\(boundary)--\r\n".data(using: .utf8)!)
+      
+      request.httpBody = data
+      
+      let task = URLSession.shared.dataTask(with: request) { data, response, error in
+          if let error = error {
+              completion(.failure(error))
+              return
+          }
+          
+          guard let data = data else {
+              completion(.failure(NSError(domain: "No data", code: 0, userInfo: nil)))
+              return
+          }
+          
+          do {
+              let decoder = JSONDecoder()
+              let response = try decoder.decode(PitchResponse.self, from: data)
+              completion(.success(response))
+          } catch {
+              completion(.failure(error))
+          }
+      }
+      task.resume()
   }
   
   
-  
-  func sendAudioToAPI(samplePitch: [Double], completion: @escaping (Result<String, Error>) -> Void) {
-    let url = URL(string: "https://jacksun815.pythonanywhere.com/process_audio")!
-    var request = URLRequest(url: url)
-    request.httpMethod = "POST"
-    
-    let boundary = "Boundary-\(UUID().uuidString)"
-    request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-    
-    var data = Data()
-    
-    // Add audio file
-    data.append("--\(boundary)\r\n".data(using: .utf8)!)
-    data.append("Content-Disposition: form-data; name=\"audio\"; filename=\"\(urlForRecording.lastPathComponent)\"\r\n".data(using: .utf8)!)
-    data.append("Content-Type: audio/wav\r\n\r\n".data(using: .utf8)!)
-    data.append(try! Data(contentsOf: urlForRecording))
-    data.append("\r\n".data(using: .utf8)!)
-    
-    // Add sample pitch values
-    let samplePitchString = samplePitch.map { "\($0)" }.joined(separator: ",")
-    data.append("--\(boundary)\r\n".data(using: .utf8)!)
-    data.append("Content-Disposition: form-data; name=\"sample_pitch\"\r\n\r\n".data(using: .utf8)!)
-    data.append("[\(samplePitchString)]".data(using: .utf8)!)
-    data.append("\r\n".data(using: .utf8)!)
-    
-    data.append("--\(boundary)--\r\n".data(using: .utf8)!)
-    request.httpBody = data
-    
-    // Send the request
-    let task = URLSession.shared.dataTask(with: request) { data, response, error in
-      if let error = error {
-        completion(.failure(error))
-        return
-      }
+  func sendFormantsToAPI(referenceFormants: (F1: Double, F2: Double), completion: @escaping (Result<FormantsResponse, Error>) -> Void) {
+      let url = URL(string: "https://jacksun815.pythonanywhere.com/check_formants")!
+      var request = URLRequest(url: url)
+      request.httpMethod = "POST"
       
-      guard let data = data else {
-        completion(.failure(NSError(domain: "No data", code: 0, userInfo: nil)))
-        return
-      }
+      let boundary = "Boundary-\(UUID().uuidString)"
+      request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
       
-      do {
-        if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-          print("Full JSON response: \(json)")
-          
-          // Extract `pitch_values` and `feedback`
-          guard let pitchValues = json["pitch_values"] as? [Double],
-                let feedback = json["feedback"] as? [String: Any],
-                let averageFeedback = feedback["average_feedback"] as? String,
-                let sectionFeedback = feedback["section_feedback"] as? [String],
-                let tonePatternFeedback = feedback["tone_pattern_feedback"] as? String else {
-            
-            print("Error: Missing expected fields in JSON response")
-            completion(.failure(NSError(domain: "Invalid JSON structure", code: 0, userInfo: nil)))
-            return
+      var data = Data()
+      data.append("--\(boundary)\r\n".data(using: .utf8)!)
+      data.append("Content-Disposition: form-data; name=\"audio\"; filename=\"\(urlForRecording.lastPathComponent)\"\r\n".data(using: .utf8)!)
+      data.append("Content-Type: audio/wav\r\n\r\n".data(using: .utf8)!)
+      data.append(try! Data(contentsOf: urlForRecording))
+      data.append("\r\n".data(using: .utf8)!)
+      
+      let referenceFormantsJSON = """
+      {"F1": \(referenceFormants.F1), "F2": \(referenceFormants.F2)}
+      """
+      data.append("--\(boundary)\r\n".data(using: .utf8)!)
+      data.append("Content-Disposition: form-data; name=\"reference_formants\"\r\n\r\n".data(using: .utf8)!)
+      data.append(referenceFormantsJSON.data(using: .utf8)!)
+      data.append("\r\n".data(using: .utf8)!)
+      data.append("--\(boundary)--\r\n".data(using: .utf8)!)
+      
+      request.httpBody = data
+      
+      let task = URLSession.shared.dataTask(with: request) { data, response, error in
+          if let error = error {
+              completion(.failure(error))
+              return
           }
           
-          // Assign feedback message for UI
-          DispatchQueue.main.async {
-            self.pitchValues = pitchValues
-            
-            self.feedbackMessage = """
-                      Average Feedback: \(averageFeedback)
-                      Tone Pattern: \(tonePatternFeedback)
-                      Section Details:
-                      \(sectionFeedback.joined(separator: "\n"))
-                      """
+          guard let data = data else {
+              completion(.failure(NSError(domain: "No data", code: 0, userInfo: nil)))
+              return
           }
-          completion(.success("Feedback and pitch values received successfully"))
-        } else {
-          completion(.failure(NSError(domain: "Invalid JSON", code: 0, userInfo: nil)))
-        }
-      } catch {
-        completion(.failure(error))
+          
+          do {
+              let decoder = JSONDecoder()
+              let response = try decoder.decode(FormantsResponse.self, from: data)
+              completion(.success(response))
+          } catch {
+              completion(.failure(error))
+          }
       }
-    }
-    task.resume()
+      task.resume()
   }
+
   
   
   var audioDuration: TimeInterval {
@@ -349,32 +404,33 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
     }
     return count
   }
-  
-
 }
-
-
-
-extension WordAudioController {
-
-  // MARK: AVAudioPlayerDelegate Method
-  func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-    if flag {
-      print("Audio finished playing")
-      DispatchQueue.main.async {
-        self.status = .stopped
+      
+    
+    
+    
+    
+    extension WordAudioController {
+      // MARK: AVAudioPlayerDelegate Method
+      func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        if flag {
+          print("Audio finished playing")
+          DispatchQueue.main.async {
+            self.status = .stopped
+          }
+        }
+      }
+      
+      // MARK: AVAudioRecorderDelegate Method
+      func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        if flag {
+          print("Audio finished recording")
+          DispatchQueue.main.async {
+            self.status = .recordingStopped
+            self.hasRecorded = true
+          }
+        }
       }
     }
-  }
   
-  // MARK: AVAudioRecorderDelegate Method
-  func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
-    if flag {
-      print("Audio finished recording")
-      DispatchQueue.main.async {
-        self.status = .recordingStopped
-        self.hasRecorded = true
-      }
-    }
-  }
-}
+

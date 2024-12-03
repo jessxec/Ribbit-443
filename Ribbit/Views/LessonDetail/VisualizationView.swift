@@ -95,7 +95,6 @@ struct AnimatedGraph: View {
         // Create the path
         Path { path in
           let visiblePoints = Int(progress * Double(dataPoints.count)) // Calculate visible points based on progress
-          print("AnimatedGraph data: \(dataPoints)")
           for index in dataPoints.indices.prefix(visiblePoints) {
             let xPosition = geometry.size.width * CGFloat(index) / CGFloat(dataPoints.count - 1)
             
