@@ -29,7 +29,7 @@ struct BadgeDetailView: View {
                     .foregroundColor(.gray)
             }
 
-            Text(badge.name)
+            Text(badge.title)
                 .font(.title)
                 .bold()
             
@@ -38,13 +38,13 @@ struct BadgeDetailView: View {
                 .multilineTextAlignment(.center)
                 .padding()
             
-            if badge.completed {
+          if badge.dateReceived != nil {
                 VStack {
                     Text("Completed ✅")
                         .font(.headline)
                         .foregroundColor(.green)
-                    if let completedDate = badge.completedDate {
-                        Text("Date: \(completedDate.dateValue(), formatter: dateFormatter)")
+                    if let completedDate = badge.dateReceived {
+                        Text("Date: \(completedDate, formatter: dateFormatter)")
                             .font(.subheadline)
                             .foregroundColor(.gray)
                     }
@@ -58,7 +58,7 @@ struct BadgeDetailView: View {
             Spacer()
         }
         .padding()
-        .navigationTitle(Text(badge.name))
+        .navigationTitle(Text(badge.title))
     }
 }
 

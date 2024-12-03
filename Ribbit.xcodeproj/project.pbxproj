@@ -30,8 +30,6 @@
 		A747FEF12CFD01F900893D0A /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747FEF02CFD01EE00893D0A /* ProfilePage.swift */; };
 		A747FEF32CFD021C00893D0A /* BadgesPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747FEF22CFD020C00893D0A /* BadgesPage.swift */; };
 		A747FEF52CFD023300893D0A /* BadgeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747FEF42CFD022E00893D0A /* BadgeDetailView.swift */; };
-		A747FEF72CFD026000893D0A /* BadgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747FEF62CFD025400893D0A /* BadgeViewModel.swift */; };
-		A747FEF92CFD028600893D0A /* BadgeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747FEF82CFD027A00893D0A /* BadgeListView.swift */; };
 		A76F46A32CD03B9E00182ABE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F46A22CD03B9E00182ABE /* User.swift */; };
 		A76F46A72CD03DD300182ABE /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A76F46A62CD03DD300182ABE /* FirebaseFirestore */; };
 		A76F46A92CD03DD700182ABE /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = A76F46A82CD03DD700182ABE /* FirebaseCore */; };
@@ -182,6 +180,7 @@
 				5D600CF82CD036A50068F75F /* Products */,
 				A76F46A52CD03DD300182ABE /* Frameworks */,
 				CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */,
+				CBA0C0662CFE9DB300B8E24D /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -315,6 +314,15 @@
 				A77BB5032CDB21310060E5C3 /* AudioPlayer.swift */,
 			);
 			path = Partials;
+			sourceTree = "<group>";
+		};
+		CBA0C0662CFE9DB300B8E24D /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				A747FEF82CFD027A00893D0A /* BadgeListView.swift */,
+				A747FEF62CFD025400893D0A /* BadgeViewModel.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -494,8 +502,6 @@
 				A747FEF52CFD023300893D0A /* BadgeDetailView.swift in Sources */,
 				A747FEF32CFD021C00893D0A /* BadgesPage.swift in Sources */,
 				A747FEF12CFD01F900893D0A /* ProfilePage.swift in Sources */,
-				A747FEF92CFD028600893D0A /* BadgeListView.swift in Sources */,
-				A747FEF72CFD026000893D0A /* BadgeViewModel.swift in Sources */,
 				A73540142CD6A4CD00EAE9FA /* PinyinViewP6.swift in Sources */,
 				CB72A4E12CDD5A6600644FB9 /* populateDatabase.swift in Sources */,
 				A76F46B32CD1D75900182ABE /* PinyinViewP1.swift in Sources */,
