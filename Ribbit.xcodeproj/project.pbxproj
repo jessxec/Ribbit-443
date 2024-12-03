@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4EBFD0122CFCF61700856425 /* LessonContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBFD0112CFCF61000856425 /* LessonContentView.swift */; };
 		5D600CFB2CD036A50068F75F /* RibbitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600CFA2CD036A50068F75F /* RibbitApp.swift */; };
 		5D600CFD2CD036A50068F75F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600CFC2CD036A50068F75F /* ContentView.swift */; };
 		5D600CFF2CD036A70068F75F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D600CFE2CD036A70068F75F /* Assets.xcassets */; };
@@ -29,8 +30,6 @@
 		A747FEF12CFD01F900893D0A /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747FEF02CFD01EE00893D0A /* ProfilePage.swift */; };
 		A747FEF32CFD021C00893D0A /* BadgesPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747FEF22CFD020C00893D0A /* BadgesPage.swift */; };
 		A747FEF52CFD023300893D0A /* BadgeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747FEF42CFD022E00893D0A /* BadgeDetailView.swift */; };
-		A747FEF72CFD026000893D0A /* BadgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747FEF62CFD025400893D0A /* BadgeViewModel.swift */; };
-		A747FEF92CFD028600893D0A /* BadgeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A747FEF82CFD027A00893D0A /* BadgeListView.swift */; };
 		A76F46A32CD03B9E00182ABE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F46A22CD03B9E00182ABE /* User.swift */; };
 		A76F46A72CD03DD300182ABE /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A76F46A62CD03DD300182ABE /* FirebaseFirestore */; };
 		A76F46A92CD03DD700182ABE /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = A76F46A82CD03DD700182ABE /* FirebaseCore */; };
@@ -48,8 +47,13 @@
 		CB4A37D32CD3559800D44467 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4A37D22CD3559800D44467 /* UserViewModel.swift */; };
 		CB4A37D82CD5EACB00D44467 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */; };
 		CB4A37DE2CD66DC600D44467 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */; };
+		CB4F48682CFD18960048FFD9 /* BadgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4F48672CFD18910048FFD9 /* BadgeViewModel.swift */; };
 		CB72A4702CDC3D6100644FB9 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CB72A46F2CDC3D6100644FB9 /* FirebaseStorage */; };
 		CB72A4E12CDD5A6600644FB9 /* populateDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB72A4E02CDD5A5F00644FB9 /* populateDatabase.swift */; };
+		CB8B8E012CFE25C5008097CE /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8B8E002CFE25C5008097CE /* MainTabView.swift */; };
+		CB8B8E032CFE2674008097CE /* ModulePathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8B8E022CFE2673008097CE /* ModulePathView.swift */; };
+		CB8B8E052CFE2683008097CE /* ProgressPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8B8E042CFE2683008097CE /* ProgressPageView.swift */; };
+		CB8B8E072CFE2694008097CE /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8B8E062CFE2694008097CE /* ProfileView.swift */; };
 		CB93FC4B2CDC1FAD00377C95 /* ModuleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93FC4A2CDC1FA600377C95 /* ModuleViewModel.swift */; };
 		CB93FC4D2CDC1FCF00377C95 /* LessonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93FC4C2CDC1FC600377C95 /* LessonViewModel.swift */; };
 		CB93FC512CDC20B400377C95 /* WordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93FC502CDC20AF00377C95 /* WordViewModel.swift */; };
@@ -74,6 +78,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4EBFD0112CFCF61000856425 /* LessonContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonContentView.swift; sourceTree = "<group>"; };
 		5D600CF72CD036A50068F75F /* Ribbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ribbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D600CFA2CD036A50068F75F /* RibbitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RibbitApp.swift; sourceTree = "<group>"; };
 		5D600CFC2CD036A50068F75F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -115,7 +120,12 @@
 		A77BB50E2CDBDE3A0060E5C3 /* HomeScreenP1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenP1.swift; sourceTree = "<group>"; };
 		CB4A37D22CD3559800D44467 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CB4F48672CFD18910048FFD9 /* BadgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeViewModel.swift; sourceTree = "<group>"; };
 		CB72A4E02CDD5A5F00644FB9 /* populateDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = populateDatabase.swift; sourceTree = "<group>"; };
+		CB8B8E002CFE25C5008097CE /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		CB8B8E022CFE2673008097CE /* ModulePathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulePathView.swift; sourceTree = "<group>"; };
+		CB8B8E042CFE2683008097CE /* ProgressPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressPageView.swift; sourceTree = "<group>"; };
+		CB8B8E062CFE2694008097CE /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		CB93FC4A2CDC1FA600377C95 /* ModuleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleViewModel.swift; sourceTree = "<group>"; };
 		CB93FC4C2CDC1FC600377C95 /* LessonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewModel.swift; sourceTree = "<group>"; };
 		CB93FC502CDC20AF00377C95 /* WordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewModel.swift; sourceTree = "<group>"; };
@@ -170,6 +180,7 @@
 				5D600CF82CD036A50068F75F /* Products */,
 				A76F46A52CD03DD300182ABE /* Frameworks */,
 				CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */,
+				CBA0C0662CFE9DB300B8E24D /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -240,7 +251,7 @@
 		A76F46A02CD03B5600182ABE /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A747FEF82CFD027A00893D0A /* BadgeListView.swift */,
+				4EBFD0112CFCF61000856425 /* LessonContentView.swift */,
 				5DFEAE202CDC68DC005DDACC /* LessonView.swift */,
 				A747FEF02CFD01EE00893D0A /* ProfilePage.swift */,
 				A747FEF22CFD020C00893D0A /* BadgesPage.swift */,
@@ -252,6 +263,10 @@
 				A77BB4FF2CD9EA0C0060E5C3 /* LessonRow.swift */,
 				A77BB5012CDABC300060E5C3 /* ReviewComplete.swift */,
 				A77BB50E2CDBDE3A0060E5C3 /* HomeScreenP1.swift */,
+				CB8B8E002CFE25C5008097CE /* MainTabView.swift */,
+				CB8B8E022CFE2673008097CE /* ModulePathView.swift */,
+				CB8B8E042CFE2683008097CE /* ProgressPageView.swift */,
+				CB8B8E062CFE2694008097CE /* ProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -259,7 +274,7 @@
 		A76F46A12CD03B6000182ABE /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				A747FEF62CFD025400893D0A /* BadgeViewModel.swift */,
+				CB4F48672CFD18910048FFD9 /* BadgeViewModel.swift */,
 				CB93FC502CDC20AF00377C95 /* WordViewModel.swift */,
 				CB93FC4C2CDC1FC600377C95 /* LessonViewModel.swift */,
 				CB93FC4A2CDC1FA600377C95 /* ModuleViewModel.swift */,
@@ -299,6 +314,15 @@
 				A77BB5032CDB21310060E5C3 /* AudioPlayer.swift */,
 			);
 			path = Partials;
+			sourceTree = "<group>";
+		};
+		CBA0C0662CFE9DB300B8E24D /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				A747FEF82CFD027A00893D0A /* BadgeListView.swift */,
+				A747FEF62CFD025400893D0A /* BadgeViewModel.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -453,18 +477,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB8B8E032CFE2674008097CE /* ModulePathView.swift in Sources */,
 				CB93FC512CDC20B400377C95 /* WordViewModel.swift in Sources */,
 				A735401A2CD6AB8600EAE9FA /* ContinueButton.swift in Sources */,
 				A77BB4FE2CD97BDB0060E5C3 /* ColorHex.swift in Sources */,
+				CB8B8E052CFE2683008097CE /* ProgressPageView.swift in Sources */,
 				5D600CFD2CD036A50068F75F /* ContentView.swift in Sources */,
 				A76F46B52CD1DCF300182ABE /* PinyinViewP2.swift in Sources */,
+				CB8B8E012CFE25C5008097CE /* MainTabView.swift in Sources */,
 				A77BB5022CDABC300060E5C3 /* ReviewComplete.swift in Sources */,
 				A77BB5042CDB21310060E5C3 /* AudioPlayer.swift in Sources */,
 				A76F46AD2CD040B200182ABE /* Badge.swift in Sources */,
+				4EBFD0122CFCF61700856425 /* LessonContentView.swift in Sources */,
 				CB93FC642CDC22B400377C95 /* AudioStatus.swift in Sources */,
 				CB4A37D32CD3559800D44467 /* UserViewModel.swift in Sources */,
 				A73540102CD6A4B400EAE9FA /* PinyinViewP4.swift in Sources */,
 				A76F46AB2CD0408C00182ABE /* Module.swift in Sources */,
+				CB4F48682CFD18960048FFD9 /* BadgeViewModel.swift in Sources */,
 				CB93FC4D2CDC1FCF00377C95 /* LessonViewModel.swift in Sources */,
 				5D600CFB2CD036A50068F75F /* RibbitApp.swift in Sources */,
 				A77BB5002CD9EA0C0060E5C3 /* LessonRow.swift in Sources */,
@@ -473,12 +502,11 @@
 				A747FEF52CFD023300893D0A /* BadgeDetailView.swift in Sources */,
 				A747FEF32CFD021C00893D0A /* BadgesPage.swift in Sources */,
 				A747FEF12CFD01F900893D0A /* ProfilePage.swift in Sources */,
-				A747FEF92CFD028600893D0A /* BadgeListView.swift in Sources */,
-				A747FEF72CFD026000893D0A /* BadgeViewModel.swift in Sources */,
 				A73540142CD6A4CD00EAE9FA /* PinyinViewP6.swift in Sources */,
 				CB72A4E12CDD5A6600644FB9 /* populateDatabase.swift in Sources */,
 				A76F46B32CD1D75900182ABE /* PinyinViewP1.swift in Sources */,
 				A73540122CD6A4C100EAE9FA /* PinyinViewP5.swift in Sources */,
+				CB8B8E072CFE2694008097CE /* ProfileView.swift in Sources */,
 				A735400C2CD6993D00EAE9FA /* PinyinViewP3.swift in Sources */,
 				A735406D2CD91AF900EAE9FA /* ToneCards.swift in Sources */,
 				A76F46B02CD1C9D800182ABE /* LessonListView.swift in Sources */,
@@ -649,7 +677,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Ribbit/Preview Content\"";
-				DEVELOPMENT_TEAM = M9H56SZYZG;
+				DEVELOPMENT_TEAM = 85DXQPDG32;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Ribbit requires that you have your microhphone turned on";
@@ -663,7 +691,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.Ribbit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.Ribbit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -679,7 +707,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Ribbit/Preview Content\"";
-				DEVELOPMENT_TEAM = M9H56SZYZG;
+				DEVELOPMENT_TEAM = 85DXQPDG32;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Ribbit requires that you have your microhphone turned on";
@@ -693,7 +721,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.Ribbit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.Ribbit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

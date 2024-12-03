@@ -89,7 +89,7 @@ struct ProfilePage: View {
                             .padding(.leading, 25)
                             .foregroundColor(Color(hex: "#554C5D"))
                         Spacer()
-                        NavigationLink(destination: BadgesPage()) {
+                        NavigationLink(destination: BadgesPage(badgeService: BadgeService())) {
                             Text("see more")
                                 .foregroundColor(Color(hex: "#554C5D"))
                                 .font(.subheadline)

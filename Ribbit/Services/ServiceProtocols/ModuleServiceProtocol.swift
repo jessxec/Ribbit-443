@@ -10,6 +10,8 @@ import Foundation
 protocol ModuleServiceProtocol {
     /// Fetches a module by its ID.
     func fetchModule(by id: String) async throws -> Module
+  
+    func fetchLesson(moduleId: String, lessonId: String) async throws -> Lesson
 
     /// Fetches all modules.
     func fetchAllModules() async throws -> [Module]

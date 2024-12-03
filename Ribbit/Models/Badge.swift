@@ -9,10 +9,9 @@ import Foundation
 import FirebaseFirestore
 
 struct Badge: Codable, Identifiable {
-    var id: String?
-    var name: String
-    var description: String
-    var completed: Bool
-    var completedDate: Timestamp?
-    var icon: String
+    let id: String
+    let title: String
+    let description: String
+    let icon: String
+    let dateReceived: Date?
 }

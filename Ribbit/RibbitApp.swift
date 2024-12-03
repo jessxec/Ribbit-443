@@ -14,18 +14,35 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         FirebaseApp.configure()
-  
+    
+    // Comment out when updating firebase for populating Modules
+//        Task {
+//          do {
+//             try await createModules()
+//           }
+//           catch {
+//            print("Error")
+//           }
+//        }
+    // Comment out when updating firebase for populating Badges
+//    Task {
+//        try await createBadges()
+//    }
+
     return true
   }
 }
 
 @main
 struct RibbitApp: App {
-  @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @State private var hasCompletedWelcome = false // Tracks navigation state
+  
     var body: some Scene {
         WindowGroup {
             ProfilePage()
-            //ContentView()
+//            HomeScreenP1()
         }
     }
 }
+
