@@ -36,12 +36,17 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct RibbitApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @State private var hasCompletedWelcome = false // Tracks navigation state
+    @State private var hasCompletedWelcome = true // Tracks navigation state
   
     var body: some Scene {
         WindowGroup {
-            ProfilePage()
+//            ProfilePage()
 //            HomeScreenP1()
+            if hasCompletedWelcome {
+                MainTabView()
+            } else {
+                HomeScreenP1()
+            }
         }
     }
 }
