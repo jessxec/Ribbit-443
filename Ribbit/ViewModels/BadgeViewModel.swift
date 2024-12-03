@@ -17,7 +17,7 @@ class BadgeViewModel: ObservableObject {
     }
     
     func fetchBadges() {
-        db.collection("badges").getDocuments { snapshot, error in
+        db.collection("Badges").getDocuments { snapshot, error in
             if let error = error {
                 print("Error fetching badges: \(error)")
                 return
