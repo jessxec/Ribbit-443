@@ -31,6 +31,18 @@ class LessonViewModel: ObservableObject {
         }
         isLoading = false
     }
+  
+    // Fetch a specific lesson by ID
+    func fetchLesson(moduleId: String, lessonId: String) async {
+        isLoading = true
+        do {
+            selectedLesson = try await moduleService.fetchLesson(moduleId: moduleId, lessonId: lessonId)
+        } catch {
+            errorMessage = "Failed to fetch lesson: \(error.localizedDescription)"
+            print(errorMessage ?? "Unknown error")
+        }
+        isLoading = false
+    }
     
     // Update lesson progress for a specific lesson within a module
     func updateLessonProgress(moduleId: String, lessonId: String, starsCollected: Int) async {

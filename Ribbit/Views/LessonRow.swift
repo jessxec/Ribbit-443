@@ -15,10 +15,11 @@ struct LessonRow: View {
     var description: String
     var example: String
     var isUnlocked: Bool
-    
+    var moduleId: String
+    var lessonId: String
     
     var body: some View {
-      NavigationLink(destination: LessonView(moduleId: "foundationsIsland", lessonId: "lesson1")) {
+      NavigationLink(destination: LessonView(moduleId: "foundationsIsland", lessonId: "lesson\(number)")) {
             VStack(alignment: .leading, spacing: 4) {
                 Text("\(number). \(title)")
                     .font(.title)

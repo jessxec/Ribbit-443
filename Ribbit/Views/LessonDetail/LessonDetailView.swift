@@ -46,12 +46,17 @@ struct LessonDetailView: View {
             
             ActionsView(audio: audio, word: word, nextWordAction: nextWordAction)
               .padding(.bottom, 30)
-            Text("\(audio.feedbackMessage ?? "")")
-              .padding()
-              .foregroundColor(.white)
-              .font(.caption2) // Smaller font
-              .fixedSize(horizontal: false, vertical: true) // Allow text to wrap
-              .background(Color(hex: "#917FA2"))
+
+            if let feedbackMessage = audio.feedbackMessage, !feedbackMessage.isEmpty {
+                Text(feedbackMessage)
+                    .padding()
+                    .foregroundColor(.white)
+                    .font(.caption2) // Smaller font
+                    .fixedSize(horizontal: false, vertical: true) // Allow text to wrap
+                    .background(Color(hex: "#917FA2"))
+                    .cornerRadius(8) // Optional: Add rounded corners for a polished look
+            }
+
           }
           .padding(.horizontal, 30)
           

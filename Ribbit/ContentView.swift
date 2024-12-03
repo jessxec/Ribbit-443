@@ -14,5 +14,4 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
-}
+  LessonView(moduleId: "foundationsIsland", lessonId: "lesson1")}

@@ -20,7 +20,7 @@ struct PinyinViewP6: View {
                     .multilineTextAlignment(.center)
                     .padding(.bottom, 50)
               
-                Text("Correctly pronouncing the tones is very important! You do not want to accidentally call your mom a horse!")
+                Text("Correctly pronouncing the tones is very important! You do not want to accidentally call your mom (mā) a horse (mǎ)!")
                     .font(.system(size: 18))
                     .foregroundColor(Color(hex: "554C5D"))
                     .padding(.bottom, 50)
@@ -33,7 +33,8 @@ struct PinyinViewP6: View {
             
             Spacer()
             
-            ContinueButton(destination: ReviewComplete())
+//            ContinueButton(destination: ReviewComplete())
+              ContinueButton(destination: LessonListView())
         }
         .background(Color(hex: "FFFAF3"))
         .ignoresSafeArea()

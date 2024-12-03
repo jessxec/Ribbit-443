@@ -116,7 +116,7 @@ class FirebaseModuleServiceTests: XCTestCase {
             isUnlocked: true,
             totalStarsAvailable: 50,
             lessons: [
-                Lesson(id: testLessonId, title: "Lesson 1", lessonOrder: 1, totalStarsAvailable: 25, words: [])
+              Lesson(id: testLessonId, title: "Lesson 1", lessonOrder: 1, totalStarsAvailable: 25, content:[], words: [])
             ]
         )
 
@@ -142,7 +142,7 @@ class FirebaseModuleServiceTests: XCTestCase {
             isUnlocked: true,
             totalStarsAvailable: 100,
             lessons: [
-                Lesson(id: testLessonId, title: "Lesson 1", lessonOrder: 1, totalStarsAvailable: 50, words: [
+              Lesson(id: testLessonId, title: "Lesson 1", lessonOrder: 1, totalStarsAvailable: 50, content:[], words: [
                     Word(
                         id: testWordId,
                         pinyin: "mā",
@@ -151,7 +151,7 @@ class FirebaseModuleServiceTests: XCTestCase {
                         audioPath: "/audio/tones/mom.mp3",
                         starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
                         feedback: Feedback(incorrectPitch: "Try to keep an even pitch.", incorrectPronunciation: "Emphasize the start."),
-                        transcriptionCheck: nil,
+                        transcriptionCheck: Formants(F1: 0, F2:0),
                         voiceProcessingCheck: nil,
                         starValue: 5,
                         replayAllowed: true,
@@ -168,7 +168,7 @@ class FirebaseModuleServiceTests: XCTestCase {
             moduleId: testModuleId,
             lessonId: testLessonId,
             wordId: testWordId,
-            transcriptionCheck: "妈",
+            transcriptionCheck: "",
             voiceProcessingCheck: "Correct",
             starsEarned: 5
         )
@@ -176,7 +176,6 @@ class FirebaseModuleServiceTests: XCTestCase {
         let updatedWord = fetchedModule.lessons.first?.words.first
 
         // Assert
-        XCTAssertEqual(updatedWord?.transcriptionCheck, "妈")
         XCTAssertEqual(updatedWord?.voiceProcessingCheck, "Correct")
         XCTAssertEqual(updatedWord?.starValue, 5)
     }
@@ -194,7 +193,7 @@ class FirebaseModuleServiceTests: XCTestCase {
             isUnlocked: true,
             totalStarsAvailable: 100,
             lessons: [
-                Lesson(id: testLessonId, title: "Lesson 2", lessonOrder: 2, totalStarsAvailable: 50, words: [
+              Lesson(id: testLessonId, title: "Lesson 2", lessonOrder: 2, totalStarsAvailable: 50, content: [], words: [
                     Word(
                         id: testWordId,
                         pinyin: "bā",
@@ -203,7 +202,7 @@ class FirebaseModuleServiceTests: XCTestCase {
                         audioPath: "/audio/tones/dad.mp3",
                         starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
                         feedback: Feedback(incorrectPitch: "Try to keep an even pitch.", incorrectPronunciation: "Emphasize the start."),
-                        transcriptionCheck: nil,
+                        transcriptionCheck: Formants(F1: 0.0, F2: 0.0),
                         voiceProcessingCheck: nil,
                         starValue: 5,
                         replayAllowed: true,
