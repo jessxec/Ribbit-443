@@ -428,6 +428,7 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
           DispatchQueue.main.async {
             self.status = .recordingStopped
             self.hasRecorded = true
+            self.collectedStars = self.calculateHighlightedStars(userPitchValues: self.pitchValues, correctValues: self.word.samplePitchVectors)
           }
         }
       }

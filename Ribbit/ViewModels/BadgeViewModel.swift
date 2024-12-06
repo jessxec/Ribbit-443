@@ -12,7 +12,7 @@ class BadgeViewModel: ObservableObject {
     @Published var badges: [Badge] = []
     @Published var errorMessage: String?
 
-    init(badgeService: BadgeServiceProtocol) {
+    init(badgeService: BadgeServiceProtocol = BadgeService()) {
         self.badgeService = badgeService
     }
 
