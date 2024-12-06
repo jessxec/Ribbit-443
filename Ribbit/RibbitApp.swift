@@ -40,8 +40,8 @@ struct RibbitApp: App {
   
     var body: some Scene {
         WindowGroup {
-            ProfilePage()
-//            HomeScreenP1()
+//            ProfilePage()
+            HomeScreenP1()
         }
     }
 }
