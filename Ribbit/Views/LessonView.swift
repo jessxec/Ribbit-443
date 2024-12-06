@@ -23,9 +23,11 @@ struct LessonView: View {
                     Text("Loading words...")
                 }
             } else {
-                LessonContentView(viewModel: viewModel, startPracticeAction: {
-                    showPractice = true
-                })
+                if let content = viewModel.lesson?.content {
+                    LessonContentView(lessonId: lessonId, content: content)
+                } else {
+                    Text("Loading lesson content...")
+                }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

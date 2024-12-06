@@ -51,3 +51,21 @@ struct LessonRow: View {
 //      LessonRow(number: 1, title: "Tone One", description: "flat tone", example: "ā", isUnlocked: true)
 //    }
 //}
+
+//struct LessonRow_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavigationView { // Embed in a NavigationView to preview NavigationLink
+//            LessonRow(
+//                number: 1,
+//                title: "Tone One",
+//                description: "The flat tone",
+//                example: "ā",
+//                isUnlocked: true,
+//                moduleId: "foundationsIsland",
+//                lessonId: "lesson1"
+//            )
+//            .previewLayout(.sizeThatFits) // Ensures the layout adjusts to content size
+//            .padding()
+//        }
+//    }
+//}
