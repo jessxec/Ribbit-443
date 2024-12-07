@@ -10,7 +10,6 @@ import SwiftUI
 import FirebaseFirestore
 
 struct LessonListView: View {
-  
     @Environment(\.presentationMode) var presentationMode // To handle manual back navigation
   
     var body: some View {
@@ -115,9 +114,3 @@ struct LessonListView: View {
         }
     }
 }
-
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//      LessonListView()
-//    }
-//}

@@ -40,13 +40,11 @@ struct RibbitApp: App {
   
     var body: some Scene {
         WindowGroup {
-//            ProfilePage()
-//            HomeScreenP1()
-            if hasCompletedWelcome {
-                MainTabView()
-            } else {
-                HomeScreenP1()
-            }
+          if hasCompletedWelcome {
+              MainTabView() // Show tabbed navigation after welcome/review
+          } else {
+              HomeScreenP1()
+          }
         }
     }
 }

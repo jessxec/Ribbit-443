@@ -49,9 +49,3 @@ struct PinyinViewP1: View {
       .navigationBarBackButtonHidden(true)
     }
 }
-
-struct PinyinIntroView_Previews: PreviewProvider {
-  static var previews: some View {
-    PinyinViewP1()
-  }
-}

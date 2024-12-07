@@ -8,59 +8,77 @@ import SwiftUI
 
 struct BadgeDetailView: View {
     let badge: Badge
+
+    private let badgeService: BadgeServiceProtocol
+    @State private var iconURL: URL?
+
+    init(badge: Badge, badgeService: BadgeServiceProtocol) {
+        self.badge = badge
+        self.badgeService = badgeService
+    }
     
     var body: some View {
-        VStack(spacing: 20) {
-            if let url = URL(string: badge.icon) {
-                AsyncImage(url: url) { image in
-                    image
-                        .resizable()
-                        .frame(width: 40, height: 40)
-                        .clipShape(Circle())
-                } placeholder: {
-                    ProgressView()
-                }
+      VStack {
+          VStack(spacing: 20) {
+            if let iconURL = iconURL {
+              AsyncImage(url: iconURL) { image in
+                image
+                  .resizable()
+                  .frame(width: 80, height: 80)
+                  .clipShape(Circle())
+              } placeholder: {
+                ProgressView()
+              }
             } else {
-                // Handle invalid URL or fallback to a default image
-                Image(systemName: "photo")
-                    .resizable()
-                    .frame(width: 40, height: 40)
-                    .clipShape(Circle())
-                    .foregroundColor(.gray)
+              ProgressView()
+                .onAppear {
+                  Task {
+                    do {
+                      iconURL = try await badgeService.getIconURL(for: badge.title)
+                    } catch {
+                      print("Failed to fetch icon URL for \(badge.title): \(error)")
+                    }
+                  }
+                }
             }
-
+            
             Text(badge.title)
-                .font(.title)
-                .bold()
+              .font(.title)
+              .foregroundColor(Color(hex: "#554C5D"))
+              .bold()
             
             Text(badge.description)
-                .font(.body)
-                .multilineTextAlignment(.center)
-                .padding()
+              .font(.body)
+              .multilineTextAlignment(.center)
+              .foregroundColor(Color(hex: "#554C5D"))
+              .padding()
             
-          if badge.dateReceived != nil {
-                VStack {
-                    Text("Completed ✅")
-                        .font(.headline)
-                        .foregroundColor(.green)
-                    if let completedDate = badge.dateReceived {
-                        Text("Date: \(completedDate, formatter: dateFormatter)")
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                    }
+            if badge.dateReceived != nil {
+              VStack {
+                Text("Completed ✅")
+                  .font(.headline)
+                  .foregroundColor(.green)
+                if let completedDate = badge.dateReceived {
+                  Text("Date: \(completedDate, formatter: dateFormatter)")
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
                 }
+              }
             } else {
-                Text("Not Completed Yet")
-                    .font(.headline)
-                    .foregroundColor(.red)
+              Text("Not Completed Yet")
+                .font(.headline)
+                .foregroundColor(.red)
             }
-            
-            Spacer()
-        }
+          }
+                
+                Spacer()
+            }
         .padding()
         .navigationTitle(Text(badge.title))
     }
 }
+
+
 
 private let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()

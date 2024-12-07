@@ -53,9 +53,3 @@ struct HomeScreenP1: View {
       }
     }
 }
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-      HomeScreenP1()
-    }
-}

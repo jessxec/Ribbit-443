@@ -8,29 +8,32 @@
 import SwiftUI
 
 struct MainTabView: View {
+
     var body: some View {
-        TabView {
-            // Module Path Tab
-            ModulePathView()
-                .tabItem {
-                    Image(systemName: "map.fill")
-                    Text("Modules")
-                }
+        ZStack {
+            TabView {
+                // Module Path Tab
+                ModulePathView() // Pass binding
+                    .tabItem {
+                        Image(systemName: "map.fill")
+                        Text("Modules")
+                    }
 
-            // Progress Page Tab
-            ProgressPageView()
-                .tabItem {
-                    Image(systemName: "chart.bar.fill")
-                    Text("Progress")
-                }
+                // Progress Page Tab
+                ProgressPageView()
+                    .tabItem {
+                        Image(systemName: "chart.bar.fill")
+                        Text("Progress")
+                    }
 
-            // Profile Tab
-            ProfileView()
-                .tabItem {
-                    Image(systemName: "person.fill")
-                    Text("Profile")
-                }
+                // Profile Tab
+                ProfilePage(badgeService: BadgeService())
+                    .tabItem {
+                        Image(systemName: "person.fill")
+                        Text("Profile")
+                    }
+            }
+            .accentColor(Color(hex: "#917FA2")) // Customize tab icon color
         }
-        .accentColor(Color(hex: "#917FA2")) // Customize tab icon color
     }
 }

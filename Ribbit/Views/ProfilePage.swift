@@ -4,32 +4,26 @@
 //
 //  Created by Tracy Yang on 12/1/24.
 //
-
 import Foundation
 import SwiftUI
+import Charts
 
 struct ProfilePage: View {
+    @StateObject private var viewModel: BadgeViewModel
+    
+    init(badgeService: BadgeServiceProtocol) {
+        _viewModel = StateObject(wrappedValue: BadgeViewModel(badgeService: badgeService))
+    }
+    
+    let columns = [
+        GridItem(.adaptive(minimum: 100), spacing: 16)
+    ]
+    
     var body: some View {
-        NavigationStack {
+        NavigationView {
             VStack {
                 // Profile Header
-                HStack {
-                    Circle()
-                        .strokeBorder(Color(hex: "FF9F9F"), lineWidth: 4)
-                        .frame(width: 90, height: 90)
-                        .overlay(Text("C").font(.largeTitle))
-                        .padding()
-                    
-                    Spacer()
-                    
-                    // Settings button
-                    Image(systemName: "gearshape.fill")
-                        .foregroundColor(.gray)
-                        .font(.title2)
-                        .padding(.trailing)
-                }
-                .padding()
-                .background(Color.purple.opacity(0.2))
+                ProfileHeaderSection()
                 
                 // Streak and user name
                 HStack {
@@ -37,9 +31,10 @@ struct ProfilePage: View {
                         Text("Connor")
                             .font(.title)
                             .bold()
+                            .foregroundColor(Color(hex: "#554C5D"))
                         
                         Text("@connorxD")
-                            .foregroundColor(.gray)
+                            .foregroundColor(Color(hex: "#554C5D"))
                     }
                     .padding(.leading)
                     .padding(.top, 15)
@@ -57,36 +52,34 @@ struct ProfilePage: View {
                 }
                 .padding(.horizontal)
                 
-                // Achievements Section
+                // Accuracy Tracker Section
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("Achievements")
+                    Text("Accuracy Tracker")
                         .font(.title2)
                         .padding(.leading, 25)
+                        .foregroundColor(Color(hex: "#554C5D"))
                     
-                    // Box with shadow effect
-                    HStack(spacing: 30) {
-                        AchievementView(count: 312, color: .purple)
-                        AchievementView(count: 159, color: .yellow)
-                        AchievementView(count: 74, color: .gray)
-                        AchievementView(count: 98, color: .gray.opacity(0.7))
-                    }
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(
-                        RoundedRectangle(cornerRadius: 15)
-                            .fill(Color(hex: "FFFAF3"))
-                            .shadow(color: Color(hex: "917FA2"), radius: 10, x: 2, y: 10)
-                    )
-                    .padding(.horizontal, 20)
+                    // Chart Box with Box Shadow Effect
+                    AccuracyChartView()
+                        .frame(height: 200)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .fill(Color(hex: "FFFAF3"))
+                                .shadow(color: Color(hex: "917FA2"), radius: 10, x: 2, y: 10)
+                        )
+                        .padding(.horizontal, 20)
                 }
                 .padding(.top)
-                
+
                 // Badges Section
                 VStack(alignment: .leading, spacing: 10) {
                     HStack {
                         Text("Badges")
                             .font(.title2)
                             .padding(.leading, 25)
+                            .foregroundColor(Color(hex: "#554C5D"))
                         Spacer()
                         NavigationLink(destination: BadgesPage(badgeService: BadgeService())) {
                             Text("see more")
@@ -95,67 +88,100 @@ struct ProfilePage: View {
                                 .underline() // Underline the text
                                 .padding(.trailing, 35)
                         }
+                        .navigationBarBackButtonHidden(true)
                     }
                     
-                    HStack(spacing: 30) {
-                        BadgeView(systemName: "medal.fill", color: .yellow)
-                        BadgeView(systemName: "medal.fill", color: .gray)
-                        BadgeView(systemName: "trophy.fill", color: .yellow)
-                        BadgeView(systemName: "medal.fill", color: .orange)
-                        BadgeView(systemName: "trophy.fill", color: .yellow)
+                    // Horizontal Stack for badges with shadowed background
+                    if !viewModel.badges.isEmpty {
+                          HStack(spacing: 16) {
+                              ForEach(viewModel.badges.prefix(4), id: \.id) { badge in
+                                  BadgeView(badge: badge, badgeService: viewModel.badgeService)
+                                      .frame(width: 60, height: 60)
+                              }
+                          }
+                            .padding()
+                            .background(
+                                RoundedRectangle(cornerRadius: 15)
+                                    .fill(Color(hex: "FFFAF3"))
+                                    .shadow(color: Color(hex: "917FA2"), radius: 10, x: 2, y: 10)
+                            )
+                            .padding(.horizontal, 20)
+                    } else {
+                        // If no badges loaded or empty, show a loading state or fallback message
+                        Text("Loading badges...")
+                            .foregroundColor(.gray)
+                            .padding()
                     }
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(
-                        RoundedRectangle(cornerRadius: 15)
-                            .fill(Color(hex: "FFFAF3"))
-                            .shadow(color: Color(hex: "917FA2"), radius: 10, x: 2, y: 10)
-                    )
-                    .padding(.horizontal, 20)
                 }
                 .padding(.top, 50)
                 
                 Spacer()
             }
+            .navigationBarBackButtonHidden(true)
             .background(Color(hex: "FFFAF3"))
-        }
-    }
-}
-
-struct AchievementView: View {
-    let count: Int
-    let color: Color
-    
-    var body: some View {
-        VStack {
-            Circle()
-                .fill(color)
-                .frame(width: 50, height: 50)
-                .overlay(
-                    Image(systemName: "checkmark")
-                        .foregroundColor(.white)
-                )
-            Text("\(count)")
-                .font(.subheadline)
+            .task {
+                await viewModel.loadBadges()
+            }
         }
     }
 }
 
 struct BadgeView: View {
-    let systemName: String
-    let color: Color
-    
+    let badge: Badge
+    let badgeService: BadgeServiceProtocol
+    @State private var iconURL: URL?
+
     var body: some View {
-        Image(systemName: systemName)
-            .resizable()
-            .scaledToFit()
-            .frame(width: 40, height: 40)
-            .foregroundColor(color)
+        VStack {
+            if let iconURL = iconURL {
+                AsyncImage(url: iconURL) { image in
+                    image
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 50, height: 50)
+                        .clipShape(Circle())
+                } placeholder: {
+                    ProgressView()
+                }
+            } else {
+                ProgressView()
+                    .onAppear {
+                        Task {
+                            do {
+                                iconURL = try await badgeService.getIconURL(for: badge.title)
+                            } catch {
+                                print("Failed to fetch icon URL for \(badge.title): \(error)")
+                            }
+                        }
+                    }
+            }
+        }
+        .frame(width: 60, height: 60)
     }
 }
 
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfilePage()
+
+
+
+// Accuracy Chart View
+struct AccuracyChartView: View {
+    let data = [
+        (tone: "Tone 1", accuracy: 78),
+        (tone: "Tone 2", accuracy: 100),
+        (tone: "Tone 3", accuracy: 100),
+        (tone: "Tone 4", accuracy: 78)
+    ]
+
+    var body: some View {
+        Chart(data, id: \.tone) { item in
+            BarMark(
+                x: .value("Tone", item.tone),
+                y: .value("Accuracy", item.accuracy)
+            )
+            .foregroundStyle(Color(hex: "917FA2"))
+        }
+        .chartYAxis {
+            AxisMarks(position: .leading)
+        }
     }
 }
