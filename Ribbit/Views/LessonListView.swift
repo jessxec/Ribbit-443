@@ -49,7 +49,7 @@ struct LessonListView: View {
                             .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color(hex: "#917FA2"), lineWidth: 3))
                         }
                         .navigationBarBackButtonHidden(true)
-    
+  
                         // Tone Lessons Section
                         Text("Tone Lessons")
                           .font(.title)
@@ -85,7 +85,7 @@ struct LessonListView: View {
                                 example: "ǎ",
                                 isUnlocked: false, // Update with actual unlock logic
                                 moduleId: "foundationsIsland",
-                                lessonId: "lesson2"
+                                lessonId: "lesson3"
                             )
                             LessonRow(
                                 number: 4,
@@ -94,7 +94,7 @@ struct LessonListView: View {
                                 example: "à",
                                 isUnlocked: false, // Update with actual unlock logic
                                 moduleId: "foundationsIsland",
-                                lessonId: "lesson2"
+                                lessonId: "lesson4"
                             )
                         }
                         .padding(.horizontal)

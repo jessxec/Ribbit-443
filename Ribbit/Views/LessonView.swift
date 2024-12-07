@@ -24,7 +24,7 @@ struct LessonView: View {
                 }
             } else {
                 if let content = viewModel.lesson?.content {
-                    LessonContentView(lessonId: lessonId, content: content)
+                    LessonContentView(lessonId: lessonId, content: content, showPractice: $showPractice)
                 } else {
                     Text("Loading lesson content...")
                 }

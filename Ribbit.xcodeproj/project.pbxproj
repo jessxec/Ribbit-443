@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E5BF5712D03B84C00F26B1D /* FirstToneLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BF5702D03B84700F26B1D /* FirstToneLessonView.swift */; };
+		4E5BF5732D03B8A200F26B1D /* SecondToneLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BF5722D03B89C00F26B1D /* SecondToneLessonView.swift */; };
+		4E5BF5752D03C5CE00F26B1D /* ThirdToneLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BF5742D03C5C100F26B1D /* ThirdToneLessonView.swift */; };
+		4E5BF5772D03C60A00F26B1D /* FourthToneLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BF5762D03C60400F26B1D /* FourthToneLessonView.swift */; };
 		4EBFD0122CFCF61700856425 /* LessonContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBFD0112CFCF61000856425 /* LessonContentView.swift */; };
 		5D27932A2D0372FF001160D6 /* BadgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2793292D0372FF001160D6 /* BadgeViewModel.swift */; };
 		5D2793332D037314001160D6 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D27932E2D037314001160D6 /* MainTabView.swift */; };
@@ -79,6 +83,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E5BF5702D03B84700F26B1D /* FirstToneLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstToneLessonView.swift; sourceTree = "<group>"; };
+		4E5BF5722D03B89C00F26B1D /* SecondToneLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondToneLessonView.swift; sourceTree = "<group>"; };
+		4E5BF5742D03C5C100F26B1D /* ThirdToneLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdToneLessonView.swift; sourceTree = "<group>"; };
+		4E5BF5762D03C60400F26B1D /* FourthToneLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthToneLessonView.swift; sourceTree = "<group>"; };
 		4EBFD0112CFCF61000856425 /* LessonContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonContentView.swift; sourceTree = "<group>"; };
 		5D2793292D0372FF001160D6 /* BadgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeViewModel.swift; sourceTree = "<group>"; };
 		5D27932B2D037314001160D6 /* BadgeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeDetailView.swift; sourceTree = "<group>"; };
@@ -167,6 +175,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E5BF56F2D03B7F500F26B1D /* ModuleOne */ = {
+			isa = PBXGroup;
+			children = (
+				4E5BF5762D03C60400F26B1D /* FourthToneLessonView.swift */,
+				4E5BF5742D03C5C100F26B1D /* ThirdToneLessonView.swift */,
+				4E5BF5722D03B89C00F26B1D /* SecondToneLessonView.swift */,
+				4E5BF5702D03B84700F26B1D /* FirstToneLessonView.swift */,
+			);
+			path = ModuleOne;
+			sourceTree = "<group>";
+		};
 		5D600CEE2CD036A50068F75F = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +269,7 @@
 		A76F46A02CD03B5600182ABE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4E5BF56F2D03B7F500F26B1D /* ModuleOne */,
 				5D27932B2D037314001160D6 /* BadgeDetailView.swift */,
 				5D27932C2D037314001160D6 /* BadgeListView.swift */,
 				5D27932D2D037314001160D6 /* BadgesPage.swift */,
@@ -474,9 +494,11 @@
 				5D600CFD2CD036A50068F75F /* ContentView.swift in Sources */,
 				A76F46B52CD1DCF300182ABE /* PinyinViewP2.swift in Sources */,
 				A77BB5022CDABC300060E5C3 /* ReviewComplete.swift in Sources */,
+				4E5BF5772D03C60A00F26B1D /* FourthToneLessonView.swift in Sources */,
 				A77BB5042CDB21310060E5C3 /* AudioPlayer.swift in Sources */,
 				A76F46AD2CD040B200182ABE /* Badge.swift in Sources */,
 				4EBFD0122CFCF61700856425 /* LessonContentView.swift in Sources */,
+				4E5BF5712D03B84C00F26B1D /* FirstToneLessonView.swift in Sources */,
 				CB93FC642CDC22B400377C95 /* AudioStatus.swift in Sources */,
 				CB4A37D32CD3559800D44467 /* UserViewModel.swift in Sources */,
 				A73540102CD6A4B400EAE9FA /* PinyinViewP4.swift in Sources */,
@@ -487,6 +509,7 @@
 				A77BB50F2CDBDE3A0060E5C3 /* HomeScreenP1.swift in Sources */,
 				A735400E2CD69D4000EAE9FA /* PinyinTable.swift in Sources */,
 				5D27932A2D0372FF001160D6 /* BadgeViewModel.swift in Sources */,
+				4E5BF5752D03C5CE00F26B1D /* ThirdToneLessonView.swift in Sources */,
 				A73540142CD6A4CD00EAE9FA /* PinyinViewP6.swift in Sources */,
 				CB72A4E12CDD5A6600644FB9 /* populateDatabase.swift in Sources */,
 				A76F46B32CD1D75900182ABE /* PinyinViewP1.swift in Sources */,
@@ -505,6 +528,7 @@
 				5D2793392D037314001160D6 /* ProfilePage.swift in Sources */,
 				5D27933A2D037314001160D6 /* BadgeDetailView.swift in Sources */,
 				CB93FC4B2CDC1FAD00377C95 /* ModuleViewModel.swift in Sources */,
+				4E5BF5732D03B8A200F26B1D /* SecondToneLessonView.swift in Sources */,
 				A76F46BA2CD3240A00182ABE /* ProgressBarBackButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

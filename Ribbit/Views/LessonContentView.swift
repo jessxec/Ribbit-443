@@ -9,14 +9,19 @@ import SwiftUI
 struct LessonContentView: View {
     let lessonId: String
     let content: [String]
-    
+    @Binding var showPractice: Bool // Bind to parent state
+
     @ViewBuilder
     var body: some View {
         switch lessonId {
         case "lesson1":
-            LessonTypeAView(content: content)
+            FirstToneLessonView(content: content, showPractice: $showPractice)
         case "lesson2":
-            LessonTypeBView(content: content)
+            SecondToneLessonView(content: content, showPractice: $showPractice)
+        case "lesson3":
+            ThirdToneLessonView(content: content, showPractice: $showPractice)
+        case "lesson4":
+            FourthToneLessonView(content: content, showPractice: $showPractice)
         default:
             Text("Lesson not found")
         }
@@ -24,35 +29,7 @@ struct LessonContentView: View {
 }
 
 
-struct LessonTypeAView: View {
-    let content: [String]
-    var body: some View {
-        VStack {
-            Text("Lesson Type A")
-                .font(.largeTitle)
-                .bold()
-                .padding(.bottom, 20)
-            ForEach(content, id: \.self) { item in
-                Text(item)
-            }
-        }
-    }
-}
 
-struct LessonTypeBView: View {
-    let content: [String]
-    var body: some View {
-        VStack {
-            Text("Lesson Type B")
-                .font(.largeTitle)
-                .bold()
-                .padding(.bottom, 20)
-            ForEach(content, id: \.self) { item in
-                Text(item)
-            }
-        }
-    }
-}
 
 // Repeat for LessonTypeCView, LessonTypeDView, etc.
 

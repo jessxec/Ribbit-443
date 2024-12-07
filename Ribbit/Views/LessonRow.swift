@@ -19,7 +19,7 @@ struct LessonRow: View {
     var lessonId: String
     
     var body: some View {
-      NavigationLink(destination: LessonView(moduleId: "foundationsIsland", lessonId: "lesson\(number)")) {
+        NavigationLink(destination: LessonView(moduleId: moduleId, lessonId: lessonId)) {
             VStack(alignment: .leading, spacing: 4) {
                 Text("\(number). \(title)")
                     .font(.title)
@@ -42,9 +42,9 @@ struct LessonRow: View {
                 .stroke(Color(hex: "917FA2"), lineWidth: isUnlocked ? 7 : 0)
         )
         .cornerRadius(10)
-        .navigationBarBackButtonHidden(true)
     }
 }
+
 
 //struct ContentView_Previews: PreviewProvider {
 //    static var previews: some View {
