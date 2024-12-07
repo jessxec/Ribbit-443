@@ -19,7 +19,7 @@ struct LessonRow: View {
     var lessonId: String
     
     var body: some View {
-      NavigationLink(destination: LessonView(moduleId: "foundationsIsland", lessonId: "lesson\(number)")) {
+      NavigationLink(destination: LessonView(moduleId: moduleId, lessonId: lessonId)) {
             VStack(alignment: .leading, spacing: 4) {
                 Text("\(number). \(title)")
                     .font(.title)

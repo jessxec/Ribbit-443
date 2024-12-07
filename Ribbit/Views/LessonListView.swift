@@ -84,7 +84,7 @@ struct LessonListView: View {
                                 example: "ǎ",
                                 isUnlocked: false, // Update with actual unlock logic
                                 moduleId: "foundationsIsland",
-                                lessonId: "lesson2"
+                                lessonId: "lesson3"
                             )
                             LessonRow(
                                 number: 4,
@@ -93,7 +93,7 @@ struct LessonListView: View {
                                 example: "à",
                                 isUnlocked: false, // Update with actual unlock logic
                                 moduleId: "foundationsIsland",
-                                lessonId: "lesson2"
+                                lessonId: "lesson4"
                             )
                         }
                         .padding(.horizontal)

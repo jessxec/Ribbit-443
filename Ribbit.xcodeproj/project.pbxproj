@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E5BF5E62D049DC300F26B1D /* FirstToneLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BF5E52D049DBD00F26B1D /* FirstToneLessonView.swift */; };
+		4E5BF5E82D049DE000F26B1D /* SecondToneLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BF5E72D049DDA00F26B1D /* SecondToneLessonView.swift */; };
+		4E5BF5EA2D049E1600F26B1D /* ThirdToneLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BF5E92D049E1100F26B1D /* ThirdToneLessonView.swift */; };
+		4E5BF5EC2D049E2800F26B1D /* FourthToneLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BF5EB2D049E2000F26B1D /* FourthToneLessonView.swift */; };
 		4EBFD0122CFCF61700856425 /* LessonContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBFD0112CFCF61000856425 /* LessonContentView.swift */; };
 		5D600CFB2CD036A50068F75F /* RibbitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600CFA2CD036A50068F75F /* RibbitApp.swift */; };
 		5D600CFD2CD036A50068F75F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600CFC2CD036A50068F75F /* ContentView.swift */; };
@@ -81,6 +85,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E5BF5E52D049DBD00F26B1D /* FirstToneLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstToneLessonView.swift; sourceTree = "<group>"; };
+		4E5BF5E72D049DDA00F26B1D /* SecondToneLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondToneLessonView.swift; sourceTree = "<group>"; };
+		4E5BF5E92D049E1100F26B1D /* ThirdToneLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdToneLessonView.swift; sourceTree = "<group>"; };
+		4E5BF5EB2D049E2000F26B1D /* FourthToneLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthToneLessonView.swift; sourceTree = "<group>"; };
 		4EBFD0112CFCF61000856425 /* LessonContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonContentView.swift; sourceTree = "<group>"; };
 		5D600CF72CD036A50068F75F /* Ribbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ribbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D600CFA2CD036A50068F75F /* RibbitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RibbitApp.swift; sourceTree = "<group>"; };
@@ -174,6 +182,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E5BF5E42D049DAF00F26B1D /* ModuleOne */ = {
+			isa = PBXGroup;
+			children = (
+				4E5BF5EB2D049E2000F26B1D /* FourthToneLessonView.swift */,
+				4E5BF5E92D049E1100F26B1D /* ThirdToneLessonView.swift */,
+				4E5BF5E72D049DDA00F26B1D /* SecondToneLessonView.swift */,
+				4E5BF5E52D049DBD00F26B1D /* FirstToneLessonView.swift */,
+			);
+			path = ModuleOne;
+			sourceTree = "<group>";
+		};
 		5D600CEE2CD036A50068F75F = {
 			isa = PBXGroup;
 			children = (
@@ -258,6 +277,7 @@
 		A76F46A02CD03B5600182ABE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4E5BF5E42D049DAF00F26B1D /* ModuleOne */,
 				4EBFD0112CFCF61000856425 /* LessonContentView.swift */,
 				5DFEAE202CDC68DC005DDACC /* LessonView.swift */,
 				CB93FC522CDC211E00377C95 /* LessonDetail */,
@@ -498,9 +518,12 @@
 				A77BB5022CDABC300060E5C3 /* ReviewComplete.swift in Sources */,
 				CBEFAD9F2D040ED70015051C /* BadgesPage.swift in Sources */,
 				A77BB5042CDB21310060E5C3 /* AudioPlayer.swift in Sources */,
+				4E5BF5EC2D049E2800F26B1D /* FourthToneLessonView.swift in Sources */,
 				CBEFADA72D041DC20015051C /* MainTabView.swift in Sources */,
 				A76F46AD2CD040B200182ABE /* Badge.swift in Sources */,
+				4E5BF5EA2D049E1600F26B1D /* ThirdToneLessonView.swift in Sources */,
 				4EBFD0122CFCF61700856425 /* LessonContentView.swift in Sources */,
+				4E5BF5E62D049DC300F26B1D /* FirstToneLessonView.swift in Sources */,
 				CB93FC642CDC22B400377C95 /* AudioStatus.swift in Sources */,
 				CBEFADAB2D041DE70015051C /* ProgressPageView.swift in Sources */,
 				CB4A37D32CD3559800D44467 /* UserViewModel.swift in Sources */,
@@ -513,6 +536,7 @@
 				5D600CFB2CD036A50068F75F /* RibbitApp.swift in Sources */,
 				A77BB5002CD9EA0C0060E5C3 /* LessonRow.swift in Sources */,
 				A77BB50F2CDBDE3A0060E5C3 /* HomeScreenP1.swift in Sources */,
+				4E5BF5E82D049DE000F26B1D /* SecondToneLessonView.swift in Sources */,
 				A735400E2CD69D4000EAE9FA /* PinyinTable.swift in Sources */,
 				CBEFADA92D041DCC0015051C /* ModulePathView.swift in Sources */,
 				CBEFADB02D041FBE0015051C /* BadgeListView.swift in Sources */,
