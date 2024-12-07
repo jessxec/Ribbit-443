@@ -24,6 +24,24 @@ struct ProfilePage: View {
             VStack {
                 // Profile Header
                 ProfileHeaderSection()
+                HStack {
+                    Circle()
+                        .strokeBorder(Color(hex: "FF9F9F"), lineWidth: 4)
+                        .frame(width: 90, height: 90)
+                        .overlay(Text("C").font(.largeTitle))
+                        .foregroundColor(Color(hex: "#554C5D"))
+                        .padding()
+                    
+                    Spacer()
+                    
+                    // Settings button
+                    Image(systemName: "gearshape.fill")
+                        .foregroundColor(.gray)
+                        .font(.title2)
+                        .padding(.trailing)
+                }
+                .padding()
+                .background(Color.purple.opacity(0.2))
                 
                 // Streak and user name
                 HStack {
@@ -155,6 +173,25 @@ struct BadgeView: View {
                         }
                     }
             }
+// Accuracy Chart View
+struct AccuracyChartView: View {
+    let data = [
+        (tone: "Tone 1", accuracy: 78),
+        (tone: "Tone 2", accuracy: 100),
+        (tone: "Tone 3", accuracy: 100),
+        (tone: "Tone 4", accuracy: 78)
+    ]
+
+    var body: some View {
+        Chart(data, id: \.tone) { item in
+            BarMark(
+                x: .value("Tone", item.tone),
+                y: .value("Accuracy", item.accuracy)
+            )
+            .foregroundStyle(Color(hex: "917FA2"))
+        }
+        .chartYAxis {
+            AxisMarks(position: .leading)
         }
         .frame(width: 60, height: 60)
     }

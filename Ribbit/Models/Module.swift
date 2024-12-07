@@ -42,12 +42,27 @@ struct Word: Codable, Identifiable {
     var userPitchVectors: [Double]? // Array of pitch data for the user recording
 }
 
-struct Feedback: Codable {
-    var incorrectPitch: String
-    var incorrectPronunciation: String
+struct FormantsResponse: Codable {
+    let feedback: [String]
+    let formants: Formants
 }
 
 struct Formants: Codable {
-  var F1: Double
-  var F2: Double
+    let F1: Double
+    let F2: Double
+}
+
+struct PitchResponse: Codable {
+    let pitch_values: [Double]
+    let feedback: PitchFeedback
+}
+
+struct PitchFeedback: Codable {
+    let average_feedback: String
+    let section_feedback: [String]
+}
+
+struct Feedback: Codable {
+    var incorrectPitch: String
+    var incorrectPronunciation: String
 }
