@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E5BF5E62D049DC300F26B1D /* FirstToneLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BF5E52D049DBD00F26B1D /* FirstToneLessonView.swift */; };
+		4E5BF5E82D049DE000F26B1D /* SecondToneLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BF5E72D049DDA00F26B1D /* SecondToneLessonView.swift */; };
+		4E5BF5EA2D049E1600F26B1D /* ThirdToneLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BF5E92D049E1100F26B1D /* ThirdToneLessonView.swift */; };
+		4E5BF5EC2D049E2800F26B1D /* FourthToneLessonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E5BF5EB2D049E2000F26B1D /* FourthToneLessonView.swift */; };
 		4EBFD0122CFCF61700856425 /* LessonContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBFD0112CFCF61000856425 /* LessonContentView.swift */; };
 		5D600CFB2CD036A50068F75F /* RibbitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600CFA2CD036A50068F75F /* RibbitApp.swift */; };
 		5D600CFD2CD036A50068F75F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600CFC2CD036A50068F75F /* ContentView.swift */; };
@@ -50,6 +54,16 @@
 		CB93FC4D2CDC1FCF00377C95 /* LessonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93FC4C2CDC1FC600377C95 /* LessonViewModel.swift */; };
 		CB93FC512CDC20B400377C95 /* WordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93FC502CDC20AF00377C95 /* WordViewModel.swift */; };
 		CB93FC642CDC22B400377C95 /* AudioStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB93FC632CDC22B000377C95 /* AudioStatus.swift */; };
+		CBC79A1D2D043F5300CCA57D /* ProfileHeaderSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC79A1C2D043F5300CCA57D /* ProfileHeaderSection.swift */; };
+		CBC79A1F2D043F7400CCA57D /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC79A1E2D043F7400CCA57D /* BackButton.swift */; };
+		CBEFAD9B2D040DD10015051C /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEFAD9A2D040DD10015051C /* ProfilePage.swift */; };
+		CBEFAD9D2D040E300015051C /* BadgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEFAD9C2D040E300015051C /* BadgeViewModel.swift */; };
+		CBEFAD9F2D040ED70015051C /* BadgesPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEFAD9E2D040ED70015051C /* BadgesPage.swift */; };
+		CBEFADA52D040F2E0015051C /* BadgeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEFADA42D040F2D0015051C /* BadgeDetailView.swift */; };
+		CBEFADA72D041DC20015051C /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEFADA62D041DC20015051C /* MainTabView.swift */; };
+		CBEFADA92D041DCC0015051C /* ModulePathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEFADA82D041DCC0015051C /* ModulePathView.swift */; };
+		CBEFADAB2D041DE70015051C /* ProgressPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEFADAA2D041DE70015051C /* ProgressPageView.swift */; };
+		CBEFADB02D041FBE0015051C /* BadgeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEFADAF2D041FBE0015051C /* BadgeListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +84,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E5BF5E52D049DBD00F26B1D /* FirstToneLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstToneLessonView.swift; sourceTree = "<group>"; };
+		4E5BF5E72D049DDA00F26B1D /* SecondToneLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondToneLessonView.swift; sourceTree = "<group>"; };
+		4E5BF5E92D049E1100F26B1D /* ThirdToneLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdToneLessonView.swift; sourceTree = "<group>"; };
+		4E5BF5EB2D049E2000F26B1D /* FourthToneLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthToneLessonView.swift; sourceTree = "<group>"; };
 		4EBFD0112CFCF61000856425 /* LessonContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonContentView.swift; sourceTree = "<group>"; };
 		5D600CF72CD036A50068F75F /* Ribbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ribbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D600CFA2CD036A50068F75F /* RibbitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RibbitApp.swift; sourceTree = "<group>"; };
@@ -108,10 +126,21 @@
 		CB4A37D22CD3559800D44467 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		CB4A37D42CD5D9F400D44467 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CB72A4E02CDD5A5F00644FB9 /* populateDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = populateDatabase.swift; sourceTree = "<group>"; };
+
 		CB93FC4A2CDC1FA600377C95 /* ModuleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleViewModel.swift; sourceTree = "<group>"; };
 		CB93FC4C2CDC1FC600377C95 /* LessonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewModel.swift; sourceTree = "<group>"; };
 		CB93FC502CDC20AF00377C95 /* WordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordViewModel.swift; sourceTree = "<group>"; };
 		CB93FC632CDC22B000377C95 /* AudioStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioStatus.swift; sourceTree = "<group>"; };
+		CBC79A1C2D043F5300CCA57D /* ProfileHeaderSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderSection.swift; sourceTree = "<group>"; };
+		CBC79A1E2D043F7400CCA57D /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		CBEFAD9A2D040DD10015051C /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
+		CBEFAD9C2D040E300015051C /* BadgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeViewModel.swift; sourceTree = "<group>"; };
+		CBEFAD9E2D040ED70015051C /* BadgesPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesPage.swift; sourceTree = "<group>"; };
+		CBEFADA42D040F2D0015051C /* BadgeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeDetailView.swift; sourceTree = "<group>"; };
+		CBEFADA62D041DC20015051C /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		CBEFADA82D041DCC0015051C /* ModulePathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulePathView.swift; sourceTree = "<group>"; };
+		CBEFADAA2D041DE70015051C /* ProgressPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressPageView.swift; sourceTree = "<group>"; };
+		CBEFADAF2D041FBE0015051C /* BadgeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -149,6 +178,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E5BF5E42D049DAF00F26B1D /* ModuleOne */ = {
+			isa = PBXGroup;
+			children = (
+				4E5BF5EB2D049E2000F26B1D /* FourthToneLessonView.swift */,
+				4E5BF5E92D049E1100F26B1D /* ThirdToneLessonView.swift */,
+				4E5BF5E72D049DDA00F26B1D /* SecondToneLessonView.swift */,
+				4E5BF5E52D049DBD00F26B1D /* FirstToneLessonView.swift */,
+			);
+			path = ModuleOne;
+			sourceTree = "<group>";
+		};
 		5D600CEE2CD036A50068F75F = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +272,7 @@
 		A76F46A02CD03B5600182ABE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4E5BF5E42D049DAF00F26B1D /* ModuleOne */,
 				4EBFD0112CFCF61000856425 /* LessonContentView.swift */,
 				5DFEAE202CDC68DC005DDACC /* LessonView.swift */,
 				CB93FC522CDC211E00377C95 /* LessonDetail */,
@@ -241,6 +282,7 @@
 				A77BB4FF2CD9EA0C0060E5C3 /* LessonRow.swift */,
 				A77BB5012CDABC300060E5C3 /* ReviewComplete.swift */,
 				A77BB50E2CDBDE3A0060E5C3 /* HomeScreenP1.swift */,
+
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -252,6 +294,7 @@
 				CB93FC4C2CDC1FC600377C95 /* LessonViewModel.swift */,
 				CB93FC4A2CDC1FA600377C95 /* ModuleViewModel.swift */,
 				CB4A37D22CD3559800D44467 /* UserViewModel.swift */,
+				CBEFAD9C2D040E300015051C /* BadgeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -285,10 +328,13 @@
 				A735406C2CD91AF900EAE9FA /* ToneCards.swift */,
 				A77BB4FD2CD97BDB0060E5C3 /* ColorHex.swift */,
 				A77BB5032CDB21310060E5C3 /* AudioPlayer.swift */,
+				CBC79A1C2D043F5300CCA57D /* ProfileHeaderSection.swift */,
+				CBC79A1E2D043F7400CCA57D /* BackButton.swift */,
 			);
 			path = Partials;
 			sourceTree = "<group>";
 		};
+
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -443,21 +489,32 @@
 			files = (
 				CB93FC512CDC20B400377C95 /* WordViewModel.swift in Sources */,
 				A735401A2CD6AB8600EAE9FA /* ContinueButton.swift in Sources */,
+				CBEFAD9D2D040E300015051C /* BadgeViewModel.swift in Sources */,
+				CBC79A1D2D043F5300CCA57D /* ProfileHeaderSection.swift in Sources */,
 				A77BB4FE2CD97BDB0060E5C3 /* ColorHex.swift in Sources */,
 				5D600CFD2CD036A50068F75F /* ContentView.swift in Sources */,
 				A76F46B52CD1DCF300182ABE /* PinyinViewP2.swift in Sources */,
 				A77BB5022CDABC300060E5C3 /* ReviewComplete.swift in Sources */,
+				CBEFAD9F2D040ED70015051C /* BadgesPage.swift in Sources */,
 				A77BB5042CDB21310060E5C3 /* AudioPlayer.swift in Sources */,
+				4E5BF5EC2D049E2800F26B1D /* FourthToneLessonView.swift in Sources */,
+				CBEFADA72D041DC20015051C /* MainTabView.swift in Sources */,
 				A76F46AD2CD040B200182ABE /* Badge.swift in Sources */,
+				4E5BF5EA2D049E1600F26B1D /* ThirdToneLessonView.swift in Sources */,
 				4EBFD0122CFCF61700856425 /* LessonContentView.swift in Sources */,
+				4E5BF5E62D049DC300F26B1D /* FirstToneLessonView.swift in Sources */,
 				CB93FC642CDC22B400377C95 /* AudioStatus.swift in Sources */,
+				CBEFADAB2D041DE70015051C /* ProgressPageView.swift in Sources */,
 				CB4A37D32CD3559800D44467 /* UserViewModel.swift in Sources */,
+				CBEFADA52D040F2E0015051C /* BadgeDetailView.swift in Sources */,
 				A73540102CD6A4B400EAE9FA /* PinyinViewP4.swift in Sources */,
+				CBEFAD9B2D040DD10015051C /* ProfilePage.swift in Sources */,
 				A76F46AB2CD0408C00182ABE /* Module.swift in Sources */,
 				CB93FC4D2CDC1FCF00377C95 /* LessonViewModel.swift in Sources */,
 				5D600CFB2CD036A50068F75F /* RibbitApp.swift in Sources */,
 				A77BB5002CD9EA0C0060E5C3 /* LessonRow.swift in Sources */,
 				A77BB50F2CDBDE3A0060E5C3 /* HomeScreenP1.swift in Sources */,
+				4E5BF5E82D049DE000F26B1D /* SecondToneLessonView.swift in Sources */,
 				A735400E2CD69D4000EAE9FA /* PinyinTable.swift in Sources */,
 				A73540142CD6A4CD00EAE9FA /* PinyinViewP6.swift in Sources */,
 				CB72A4E12CDD5A6600644FB9 /* populateDatabase.swift in Sources */,
@@ -467,6 +524,7 @@
 				A735406D2CD91AF900EAE9FA /* ToneCards.swift in Sources */,
 				A76F46B02CD1C9D800182ABE /* LessonListView.swift in Sources */,
 				A76F46A32CD03B9E00182ABE /* User.swift in Sources */,
+				CBC79A1F2D043F7400CCA57D /* BackButton.swift in Sources */,
 				5DFEAE252CDC68DC005DDACC /* LessonView.swift in Sources */,
 				CB93FC4B2CDC1FAD00377C95 /* ModuleViewModel.swift in Sources */,
 				A76F46BA2CD3240A00182ABE /* ProgressBarBackButton.swift in Sources */,

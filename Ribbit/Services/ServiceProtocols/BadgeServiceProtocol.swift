@@ -10,4 +10,5 @@ import Foundation
 protocol BadgeServiceProtocol {
     func fetchBadges() async throws -> [Badge]
     func updateBadgeStatus(badgeId: String, dateReceived: Date) async throws
+    func getIconURL(for badgeTitle: String) async throws -> URL
 }

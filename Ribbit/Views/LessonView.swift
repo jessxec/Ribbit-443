@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-
 struct LessonView: View {
     @StateObject private var viewModel = WordViewModel()
     @State private var showPractice = false
@@ -18,14 +17,26 @@ struct LessonView: View {
         ZStack {
             if showPractice {
                 if let word = viewModel.currentWord {
-                    LessonDetailView(word: word, lessonCount: viewModel.words.count, currentIndex: viewModel.currentIndex, nextWordAction: viewModel.nextWord)
+                    LessonDetailView(
+                        word: word,
+                        lessonCount: viewModel.words.count,
+                        currentIndex: viewModel.currentIndex,
+                        nextWordAction: viewModel.nextWord
+                    )
                 } else {
                     Text("Loading words...")
                 }
             } else {
-                LessonContentView(viewModel: viewModel, startPracticeAction: {
-                    showPractice = true
-                })
+                if let content = viewModel.lesson?.content {
+                    LessonContentView(
+                        viewModel: viewModel, // Pass the viewModel here
+                        startPracticeAction: { showPractice = true }, // Define the action
+                        lessonId: lessonId,
+                        showPractice: $showPractice // Pass the binding
+                    )
+                } else {
+                    Text("Loading lesson content...")
+                }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

@@ -13,6 +13,7 @@ struct PinyinViewP5: View {
     @State private var allTonesSelected = false
     @State private var toneSelectedStates = [false, false, false, false] // For this specfic page
     @StateObject private var audioPlayer = AudioPlayer()
+    @Binding var showTabBar: Bool
 
     var body: some View {
         NavigationStack {
@@ -50,7 +51,7 @@ struct PinyinViewP5: View {
                             audioPlayer.playSound(forTone: tone)
                         })
 
-                        ContinueButton(destination: PinyinViewP6())
+                        ContinueButton(destination: PinyinViewP6(showTabBar: $showTabBar))
                     } else {
                         VStack(spacing: 20) {
                             (Text("Mandarin Chinese has ") +

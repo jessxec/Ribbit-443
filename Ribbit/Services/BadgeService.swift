@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseStorage
 
 class BadgeService: BadgeServiceProtocol {
     private let db = Firestore.firestore()
@@ -44,4 +45,11 @@ class BadgeService: BadgeServiceProtocol {
             }
         }
     }
+
+  func getIconURL(for badgeTitle: String) async throws -> URL {
+          // Implementation for fetching the icon URL
+          let storageReference = Storage.storage().reference().child("badges/\(badgeTitle).png")
+          let downloadURL = try await storageReference.downloadURL()
+          return downloadURL
+      }
 }
