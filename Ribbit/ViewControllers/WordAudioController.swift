@@ -200,8 +200,7 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   func stopRecording(completion: @escaping (String) -> Void) {
       audioRecorder?.stop()
       status = .recordingStopped
-      playRecording()
-      
+    
       guard FileManager.default.fileExists(atPath: urlForRecording.path) else {
           print("Recorded file does not exist.")
           return
@@ -210,50 +209,57 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
       let formantReferences = (F1: word.transcriptionCheck.F1, F2: word.transcriptionCheck.F2)
       
       // Call Formants API
-      sendFormantsToAPI(referenceFormants: formantReferences) { [weak self] result in
-          guard let self = self else { return }
-          switch result {
-          case .success(let response):
-              DispatchQueue.main.async {
-                  self.feedbackMessage = """
-                  **Formant Feedback**
-                  Feedback: \(response.feedback.joined(separator: "\n"))
-                  Extracted F1: \(response.formants.F1), F2: \(response.formants.F2)
-                  """
-              }
-          case .failure(let error):
-              print("Formant API error: \(error.localizedDescription)")
-              DispatchQueue.main.async {
-                  self.feedbackMessage = "Formant analysis failed. Try again."
-              }
-          }
-      }
+//      sendFormantsToAPI(referenceFormants: formantReferences) { [weak self] result in
+//          guard let self = self else { return }
+//          switch result {
+//          case .success(let response):
+//              DispatchQueue.main.async {
+//                  self.feedbackMessage = """
+//                  **Formant Feedback**
+//                  Feedback: \(response.feedback.joined(separator: "\n"))
+//                  Extracted F1: \(response.formants.F1), F2: \(response.formants.F2)
+//                  """
+//              }
+//          case .failure(let error):
+//              print("Formant API error: \(error.localizedDescription)")
+//              DispatchQueue.main.async {
+//                  self.feedbackMessage = "Formant analysis failed. Try again."
+//              }
+//          }
+//      }
       
-      // Call Pitch API
       sendPitchToAPI(samplePitch: word.samplePitchVectors) { [weak self] result in
-          guard let self = self else { return }
-          switch result {
-          case .success(let response):
-              DispatchQueue.main.async {
-                  // Update the pitch-related UI and graph data
-                  self.pitchValues = response.pitch_values
-                  self.feedbackMessage = (self.feedbackMessage ?? "") + """
-                                  
-                  **Pitch Feedback**
-                  Average Feedback: \(response.feedback.average_feedback)
-                  \(response.feedback.section_feedback.joined(separator: "\n"))
-                  """
+           guard let self = self else { return }
+           switch result {
+           case .success(let response):
+               DispatchQueue.main.async {
+                   // Centralized update of feedbackMessage
+                   self.pitchValues = response.pitch_values
+                   let pitchFeedback = """
+                   **Pitch Feedback**
+                   Average Feedback: \(response.feedback.average_feedback)
+                   \(response.feedback.section_feedback.joined(separator: "\n"))
+                   """
+                   
+                   // Avoid appending if feedbackMessage already includes the feedback
+                   if !(self.feedbackMessage?.contains("Pitch Feedback") ?? false) {
+                       self.feedbackMessage = (self.feedbackMessage ?? "") + "\n" + pitchFeedback
+                   }
 
-                  // Trigger graph update (assuming a method exists to update the graph)
-//                  self.plotGraph(with: self.pitchValues)
-              }
-          case .failure(let error):
-              print("Pitch API error: \(error.localizedDescription)")
-              DispatchQueue.main.async {
-                self.feedbackMessage = (self.feedbackMessage ?? "") + "\nPitch analysis failed. Try again."
-              }
-          }
+                   // Optional: Trigger graph update if applicable
+                   // self.plotGraph(with: self.pitchValues)
+               }
+           case .failure(let error):
+               print("Pitch API error: \(error.localizedDescription)")
+               DispatchQueue.main.async {
+                   if !(self.feedbackMessage?.contains("Pitch analysis failed") ?? false) {
+                       self.feedbackMessage = (self.feedbackMessage ?? "") + "\nPitch analysis failed. Try again."
+                   }
+               }
+           }
       }
+    playRecording()
+
   }
 
 
