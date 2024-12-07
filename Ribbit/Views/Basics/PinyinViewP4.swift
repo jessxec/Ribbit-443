@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct PinyinViewP4: View {
+    @Binding var showTabBar: Bool
     var body: some View {
         VStack(spacing: 20) {
             ProgressBarBackButton(currentPage: 4, totalPages: 6)
@@ -36,7 +37,7 @@ struct PinyinViewP4: View {
             
             Spacer()
             
-            ContinueButton(destination: PinyinViewP5())
+            ContinueButton(destination: PinyinViewP5(showTabBar: $showTabBar))
         }
         .background(Color(hex: "FFFAF3"))
         .ignoresSafeArea()

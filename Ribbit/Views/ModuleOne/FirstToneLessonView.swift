@@ -33,14 +33,11 @@ struct FirstToneLessonView: View {
                     .foregroundColor(Color(hex: "#554C5D"))
                     .padding()
                 
-                ForEach(lesson.content, id: \.self) { paragraph in
-                    Text(paragraph)
-                        .font(.system(size: 18))
-                        .padding(.top, 20)
-                        .foregroundColor(Color(hex: "#554C5D"))
-                        .padding()
-                }
-                
+                Text(lesson.content[2])
+                .padding(.top, 50)
+                .foregroundColor(Color(hex: "#554C5D"))
+                .padding()
+              
                 Spacer()
                 
                 Button(action: {

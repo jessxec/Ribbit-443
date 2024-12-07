@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 struct HomeScreenP1: View {
+  @Binding var showTabBar: Bool
+
     var body: some View {
       NavigationStack {
         ZStack {
@@ -36,7 +38,7 @@ struct HomeScreenP1: View {
             }
             .padding(.bottom, 20)
             
-            NavigationLink(destination: LessonListView()) {
+            NavigationLink(destination: LessonListView(showTabBar: $showTabBar)) {
               Text("Next")
                 .font(.system(size: 18, weight: .medium))
                 .foregroundColor(.white)

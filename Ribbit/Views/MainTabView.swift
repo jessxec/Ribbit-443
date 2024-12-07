@@ -8,32 +8,35 @@
 import SwiftUI
 
 struct MainTabView: View {
+    @State private var showTabBar: Bool = true
 
     var body: some View {
         ZStack {
-            TabView {
-                // Module Path Tab
-                ModulePathView() // Pass binding
-                    .tabItem {
-                        Image(systemName: "map.fill")
-                        Text("Modules")
-                    }
+            if showTabBar {
+                TabView {
+                    ModulePathView(showTabBar: $showTabBar)
+                        .tabItem {
+                            Image(systemName: "map.fill")
+                            Text("Modules")
+                        }
 
-                // Progress Page Tab
-                ProgressPageView()
-                    .tabItem {
-                        Image(systemName: "chart.bar.fill")
-                        Text("Progress")
-                    }
+                    ProgressPageView()
+                        .tabItem {
+                            Image(systemName: "chart.bar.fill")
+                            Text("Progress")
+                        }
 
-                // Profile Tab
-                ProfilePage(badgeService: BadgeService())
-                    .tabItem {
-                        Image(systemName: "person.fill")
-                        Text("Profile")
-                    }
+                    ProfilePage(badgeService: BadgeService())
+                        .tabItem {
+                            Image(systemName: "person.fill")
+                            Text("Profile")
+                        }
+                }
+                .accentColor(Color(hex: "#917FA2"))
+            } else {
+                // Placeholder for views that don't need the TabView
+                EmptyView()
             }
-            .accentColor(Color(hex: "#917FA2")) // Customize tab icon color
         }
     }
 }

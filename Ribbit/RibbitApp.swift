@@ -37,13 +37,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct RibbitApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @State private var hasCompletedWelcome = true // Tracks navigation state
-  
+    @State private var showTabBar: Bool = true
+
     var body: some Scene {
         WindowGroup {
           if hasCompletedWelcome {
               MainTabView() // Show tabbed navigation after welcome/review
           } else {
-              HomeScreenP1()
+              HomeScreenP1(showTabBar: $showTabBar)
           }
         }
     }

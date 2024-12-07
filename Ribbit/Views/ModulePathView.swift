@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ModulePathView: View {
-    
+    @Binding var showTabBar: Bool
+
     var body: some View {
           NavigationStack {
               VStack {
@@ -19,7 +20,7 @@ struct ModulePathView: View {
                   // Example content
                   ScrollView {
                       VStack(spacing: 20) {
-                          NavigationLink(destination: LessonListView()) {
+                        NavigationLink(destination: LessonListView(showTabBar: $showTabBar)) {
                               Text("Foundations Island")
                                   .font(.headline)
                                   .frame(maxWidth: .infinity)
