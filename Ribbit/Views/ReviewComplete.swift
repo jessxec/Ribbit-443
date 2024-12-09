@@ -10,7 +10,6 @@ import SwiftUI
 import FirebaseFirestore
 
 struct ReviewComplete: View {
-    @Binding var showTabBar: Bool
     @Environment(\.presentationMode) var presentationMode // To handle manual back navigation
   
     var body: some View {
@@ -27,7 +26,7 @@ struct ReviewComplete: View {
                             .multilineTextAlignment(.center)
                             .foregroundColor(Color(hex: "#554C5D"))
                         
-                        NavigationLink(destination: PinyinViewP1(showTabBar: $showTabBar)) {
+                        NavigationLink(destination: PinyinViewP1()) {
                           HStack(alignment: .center) {
                               VStack(alignment: .leading, spacing: 4) {
                                 Text("The Basics of Mandarin Chinese")

@@ -20,28 +20,12 @@ struct ProfilePage: View {
     ]
     
     var body: some View {
+  
         NavigationView {
             VStack {
                 // Profile Header
                 ProfileHeaderSection()
-                HStack {
-                    Circle()
-                        .strokeBorder(Color(hex: "FF9F9F"), lineWidth: 4)
-                        .frame(width: 90, height: 90)
-                        .overlay(Text("C").font(.largeTitle))
-                        .foregroundColor(Color(hex: "#554C5D"))
-                        .padding()
-                    
-                    Spacer()
-                    
-                    // Settings button
-                    Image(systemName: "gearshape.fill")
-                        .foregroundColor(.gray)
-                        .font(.title2)
-                        .padding(.trailing)
-                }
-                .padding()
-                .background(Color.purple.opacity(0.2))
+               
                 
                 // Streak and user name
                 HStack {
@@ -145,61 +129,38 @@ struct ProfilePage: View {
 }
 
 struct BadgeView: View {
-    let badge: Badge
-    let badgeService: BadgeServiceProtocol
-    @State private var iconURL: URL?
-
-    var body: some View {
-        VStack {
-            if let iconURL = iconURL {
-                AsyncImage(url: iconURL) { image in
-                    image
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 50, height: 50)
-                        .clipShape(Circle())
-                } placeholder: {
-                    ProgressView()
-                }
-            } else {
-                ProgressView()
-                    .onAppear {
-                        Task {
-                            do {
-                                iconURL = try await badgeService.getIconURL(for: badge.title)
-                            } catch {
-                                print("Failed to fetch icon URL for \(badge.title): \(error)")
-                            }
-                        }
-                    }
+  let badge: Badge
+  let badgeService: BadgeServiceProtocol
+  @State private var iconURL: URL?
+  
+  var body: some View {
+    VStack {
+      if let iconURL = iconURL {
+        AsyncImage(url: iconURL) { image in
+          image
+            .resizable()
+            .scaledToFit()
+            .frame(width: 50, height: 50)
+            .clipShape(Circle())
+        } placeholder: {
+          ProgressView()
+        }
+      } else {
+        ProgressView()
+          .onAppear {
+            Task {
+              do {
+                iconURL = try await badgeService.getIconURL(for: badge.title)
+              } catch {
+                print("Failed to fetch icon URL for \(badge.title): \(error)")
+              }
             }
-// Accuracy Chart View
-struct AccuracyChartView: View {
-    let data = [
-        (tone: "Tone 1", accuracy: 78),
-        (tone: "Tone 2", accuracy: 100),
-        (tone: "Tone 3", accuracy: 100),
-        (tone: "Tone 4", accuracy: 78)
-    ]
-
-    var body: some View {
-        Chart(data, id: \.tone) { item in
-            BarMark(
-                x: .value("Tone", item.tone),
-                y: .value("Accuracy", item.accuracy)
-            )
-            .foregroundStyle(Color(hex: "917FA2"))
-        }
-        .chartYAxis {
-            AxisMarks(position: .leading)
-        }
-        .frame(width: 60, height: 60)
+          }
+      }
     }
+  }
 }
 
-
-
-
 // Accuracy Chart View
 struct AccuracyChartView: View {
     let data = [
@@ -218,7 +179,7 @@ struct AccuracyChartView: View {
             .foregroundStyle(Color(hex: "917FA2"))
         }
         .chartYAxis {
-            AxisMarks(position: .leading)
+          AxisMarks(position: .leading)
         }
     }
 }

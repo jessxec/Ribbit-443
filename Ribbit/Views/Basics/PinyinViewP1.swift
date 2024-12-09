@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 struct PinyinViewP1: View {
-    @Binding var showTabBar: Bool
     var body: some View {
       NavigationStack {
         VStack(spacing: 20) {
@@ -42,7 +41,7 @@ struct PinyinViewP1: View {
           
           Spacer()
           
-          ContinueButton(destination: PinyinViewP2(showTabBar: $showTabBar))
+          ContinueButton(destination: PinyinViewP2())
         }
         .background(Color(hex: "FFFAF3"))
         .ignoresSafeArea()
