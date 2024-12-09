@@ -12,7 +12,7 @@ class AudioPlayer: ObservableObject {
     var player: AVAudioPlayer?
 
     func playSound(forTone tone: Int) {
-        let toneSound = "tone\(tone).mp3" 
+        let toneSound = "tone\(tone).mp3"
         print("Attempting to play sound: \(toneSound)")
         
         if let soundURL = Bundle.main.url(forResource: toneSound, withExtension: nil) {

@@ -41,6 +41,12 @@ struct PinyinViewP1: View {
           
           Spacer()
           
+//          Image("pinyin.png")
+//                          .resizable()
+//                          .scaledToFit()
+//                          .frame(width: 300, height: 200)
+//                          .padding(.bottom, 20)
+//          
           ContinueButton(destination: PinyinViewP2())
         }
         .background(Color(hex: "FFFAF3"))
@@ -49,3 +55,10 @@ struct PinyinViewP1: View {
       .navigationBarBackButtonHidden(true)
     }
 }
+
+//struct PinyinIntroView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PinyinViewP1()
+//    }
+//}
+

@@ -27,7 +27,7 @@ struct ModulePathView: View {
                     }
 
                     NavigationLink(destination: Text("Airport Module")) {
-                        Text("Airport")
+                        Text("Cruising through the Airport")
                             .font(.headline)
                             .frame(maxWidth: .infinity)
                             .padding()
@@ -36,7 +36,34 @@ struct ModulePathView: View {
                     }
 
                     NavigationLink(destination: Text("Cafe Module")) {
-                        Text("Cafe")
+                        Text("Ordering in the Cafe")
+                            .font(.headline)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color(hex: "#D2C0E2"))
+                            .cornerRadius(10)
+                    }
+                  
+                    NavigationLink(destination: Text("Restaurant Module")) {
+                        Text("Dining at the Restaurant")
+                            .font(.headline)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color(hex: "#D2C0E2"))
+                            .cornerRadius(10)
+                    }
+                  
+                    NavigationLink(destination: Text("Beach Module")) {
+                        Text("Relaing Day at the beach")
+                            .font(.headline)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color(hex: "#D2C0E2"))
+                            .cornerRadius(10)
+                    }
+                  
+                    NavigationLink(destination: Text("Ocean Module")) {
+                        Text("Deep in the Ocean")
                             .font(.headline)
                             .frame(maxWidth: .infinity)
                             .padding()

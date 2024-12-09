@@ -14,18 +14,24 @@ struct PinyinViewP6: View {
             ProgressBarBackButton(currentPage: 6, totalPages: 6)
             Spacer()
             VStack(alignment: .center, spacing: 10) {
-              Text("Tones")
+                Text("Tones")
                     .font(.title)
                     .foregroundColor(Color(hex: "#917FA2"))
                     .multilineTextAlignment(.center)
                     .padding(.bottom, 50)
               
-                Text("Correctly pronouncing the tones is very important! You do not want to accidentally call your mom (mā) a horse (mǎ)!")
+                (Text("Correctly pronouncing the tones is very important! You do not want to accidentally call your ") +
+                 Text("mom (mā)")
+                    .foregroundColor(Color(hex: "3A8ACA")) +
+                 Text(" a ") +
+                 Text("horse (mǎ)")
+                    .foregroundColor(Color(hex: "E77661")) +
+                 Text("!"))
                     .font(.system(size: 18))
                     .foregroundColor(Color(hex: "554C5D"))
                     .padding(.bottom, 50)
 
-                Text("Let start practicing the tones so you can become an expert!")
+                Text("Let's start practicing the tones so you can become an expert!")
                     .font(.system(size: 18))
                     .foregroundColor(Color(hex: "554C5D"))
             }
@@ -34,7 +40,7 @@ struct PinyinViewP6: View {
             Spacer()
             
 //            ContinueButton(destination: ReviewComplete())
-              ContinueButton(destination: LessonListView())
+            ContinueButton(destination: LessonListView())
         }
         .background(Color(hex: "FFFAF3"))
         .ignoresSafeArea()
