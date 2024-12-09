@@ -49,8 +49,8 @@ struct PinyinTable: View {
                         HStack {
                             Text(syllables[rowIndex][columnIndex])
                               .foregroundColor(Color(hex: "554C5D"))
-                            Image(systemName: "play.fill")
-                              .foregroundColor(Color(hex: "554C5D"))
+//                            Image(systemName: "play.fill")
+//                              .foregroundColor(Color(hex: "554C5D"))
                         }
                         .frame(width: 80, height: 50)
                         .border(Color.gray, width: 0.5)

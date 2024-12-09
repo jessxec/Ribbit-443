@@ -14,21 +14,24 @@ struct PinyinViewP4: View {
             ProgressBarBackButton(currentPage: 4, totalPages: 6)
             Spacer()
             VStack(alignment: .center, spacing: 10) {
-              Text("Tones")
+                Text("Tones")
                     .font(.title)
                     .foregroundColor(Color(hex: "917FA2"))
                     .multilineTextAlignment(.center)
                     .padding(.bottom, 50)
               
-                Text("In Mandarin Chinese, tones are used to distinguish words from each other in the same way that constants and vowel combinations are in English.")
+                Text("In Mandarin Chinese, tones are used to distinguish words from each other in the same way that consonants and vowel combinations are in English.")
                     .font(.system(size: 18))
                     .padding(.bottom, 50)
 
-                Text("Many words in Chinese are monosyllabic, meaning that tones are crucial to express the word you mean.")
+                (Text("Many words in Chinese are ") +
+                 Text("monosyllabic")
+                    .foregroundColor(Color(hex: "3A8ACA")) +
+                 Text(", meaning that tones are crucial to express the word you mean."))
                     .font(.system(size: 18))
                     .padding(.bottom, 50)
               
-              Text("To create the tones, you adjust your pitch frequency just like how you would sing!")
+                Text("To create the tones, you adjust your pitch frequency just like how you would sing!")
                     .font(.system(size: 18))
             }
             .foregroundColor(Color(hex: "#554C5D"))

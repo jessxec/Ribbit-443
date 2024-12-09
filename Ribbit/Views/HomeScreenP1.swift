@@ -34,7 +34,7 @@ struct HomeScreenP1: View {
                         .padding(.horizontal, 30)
                 }
                 .padding(.bottom, 20)
-                
+
                 NavigationLink(destination: MainTabView()) {
                     Text("Next")
                         .font(.system(size: 18, weight: .medium))
@@ -49,5 +49,11 @@ struct HomeScreenP1: View {
                 .navigationBarBackButtonHidden(true) // This hides the back button
             }
         }
+    }
+}
+
+struct HomeScreenP1_Previews: PreviewProvider {
+    static var previews: some View {
+        HomeScreenP1()
     }
 }

@@ -124,7 +124,7 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   
   // MARK: play asset audio files
   func playAssetAudio(forTone tone: Int) {
-    let toneSound = "tone\(tone).mp3"
+    let toneSound = "tone\(tone).wav"
     print("Attempting to play sound: \(toneSound)")
     
     if let soundURL = Bundle.main.url(forResource: toneSound, withExtension: "mp3") {
