@@ -80,7 +80,6 @@ struct PinyinViewP3: View {
                         .padding(.bottom, 20)
                     
                     ContinueButton(destination: PinyinViewP4())
-                        .padding(.top, 20)
                 }
             }
             .padding(.horizontal, 30)

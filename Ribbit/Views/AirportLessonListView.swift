@@ -42,7 +42,7 @@ struct AirportLessonListView: View {
 
           
           // Tone Lessons Section
-          Text("Tone Lessons")
+          Text("Cruising through the Airport ")
             .font(.title)
             .fontWeight(.semibold)
             .padding(.leading)
