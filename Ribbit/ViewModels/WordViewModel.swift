@@ -47,10 +47,10 @@ class WordViewModel: ObservableObject {
 
     // Advance to the next word in the lesson
     func nextWord() {
-        print("Current index: \(currentIndex), words count: \(words.count)")
         guard currentIndex + 1 < words.count else { return }
         currentIndex += 1
         currentWord = words[currentIndex]
+        print("Current index: \(currentIndex), words count: \(words.count)")
     }
 
 }

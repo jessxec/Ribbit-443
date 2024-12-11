@@ -22,7 +22,7 @@ struct ContinueButton<Destination: View>: View {
                   .cornerRadius(12)
           }
           .padding(.horizontal, 50)
-          .padding(.bottom, 170)
+          .padding(.bottom, 50)
   }
 }
 

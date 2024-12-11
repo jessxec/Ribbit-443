@@ -114,7 +114,7 @@ func createModules() async throws {
                             incorrectPitch: "Keep your pitch level and even.",
                             incorrectPronunciation: "Ensure you’re using a flat tone without inflection."
                         ),
-                        transcriptionCheck: Formants(F1: 249.7, F2: 2429.2),
+                        transcriptionCheck: Formants(F1: 250, F2: 2500),
                         voiceProcessingCheck: nil,
                         starValue: 5,
                         replayAllowed: true,

@@ -22,11 +22,12 @@ struct ModulePathView: View {
                             .font(.headline)
                             .frame(maxWidth: .infinity)
                             .padding()
+                            .foregroundColor(.white)
                             .background(Color(hex: "#D2C0E2"))
                             .cornerRadius(10)
                     }
 
-                    NavigationLink(destination: Text("Airport Module")) {
+                    NavigationLink(destination: AirportLessonListView()) {
                         Text("Cruising through the Airport")
                             .font(.headline)
                             .frame(maxWidth: .infinity)

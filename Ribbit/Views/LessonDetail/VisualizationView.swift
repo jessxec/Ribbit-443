@@ -6,48 +6,47 @@
 //
 
 import SwiftUI
-
 struct VisualizationView: View {
-  @ObservedObject var audio: WordAudioController
-  
-  let word: Word
-  var correctVector: [Double]
-  var userVector: [Double]?
-  @State private var highlightedStarsCount: Int = 0 // Track highlighted stars
-  
-  var body: some View {
-    ZStack {
-      Rectangle()
-        .frame(width: 300, height: 200)
-        .foregroundColor(Color(red: 94 / 255, green: 202 / 255, blue: 206 / 255)
-          .opacity(0.15))
-        .overlay(
-          RoundedRectangle(cornerRadius: 10)
-            .stroke(audio.playingUserAudio ? borderColor : Color.white, lineWidth: 5)
-        )
-      
-      LineGraph(dataPoints: correctVector)
-        .frame(width: 280, height: 180)
-      
-      AnimatedGraph(dataPoints: audio.playingUserAudio ? (userVector ?? correctVector) : correctVector, progress: $audio.animationProgress, userAudio: audio.playingUserAudio)
-        .frame(width: 280, height: 180)
-      
-      DrawStars(dataPoints: correctVector, userPitchValues: audio.pitchValues, highlightedStarsCount: $highlightedStarsCount)
-        .frame(width: 280, height: 180)
+    @ObservedObject var audio: WordAudioController
+    let word: Word
+    var correctVector: [Double]
+    var userVector: [Double]?
+    @State private var highlightedStarsCount: Int = 0 // Track highlighted stars
+
+    var body: some View {
+        ZStack {
+            Rectangle()
+                .frame(width: 300, height: 200)
+                .foregroundColor(Color(red: 94 / 255, green: 202 / 255, blue: 206 / 255)
+                    .opacity(0.15))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(audio.playingUserAudio ? borderColor : Color.white, lineWidth: 5)
+                )
+
+            LineGraph(dataPoints: correctVector)
+                .frame(width: 280, height: 180)
+
+            AnimatedGraph(dataPoints: audio.playingUserAudio ? (userVector ?? correctVector) : correctVector, progress: $audio.animationProgress, userAudio: audio.playingUserAudio)
+                .frame(width: 280, height: 180)
+
+            DrawStars(dataPoints: correctVector, userPitchValues: audio.pitchValues, highlightedStarsCount: $highlightedStarsCount)
+                .frame(width: 280, height: 180)
+        }
     }
-  }
-  private var borderColor: Color {
-    switch audio.collectedStars {
-    case 5:
-      return .green
-    case 3...4:
-      return .yellow
-    case 0...2:
-      return .red
-    default:
-      return .white
+
+    private var borderColor: Color {
+        switch audio.collectedStars {
+        case 5:
+            return .green
+        case 3...4:
+            return .yellow
+        case 0...2:
+            return .red
+        default:
+            return .white
+        }
     }
-  }
 }
 
 struct DrawStars: View {

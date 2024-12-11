@@ -12,7 +12,6 @@ struct PinyinViewP6: View {
     var body: some View {
         VStack(spacing: 20) {
             ProgressBarBackButton(currentPage: 6, totalPages: 6)
-            Spacer()
             VStack(alignment: .center, spacing: 10) {
                 Text("Tones")
                     .font(.title)
