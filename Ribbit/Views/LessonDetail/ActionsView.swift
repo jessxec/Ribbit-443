@@ -44,6 +44,7 @@ struct ActionsView: View {
           // retry button
           Button(action: {
             finishedRecording = false
+            audio.totalCollectedStars -= audio.collectedStars
             audio.resetForNextWord()
           }) {
             Image(systemName: "arrow.2.circlepath.circle")

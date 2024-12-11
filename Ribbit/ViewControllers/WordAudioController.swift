@@ -22,7 +22,8 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   @Published var pitchValues: [Double] = []
   @Published var collectedStars: Int = 0
   @Published var totalCollectedStars: Int = 0
-  
+  @Published var isPlaying: Bool = false
+
   var hasSentAPIRequest = false // Flag to prevent multiple API calls
   var audioPlayer: AVAudioPlayer?
   var audioRecorder: AVAudioRecorder?
@@ -59,6 +60,24 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
       }
     }
   }
+  
+  private func formantsValid(_ response: FormantsResponse) -> Bool {
+      let actualF1 = response.formants.F1
+      let actualF2 = response.formants.F2
+      let expectedF1 = word.transcriptionCheck.F1
+      let expectedF2 = word.transcriptionCheck.F2
+
+      let isF1Valid = abs(actualF1 - expectedF1) <= 300
+      let isF2Valid = abs(actualF2 - expectedF2) <= 500
+
+      print("Formant Analysis:")
+      print("Actual F1: \(actualF1), Expected F1: \(expectedF1), Difference: \(abs(actualF1 - expectedF1))")
+      print("Actual F2: \(actualF2), Expected F2: \(expectedF2), Difference: \(abs(actualF2 - expectedF2))")
+      print("F1 Valid: \(isF1Valid), F2 Valid: \(isF2Valid)")
+
+      return isF1Valid && isF2Valid
+  }
+
   
   // Helper Function to Parse the Response
   func parseResponse(data: Data) -> [String: Any]? {
@@ -108,19 +127,25 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   }
   
   func playRecording() {
-    // play temp file
-    do {
-      audioPlayer = try AVAudioPlayer(contentsOf: urlForRecording)
-      audioPlayer?.delegate = self
-      audioPlayer?.play()
+      guard !isPlaying, let audioPlayer = try? AVAudioPlayer(contentsOf: urlForRecording) else {
+          print("Audio is already playing or failed to initialize audio player.")
+          return
+      }
+
+      self.audioPlayer = audioPlayer
+      audioPlayer.delegate = self
+      audioPlayer.play()
+      isPlaying = true // Set the flag to true
       status = .playing
       playingUserAudio = true
+
+      // Reset and start animation
+      animationProgress = 0.0
       startAnimation(duration: audioDuration)
       collectedStars = calculateHighlightedStars(userPitchValues: pitchValues, correctValues: word.samplePitchVectors)
-    } catch {
-      print("Error playing recorded audio: \(error.localizedDescription)")
-    }
   }
+
+
   
   // MARK: play asset audio files
   func playAssetAudio(forTone tone: Int) {
@@ -180,23 +205,6 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
     }
   }
   
-  func startRecording(for duration: TimeInterval, completion: @escaping (String) -> Void) {
-    setupRecorder()
-    print("Self Pitch at Start Recording: \(self.pitchValues)")
-    if let recorder = audioRecorder, recorder.prepareToRecord() {
-      recorder.record()
-      status = .recording
-      
-      timer = Timer.scheduledTimer(withTimeInterval: duration, repeats: false) { [weak self] _ in
-        self?.stopRecording(completion: completion)
-      }
-    } else {
-      print("Recorder not ready or setup failed.")
-      status = .recordingStopped
-      completion("Error")
-    }
-  }
-  
   func stopRecording(completion: @escaping (String) -> Void) {
       audioRecorder?.stop()
       status = .recordingStopped
@@ -207,69 +215,82 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
           return
       }
 
-      let formantReferences = (F1: word.transcriptionCheck.F1, F2: word.transcriptionCheck.F2)
-
-      // Use DispatchGroup for synchronous-like behavior
-      let dispatchGroup = DispatchGroup()
-
-      // Formants result storage
-      var formantsValid = false
-
-      // Start Formant API Call
-      dispatchGroup.enter()
-      sendFormantsToAPI(referenceFormants: formantReferences) { [weak self] result in
-          guard let self = self else { return }
-          switch result {
-          case .success(let response):
-              let isF1Valid = abs(response.formants.F1 - formantReferences.F1) <= 300
-              let isF2Valid = abs(response.formants.F2 - formantReferences.F2) <= 500
-
-              formantsValid = isF1Valid && isF2Valid
-
-              if !formantsValid {
-                  DispatchQueue.main.async {
-                      self.feedbackMessage = """
-                      Try to produce the sounds closer to what you hear.
-                      """
-                  }
-              }
-          case .failure(let error):
-              print("Formant API error: \(error.localizedDescription)")
-              DispatchQueue.main.async {
-                  self.feedbackMessage = "Formant analysis failed. Try again."
-              }
-          }
-          dispatchGroup.leave()
+      guard !hasSentAPIRequest else {
+          print("API call already in progress. Skipping duplicate.")
+          return
       }
 
-      // Wait for Formants API Call to Finish
-      dispatchGroup.notify(queue: .main) { [weak self] in
+      hasSentAPIRequest = true // Mark the API request as in-progress
+
+      let formantReferences = (F1: word.transcriptionCheck.F1, F2: word.transcriptionCheck.F2)
+      sendFormantsToAPI(referenceFormants: formantReferences) { [weak self] result in
           guard let self = self else { return }
-          if formantsValid {
-              // Call Pitch API only if formants are valid
+          if case .success(let formants) = result, self.formantsValid(formants) {
               self.sendPitchToAPI(samplePitch: self.word.samplePitchVectors) { pitchResult in
                   switch pitchResult {
                   case .success(let response):
                       DispatchQueue.main.async {
-                          self.feedbackMessage = "" // Clear the message before appending new feedback
                           self.pitchValues = response.pitch_values
-                          self.feedbackMessage = (self.feedbackMessage ?? "") + """
-                          
+                          let newStars = self.calculateHighlightedStars(
+                              userPitchValues: self.pitchValues,
+                              correctValues: self.word.samplePitchVectors
+                          )
+
+                          if self.collectedStars == 0 {
+                              // Add new stars only if they haven't been added yet
+                              self.collectedStars = newStars
+                              self.totalCollectedStars += newStars
+                          }
+
+                          self.feedbackMessage = """
                           **Pitch Feedback**
                           Average Feedback: \(response.feedback.average_feedback)
                           \(response.feedback.section_feedback.joined(separator: "\n"))
                           """
+
+                          self.playRecording() // Start playback immediately
+                          self.hasSentAPIRequest = false // Reset the flag
                       }
                   case .failure(let error):
                       print("Pitch API error: \(error.localizedDescription)")
                       DispatchQueue.main.async {
-                          self.feedbackMessage = (self.feedbackMessage ?? "") + "\nPitch analysis failed. Try again."
+                          self.feedbackMessage = "Pitch analysis failed. Try again."
+                          self.hasSentAPIRequest = false // Reset the flag
                       }
                   }
               }
+          } else {
+              self.hasSentAPIRequest = false // Reset the flag
           }
       }
   }
+
+
+
+
+  func startRecording(for duration: TimeInterval, completion: @escaping (String) -> Void) {
+      setupRecorder()
+      
+      // Reset stars and state to avoid overcounting
+      totalCollectedStars -= collectedStars
+      collectedStars = 0
+      hasSentAPIRequest = false
+
+      if let recorder = audioRecorder, recorder.prepareToRecord() {
+          recorder.record()
+          status = .recording
+
+          timer = Timer.scheduledTimer(withTimeInterval: duration, repeats: false) { [weak self] _ in
+              self?.stopRecording(completion: completion)
+          }
+      } else {
+          print("Recorder not ready or setup failed.")
+          status = .recordingStopped
+          completion("Error")
+      }
+  }
+
+
 
   
   
@@ -395,18 +416,19 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   }
   
   func resetAnimation() {
+    isPlaying = false
     animationProgress = 0.0
     print("end: \(animationProgress)")
   }
   
   func resetForNextWord() {
-    feedbackMessage = ""
-    totalCollectedStars += collectedStars
-    collectedStars = 0
-    hasRecorded = false
-    playingUserAudio = false
-    pitchValues.removeAll()
+      collectedStars = 0 // Reset stars for the current word
+      hasRecorded = false
+      playingUserAudio = false
+      pitchValues.removeAll()
+      feedbackMessage = "" // Clear feedback for the next word
   }
+
   
   func calculateHighlightedStars(userPitchValues: [Double], correctValues: [Double]) -> Int {
     var count = 0
