@@ -225,47 +225,56 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
       let formantReferences = (F1: word.transcriptionCheck.F1, F2: word.transcriptionCheck.F2)
       sendFormantsToAPI(referenceFormants: formantReferences) { [weak self] result in
           guard let self = self else { return }
-          if case .success(let formants) = result, self.formantsValid(formants) {
-              self.sendPitchToAPI(samplePitch: self.word.samplePitchVectors) { pitchResult in
-                  switch pitchResult {
-                  case .success(let response):
-                      DispatchQueue.main.async {
-                          self.pitchValues = response.pitch_values
-                          let newStars = self.calculateHighlightedStars(
-                              userPitchValues: self.pitchValues,
-                              correctValues: self.word.samplePitchVectors
-                          )
+          DispatchQueue.main.async {
+              switch result {
+              case .success(let formants):
+                  if self.formantsValid(formants) {
+                      self.feedbackMessage = "" // Clear feedback for successful formant match
+                      self.sendPitchToAPI(samplePitch: self.word.samplePitchVectors) { pitchResult in
+                          switch pitchResult {
+                          case .success(let response):
+                              DispatchQueue.main.async {
+                                  self.pitchValues = response.pitch_values
+                                  let newStars = self.calculateHighlightedStars(
+                                      userPitchValues: self.pitchValues,
+                                      correctValues: self.word.samplePitchVectors
+                                  )
 
-                          if self.collectedStars == 0 {
-                              // Add new stars only if they haven't been added yet
-                              self.collectedStars = newStars
-                              self.totalCollectedStars += newStars
+                                  if self.collectedStars == 0 {
+                                      // Add new stars only if they haven't been added yet
+                                      self.collectedStars = newStars
+                                      self.totalCollectedStars += newStars
+                                  }
+
+                                  self.feedbackMessage = """
+                                  \(response.feedback.average_feedback)
+                                  
+                                  Refer below for specific section feedback: 
+                                  \(response.feedback.section_feedback.joined(separator: "\n"))
+                                  """
+
+                                  self.playRecording() // Start playback immediately
+                                  self.hasSentAPIRequest = false // Reset the flag
+                              }
+                          case .failure(let error):
+                              print("Pitch API error: \(error.localizedDescription)")
+                              self.feedbackMessage = "Pitch analysis failed. Try again."
+                              self.hasSentAPIRequest = false // Reset the flag
                           }
-
-                          self.feedbackMessage = """
-                          **Pitch Feedback**
-                          Average Feedback: \(response.feedback.average_feedback)
-                          \(response.feedback.section_feedback.joined(separator: "\n"))
-                          """
-
-                          self.playRecording() // Start playback immediately
-                          self.hasSentAPIRequest = false // Reset the flag
                       }
-                  case .failure(let error):
-                      print("Pitch API error: \(error.localizedDescription)")
-                      DispatchQueue.main.async {
-                          self.feedbackMessage = "Pitch analysis failed. Try again."
-                          self.hasSentAPIRequest = false // Reset the flag
-                      }
+                  } else {
+                      // Show feedback to the user for invalid formants
+                      self.feedbackMessage = "Try again to reproduce the sound you hear."
+                      self.hasSentAPIRequest = false
                   }
+              case .failure(let error):
+                  print("Formants API error: \(error.localizedDescription)")
+                  self.feedbackMessage = "Formant analysis failed. Try again."
+                  self.hasSentAPIRequest = false
               }
-          } else {
-              self.hasSentAPIRequest = false // Reset the flag
           }
       }
   }
-
-
 
 
   func startRecording(for duration: TimeInterval, completion: @escaping (String) -> Void) {

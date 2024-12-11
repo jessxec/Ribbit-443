@@ -21,7 +21,8 @@ struct LessonView: View {
                         word: word,
                         lessonCount: viewModel.words.count,
                         currentIndex: viewModel.currentIndex,
-                        nextWordAction: viewModel.nextWord
+                        nextWordAction: viewModel.nextWord,
+                        viewModel: viewModel
                     )
                 } else {
                     Text("Loading words...")
