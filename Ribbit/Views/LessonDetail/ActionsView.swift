@@ -50,29 +50,31 @@ struct ActionsView: View {
                             .foregroundColor(Color(hex: "#D2C0E2"))
                     }
 
-                    // Conditionally render the Next or Lesson Complete button
-                    if viewModel.currentIndex == viewModel.words.count - 1 {
-                        // Show "Complete Lesson" button
-                        Button(action: {
-                            showLessonComplete = true
-                        }) {
+                  if viewModel.currentIndex == viewModel.words.count - 1 {
+                      // Show "Complete Lesson" button
+                      Button(action: {
+                          showLessonComplete = true
+                      }) {
                           Image(systemName: "pencil.and.outline")
-                                     .resizable()
-                                     .frame(width: 60, height: 60) // Match the size of the play button
-                                     .foregroundColor(Color(hex: "#917FA2")) // Match the color of the play button
-                             }
-                        .fullScreenCover(isPresented: $showLessonComplete) {
-                            LessonCompleteView()
-                        }
-                    } else {
-                        // Show "Next Word" button
-                        Button(action: handleNextButton) {
-                            Image(systemName: "arrow.right.circle")
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                                .foregroundColor(Color(hex: "#D2C0E2"))
-                        }
-                    }
+                              .resizable()
+                              .frame(width: 40, height: 40)
+                              .foregroundColor(Color(hex: "#917FA2"))
+                      }
+                      .fullScreenCover(isPresented: $showLessonComplete) {
+                          NavigationStack {
+                              LessonCompleteView()
+                          }
+                      }
+                  } else {
+                      // Show "Next Word" button
+                      Button(action: handleNextButton) {
+                          Image(systemName: "arrow.right.circle")
+                              .resizable()
+                              .frame(width: 40, height: 40)
+                              .foregroundColor(Color(hex: "#D2C0E2"))
+                      }
+                  }
+
                 } else {
                     Button(action: handleRecordButton) {
                         Image(systemName: audio.status == .recording ? "stop.circle" : "mic.circle")

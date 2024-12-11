@@ -16,7 +16,6 @@ struct LessonCompleteView: View {
                 .scaledToFill()
                 .ignoresSafeArea()
             
-            // Foreground Content
             VStack {
                 Text("Congratulations!")
                     .font(.largeTitle)
@@ -25,19 +24,17 @@ struct LessonCompleteView: View {
 
                 Text("You've completed the lesson.")
                     .font(.headline)
-                    .foregroundColor(.gray)
+                    .foregroundColor(.white)
                     .padding()
                     .cornerRadius(8)
 
-                NavigationLink(
-                    destination: LessonListView(),
-                    label: {
-                        Text("Go Back")
-                            .padding()
-                            .background(Color(hex: "917FA2"))
-                            .cornerRadius(12)
-                    }
-                )
+                NavigationLink(destination: LessonListView()) {
+                    Text("Go Back")
+                        .padding()
+                        .background(Color(hex: "917FA2"))
+                        .foregroundColor(.white) // Ensure the text color contrasts with the background
+                        .cornerRadius(12)
+                }
                 .padding()
             }
             .padding()
