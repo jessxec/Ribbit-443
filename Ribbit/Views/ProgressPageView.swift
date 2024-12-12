@@ -4,7 +4,6 @@
 //
 //  Created by Jorge Urias on 12/2/24.
 //
-
 import SwiftUI
 
 struct ProgressPageView: View {
@@ -16,6 +15,8 @@ struct ProgressPageView: View {
 
     var body: some View {
         VStack {
+            Spacer() // Keeps the content centered vertically
+
             ZStack {
                 Circle()
                     .stroke(Color.darkRed, lineWidth: 10)
@@ -25,7 +26,7 @@ struct ProgressPageView: View {
                     .font(.largeTitle)
                     .foregroundColor(.darkPurple)
             }
-            .padding(.top, 135)
+            .padding(.top, 140)
 
             Text("Connor")
                 .font(.largeTitle)
@@ -96,11 +97,8 @@ struct ProgressPageView: View {
     }
 }
 
-#Preview {
-    ProgressPageView(value: 0)
-}
-
 
 #Preview {
     ProgressPageView(value: 0)
 }
+

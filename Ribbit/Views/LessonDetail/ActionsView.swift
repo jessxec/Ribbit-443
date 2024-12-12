@@ -34,8 +34,8 @@ struct ActionsView: View {
                     }) {
                       Image(systemName: audio.status == .playing ? "stop.circle.fill" : "play.circle.fill")
                         .resizable()
-                        .frame(width: 60, height: 60)
-                        .foregroundColor(Color(hex: "#917FA2"))
+                        .frame(width: 40, height: 40)
+                        .foregroundColor(Color(hex: "#D2C0E2"))
                     }
                   
                     // Retry button
@@ -46,8 +46,9 @@ struct ActionsView: View {
                     }) {
                         Image(systemName: "arrow.2.circlepath.circle")
                             .resizable()
-                            .frame(width: 40, height: 40)
-                            .foregroundColor(Color(hex: "#D2C0E2"))
+                            .frame(width: 60, height: 60)
+                            .foregroundColor(Color(hex: "#917FA2"))
+                
                     }
 
                   if viewModel.currentIndex == viewModel.words.count - 1 {
