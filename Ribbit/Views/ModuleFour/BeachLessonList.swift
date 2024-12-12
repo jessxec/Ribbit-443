@@ -1,15 +1,16 @@
 //
-//  AirportLessonListView.swift
+//  BeachLessonList.swift
 //  Ribbit
 //
-//  Created by Jack  Sun on 12/9/24.
+//  Created by Jack  Sun on 12/12/24.
 //
+
 
 import Foundation
 import SwiftUI
 import FirebaseFirestore
 
-struct AirportLessonListView: View {
+struct BeachLessonListView: View {
   @Environment(\.presentationMode) var presentationMode // To handle manual back navigation
   
   var body: some View {
@@ -40,9 +41,7 @@ struct AirportLessonListView: View {
               .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color(hex: "#917FA2"), lineWidth: 3))
           }
 
-          
-          // Tone Lessons Section
-          Text("Cruising through the Airport ")
+            Text("Sunny Day at the Beach")
             .font(.title)
             .fontWeight(.semibold)
             .padding(.leading)
@@ -56,11 +55,11 @@ struct AirportLessonListView: View {
             ) {
               LessonRow(
                 number: 1,
-                title: "Compound Finals",
-                description: "ai, ei, ao, ou",
-                example: "飞",
+                title: "Vowel Harmony I.",
+                description: "a, o, u",
+                example: "太阳",
                 isUnlocked: true,
-                moduleId: "foundationsIsland",
+                moduleId: "beachModule",
                 lessonId: "lesson1"
               )
             }
@@ -70,11 +69,11 @@ struct AirportLessonListView: View {
             ) {
               LessonRow(
                 number: 2,
-                title: "Nasal Finals",
-                description: "an, en, in, un",
-                example: "门",
+                title: "Vowel Harmony II.",
+                description: "ai, ou, ui",
+                example: "冰淇淋",
                 isUnlocked: true,
-                moduleId: "foundationsIsland",
+                moduleId: "beachModule",
                 lessonId: "lesson2"
               )
             }
@@ -84,11 +83,11 @@ struct AirportLessonListView: View {
             ) {
               LessonRow(
                 number: 3,
-                title: "Building Words",
-                description: "jing, tang, fang",
-                example: "北京",
+                title: "Tone Variations",
+                description: "ai, u, ü",
+                example: "海滩",
                 isUnlocked: false,
-                moduleId: "foundationsIsland",
+                moduleId: "beachModule",
                 lessonId: "lesson3"
               )
             }

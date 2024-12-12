@@ -101,24 +101,6 @@ func createModules() async throws {
               samplePitchVectors: [139.7, 148.5, 148.9, 152.6, 155.5, 149.7, 148.5, 148.9, 149.2, 150.2, 151.1, 152.2, 150.8, 149.6, 149.1, 149.3, 150.2, 150.0, 151.0, 154.6],
               userPitchVectors: []
           ),
-          Word(
-              id: "word5",
-              pinyin: "yī",
-              word: "一",
-              translation: "One",
-              audioPath: "/audio/foundations/M1L1_yi1.wav",
-              starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
-              feedback: Feedback(
-                  incorrectPitch: "Keep your pitch level and even.",
-                  incorrectPronunciation: "Ensure you’re using a flat tone without inflection."
-              ),
-              transcriptionCheck: Formants(F1: 250, F2: 2500),
-              voiceProcessingCheck: nil,
-              starValue: 5,
-              replayAllowed: true,
-              samplePitchVectors: [135.8, 145.4, 146.5, 147.7, 149.4, 150.9, 151.5, 150.3, 151.1, 151.3, 150.9, 151.5, 152.9, 152.6, 153.0, 152.9, 152.7, 150.4, 153.1, 149.2],
-              userPitchVectors: []
-          ),
         ]
       ),
       Lesson(
@@ -744,12 +726,12 @@ func createModules() async throws {
     lessons: [
       Lesson(
         id: "lesson1",
-        title: "Introduction to Complex Vowels",
+        title: "Initial Consonants I.",
         lessonOrder: 1,
         totalStarsAvailable: 25,
         content: [
-          "Complex vowels in Mandarin combine two vowel sounds and often require smooth transitions between them. The vowels 'ai' (as in 爱, ài - love) and 'ei' (as in 北, běi - north) are diphthongs, meaning the tongue moves from one position to another within the same syllable.",
-          "The key to pronouncing these diphthongs correctly is to maintain the tone throughout. For example, in 'ai,' the sound begins with 'a' and glides into 'i.' Practice with words like “海” (hǎi - sea) to ensure your tone remains steady. Similarly, 'ao' and 'ou' involve gliding from 'a' to 'o' or 'o' to 'u.' These sounds appear often in airport-related vocabulary."
+          "In this lesson, you'll learn four key initial consonants: B, P, M, and F. These sounds are crucial for forming words related to drinks and snacks in a cafe. Practice distinguishing between the unaspirated and aspirated pairs (B and P) and focus on the correct articulation of M and F.",
+          "B (bō): Unaspirated; lips come together, no strong burst of air.\n P (pō): Aspirated; lips come together, followed by a strong puff of air. \n M (mō): Nasal sound; lips come together, air flows through the nose. \n F (fō): Made by bringing the upper teeth close to the lower lip."
         ],
         words: [
           Word(
@@ -846,12 +828,12 @@ func createModules() async throws {
       ),
       Lesson(
         id: "lesson2",
-        title: "Advanced Complex Vowels",
+        title: "Initial Consonants II.",
         lessonOrder: 1,
         totalStarsAvailable: 25,
         content: [
-          "This lesson introduces diphthongs that include 'i' or 'u' as initial sounds. For example, 'ia' (as in 家, jiā - home) starts with 'i' and glides into 'a.' Words like '夜' (yè - night) and '油' (yóu - oil) use similar transitions with 'ie' and 'iu.'",
-          "For ua' and 'uo,' the initial 'u' sound is rounded and distinct. Words like '花' (huā - flower) and '国' (guó - country) demonstrate how to move seamlessly from 'u' to the following vowel. Remember to emphasize tone while practicing these sounds, as the tone must remain clear even during the transition."
+          "This lesson focuses on the tongue-tip consonants T, D, N, and L, often used in common cafe words. Learn how to position your tongue for clear and precise pronunciation.",
+          "T (tā): Aspirated; tongue lightly touches the roof of the mouth. \n D (dā): Unaspirated; similar to T but without a burst of air. \n N (nā): Nasal; tongue touches the roof, air flows through the nose. \n L (lā): Tongue-tip sound; tongue lightly touches the roof of the mouth."
         ],
         words: [
           Word(
@@ -948,12 +930,12 @@ func createModules() async throws {
       ),
       Lesson(
         id: "lesson3",
-        title: "Complex Finals with Nasals",
+        title: "Sizzling Snacks and Steamy Sounds",
         lessonOrder: 1,
         totalStarsAvailable: 25,
         content: [
-          "Mandarin complex vowels often combine with nasal endings like 'n' or 'ng.' For example, 'ian' (as in 电, diàn - electricity) and 'iang' (as in 强, qiáng - strong) require careful nasalization at the end of the syllable. The tongue should briefly touch the roof of the mouth for 'n' or glide towards the back for 'ng.'",
-          "Similarly, 'uan' (as in 管, guǎn - to manage) and 'uang' (as in 光, guāng - light) combine the rounded 'u' with nasal finals. Words like these are common in travel-related contexts, such as asking about electricity or managing luggage. Practice with clear transitions and consistent tone."
+          "Discover sibilant consonants, commonly found in Chinese words related to the cafe setting. This lesson covers Z, C, S, and their retroflex counterparts Zh, Ch, Sh. These sounds can be challenging but are essential for accurate pronunciation.",
+          "Let's explore some important Chinese consonant sounds. Z (zī) is unaspirated, where the tongue touches the upper teeth, while C (cī) is aspirated, similar to Z but with a burst of air. S (sī) creates a hissing sound, with the tongue close to the upper teeth. For retroflex sounds, Zh (zhī) requires the tongue to curl back slightly, Ch (chī) adds aspiration with a burst of air, and Sh (shī) is a non-aspirated retroflex with the tongue curled back. Mastering these distinctions is key to clear and accurate pronunciation in Chinese."
         ],
         words: [
           Word(

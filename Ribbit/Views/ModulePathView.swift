@@ -32,42 +32,37 @@ struct ModulePathView: View {
                             .font(.headline)
                             .frame(maxWidth: .infinity)
                             .padding()
+                            .foregroundColor(.white)
                             .background(Color(hex: "#D2C0E2"))
                             .cornerRadius(10)
                     }
 
-                    NavigationLink(destination: Text("Cafe Module")) {
+                    NavigationLink(destination: CafeLessonListView()) {
                         Text("Ordering in the Cafe")
                             .font(.headline)
                             .frame(maxWidth: .infinity)
                             .padding()
+                            .foregroundColor(.white)
                             .background(Color(hex: "#D2C0E2"))
                             .cornerRadius(10)
                     }
                   
-                    NavigationLink(destination: Text("Restaurant Module")) {
-                        Text("Dining at the Restaurant")
+                  NavigationLink(destination: BeachLessonListView()) {
+                        Text("Sunny Day at the beach")
                             .font(.headline)
                             .frame(maxWidth: .infinity)
                             .padding()
+                            .foregroundColor(.white)
                             .background(Color(hex: "#D2C0E2"))
                             .cornerRadius(10)
                     }
                   
-                    NavigationLink(destination: Text("Beach Module")) {
-                        Text("Relaing Day at the beach")
+                  NavigationLink(destination: CampingLessonListView()) {
+                        Text("A Camping Trip")
                             .font(.headline)
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color(hex: "#D2C0E2"))
-                            .cornerRadius(10)
-                    }
-                  
-                    NavigationLink(destination: Text("Ocean Module")) {
-                        Text("Deep in the Ocean")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity)
-                            .padding()
+                            .foregroundColor(.white)
                             .background(Color(hex: "#D2C0E2"))
                             .cornerRadius(10)
                     }
