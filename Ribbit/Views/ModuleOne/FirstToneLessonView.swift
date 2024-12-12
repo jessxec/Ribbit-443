@@ -44,16 +44,6 @@ struct FirstToneLessonView: View {
                         .padding(.top, 50)
                         .foregroundColor(Color(hex: "#554C5D"))
                         .padding()
-     
-                    Text(lesson.content[3])
-                        .padding(.top, 50)
-                        .foregroundColor(Color(hex: "#554C5D"))
-                        .padding()
-                  
-                    Text(lesson.content[4])
-                        .padding(.top, 50)
-                        .foregroundColor(Color(hex: "#554C5D"))
-                        .padding()
 
                     Spacer()
 

@@ -247,9 +247,9 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
                                   }
 
                                   self.feedbackMessage = """
-                                  \(response.feedback.average_feedback)
+                                  \(response.feedback.average_feedback). Aim to keep the difference below 10. 
                                   
-                                  Refer below for specific section feedback: 
+                                  Section feedback: 
                                   \(response.feedback.section_feedback.joined(separator: "\n"))
                                   """
 
