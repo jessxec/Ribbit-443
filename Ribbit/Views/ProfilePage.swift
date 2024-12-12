@@ -25,7 +25,6 @@ struct ProfilePage: View {
             VStack {
                 // Profile Header
                 ProfileHeaderSection()
-               
                 
                 // Streak and user name
                 HStack {
@@ -125,6 +124,7 @@ struct ProfilePage: View {
                 await viewModel.loadBadges()
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 
@@ -181,5 +181,11 @@ struct AccuracyChartView: View {
         .chartYAxis {
           AxisMarks(position: .leading)
         }
+    }
+}
+
+struct HomeScreenP1_Previews: PreviewProvider {
+    static var previews: some View {
+        ProfilePage(badgeService: BadgeService())
     }
 }

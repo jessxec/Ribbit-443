@@ -21,6 +21,8 @@ struct BadgesPage: View {
     ]
     
     var body: some View {
+        ProfileHeaderSection()
+      
         VStack(spacing: 0) {
             // Back button
             HStack {
@@ -63,6 +65,7 @@ struct BadgesPage: View {
                             NavigationLink(destination: BadgeDetailView(badge: badge, badgeService: badgeService)) {
                                 BadgeGridItem(badge: badge, badgeService: badgeService)
                             }
+                            .navigationBarBackButtonHidden(true)
                         }
                     }
                     .padding(.horizontal)
@@ -77,8 +80,6 @@ struct BadgesPage: View {
         }
     }
 }
-
-
 
 struct BadgeGridItem: View {
     let badge: Badge

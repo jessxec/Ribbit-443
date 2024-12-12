@@ -18,7 +18,15 @@ struct BadgeDetailView: View {
     }
     
     var body: some View {
+      ProfileHeaderSection()
+      
       VStack {
+          HStack {
+              BackButton()
+              Spacer()
+          }
+          .padding(.horizontal)
+        
           VStack(spacing: 20) {
             if let iconURL = iconURL {
               AsyncImage(url: iconURL) { image in
@@ -29,6 +37,7 @@ struct BadgeDetailView: View {
               } placeholder: {
                 ProgressView()
               }
+              .padding(.top, 30)
             } else {
               ProgressView()
                 .onAppear {
@@ -48,7 +57,7 @@ struct BadgeDetailView: View {
               .bold()
             
             Text(badge.description)
-              .font(.body)
+              .font(.title2)
               .multilineTextAlignment(.center)
               .foregroundColor(Color(hex: "#554C5D"))
               .padding()
@@ -68,21 +77,26 @@ struct BadgeDetailView: View {
               Text("Not Completed Yet")
                 .font(.headline)
                 .foregroundColor(.red)
+                .padding(.bottom, 30)
             }
           }
+          .background(
+              RoundedRectangle(cornerRadius: 15)
+                  .fill(Color(hex: "FFFAF3"))
+                  .shadow(color: Color(hex: "917FA2"), radius: 10, x: 2, y: 10)
+          )
+          .padding(.horizontal, 20)
+          .padding(.top, 20)
                 
-                Spacer()
-            }
-        .padding()
-        .navigationTitle(Text(badge.title))
+          Spacer()
+        }
+        .background(Color(hex: "FFFAF3"))
+        .navigationBarBackButtonHidden(true)
     }
 }
-
-
 
 private let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .medium
     return formatter
 }()
-
