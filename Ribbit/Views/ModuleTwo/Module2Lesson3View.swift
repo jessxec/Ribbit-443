@@ -8,10 +8,13 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct Module2Lesson3View: View {
-    let lesson: Lesson // Use the entire Lesson object
-    @Binding var showPractice: Bool // Bind to parent state
-    @State private var isAtBottom = false // Track if the user has scrolled to the bottom
+    let lesson: Lesson
+    @Binding var showPractice: Bool
+    @State private var isAtBottom = false
+    @EnvironmentObject var badgeViewModel: BadgeViewModel // Use environment object here
 
     var body: some View {
         VStack(spacing: 20) {
@@ -19,11 +22,11 @@ struct Module2Lesson3View: View {
             
             ScrollView {
                 VStack(alignment: .center, spacing: 10) {
-                  Text("Nasal Complex Vowels:")
-                      .font(.title)
-                      .multilineTextAlignment(.center)
-                      .foregroundColor(Color(hex: "#554C5D"))
-                      .padding(.top, 50)
+                    Text("Nasal Complex Vowels:")
+                        .font(.title)
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(Color(hex: "#554C5D"))
+                        .padding(.top, 50)
                   
                     Text(lesson.content[0])
                         .padding(.top, 50)
@@ -37,35 +40,35 @@ struct Module2Lesson3View: View {
 
                     Spacer()
 
-                    // Invisible marker at the bottom
                     GeometryReader { geo -> Color in
                         DispatchQueue.main.async {
-                            // Check if the bottom marker is visible
                             if geo.frame(in: .global).maxY < UIScreen.main.bounds.height {
                                 isAtBottom = true
                             }
                         }
                         return Color.clear
                     }
-                    .frame(height: 1) // Small frame to act as a marker
+                    .frame(height: 1)
                 }
                 .background(Color(hex: "FFFAF3"))
                 .ignoresSafeArea()
             }
 
-            // Show the button only when the user reaches the bottom
             if isAtBottom {
                 Button(action: {
-                    showPractice = true // Toggle practice section
+                    showPractice = true
                 }) {
                     Text("Continue to Practice")
-                      .font(.system(size: 20))
-                      .foregroundColor(.white)
-                      .frame(maxWidth: .infinity)
-                      .padding()
-                      .background(Color(hex: "917FA2"))
-                      .cornerRadius(12)
-
+                        .font(.system(size: 20))
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color(hex: "917FA2"))
+                        .cornerRadius(12)
+                }
+                .fullScreenCover(isPresented: $showPractice) {
+                    LessonCompleteView(moduleId: "airportModule", lessonId: "lesson3")
+                        .environmentObject(badgeViewModel) // Pass badgeViewModel here
                 }
                 .padding(.horizontal, 50)
                 .padding(.bottom, 20)
@@ -74,5 +77,3 @@ struct Module2Lesson3View: View {
         .navigationBarBackButtonHidden(true)
     }
 }
-
-

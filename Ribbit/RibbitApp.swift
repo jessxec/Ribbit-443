@@ -36,12 +36,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct RibbitApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @StateObject private var badgeViewModel = BadgeViewModel(badgeService: BadgeService()) // Initialize BadgeViewModel
 
     var body: some Scene {
       WindowGroup {
         NavigationStack {
           HomeScreenP1()
         }.navigationBarBackButtonHidden(true)
+          .environmentObject(badgeViewModel) // Inject BadgeViewModel as an environment object
+
         
       }
 

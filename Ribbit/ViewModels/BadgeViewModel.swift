@@ -38,6 +38,15 @@ class BadgeViewModel: ObservableObject {
         return try await reference.downloadURL()
     }
 
+  func unlockBadge(badgeId: String) async {
+      do {
+          let dateReceived = Date()
+          try await badgeService.updateBadgeStatus(badgeId: badgeId, dateReceived: dateReceived)
+          await loadBadges() // Refresh badges after updating
+      } catch {
+          self.errorMessage = "Failed to unlock badge: \(error.localizedDescription)"
+      }
+  }
 
     func updateBadge(badgeId: String) async {
         do {

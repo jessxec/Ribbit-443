@@ -4,6 +4,12 @@
 //
 //  Created by Jessie Chen on 11/6/24.
 //
+//
+//  ActionsView.swift
+//  Ribbit
+//
+//  Created by Jessie Chen on 11/6/24.
+//
 
 import SwiftUI
 import AVFoundation
@@ -18,27 +24,28 @@ struct ActionsView: View {
     @State private var showLessonComplete = false
 
     let word: Word
+    let moduleId: String // Module ID for the lesson
+    let lessonId: String // Lesson ID
+    @EnvironmentObject var badgeViewModel: BadgeViewModel // Access BadgeViewModel
 
     var body: some View {
         VStack(spacing: 20) {
-            Text("\(statusText)")
+            Text(statusText)
                 .font(.body)
                 .foregroundColor(Color(hex: "#96C7C9"))
                 .padding(.bottom, 20)
 
             HStack(spacing: 50) {
                 if (finishedRecording || audio.hasRecorded) && audio.status != .playing {
-                    // playback Button
-                    Button(action: {
-                      handlePlayButton()
-                    }) {
-                      Image(systemName: audio.status == .playing ? "stop.circle.fill" : "play.circle.fill")
-                        .resizable()
-                        .frame(width: 40, height: 40)
-                        .foregroundColor(Color(hex: "#D2C0E2"))
+                    // Playback Button
+                    Button(action: handlePlayButton) {
+                        Image(systemName: audio.status == .playing ? "stop.circle.fill" : "play.circle.fill")
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                            .foregroundColor(Color(hex: "#D2C0E2"))
                     }
-                  
-                    // Retry button
+
+                    // Retry Button
                     Button(action: {
                         finishedRecording = false
                         audio.totalCollectedStars -= audio.collectedStars
@@ -48,35 +55,42 @@ struct ActionsView: View {
                             .resizable()
                             .frame(width: 60, height: 60)
                             .foregroundColor(Color(hex: "#917FA2"))
-                
                     }
 
-                  if viewModel.currentIndex == viewModel.words.count - 1 {
-                      // Show "Complete Lesson" button
-                      Button(action: {
-                          showLessonComplete = true
-                      }) {
-                          Image(systemName: "pencil.and.outline")
-                              .resizable()
-                              .frame(width: 40, height: 40)
-                              .foregroundColor(Color(hex: "#917FA2"))
-                      }
-                      .fullScreenCover(isPresented: $showLessonComplete) {
-                          NavigationStack {
-                              LessonCompleteView()
-                          }
-                      }
-                  } else {
-                      // Show "Next Word" button
-                      Button(action: handleNextButton) {
-                          Image(systemName: "arrow.right.circle")
-                              .resizable()
-                              .frame(width: 40, height: 40)
-                              .foregroundColor(Color(hex: "#D2C0E2"))
-                      }
-                  }
-
+                    if viewModel.currentIndex == viewModel.words.count - 1 {
+                        // Complete Lesson Button
+                        Button(action: {
+                            showLessonComplete = true
+                            Task {
+                                if moduleId == "airportModule" && lessonId == "lesson3" {
+                                    await badgeViewModel.unlockBadge(badgeId: "airport-navigator")
+                                } else if moduleId == "foundationsIsland" && lessonId == "lesson4" {
+                                    await badgeViewModel.unlockBadge(badgeId: "baby-steps")
+                                }
+                            }
+                        }) {
+                            Image(systemName: "pencil.and.outline")
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                                .foregroundColor(Color(hex: "#917FA2"))
+                        }
+                        .fullScreenCover(isPresented: $showLessonComplete) {
+                            NavigationStack {
+                                LessonCompleteView(moduleId: moduleId, lessonId: lessonId)
+                                    .environmentObject(badgeViewModel)
+                            }
+                        }
+                    } else {
+                        // Next Word Button
+                        Button(action: handleNextButton) {
+                            Image(systemName: "arrow.right.circle")
+                                .resizable()
+                                .frame(width: 40, height: 40)
+                                .foregroundColor(Color(hex: "#D2C0E2"))
+                        }
+                    }
                 } else {
+                    // Record Button
                     Button(action: handleRecordButton) {
                         Image(systemName: audio.status == .recording ? "stop.circle" : "mic.circle")
                             .resizable()
@@ -121,12 +135,12 @@ struct ActionsView: View {
             audio.resetForNextWord()
         }
     }
+
     private func handlePlayButton() {
-          if audio.status == .playing {
+        if audio.status == .playing {
             audio.stopPlayback()
-          } else {
+        } else {
             audio.playRecording()
-          }
         }
     }
-
+}
