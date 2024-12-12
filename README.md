@@ -6,10 +6,15 @@ Ribbit is a language learning app designed to help users improve their pronuncia
 
 ## Features
 
-- **Pitch Contour Visualization**: Real-time feedback on pronunciation accuracy using pitch contour graphs.
+- **Pitch Contour Visualization**: Feedback on pronunciation accuracy using pitch contour graphs.
 - **Gamified Learning**: Stars and badges to reward accurate pronunciation and encourage continued learning.
 - **Dynamic Feedback**: Personalized feedback based on user performance, comparing user pitch to native speaker samples.
-- **Modular Lessons**: Lessons structured into progressive modules, each focusing on specific language aspects and theme. Here's a short overview of the modules provided in the current version: 1. Foundations Island 2. Traveling through the Airport 3. At the Cafe
+- **Modular Lessons**: Lessons structured into progressive modules, each focusing on specific language aspects and theme. Here's a short overview of the modules provided in the current version:
+    1. Foundations Island
+    2. Navigating Through the Airport
+    3. Sunny Day at the Beach
+    4. Ordering at a Cafe
+    5. Let's Go Camping
 - **Audio Processing API**: A custom external API for analyzing user audio input and extracting pitch values for feedback.
 - **Firebase Integration**: Used to store user data and track learning progress across modules.
 
@@ -18,7 +23,7 @@ Ribbit is a language learning app designed to help users improve their pronuncia
 ## Technologies Used
 
 ### Frontend
-- **Swift**: iOS development for a seamless user experience.
+- **Swift**: iOS development for smoother user experience.
 
 ### Backend
 - **Firebase**: For storing user data, managing authentication, and tracking progress.
@@ -40,7 +45,7 @@ Ribbit is a language learning app designed to help users improve their pronuncia
 ### Steps
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
+   git clone [https://github.com/yourusername/your-repo-name.git](https://github.com/jessxec/Ribbit-443.git)
    cd your-repo-name
    ```
 2. Install the required Python dependencies for the backend:
@@ -84,12 +89,6 @@ Ribbit is a language learning app designed to help users improve their pronuncia
 - **Response**:
   - `pitch_values`: Normalized pitch values from user audio.
   - `feedback`: Detailed feedback on pronunciation.
-
----
-
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request to contribute.
 
 ---
 
