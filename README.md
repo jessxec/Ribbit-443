@@ -22,7 +22,8 @@ Ribbit is a language learning app designed to help users improve their pronuncia
 
 ### Backend
 - **Firebase**: For storing user data, managing authentication, and tracking progress.
-- **Python**: Custom-built audio processing API for pitch analysis and feedback.
+- **Python**: Custom-built audio processing API for pitch analysis and feedback. Voice analysis done on Python Anywhere: https://www.pythonanywhere.com/user/JackSun815/shares/4d1ea9279ea74aef80b725b27afebc0b/
+  
 
 ### Tools
 - **Montreal Forced Aligner**: Used to align user audio with phoneme targets for accurate pronunciation analysis.
