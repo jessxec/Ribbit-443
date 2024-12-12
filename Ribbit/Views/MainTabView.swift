@@ -17,7 +17,7 @@ struct MainTabView: View {
     }
 
     var body: some View {
-      VStack(spacing: 0) {
+      VStack(spacing: -10) {
             // Content of the selected tab
             Group {
                 switch selectedTab {
@@ -34,10 +34,12 @@ struct MainTabView: View {
             // Custom Tab Bar
             ZStack {
                 // Image as the custom shape for the navbar
+                
                 Image("Tabs/tabBackground")
-                    .resizable()
-                    .scaledToFill() // Ensure it covers the whole space
-                    .frame(height: 100) // Adjust the height of the navbar
+                .resizable()
+                  .scaledToFill()
+                  .frame(height: 90)
+                  .edgesIgnoringSafeArea(.all)
                     
 
                 // Tab Bar Content
@@ -87,7 +89,7 @@ struct TabBarItem: View {
     let action: () -> Void
 
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: 5) {
             // Dynamic Icon
             Image(isSelected ? iconActive : iconInactive)
             

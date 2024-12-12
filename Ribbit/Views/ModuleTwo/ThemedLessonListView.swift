@@ -72,7 +72,7 @@ struct ThemedAirportLessonListView: View {
                   description: "ai, ei, ao, ou",
                   example: "飞",
                   isUnlocked: true,
-                  moduleId: "foundationsIsland",
+                  moduleId: "airportModule",
                   lessonId: "lesson1"
                 )
               }
@@ -86,7 +86,7 @@ struct ThemedAirportLessonListView: View {
                   description: "an, en, in, un",
                   example: "门",
                   isUnlocked: true,
-                  moduleId: "foundationsIsland",
+                  moduleId: "airportModule",
                   lessonId: "lesson2"
                 )
               }
@@ -100,7 +100,7 @@ struct ThemedAirportLessonListView: View {
                   description: "jing, tang, fang",
                   example: "北京",
                   isUnlocked: false,
-                  moduleId: "foundationsIsland",
+                  moduleId: "airportModule",
                   lessonId: "lesson3"
                 )
               }

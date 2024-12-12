@@ -24,5 +24,6 @@ struct ProgressPageView: View {
             Spacer()
         }
         .padding()
+        .background(.offWhite)
     }
 }

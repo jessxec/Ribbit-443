@@ -57,7 +57,7 @@ struct ThemedCampingLessonListView: View {
             // Difficulty Rating
             HStack {
               Text("Difficulty:")
-                .foregroundColor(.lightTeal)
+                .foregroundColor(.paleGreen)
               Image("star") // Fill star
               Image("star") // Empty star
               Image("star") // Empty star

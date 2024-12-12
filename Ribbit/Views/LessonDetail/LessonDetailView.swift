@@ -7,6 +7,7 @@
 import SwiftUI
 
 struct LessonDetailView: View {
+    let moduleId: String
     let word: Word // Accept a `Word` as a parameter
     let lessonCount: Int
     let currentIndex: Int
@@ -16,12 +17,14 @@ struct LessonDetailView: View {
     @ObservedObject var viewModel: WordViewModel // Add this
 
     init(
+        moduleId: String,
         word: Word,
         lessonCount: Int,
         currentIndex: Int,
         nextWordAction: @escaping () -> Void,
         viewModel: WordViewModel // Pass viewModel
     ) {
+        self.moduleId = moduleId
         self.word = word
         self.lessonCount = lessonCount
         self.currentIndex = currentIndex
@@ -48,7 +51,7 @@ struct LessonDetailView: View {
                         WordView(audio: audio, word: word)
                             .padding(.bottom, 40)
 
-                        VisualizationView(audio: audio, word: word, correctVector: word.samplePitchVectors, userVector: audio.pitchValues)
+                      VisualizationView(audio: audio, word: word, correctVector: word.samplePitchVectors, userVector: audio.pitchValues, module: moduleId)
                             .padding(.bottom, 25)
 
                         // Updated ActionsView call

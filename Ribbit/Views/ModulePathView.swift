@@ -122,6 +122,9 @@ struct ModulePathView: View {
             .edgesIgnoringSafeArea(.all)
             .defaultScrollAnchor(.bottom)
           
+              
+            Spacer()
+          
            
         }
         .edgesIgnoringSafeArea(.all) // Extend the background to fill the entire screen
