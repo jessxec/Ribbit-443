@@ -35,9 +35,3 @@ struct HomeScreenP1: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity) // Ensure full screen frame
     }
 }
-
-struct HomeScreenP1_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeScreenP1()
-    }
-}

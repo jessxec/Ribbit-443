@@ -33,6 +33,7 @@ struct LessonView: View {
                         viewModel: viewModel, // Pass the viewModel here
                         startPracticeAction: { showPractice = true }, // Define the action
                         lessonId: lessonId,
+                        moduleId: moduleId,
                         showPractice: $showPractice // Pass the binding
                     )
                 } else {

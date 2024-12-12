@@ -101,24 +101,6 @@ func createModules() async throws {
               samplePitchVectors: [139.7, 148.5, 148.9, 152.6, 155.5, 149.7, 148.5, 148.9, 149.2, 150.2, 151.1, 152.2, 150.8, 149.6, 149.1, 149.3, 150.2, 150.0, 151.0, 154.6],
               userPitchVectors: []
           ),
-          Word(
-              id: "word5",
-              pinyin: "yī",
-              word: "一",
-              translation: "One",
-              audioPath: "/audio/foundations/M1L1_yi1.wav",
-              starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
-              feedback: Feedback(
-                  incorrectPitch: "Keep your pitch level and even.",
-                  incorrectPronunciation: "Ensure you’re using a flat tone without inflection."
-              ),
-              transcriptionCheck: Formants(F1: 250, F2: 2500),
-              voiceProcessingCheck: nil,
-              starValue: 5,
-              replayAllowed: true,
-              samplePitchVectors: [135.8, 145.4, 146.5, 147.7, 149.4, 150.9, 151.5, 150.3, 151.1, 151.3, 150.9, 151.5, 152.9, 152.6, 153.0, 152.9, 152.7, 150.4, 153.1, 149.2],
-              userPitchVectors: []
-          ),
         ]
       ),
       Lesson(
@@ -538,10 +520,10 @@ func createModules() async throws {
         words: [
           Word(
               id: "word1",
-              pinyin: "jiā",
-              word: "家",
-              translation: "home",
-              audioPath: "/audio/foundations/M2L1_ai4.wav",
+              pinyin: "fēi jī",
+              word: "飞机",
+              translation: "airplane",
+              audioPath: "/audio/foundations/M2L2_fei1ji1.wav",
               starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
               feedback: Feedback(
                   incorrectPitch: "Keep your pitch level and even.",
@@ -551,15 +533,15 @@ func createModules() async throws {
               voiceProcessingCheck: nil,
               starValue: 5,
               replayAllowed: true,
-              samplePitchVectors: [142.8, 146.4, 148.7, 151.4, 149.4, 152.0, 153.3, 152.5, 149.5, 149.4, 150.4, 150.9, 150.4, 149.5, 149.5, 149.4, 150.2, 149.9, 151.5, 153.3],
+              samplePitchVectors: [108.6,105.9,106.1,106.9,107.0,107.1,108.0,107.9,108.2,108.0,107.9,108.4,108.9,107.5,106.5,104.6,110.0,106.9,108.4,108.2,105.6,107.6,108.0,107.7,107.3,107.1,107.1,107.3,107.8,107.6,107.1,107.4,107.7,107.5,107.4,108.2,109.6,115.7,110.9,113.5],
               userPitchVectors: []
           ),
           Word(
               id: "word2",
-              pinyin: "yè",
-              word: "夜",
-              translation: "night",
-              audioPath: "/audio/foundations/M2L1_bei3.wav",
+              pinyin: "lái zì",
+              word: "来自",
+              translation: "Come from",
+              audioPath: "/audio/foundations/M2L2_lai2zi4.wav",
               starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
               feedback: Feedback(
                   incorrectPitch: "Keep your pitch level and even.",
@@ -569,61 +551,7 @@ func createModules() async throws {
               voiceProcessingCheck: nil,
               starValue: 5,
               replayAllowed: true,
-              samplePitchVectors: [149.1, 148.5, 148.5, 148.2, 147.8, 148.2, 149.0, 150.0, 150.7, 151.3, 151.3, 150.9, 150.3, 149.9, 149.6, 149.3, 149.6, 150.8, 152.0, 155.4],
-              userPitchVectors: []
-          ),
-          Word(
-              id: "word3",
-              pinyin: "yóu",
-              word: "油",
-              translation: "oil",
-              audioPath: "/audio/foundations/M2L1_hai3.wav",
-              starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
-              feedback: Feedback(
-                  incorrectPitch: "Keep your pitch level and even.",
-                  incorrectPronunciation: "Ensure you’re using a flat tone without inflection."
-              ),
-              transcriptionCheck: Formants(F1: 773.4, F2: 1255.1),
-              voiceProcessingCheck: nil,
-              starValue: 5,
-              replayAllowed: true,
-              samplePitchVectors: [153.7, 152.5, 149.0, 148.3, 148.0, 148.2, 148.4, 149.2, 150.2, 151.1, 151.2, 150.2, 149.5, 149.7, 149.3, 149.6, 149.8, 148.8, 149.9, 153.3],
-              userPitchVectors: []
-          ),
-          Word(
-              id: "word4",
-              pinyin: "huā",
-              word: "花",
-              translation: "flower",
-              audioPath: "/audio/foundations/M2L1_bao1.wav",
-              starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
-              feedback: Feedback(
-                  incorrectPitch: "Keep your pitch level and even.",
-                  incorrectPronunciation: "Ensure you’re using a flat tone without inflection."
-              ),
-              transcriptionCheck: Formants(F1: 644.3, F2: 1564.2),
-              voiceProcessingCheck: nil,
-              starValue: 5,
-              replayAllowed: true,
-              samplePitchVectors: [139.7, 148.5, 148.9, 152.6, 155.5, 149.7, 148.5, 148.9, 149.2, 150.2, 151.1, 152.2, 150.8, 149.6, 149.1, 149.3, 150.2, 150.0, 151.0, 154.6],
-              userPitchVectors: []
-          ),
-          Word(
-              id: "word5",
-              pinyin: "guó",
-              word: "国",
-              translation: "country",
-              audioPath: "/audio/foundations/M2L1_kou3.wav",
-              starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
-              feedback: Feedback(
-                  incorrectPitch: "Keep your pitch level and even.",
-                  incorrectPronunciation: "Ensure you’re using a flat tone without inflection."
-              ),
-              transcriptionCheck: Formants(F1: 250, F2: 2500),
-              voiceProcessingCheck: nil,
-              starValue: 5,
-              replayAllowed: true,
-              samplePitchVectors: [135.8, 145.4, 146.5, 147.7, 149.4, 150.9, 151.5, 150.3, 151.1, 151.3, 150.9, 151.5, 152.9, 152.6, 153.0, 152.9, 152.7, 150.4, 153.1, 149.2],
+              samplePitchVectors: [112.3,92.2,93.2,90.4,87.4,86.4,86.0,87.3,87.5,87.5,88.8,88.6,88.3,89.8,91.0,92.4,94.1,98.0,94.3,94.2,128.2,123.9,121.4,121.7,121.7,121.4,120.9,120.1,119.1,117.8,116.2,114.5,111.9,108.9,105.6,101.9,97.9,93.2,89.2,85.6],
               userPitchVectors: []
           )
         ]
@@ -744,12 +672,12 @@ func createModules() async throws {
     lessons: [
       Lesson(
         id: "lesson1",
-        title: "Introduction to Complex Vowels",
+        title: "Initial Consonants I.",
         lessonOrder: 1,
         totalStarsAvailable: 25,
         content: [
-          "Complex vowels in Mandarin combine two vowel sounds and often require smooth transitions between them. The vowels 'ai' (as in 爱, ài - love) and 'ei' (as in 北, běi - north) are diphthongs, meaning the tongue moves from one position to another within the same syllable.",
-          "The key to pronouncing these diphthongs correctly is to maintain the tone throughout. For example, in 'ai,' the sound begins with 'a' and glides into 'i.' Practice with words like “海” (hǎi - sea) to ensure your tone remains steady. Similarly, 'ao' and 'ou' involve gliding from 'a' to 'o' or 'o' to 'u.' These sounds appear often in airport-related vocabulary."
+          "In this lesson, you'll learn four key initial consonants: B, P, M, and F. These sounds are crucial for forming words related to drinks and snacks in a cafe. Practice distinguishing between the unaspirated and aspirated pairs (B and P) and focus on the correct articulation of M and F.",
+          "B (bō): Unaspirated; lips come together, no strong burst of air.\n P (pō): Aspirated; lips come together, followed by a strong puff of air. \n M (mō): Nasal sound; lips come together, air flows through the nose. \n F (fō): Made by bringing the upper teeth close to the lower lip."
         ],
         words: [
           Word(
@@ -846,12 +774,12 @@ func createModules() async throws {
       ),
       Lesson(
         id: "lesson2",
-        title: "Advanced Complex Vowels",
+        title: "Initial Consonants II.",
         lessonOrder: 1,
         totalStarsAvailable: 25,
         content: [
-          "This lesson introduces diphthongs that include 'i' or 'u' as initial sounds. For example, 'ia' (as in 家, jiā - home) starts with 'i' and glides into 'a.' Words like '夜' (yè - night) and '油' (yóu - oil) use similar transitions with 'ie' and 'iu.'",
-          "For ua' and 'uo,' the initial 'u' sound is rounded and distinct. Words like '花' (huā - flower) and '国' (guó - country) demonstrate how to move seamlessly from 'u' to the following vowel. Remember to emphasize tone while practicing these sounds, as the tone must remain clear even during the transition."
+          "This lesson focuses on the tongue-tip consonants T, D, N, and L, often used in common cafe words. Learn how to position your tongue for clear and precise pronunciation.",
+          "T (tā): Aspirated; tongue lightly touches the roof of the mouth. \n D (dā): Unaspirated; similar to T but without a burst of air. \n N (nā): Nasal; tongue touches the roof, air flows through the nose. \n L (lā): Tongue-tip sound; tongue lightly touches the roof of the mouth."
         ],
         words: [
           Word(
@@ -948,12 +876,12 @@ func createModules() async throws {
       ),
       Lesson(
         id: "lesson3",
-        title: "Complex Finals with Nasals",
+        title: "Sizzling Snacks and Steamy Sounds",
         lessonOrder: 1,
         totalStarsAvailable: 25,
         content: [
-          "Mandarin complex vowels often combine with nasal endings like 'n' or 'ng.' For example, 'ian' (as in 电, diàn - electricity) and 'iang' (as in 强, qiáng - strong) require careful nasalization at the end of the syllable. The tongue should briefly touch the roof of the mouth for 'n' or glide towards the back for 'ng.'",
-          "Similarly, 'uan' (as in 管, guǎn - to manage) and 'uang' (as in 光, guāng - light) combine the rounded 'u' with nasal finals. Words like these are common in travel-related contexts, such as asking about electricity or managing luggage. Practice with clear transitions and consistent tone."
+          "Discover sibilant consonants, commonly found in Chinese words related to the cafe setting. This lesson covers Z, C, S, and their retroflex counterparts Zh, Ch, Sh. These sounds can be challenging but are essential for accurate pronunciation.",
+          "Let's explore some important Chinese consonant sounds. Z (zī) is unaspirated, where the tongue touches the upper teeth, while C (cī) is aspirated, similar to Z but with a burst of air. S (sī) creates a hissing sound, with the tongue close to the upper teeth. For retroflex sounds, Zh (zhī) requires the tongue to curl back slightly, Ch (chī) adds aspiration with a burst of air, and Sh (shī) is a non-aspirated retroflex with the tongue curled back. Mastering these distinctions is key to clear and accurate pronunciation in Chinese."
         ],
         words: [
           Word(
@@ -1062,12 +990,12 @@ func createModules() async throws {
     lessons: [
       Lesson(
         id: "lesson1",
-        title: "Introduction to Complex Vowels",
+        title: "Vowel Harmony I",
         lessonOrder: 1,
         totalStarsAvailable: 25,
         content: [
-          "Complex vowels in Mandarin combine two vowel sounds and often require smooth transitions between them. The vowels 'ai' (as in 爱, ài - love) and 'ei' (as in 北, běi - north) are diphthongs, meaning the tongue moves from one position to another within the same syllable.",
-          "The key to pronouncing these diphthongs correctly is to maintain the tone throughout. For example, in 'ai,' the sound begins with 'a' and glides into 'i.' Practice with words like “海” (hǎi - sea) to ensure your tone remains steady. Similarly, 'ao' and 'ou' involve gliding from 'a' to 'o' or 'o' to 'u.' These sounds appear often in airport-related vocabulary."
+          "This lesson introduces the basics of vowel harmony in Chinese finals. You will learn how the sounds of a, o, and e interact within syllables and how their articulation changes depending on the tone and surrounding sounds. Explore beach-related vocabulary to practice vowel harmony in real words.",
+          "A (ā): Open and bright sound; tongue is low and relaxed.\n O (ō): Rounded and back vowel; lips form a circular shape. \n E (ē): Mid-vowel; tongue is slightly raised, with a neutral lip position."
         ],
         words: [
           Word(
@@ -1164,12 +1092,12 @@ func createModules() async throws {
       ),
       Lesson(
         id: "lesson2",
-        title: "Advanced Complex Vowels",
+        title: "Vowel Harmony II",
         lessonOrder: 1,
         totalStarsAvailable: 25,
         content: [
-          "This lesson introduces diphthongs that include 'i' or 'u' as initial sounds. For example, 'ia' (as in 家, jiā - home) starts with 'i' and glides into 'a.' Words like '夜' (yè - night) and '油' (yóu - oil) use similar transitions with 'ie' and 'iu.'",
-          "For ua' and 'uo,' the initial 'u' sound is rounded and distinct. Words like '花' (huā - flower) and '国' (guó - country) demonstrate how to move seamlessly from 'u' to the following vowel. Remember to emphasize tone while practicing these sounds, as the tone must remain clear even during the transition."
+          "Building on the basics, this lesson covers the interaction of compound finals that involve i, u, and ü, often used in combination with other vowels. You'll also practice how these sounds adapt when paired with consonants.",
+          "I (ī): Front vowel; tongue is high and forward. \n U (ū): Back vowel; lips are rounded and tightly closed. \n Ü (ǖ): Similar to u but with a forward tongue position."
         ],
         words: [
           Word(
@@ -1266,7 +1194,7 @@ func createModules() async throws {
       ),
       Lesson(
         id: "lesson3",
-        title: "Complex Finals with Nasals",
+        title: "Tone Variation",
         lessonOrder: 1,
         totalStarsAvailable: 25,
         content: [

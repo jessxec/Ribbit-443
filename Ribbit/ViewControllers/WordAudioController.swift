@@ -204,7 +204,6 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
       print("Error initializing recorder: \(error.localizedDescription)")
     }
   }
-  
   func stopRecording(completion: @escaping (String) -> Void) {
       audioRecorder?.stop()
       status = .recordingStopped
@@ -217,6 +216,28 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
 
       guard !hasSentAPIRequest else {
           print("API call already in progress. Skipping duplicate.")
+          return
+      }
+
+      if word.samplePitchVectors.count > 20 {
+          // Call `process_two_characters` if there are more than 20 pitch values
+          sendTwoCharactersToAPI { result in
+              DispatchQueue.main.async {
+                  switch result {
+                  case .success(let response):
+                      print("Two-character processing results: \(response)")
+                      self.feedbackMessage = """
+                      Character 1 pitch values: \(response["character_1"] ?? [])
+                      Character 2 pitch values: \(response["character_2"] ?? [])
+                      """
+                                      
+                  case .failure(let error):
+                      print("Two-character processing error: \(error.localizedDescription)")
+                      self.feedbackMessage = "Failed to process two-character pitch analysis."
+                  }
+                  self.hasSentAPIRequest = false // Reset the flag
+              }
+          }
           return
       }
 
@@ -239,20 +260,20 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
                                       userPitchValues: self.pitchValues,
                                       correctValues: self.word.samplePitchVectors
                                   )
-
+                                  
                                   if self.collectedStars == 0 {
                                       // Add new stars only if they haven't been added yet
                                       self.collectedStars = newStars
                                       self.totalCollectedStars += newStars
                                   }
-
+                                  
                                   self.feedbackMessage = """
                                   \(response.feedback.average_feedback). Aim to keep the difference below 10. 
                                   
                                   Section feedback: 
                                   \(response.feedback.section_feedback.joined(separator: "\n"))
                                   """
-
+                                  
                                   self.playRecording() // Start playback immediately
                                   self.hasSentAPIRequest = false // Reset the flag
                               }
@@ -275,6 +296,9 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
           }
       }
   }
+
+
+
 
 
   func startRecording(for duration: TimeInterval, completion: @escaping (String) -> Void) {
@@ -399,6 +423,46 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
       }
       task.resume()
   }
+  
+  func sendTwoCharactersToAPI(completion: @escaping (Result<[String: [Double]], Error>) -> Void) {
+      let url = URL(string: "https://jacksun815.pythonanywhere.com/process_two_characters")!
+      var request = URLRequest(url: url)
+      request.httpMethod = "POST"
+      
+      let boundary = "Boundary-\(UUID().uuidString)"
+      request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+      
+      var data = Data()
+      data.append("--\(boundary)\r\n".data(using: .utf8)!)
+      data.append("Content-Disposition: form-data; name=\"audio\"; filename=\"\(urlForRecording.lastPathComponent)\"\r\n".data(using: .utf8)!)
+      data.append("Content-Type: audio/wav\r\n\r\n".data(using: .utf8)!)
+      data.append(try! Data(contentsOf: urlForRecording))
+      data.append("\r\n".data(using: .utf8)!)
+      data.append("--\(boundary)--\r\n".data(using: .utf8)!)
+      
+      request.httpBody = data
+      
+      let task = URLSession.shared.dataTask(with: request) { data, response, error in
+          if let error = error {
+              completion(.failure(error))
+              return
+          }
+          
+          guard let data = data else {
+              completion(.failure(NSError(domain: "No data", code: 0, userInfo: nil)))
+              return
+          }
+          
+          do {
+              let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: [Double]]
+              completion(.success(json ?? [:]))
+          } catch {
+              completion(.failure(error))
+          }
+      }
+      task.resume()
+  }
+
 
   
   
