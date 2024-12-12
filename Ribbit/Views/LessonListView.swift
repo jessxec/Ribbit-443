@@ -1,5 +1,5 @@
 //
-//  LessonView.swift
+//  LessonListView.swift
 //  Ribbit
 //
 //  Created by Tracy Yang on 10/29/24.

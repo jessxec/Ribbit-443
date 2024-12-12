@@ -71,6 +71,7 @@ struct BadgeDetailView: View {
                   Text("Date: \(completedDate, formatter: dateFormatter)")
                     .font(.subheadline)
                     .foregroundColor(.gray)
+                    .padding(.bottom, 30)
                 }
               }
             } else {

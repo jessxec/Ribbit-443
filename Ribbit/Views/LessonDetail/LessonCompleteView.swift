@@ -5,21 +5,6 @@
 //  Created by Jack Sun on 12/11/24.
 //
 
-//
-//  LessonCompleteView.swift
-//  Ribbit
-//
-//  Created by Jack Sun on 12/11/24.
-//
-
-import SwiftUI
-//
-//  LessonCompleteView.swift
-//  Ribbit
-//
-//  Created by Jack Sun on 12/11/24.
-//
-
 import SwiftUI
 
 struct LessonCompleteView: View {
@@ -37,6 +22,7 @@ struct LessonCompleteView: View {
                 .ignoresSafeArea()
 
             VStack {
+                Spacer()
                 Text("Congratulations!")
                     .font(.largeTitle)
                     .padding()
@@ -59,14 +45,50 @@ struct LessonCompleteView: View {
                     .padding()
                 }
 
-                NavigationLink(destination: LessonListView()) {
+                // Conditional NavigationLink
+                if moduleId == "foundationsIsland" {
+                    NavigationLink(destination: LessonListView()) {
+                        Text("Go Back")
+                            .padding()
+                            .background(Color(hex: "917FA2"))
+                            .foregroundColor(.white)
+                            .cornerRadius(12)
+                    }
+                } else if moduleId == "airportModule" {
+                    NavigationLink(destination: ThemedAirportLessonListView()) {
+                        Text("Go Back")
+                            .padding()
+                            .background(Color(hex: "917FA2"))
+                            .foregroundColor(.white)
+                            .cornerRadius(12)
+                    }
+                }else if moduleId == "cafeModule" {
+                  NavigationLink(destination: ThemedCafeLessonListView()) {
+                      Text("Go Back")
+                          .padding()
+                          .background(Color(hex: "917FA2"))
+                          .foregroundColor(.white)
+                          .cornerRadius(12)
+                  }
+              }else if moduleId == "beachModule" {
+                NavigationLink(destination: ThemedBeachLessonListView()) {
                     Text("Go Back")
                         .padding()
                         .background(Color(hex: "917FA2"))
                         .foregroundColor(.white)
                         .cornerRadius(12)
                 }
-                .padding()
+            }else if moduleId == "campingModule" {
+              NavigationLink(destination: ThemedCampingLessonListView()) {
+                  Text("Go Back")
+                      .padding()
+                      .background(Color(hex: "917FA2"))
+                      .foregroundColor(.white)
+                      .cornerRadius(12)
+              }
+          }
+
+                Spacer()
             }
             .padding()
         }
