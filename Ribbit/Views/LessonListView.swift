@@ -20,7 +20,7 @@ struct LessonListView: View {
                 ScrollView {
                     NavigationLink(destination: PinyinViewP1()) {
                         VStack(alignment: .center) {
-                            Image(systemName: "book.fill")
+                            Image("book")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 100, height: 100)
