@@ -54,68 +54,71 @@ struct ProfilePage: View {
                 .padding(.horizontal)
                 
                 // Accuracy Tracker Section
+              ScrollView{
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("Accuracy Tracker")
-                        .font(.title2)
-                        .padding(.leading, 25)
-                        .foregroundColor(Color(hex: "#554C5D"))
-                    
-                    // Chart Box with Box Shadow Effect
-                    AccuracyChartView()
-                        .frame(height: 200)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(
-                            RoundedRectangle(cornerRadius: 15)
-                                .fill(Color(hex: "FFFAF3"))
-                                .shadow(color: Color(hex: "917FA2"), radius: 10, x: 2, y: 10)
-                        )
-                        .padding(.horizontal, 20)
+                  Text("Accuracy Tracker")
+                    .font(.title2)
+                    .padding(.leading, 25)
+                    .foregroundColor(Color(hex: "#554C5D"))
+                  
+                  // Chart Box with Box Shadow Effect
+                  AccuracyChartView()
+                    .frame(height: 200)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(
+                      RoundedRectangle(cornerRadius: 15)
+                        .fill(Color(hex: "FFFAF3"))
+                        .shadow(color: Color(hex: "917FA2"), radius: 10, x: 2, y: 10)
+                    )
+                    .padding(.horizontal, 20)
                 }
                 .padding(.top)
-
+                
                 // Badges Section
-                VStack(alignment: .leading, spacing: 10) {
-                    HStack {
-                        Text("Badges")
-                            .font(.title2)
-                            .padding(.leading, 25)
-                            .foregroundColor(Color(hex: "#554C5D"))
-                        Spacer()
-                        NavigationLink(destination: BadgesPage(badgeService: BadgeService())) {
-                            Text("see more")
-                                .foregroundColor(Color(hex: "#554C5D"))
-                                .font(.subheadline)
-                                .underline() // Underline the text
-                                .padding(.trailing, 35)
-                        }
-                        .navigationBarBackButtonHidden(true)
+                VStack(alignment: .center, spacing: 10) {
+                  HStack {
+                    Text("Badges")
+                      .font(.title2)
+                      .padding(.leading, 25)
+                      .foregroundColor(Color(hex: "#554C5D"))
+                    Spacer()
+                    NavigationLink(destination: BadgesPage(badgeService: BadgeService())) {
+                      Text("see more")
+                        .foregroundColor(Color(hex: "#554C5D"))
+                        .font(.subheadline)
+                        .underline() // Underline the text
                     }
-                    
-                    // Horizontal Stack for badges with shadowed background
-                    if !viewModel.badges.isEmpty {
-                          HStack(spacing: 16) {
-                              ForEach(viewModel.badges.prefix(4), id: \.id) { badge in
-                                  BadgeView(badge: badge, badgeService: viewModel.badgeService)
-                                      .frame(width: 60, height: 60)
-                              }
-                          }
-                            .padding()
-                            .background(
-                                RoundedRectangle(cornerRadius: 15)
-                                    .fill(Color(hex: "FFFAF3"))
-                                    .shadow(color: Color(hex: "917FA2"), radius: 10, x: 2, y: 10)
-                            )
-                            .padding(.horizontal, 20)
-                    } else {
-                        // If no badges loaded or empty, show a loading state or fallback message
-                        Text("Loading badges...")
-                            .foregroundColor(.gray)
-                            .padding()
+                    .navigationBarBackButtonHidden(true)
+                    .padding(.trailing, 25) // Adjust the right padding for "see more"
+                  
+                  .padding(.horizontal) // Optional overall padding for the entire HStack
+                }
+                  
+                  // Horizontal Stack for badges with shadowed background
+                  if !viewModel.badges.isEmpty {
+                    HStack(spacing: 16) {
+                      ForEach(viewModel.badges.prefix(4), id: \.id) { badge in
+                        BadgeView(badge: badge, badgeService: viewModel.badgeService)
+                          .frame(width: 60, height: 60)
+                      }
                     }
+                    .padding()
+                    .background(
+                      RoundedRectangle(cornerRadius: 15)
+                        .fill(Color(hex: "FFFAF3"))
+                        .shadow(color: Color(hex: "917FA2"), radius: 10, x: 2, y: 10)
+                    )
+                    .padding(.horizontal, 20)
+                  } else {
+                    // If no badges loaded or empty, show a loading state or fallback message
+                    Text("Loading badges...")
+                      .foregroundColor(.gray)
+                      .padding()
+                  }
                 }
                 .padding(.top, 50)
-                
+              }
                 Spacer()
             }
             .navigationBarBackButtonHidden(true)

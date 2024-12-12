@@ -17,7 +17,7 @@ struct MainTabView: View {
     }
 
     var body: some View {
-        VStack {
+      VStack(spacing: 0) {
             // Content of the selected tab
             Group {
                 switch selectedTab {
@@ -34,7 +34,7 @@ struct MainTabView: View {
             // Custom Tab Bar
             ZStack {
                 // Image as the custom shape for the navbar
-                Image("Tabs/tabBackground") // Replace with your image name from Assets
+                Image("Tabs/tabBackground")
                     .resizable()
                     .scaledToFill() // Ensure it covers the whole space
                     .frame(height: 100) // Adjust the height of the navbar
@@ -50,10 +50,8 @@ struct MainTabView: View {
                     ) {
                         selectedTab = .home
                     }
-
-                    // Add a Spacer with a fixed width of 50 for 50px spacing
                     Spacer()
-                        .frame(width: 50)
+                          .frame(width: 80)
 
                     TabBarItem(
                         iconActive: "Tabs/Map/mapActive",
@@ -63,10 +61,8 @@ struct MainTabView: View {
                     ) {
                         selectedTab = .map
                     }
-
-                    // Add another Spacer with a fixed width of 50 for 50px spacing
                     Spacer()
-                        .frame(width: 50)
+                          .frame(width: 80)
 
                     TabBarItem(
                         iconActive: "Tabs/Profile/profileActive",
@@ -79,7 +75,7 @@ struct MainTabView: View {
                 }
             }
         }
-        .edgesIgnoringSafeArea(.vertical)
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
@@ -91,7 +87,7 @@ struct TabBarItem: View {
     let action: () -> Void
 
     var body: some View {
-        VStack(spacing: 4) {
+        VStack(spacing: 0) {
             // Dynamic Icon
             Image(isSelected ? iconActive : iconInactive)
             
@@ -109,6 +105,5 @@ struct TabBarItem: View {
         .onTapGesture {
             action()
         }
-        .frame(maxWidth: .infinity) // Make sure each item is evenly spread
     }
 }

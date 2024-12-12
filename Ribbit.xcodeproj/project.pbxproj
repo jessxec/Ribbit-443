@@ -26,6 +26,7 @@
 		4EB514F72D0ACD8000F3E833 /* Module5Lesson1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB514F62D0ACD7C00F3E833 /* Module5Lesson1View.swift */; };
 		4EB514F92D0ACD8D00F3E833 /* BeachLessonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB514F82D0ACD8900F3E833 /* BeachLessonList.swift */; };
 		4EB514FB2D0ACD9600F3E833 /* CampingLessonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB514FA2D0ACD9000F3E833 /* CampingLessonList.swift */; };
+		4EB5151D2D0AEF3C00F3E833 /* AirportLessonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB5151C2D0AEF3C00F3E833 /* AirportLessonListView.swift */; };
 		4EB874BC2D077F030002D0DA /* AirportLessonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB874BB2D077EFB0002D0DA /* AirportLessonListView.swift */; };
 		4EBFD0122CFCF61700856425 /* LessonContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBFD0112CFCF61000856425 /* LessonContentView.swift */; };
 		5D5BC88E2D05315300B4A5F3 /* BadgeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5BC8882D05315300B4A5F3 /* BadgeDetailView.swift */; };
@@ -121,6 +122,7 @@
 		4EB514F62D0ACD7C00F3E833 /* Module5Lesson1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module5Lesson1View.swift; sourceTree = "<group>"; };
 		4EB514F82D0ACD8900F3E833 /* BeachLessonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeachLessonList.swift; sourceTree = "<group>"; };
 		4EB514FA2D0ACD9000F3E833 /* CampingLessonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampingLessonList.swift; sourceTree = "<group>"; };
+		4EB5151C2D0AEF3C00F3E833 /* AirportLessonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportLessonListView.swift; sourceTree = "<group>"; };
 		4EB874BB2D077EFB0002D0DA /* AirportLessonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportLessonListView.swift; sourceTree = "<group>"; };
 		4EBFD0112CFCF61000856425 /* LessonContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonContentView.swift; sourceTree = "<group>"; };
 		5D5BC8882D05315300B4A5F3 /* BadgeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeDetailView.swift; sourceTree = "<group>"; };
@@ -236,7 +238,6 @@
 				4EB514DD2D0AC72E00F3E833 /* Module2Lesson3View.swift */,
 				4EB514DB2D0AC6CD00F3E833 /* Module2Lesson2View.swift */,
 				4EB514D92D0AC46700F3E833 /* Module2Lesson1View.swift */,
-				4EB874BB2D077EFB0002D0DA /* AirportLessonListView.swift */,
 			);
 			path = ModuleTwo;
 			sourceTree = "<group>";
@@ -370,6 +371,7 @@
 		A76F46A02CD03B5600182ABE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4EB5151C2D0AEF3C00F3E833 /* AirportLessonListView.swift */,
 				4EB874BB2D077EFB0002D0DA /* AirportLessonListView.swift */,
 				5D5BC8D82D0AE17300B4A5F3 /* ThemedLessonListView.swift */,
 				4EB514EB2D0ACD1F00F3E833 /* ModuleFive */,
@@ -621,6 +623,7 @@
 				4E5BF5EA2D049E1600F26B1D /* ThirdToneLessonView.swift in Sources */,
 				4EBFD0122CFCF61700856425 /* LessonContentView.swift in Sources */,
 				4E5BF5E62D049DC300F26B1D /* FirstToneLessonView.swift in Sources */,
+				4EB5151D2D0AEF3C00F3E833 /* AirportLessonListView.swift in Sources */,
 				CB93FC642CDC22B400377C95 /* AudioStatus.swift in Sources */,
 				5D5BC88E2D05315300B4A5F3 /* BadgeDetailView.swift in Sources */,
 				4EB514F12D0ACD4F00F3E833 /* Module4Lesson1View.swift in Sources */,
