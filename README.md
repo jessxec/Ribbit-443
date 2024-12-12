@@ -1,6 +1,12 @@
 # Ribbit: A Language Visualization App
 
-Ribbit is a language learning app designed to help users improve their pronunciation through **pitch contour visualization** and **real-time feedback**. The app leverages  speech recognition techniques, user-friendly visualizations, and a gamified learning experience to make language acquisition engaging and effective.
+Ribbit is a language learning app designed to help users improve their pronunciation through **pitch contour visualization** and **dynamic feedback**. The app leverages  speech recognition techniques, user-friendly visualizations, and a gamified learning experience to make learning Chinese engaging and effective.
+
+Contributors: Jessie Chen, Tracy Yang, Jack Sun, Jorge Urias
+
+---
+# Users
+Ribbit targets English-speaking learners of Chinese who are focused on improving their pronunciation rather than for users who are new to Chinese. These users likely already have a foundational understanding of Chinese vocabulary and grammar but struggle with mastering the tonal system and the subtleties of proper pronunciation. Ribbit addresses their needs by providing tailored practice with tones and intonation through English-based explanations and analogies. Our app is designed for motivated learners who seek to refine their spoken Chinese for effective communication, whether for personal, academic, or professional goals.
 
 ---
 
@@ -91,4 +97,19 @@ Ribbit is a language learning app designed to help users improve their pronuncia
   - `feedback`: Detailed feedback on pronunciation.
 
 ---
+## Testing
+In our project, we included two folders for testing purposes: **RibbitTests** and **RibbitUITests**. Those were the default folders when the project was first created. While these folders were set up to accommodate formal unit and UI tests, we opted for a more hands-on approach during development. Instead of writing automated tests, our team tested the app iteratively as we implemented its features. Each team member randomly navigated through the app, interacting with various components and functionality to ensure that everything looked and performed as intended (figma as reference for UI) after each commit (and throughout). During our user tests, we also tested for functionality by having the user navigate through the app. This informal testing process allowed us to identify and address issues in real time, contributing to a stable and user-friendly application.
 
+Additionally, one of the largest contributing factors for low coverage is also due to the View files. Since we were not required to test the View files, the coverage for these iles is generally low. Our app also relied on user audio tracking which may result in asynchronous wait times, so testing posed as a challenge. We did add safe guards for specific features. For example, we have a transcription service that tests that users are not only hitting the required pitches but that they are also saying the correct words. In addition, we also included print statements in the console to test different functionality including pitch values, files/ data being uploaded correctly. 
+
+---
+## Additional Notes
+This section is to inform users on potentional mishaps and design decisions when using this app.
+
+In the Views folder, there is another folder called Basics. All pages in this folder is hard coded because the modules and lessons follow another format. For maximum time efficiency, we decided that it was better to hard code this part. Some features such as the interactive table was left unimplemented because it was not considered as part of the MVP which gave us time to focus on other parts of the app. 
+
+Sometimes when clicking on an audio recording, there may be a delay of a few seconds. Please be patient. 
+
+Pitch inaccuracy: We do understand that our method of implementation for determining an "accurate" pitch range for users is subjected to errors/ loopholes. Pitch values for native speakers vary and we tried to account for that when we determined an acceptable pitch range. While we did try to place as many safeguards and account for tone variability for different users, it is not extensive given our timeframe and scope of the project. 
+
+When multiple users are building the app, modules may not show up for all users. This is because everytime you build the app, it populates firebase and gets rid of fields. This may only occur if you are modifying the code but commenting out the piece of code in the RibbitApp.swift file that populates the database should solve this issue.
