@@ -57,7 +57,7 @@ struct ThemedCafeLessonListView: View {
             // Difficulty Rating
             HStack {
               Text("Difficulty:")
-                .foregroundColor(.lightTeal)
+                .foregroundColor(.darkRed)
               Image("star") // Fill star
               Image("starOff") // Empty star
               Image("starOff") // Empty star

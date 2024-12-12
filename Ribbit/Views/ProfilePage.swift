@@ -15,18 +15,13 @@ struct ProfilePage: View {
         _viewModel = StateObject(wrappedValue: BadgeViewModel(badgeService: badgeService))
     }
     
-    let columns = [
-        GridItem(.adaptive(minimum: 100), spacing: 16)
-    ]
-    
     var body: some View {
-  
         NavigationView {
             VStack {
                 // Profile Header
                 ProfileHeaderSection()
                 
-                // Streak and user name
+                // Streak and username section
                 HStack {
                     VStack(alignment: .leading) {
                         Text("Connor")
@@ -39,7 +34,9 @@ struct ProfilePage: View {
                     }
                     .padding(.leading)
                     .padding(.top, 15)
+                    
                     Spacer()
+                    
                     HStack {
                         Image(systemName: "flame.fill")
                             .foregroundColor(.orange)
@@ -51,85 +48,83 @@ struct ProfilePage: View {
                     .padding(8)
                     .background(RoundedRectangle(cornerRadius: 10).stroke(Color(hex: "917FA2"), lineWidth: 3))
                 }
-                .padding(.horizontal)
+                .padding(.horizontal, 30)
                 
-                // Accuracy Tracker Section
-              ScrollView{
-                VStack(alignment: .leading, spacing: 10) {
-                  Text("Accuracy Tracker")
-                    .font(.title2)
-                    .padding(.leading, 25)
-                    .foregroundColor(Color(hex: "#554C5D"))
-                  
-                  // Chart Box with Box Shadow Effect
-                  AccuracyChartView()
-                    .frame(height: 200)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(
-                      RoundedRectangle(cornerRadius: 15)
-                        .fill(Color(hex: "FFFAF3"))
-                        .shadow(color: Color(hex: "917FA2"), radius: 10, x: 2, y: 10)
-                    )
-                    .padding(.horizontal, 20)
+                // Scrollable content
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 10) {
+                        // Accuracy Tracker Section
+                        Text("Accuracy Tracker")
+                            .font(.title2)
+                            .padding(.leading, 40)
+                            .foregroundColor(Color(hex: "#554C5D"))
+                        
+                        AccuracyChartView()
+                            .frame(height: 180)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(
+                                RoundedRectangle(cornerRadius: 15)
+                                    .fill(Color(hex: "FFFAF3"))
+                                    .shadow(color: Color(hex: "917FA2"), radius: 10, x: 2, y: 10)
+                            )
+                            .padding(.horizontal, 40)
+                            .padding(.bottom, 15)
+                        
+                        // Badges Section
+                        VStack(alignment: .center, spacing: 10) {
+                            HStack {
+                                Text("Badges")
+                                    .font(.title2)
+                                    .padding(.leading, 45)
+                                    .foregroundColor(Color(hex: "#554C5D"))
+                                Spacer()
+                                NavigationLink(destination: BadgesPage(badgeService: BadgeService())) {
+                                    Text("see more")
+                                        .foregroundColor(Color(hex: "#554C5D"))
+                                        .font(.subheadline)
+                                        .underline()
+                                        .padding(.trailing, 25)
+                                }
+                                .padding(.trailing, 25)
+                            }
+                            
+                            // Badge grid or loading state
+                            if !viewModel.badges.isEmpty {
+                                HStack(spacing: 16) {
+                                    ForEach(viewModel.badges.prefix(4), id: \.id) { badge in
+                                        BadgeView(badge: badge, badgeService: viewModel.badgeService)
+                                            .frame(width: 60, height: 60)
+                                    }
+                                }
+                                .padding()
+                                .background(
+                                    RoundedRectangle(cornerRadius: 15)
+                                        .fill(Color(hex: "FFFAF3"))
+                                        .shadow(color: Color(hex: "917FA2"), radius: 10, x: 2, y: 10)
+                                )
+                                .padding(.horizontal, 20)
+                            } else {
+                                Text("Loading badges...")
+                                    .foregroundColor(.gray)
+                                    .padding()
+                            }
+                        }
+                    }
+                    .padding(.top)
                 }
-                .padding(.top)
+                .frame(maxHeight: .infinity) // Ensure ScrollView takes full height
                 
-                // Badges Section
-                VStack(alignment: .center, spacing: 10) {
-                  HStack {
-                    Text("Badges")
-                      .font(.title2)
-                      .padding(.leading, 25)
-                      .foregroundColor(Color(hex: "#554C5D"))
-                    Spacer()
-                    NavigationLink(destination: BadgesPage(badgeService: BadgeService())) {
-                      Text("see more")
-                        .foregroundColor(Color(hex: "#554C5D"))
-                        .font(.subheadline)
-                        .underline() // Underline the text
-                    }
-                    .navigationBarBackButtonHidden(true)
-                    .padding(.trailing, 25) // Adjust the right padding for "see more"
-                  
-                  .padding(.horizontal) // Optional overall padding for the entire HStack
-                }
-                  
-                  // Horizontal Stack for badges with shadowed background
-                  if !viewModel.badges.isEmpty {
-                    HStack(spacing: 16) {
-                      ForEach(viewModel.badges.prefix(4), id: \.id) { badge in
-                        BadgeView(badge: badge, badgeService: viewModel.badgeService)
-                          .frame(width: 60, height: 60)
-                      }
-                    }
-                    .padding()
-                    .background(
-                      RoundedRectangle(cornerRadius: 15)
-                        .fill(Color(hex: "FFFAF3"))
-                        .shadow(color: Color(hex: "917FA2"), radius: 10, x: 2, y: 10)
-                    )
-                    .padding(.horizontal, 20)
-                  } else {
-                    // If no badges loaded or empty, show a loading state or fallback message
-                    Text("Loading badges...")
-                      .foregroundColor(.gray)
-                      .padding()
-                  }
-                }
-                .padding(.top, 50)
-              }
-                Spacer()
+                Spacer() // Push ScrollView content to fill the remaining space
             }
-            .navigationBarBackButtonHidden(true)
             .background(Color(hex: "FFFAF3"))
             .task {
                 await viewModel.loadBadges()
             }
         }
-        .navigationBarBackButtonHidden(true)
     }
 }
+
 
 struct BadgeView: View {
   let badge: Badge
@@ -187,7 +182,7 @@ struct AccuracyChartView: View {
     }
 }
 
-struct HomeScreenP1_Previews: PreviewProvider {
+struct Profile_Previews: PreviewProvider {
     static var previews: some View {
         ProfilePage(badgeService: BadgeService())
     }

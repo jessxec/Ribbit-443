@@ -11,29 +11,82 @@ struct VisualizationView: View {
     let word: Word
     var correctVector: [Double]
     var userVector: [Double]?
+    let module: String
+  
     @State private var highlightedStarsCount: Int = 0 // Track highlighted stars
 
     var body: some View {
         ZStack {
             Rectangle()
                 .frame(width: 300, height: 200)
-                .foregroundColor(Color(red: 94 / 255, green: 202 / 255, blue: 206 / 255)
-                    .opacity(0.15))
+                .foregroundColor(backgroundColor
+                    .opacity(0.30))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(audio.playingUserAudio ? borderColor : Color.white, lineWidth: 5)
                 )
 
-            LineGraph(dataPoints: correctVector)
+          LineGraph(dataPoints: correctVector, color: lineColor)
                 .frame(width: 280, height: 180)
 
-            AnimatedGraph(dataPoints: audio.playingUserAudio ? (userVector ?? correctVector) : correctVector, progress: $audio.animationProgress, userAudio: audio.playingUserAudio)
+          AnimatedGraph(dataPoints: audio.playingUserAudio ? (userVector ?? correctVector) : correctVector, sprite: spriteImg, progress: $audio.animationProgress, userAudio: audio.playingUserAudio)
                 .frame(width: 280, height: 180)
 
             DrawStars(dataPoints: correctVector, userPitchValues: audio.pitchValues, highlightedStarsCount: $highlightedStarsCount)
                 .frame(width: 280, height: 180)
         }
     }
+  
+  
+  private var backgroundColor: Color {
+    if module == "foundationsIsland" {
+      return Color(red: 94 / 255, green: 202 / 255, blue: 206 / 255)
+    } else if module == "airportModule" {
+      return Color(red: 94 / 255, green: 202 / 255, blue: 206 / 255)
+    } else if module == "cafeModule" {
+      return .paleYellow
+    } else if module == "campingModule" {
+      return .paleGreen
+    } else if module == "beachModule" {
+      return .paleTeal
+    } else {
+      return Color(red: 94 / 255, green: 202 / 255, blue: 206 / 255)
+    }
+  }
+  
+  private var lineColor: Color {
+    if module == "foundationsIsland" {
+      return Color(red: 141 / 255, green: 126 / 255, blue: 215 / 255)
+    } else if module == "airportModule" {
+      return .darkBlue
+    } else if module == "cafeModule" {
+      return .darkRed
+    } else if module == "campingModule" {
+      return .darkGreen
+    } else if module == "beachModule" {
+      return .darkTeal
+    } else {
+      return Color(red: 141 / 255, green: 126 / 255, blue: 215 / 255)
+    }
+    
+  }
+
+  private var spriteImg: String {
+    if module == "foundationsIsland" {
+      return "lotus"
+    } else if module == "airportModule" {
+      return "luggage"
+    } else if module == "cafeModule" {
+      return "cake"
+    } else if module == "campingModule" {
+      return "dragonfly"
+    } else if module == "beachModule" {
+      return "shell"
+    } else {
+      return "lotus"
+    }
+    
+  }
 
     private var borderColor: Color {
         switch audio.collectedStars {
@@ -83,6 +136,7 @@ struct DrawStars: View {
 
 struct AnimatedGraph: View {
     var dataPoints: [Double]
+    var sprite: String
     @Binding var progress: Double // Use progress to control drawing
     var userAudio: Bool
   
@@ -119,9 +173,7 @@ struct AnimatedGraph: View {
           let yPosition = geometry.size.height * (0.5 + CGFloat(adjustedValue) / CGFloat(maxY - minY))
           
           // Draw the circle at the last point
-          Circle()
-            .fill(Color.red) // Change color as desired
-            .frame(width: 35, height: 35) // Circle size
+          Image("\(sprite)")
             .position(x: xPosition, y: yPosition) // Position it at the last point
         }
       }
@@ -130,6 +182,7 @@ struct AnimatedGraph: View {
 
 struct LineGraph: View {
     var dataPoints: [Double]
+    var color: Color
     
     var body: some View {
         GeometryReader { geometry in
@@ -152,7 +205,7 @@ struct LineGraph: View {
                     }
                 }
             }
-            .stroke(Color(red: 141 / 255, green: 126 / 255, blue: 215 / 255)
+            .stroke(color
                 .opacity(0.58), lineWidth: 15)
           
         }

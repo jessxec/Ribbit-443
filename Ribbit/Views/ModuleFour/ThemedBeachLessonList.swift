@@ -57,7 +57,7 @@ struct ThemedBeachLessonListView: View {
             // Difficulty Rating
             HStack {
               Text("Difficulty:")
-                .foregroundColor(.lightTeal)
+                .foregroundColor(.darkTeal)
               Image("star") // Fill star
               Image("star") // Empty star
               Image("starOff") // Empty star

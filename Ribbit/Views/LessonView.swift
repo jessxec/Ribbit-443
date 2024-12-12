@@ -18,6 +18,7 @@ struct LessonView: View {
             if showPractice {
                 if let word = viewModel.currentWord {
                     LessonDetailView(
+                        moduleId: moduleId,
                         word: word,
                         lessonCount: viewModel.words.count,
                         currentIndex: viewModel.currentIndex,
