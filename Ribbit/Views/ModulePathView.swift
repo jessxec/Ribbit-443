@@ -48,7 +48,7 @@ struct ModulePathView: View {
                 .padding(.bottom, 220)
                 .padding(.top, 50)
                 .position(x: UIScreen.main.bounds.width/2 + 60, y: 840)
-                NavigationLink(destination: AirportLessonListView()) {
+                NavigationLink(destination: ThemedLessonListView()) {
                     Text("Airport")
                         .font(.system(size: 18, weight: .medium))
                         .foregroundColor(.mainDark)
