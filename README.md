@@ -104,12 +104,18 @@ Additionally, one of the largest contributing factors for low coverage is also d
 
 ---
 ## Additional Notes
-This section is to inform users on potentional mishaps and design decisions when using this app.
+This section is to inform users on potentional mishaps and design/ implementation decisions when using this app.
 
+### Views
 In the Views folder, there is another folder called Basics. All pages in this folder is hard coded because the modules and lessons follow another format. For maximum time efficiency, we decided that it was better to hard code this part. Some features such as the interactive table was left unimplemented because it was not considered as part of the MVP which gave us time to focus on other parts of the app. 
 
-Sometimes when clicking on an audio recording, there may be a delay of a few seconds. Please be patient. 
+On the profile page, there is a section called accuracy tracker. This shows the user's accurracy for each tone based on the modules/ lessons that the user has completed. This feature is designed to give users insight into their performance and progress in mastering Chinese tones. However, the accuracy values are currently hard-coded, as we did not implement backend integration or dynamic data tracking in the interest of time. The streaks values are also harded for the same reasons but theoretically, it keeps track of the days a user was active/ using the app. The gear icon on the profile header is just an image and doesn't actually take you anywhere. However, that is where FAQs and other settings are but again due to the interest of time, we didn't implement this feature.
 
-Pitch inaccuracy: We do understand that our method of implementation for determining an "accurate" pitch range for users is subjected to errors/ loopholes. Pitch values for native speakers vary and we tried to account for that when we determined an acceptable pitch range. While we did try to place as many safeguards and account for tone variability for different users, it is not extensive given our timeframe and scope of the project. 
+### Pitch inaccuracy
+We do understand that our method of implementation for determining an "accurate" pitch range for users is subjected to errors/ loopholes. Pitch values for native speakers vary and we tried to account for that when we determined an acceptable pitch range. While we did try to place as many safeguards and account for tone variability for different users, it is not extensive given our timeframe and scope of the project. 
 
+
+### Potential loading problems
 When multiple users are building the app, modules may not show up for all users. This is because everytime you build the app, it populates firebase and gets rid of fields. This may only occur if you are modifying the code but commenting out the piece of code in the RibbitApp.swift file that populates the database should solve this issue.
+
+Sometimes when clicking on an audio recording, there may be a delay of a few seconds. Please be patient. 
