@@ -16,14 +16,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         FirebaseApp.configure()
     
     // Comment out when updating firebase for populating Modules
-//        Task {
-//          do {
-//             try await createModules()
-//           }
-//           catch {
-//            print("Error")
-//           }
-//        }
+        Task {
+          do {
+             try await createModules()
+           }
+           catch {
+            print("Error")
+           }
+        }
     // Comment out when updating firebase for populating Badges
 //    Task {
 //        try await createBadges()
