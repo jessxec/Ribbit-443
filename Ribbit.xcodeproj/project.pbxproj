@@ -27,6 +27,7 @@
 		4EB514F92D0ACD8D00F3E833 /* ThemedBeachLessonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB514F82D0ACD8900F3E833 /* ThemedBeachLessonList.swift */; };
 		4EB514FB2D0ACD9600F3E833 /* ThemedCampingLessonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB514FA2D0ACD9000F3E833 /* ThemedCampingLessonList.swift */; };
 		4EB5151D2D0AEF3C00F3E833 /* AirportLessonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB5151C2D0AEF3C00F3E833 /* AirportLessonListView.swift */; };
+		4EB515802D0B808900F3E833 /* audio_analysis_api.py in Resources */ = {isa = PBXBuildFile; fileRef = 4EB5157F2D0B808900F3E833 /* audio_analysis_api.py */; };
 		4EB874BC2D077F030002D0DA /* AirportLessonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB874BB2D077EFB0002D0DA /* AirportLessonListView.swift */; };
 		4EBFD0122CFCF61700856425 /* LessonContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EBFD0112CFCF61000856425 /* LessonContentView.swift */; };
 		5D5BC88E2D05315300B4A5F3 /* BadgeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5BC8882D05315300B4A5F3 /* BadgeDetailView.swift */; };
@@ -123,6 +124,7 @@
 		4EB514F82D0ACD8900F3E833 /* ThemedBeachLessonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedBeachLessonList.swift; sourceTree = "<group>"; };
 		4EB514FA2D0ACD9000F3E833 /* ThemedCampingLessonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedCampingLessonList.swift; sourceTree = "<group>"; };
 		4EB5151C2D0AEF3C00F3E833 /* AirportLessonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportLessonListView.swift; sourceTree = "<group>"; };
+		4EB5157F2D0B808900F3E833 /* audio_analysis_api.py */ = {isa = PBXFileReference; lastKnownFileType = text.script.python; path = audio_analysis_api.py; sourceTree = "<group>"; };
 		4EB874BB2D077EFB0002D0DA /* AirportLessonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportLessonListView.swift; sourceTree = "<group>"; };
 		4EBFD0112CFCF61000856425 /* LessonContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonContentView.swift; sourceTree = "<group>"; };
 		5D5BC8882D05315300B4A5F3 /* BadgeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeDetailView.swift; sourceTree = "<group>"; };
@@ -276,6 +278,14 @@
 			path = ModuleFive;
 			sourceTree = "<group>";
 		};
+		4EB5157E2D0B807400F3E833 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				4EB5157F2D0B808900F3E833 /* audio_analysis_api.py */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
 		5D5BC8692D05312A00B4A5F3 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -318,6 +328,7 @@
 		5D600CF92CD036A50068F75F /* Ribbit */ = {
 			isa = PBXGroup;
 			children = (
+				4EB5157E2D0B807400F3E833 /* resources */,
 				CB72A4E02CDD5A5F00644FB9 /* populateDatabase.swift */,
 				CB4A37BE2CD1F91C00D44467 /* Services */,
 				A76F46A12CD03B6000182ABE /* ViewModels */,
@@ -568,6 +579,7 @@
 			files = (
 				5DFEAE652CDD3DDD005DDACC /* tone4.mp3 in Resources */,
 				5DFEAE632CDD3DC0005DDACC /* tone3.mp3 in Resources */,
+				4EB515802D0B808900F3E833 /* audio_analysis_api.py in Resources */,
 				5DFEAE612CDD3DAA005DDACC /* tone2.mp3 in Resources */,
 				5DFEAE5F2CDD2BCB005DDACC /* tone1.mp3 in Resources */,
 				5D600D022CD036A70068F75F /* Preview Assets.xcassets in Resources */,
