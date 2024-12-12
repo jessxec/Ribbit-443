@@ -31,8 +31,10 @@ struct MainTabView: View {
             }
         }
       }
-      .toolbarBackground(.visible, for: .tabBar)
-      .toolbarBackground(Color.white, for: .tabBar)
-      .accentColor(Color(hex: "#917FA2"))
+      .onAppear() {
+        UITabBar.appearance().backgroundColor = UIColor(Color(hex: "F5F0EA"))
+      }
+      .tint(Color(hex: "#917FA2"))
+      .navigationBarBackButtonHidden(true)
     }
 }

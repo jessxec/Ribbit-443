@@ -74,6 +74,7 @@ struct ModulePathView: View {
                 }
                 .padding()
             }
+            .navigationBarBackButtonHidden(true)
         }
         .hideTabBar(false) // Ensure this works with your custom modifier
     }

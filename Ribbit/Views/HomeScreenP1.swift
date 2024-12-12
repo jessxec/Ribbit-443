@@ -36,17 +36,17 @@ struct HomeScreenP1: View {
                 .padding(.bottom, 20)
 
                 NavigationLink(destination: MainTabView()) {
-                    Text("Next")
-                        .font(.system(size: 18, weight: .medium))
-                        .foregroundColor(.white)
-                        .padding(.vertical, 12)
-                        .padding(.horizontal, 50)
-                        .background(Color(hex: "917FA2"))
-                        .cornerRadius(12)
+                      Text("Next")
+                          .font(.system(size: 18, weight: .medium))
+                          .foregroundColor(.white)
+                          .padding(.vertical, 12)
+                          .padding(.horizontal, 50)
+                          .background(Color(hex: "917FA2"))
+                          .cornerRadius(12)
                 }
-                .padding(.bottom, 220)
-                .padding(.top, 50)
-                .navigationBarBackButtonHidden(true) // This hides the back button
+                  .padding(.bottom, 220)
+                  .padding(.top, 50)
+                  .navigationBarBackButtonHidden(true)
             }
         }
     }
