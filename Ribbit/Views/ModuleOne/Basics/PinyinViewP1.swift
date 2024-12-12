@@ -36,14 +36,7 @@ struct PinyinViewP1: View {
                             .font(.system(size: 18))
                             .padding(.top, 20)
                             .foregroundColor(Color(hex: "#554C5D"))
-                        
-                        // Add the image here
-                        Image("pinyin1")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 300, height: 200)
-                            .padding(.vertical, 20)
-                    }
+                                            }
                     .padding(.horizontal, 30)
                 }
                 

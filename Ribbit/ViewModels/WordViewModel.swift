@@ -25,32 +25,43 @@ class WordViewModel: ObservableObject {
   // Update fetchWords in WordViewModel
   func fetchWords(forModuleId moduleId: String, lessonId: String) async {
       isLoading = true
+      defer { isLoading = false } // Ensure loading state is reset
+
       do {
           let module = try await moduleService.fetchModule(by: moduleId)
           if let lesson = module.lessons.first(where: { $0.id == lessonId }) {
               self.words = lesson.words
-              self.currentIndex = 0
-              self.currentWord = words.isEmpty ? nil : words[0]
-              self.lesson = lesson // Store the lesson data, including content
+              self.lesson = lesson // Store the lesson data
+              if !words.isEmpty {
+                  self.currentIndex = 0
+                  self.currentWord = words[0]
+              } else {
+                  self.currentWord = nil // No words available
+                  print("Lesson has no words.")
+              }
               print("Fetched lesson content: \(lesson.content)")
               print("Fetched words: \(words.map { $0.word })")
           } else {
               errorMessage = "Lesson not found"
+              print("Lesson with ID \(lessonId) not found in module \(moduleId).")
           }
       } catch {
           errorMessage = "Failed to fetch lesson: \(error.localizedDescription)"
-          print(errorMessage ?? "Unknown error")
+          print("Error fetching lesson: \(error.localizedDescription)")
       }
-      isLoading = false
   }
 
 
+
     // Advance to the next word in the lesson
-    func nextWord() {
-        guard currentIndex + 1 < words.count else { return }
-        currentIndex += 1
-        currentWord = words[currentIndex]
-        print("Current index: \(currentIndex), words count: \(words.count)")
-    }
+  func nextWord() {
+      guard currentIndex + 1 < words.count else {
+          print("No more words to display. Reached end of the lesson.")
+          return
+      }
+      currentIndex += 1
+      currentWord = words[currentIndex]
+      print("Moved to next word. Current index: \(currentIndex), words count: \(words.count)")
+  }
 
 }
