@@ -22,7 +22,7 @@ struct MainTabView: View {
             Group {
                 switch selectedTab {
                 case .home:
-                  ProgressPageView().navigationBarBackButtonHidden(true)
+                  ProgressPageView(value: 0).navigationBarBackButtonHidden(true)
                 case .map:
                   ModulePathView().navigationBarBackButtonHidden(true)
                 case .profile:
