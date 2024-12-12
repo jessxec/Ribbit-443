@@ -1,5 +1,5 @@
 //
-//  ThemedLessonListView.swift
+//  ThemedAirportLessonListView.swift
 //  Ribbit
 //
 //  Created by Jessie Chen on 12/12/24.
@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import FirebaseFirestore
 
-struct ThemedLessonListView: View {
+struct ThemedAirportLessonListView: View {
   
   @Environment(\.presentationMode) var presentationMode
   
@@ -121,8 +121,8 @@ struct ThemedLessonListView: View {
   }
 }
 
-struct ThemedLessonListView_Previews: PreviewProvider {
-    static var previews: some View {
-        ThemedLessonListView()
-    }
-}
+//struct ThemedAirportLessonListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ThemedAirportLessonListView()
+//    }
+//}

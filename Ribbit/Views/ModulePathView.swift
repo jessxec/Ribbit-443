@@ -48,7 +48,7 @@ struct ModulePathView: View {
                 .padding(.bottom, 220)
                 .padding(.top, 50)
                 .position(x: UIScreen.main.bounds.width/2 + 60, y: 840)
-                NavigationLink(destination: ThemedLessonListView()) {
+                NavigationLink(destination: ThemedAirportLessonListView()) {
                     Text("Airport")
                         .font(.system(size: 18, weight: .medium))
                         .foregroundColor(.mainDark)
@@ -66,7 +66,7 @@ struct ModulePathView: View {
                 .position(x: UIScreen.main.bounds.width/2 + 120, y: 610)
                 
                 
-                NavigationLink(destination: AirportLessonListView()) {
+                NavigationLink(destination: ThemedCampingLessonListView()) {
                     Text("Camping")
                         .font(.system(size: 18, weight: .medium))
                         .foregroundColor(.mainDark)
@@ -83,7 +83,7 @@ struct ModulePathView: View {
                 .padding(.top, 50)
                 .position(x: UIScreen.main.bounds.width/2 + 90 , y: 180)
                 
-                NavigationLink(destination: AirportLessonListView()) {
+                NavigationLink(destination: ThemedBeachLessonListView()) {
                     Text("Beach")
                         .font(.system(size: 18, weight: .medium))
                         .foregroundColor(.mainDark)
@@ -100,7 +100,7 @@ struct ModulePathView: View {
                 .padding(.top, 50)
                 .position(x: UIScreen.main.bounds.width/2 - 15 , y: 550)
 
-                NavigationLink(destination: AirportLessonListView()) {
+                NavigationLink(destination: ThemedCafeLessonListView()) {
                     Text("Cafe")
                         .font(.system(size: 18, weight: .medium))
                         .foregroundColor(.mainDark)
