@@ -22,14 +22,14 @@ struct MainTabView: View {
             Group {
                 switch selectedTab {
                 case .home:
-                    ProgressPageView()
+                  ProgressPageView().navigationBarBackButtonHidden(true)
                 case .map:
-                    ModulePathView()
+                  ModulePathView().navigationBarBackButtonHidden(true)
                 case .profile:
-                    ProfilePage(badgeService: BadgeService())
+                  ProfilePage(badgeService: BadgeService()).navigationBarBackButtonHidden(true)
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            
 
             // Custom Tab Bar
             ZStack {
@@ -38,10 +38,10 @@ struct MainTabView: View {
                     .resizable()
                     .scaledToFill() // Ensure it covers the whole space
                     .frame(height: 100) // Adjust the height of the navbar
-                    .edgesIgnoringSafeArea(.top) // Extend the image to the top edge
+                    
 
                 // Tab Bar Content
-                HStack(spacing: 40) { // Adjusted the spacing between tab items
+                HStack {
                     TabBarItem(
                         iconActive: "Tabs/Home/homeActive",
                         iconInactive: "Tabs/Home/home",
@@ -50,6 +50,10 @@ struct MainTabView: View {
                     ) {
                         selectedTab = .home
                     }
+
+                    // Add a Spacer with a fixed width of 50 for 50px spacing
+                    Spacer()
+                        .frame(width: 50)
 
                     TabBarItem(
                         iconActive: "Tabs/Map/mapActive",
@@ -60,6 +64,10 @@ struct MainTabView: View {
                         selectedTab = .map
                     }
 
+                    // Add another Spacer with a fixed width of 50 for 50px spacing
+                    Spacer()
+                        .frame(width: 50)
+
                     TabBarItem(
                         iconActive: "Tabs/Profile/profileActive",
                         iconInactive: "Tabs/Profile/profile",
@@ -69,10 +77,9 @@ struct MainTabView: View {
                         selectedTab = .profile
                     }
                 }
-                .padding(.horizontal, 20) // Added horizontal padding for better control
             }
         }
-        .edgesIgnoringSafeArea(.bottom)
+        .edgesIgnoringSafeArea(.vertical)
     }
 }
 
@@ -105,4 +112,3 @@ struct TabBarItem: View {
         .frame(maxWidth: .infinity) // Make sure each item is evenly spread
     }
 }
-
