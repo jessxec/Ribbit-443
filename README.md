@@ -33,7 +33,7 @@ Ribbit targets English-speaking learners of Chinese who are focused on improving
 
 ### Backend
 - **Firebase**: For storing user data, managing authentication, and tracking progress.
-- **Python**: Custom-built audio processing API for pitch analysis and feedback. Voice analysis done on Python Anywhere: https://www.pythonanywhere.com/user/JackSun815/shares/4d1ea9279ea74aef80b725b27afebc0b/
+- **Python**: Custom-built audio processing API for pitch analysis and feedback. Currently the file is can also be found under /resources/audio_analysis_api.py, and also hosted here on the cloud: https://www.pythonanywhere.com/user/JackSun815/shares/4d1ea9279ea74aef80b725b27afebc0b/
   
 
 ### Tools
