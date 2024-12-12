@@ -8,74 +8,29 @@
 import SwiftUI
 
 struct ModulePathView: View {
-    var body: some View {
-        VStack {
-            Text("Module Path")
-                .font(.title)
-                .padding()
+  @State private var scrollOffset: CGFloat = 0
+  
+  var body: some View {
+    ScrollView(.vertical, showsIndicators: false) {
+                VStack {
+                    // Spacer to push the image to the bottom initially
+                    Spacer()
 
-            // Example content
-            ScrollView {
-                VStack(spacing: 20) {
-                    NavigationLink(destination: LessonListView()) {
-                        Text("Foundations Island")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .foregroundColor(.white)
-                            .background(Color(hex: "#D2C0E2"))
-                            .cornerRadius(10)
-                    }
+                    // The long image
+                    Image("map") // Replace with your image name
+                        .resizable()
+                        .scaledToFill() // Make sure the image fills the available space while maintaining aspect ratio
+                        .frame(width: UIScreen.main.bounds.width) // Fill the full width of the screen
+                        .clipped() // Ensure any overflow is clipped
+                        .edgesIgnoringSafeArea(.bottom) // Let the image extend below the safe area if needed
 
-                    NavigationLink(destination: AirportLessonListView()) {
-                        Text("Cruising through the Airport")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color(hex: "#D2C0E2"))
-                            .cornerRadius(10)
-                    }
-
-                    NavigationLink(destination: Text("Cafe Module")) {
-                        Text("Ordering in the Cafe")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color(hex: "#D2C0E2"))
-                            .cornerRadius(10)
-                    }
-                  
-                    NavigationLink(destination: Text("Restaurant Module")) {
-                        Text("Dining at the Restaurant")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color(hex: "#D2C0E2"))
-                            .cornerRadius(10)
-                    }
-                  
-                    NavigationLink(destination: Text("Beach Module")) {
-                        Text("Relaing Day at the beach")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color(hex: "#D2C0E2"))
-                            .cornerRadius(10)
-                    }
-                  
-                    NavigationLink(destination: Text("Ocean Module")) {
-                        Text("Deep in the Ocean")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color(hex: "#D2C0E2"))
-                            .cornerRadius(10)
-                    }
                 }
-                .padding()
             }
-            .navigationBarBackButtonHidden(true)
-        }
-        .hideTabBar(false) // Ensure this works with your custom modifier
-    }
+            .edgesIgnoringSafeArea(.all) // // Ignore safe area to allow the image to extend fully
+  }
 }
+  struct ScrollableImageView_Previews: PreviewProvider {
+      static var previews: some View {
+          ModulePathView()
+      }
+  }

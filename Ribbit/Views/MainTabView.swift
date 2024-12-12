@@ -8,33 +8,101 @@
 import SwiftUI
 
 struct MainTabView: View {
+    @State private var selectedTab: Tab = .home
+
+    enum Tab {
+        case home
+        case map
+        case profile
+    }
 
     var body: some View {
-      Group {
-        TabView {
-          ModulePathView()
-            .tabItem {
-              Image(systemName: "map.fill")
-              Text("Modules")
+        VStack {
+            // Content of the selected tab
+            Group {
+                switch selectedTab {
+                case .home:
+                    ProgressPageView()
+                case .map:
+                    ModulePathView()
+                case .profile:
+                    ProfilePage(badgeService: BadgeService())
+                }
             }
-          
-          ProgressPageView()
-            .tabItem {
-              Image(systemName: "chart.bar.fill")
-              Text("Progress")
-            }
-          
-          ProfilePage(badgeService: BadgeService())
-            .tabItem {
-              Image(systemName: "person.fill")
-              Text("Profile")
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+
+            // Custom Tab Bar
+            ZStack {
+                // Image as the custom shape for the navbar
+                Image("Tabs/tabBackground") // Replace with your image name from Assets
+                    .resizable()
+                    .scaledToFill() // Ensure it covers the whole space
+                    .frame(height: 100) // Adjust the height of the navbar
+                    .edgesIgnoringSafeArea(.top) // Extend the image to the top edge
+
+                // Tab Bar Content
+                HStack(spacing: 40) { // Adjusted the spacing between tab items
+                    TabBarItem(
+                        iconActive: "Tabs/Home/homeActive",
+                        iconInactive: "Tabs/Home/home",
+                        title: "Home",
+                        isSelected: selectedTab == .home
+                    ) {
+                        selectedTab = .home
+                    }
+
+                    TabBarItem(
+                        iconActive: "Tabs/Map/mapActive",
+                        iconInactive: "Tabs/Map/map",
+                        title: "Map",
+                        isSelected: selectedTab == .map
+                    ) {
+                        selectedTab = .map
+                    }
+
+                    TabBarItem(
+                        iconActive: "Tabs/Profile/profileActive",
+                        iconInactive: "Tabs/Profile/profile",
+                        title: "Profile",
+                        isSelected: selectedTab == .profile
+                    ) {
+                        selectedTab = .profile
+                    }
+                }
+                .padding(.horizontal, 20) // Added horizontal padding for better control
             }
         }
-      }
-      .onAppear() {
-        UITabBar.appearance().backgroundColor = UIColor(Color(hex: "F5F0EA"))
-      }
-      .tint(Color(hex: "#917FA2"))
-      .navigationBarBackButtonHidden(true)
+        .edgesIgnoringSafeArea(.bottom)
     }
 }
+
+struct TabBarItem: View {
+    let iconActive: String
+    let iconInactive: String
+    let title: String
+    let isSelected: Bool
+    let action: () -> Void
+
+    var body: some View {
+        VStack(spacing: 4) {
+            // Dynamic Icon
+            Image(isSelected ? iconActive : iconInactive)
+            
+            // Tab Title
+            Text(title)
+                .font(.caption)
+                .foregroundColor(Color.mainDark)
+                .fontWeight(isSelected ? .bold : .regular)
+
+            // Line for selected tab
+            RoundedRectangle(cornerRadius: 1)
+                .fill(isSelected ? Color.mainDark : Color.clear)
+                .frame(width: 22, height: 2)
+        }
+        .onTapGesture {
+            action()
+        }
+        .frame(maxWidth: .infinity) // Make sure each item is evenly spread
+    }
+}
+
