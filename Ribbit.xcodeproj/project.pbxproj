@@ -36,6 +36,7 @@
 		5D5BC8932D05315300B4A5F3 /* BadgeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5BC8892D05315300B4A5F3 /* BadgeListView.swift */; };
 		5D5BC8952D05333D00B4A5F3 /* ProgressPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5BC8942D05333D00B4A5F3 /* ProgressPageView.swift */; };
 		5D5BC8972D073CFD00B4A5F3 /* HideTabBarViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5BC8962D073CF100B4A5F3 /* HideTabBarViewModifier.swift */; };
+		5D5BC8D92D0AE18200B4A5F3 /* ThemedLessonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5BC8D82D0AE17300B4A5F3 /* ThemedLessonListView.swift */; };
 		5D600CFB2CD036A50068F75F /* RibbitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600CFA2CD036A50068F75F /* RibbitApp.swift */; };
 		5D600CFD2CD036A50068F75F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D600CFC2CD036A50068F75F /* ContentView.swift */; };
 		5D600CFF2CD036A70068F75F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D600CFE2CD036A70068F75F /* Assets.xcassets */; };
@@ -130,6 +131,7 @@
 		5D5BC88D2D05315300B4A5F3 /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
 		5D5BC8942D05333D00B4A5F3 /* ProgressPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressPageView.swift; sourceTree = "<group>"; };
 		5D5BC8962D073CF100B4A5F3 /* HideTabBarViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideTabBarViewModifier.swift; sourceTree = "<group>"; };
+		5D5BC8D82D0AE17300B4A5F3 /* ThemedLessonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedLessonListView.swift; sourceTree = "<group>"; };
 		5D600CF72CD036A50068F75F /* Ribbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ribbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D600CFA2CD036A50068F75F /* RibbitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RibbitApp.swift; sourceTree = "<group>"; };
 		5D600CFC2CD036A50068F75F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -368,6 +370,8 @@
 		A76F46A02CD03B5600182ABE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4EB874BB2D077EFB0002D0DA /* AirportLessonListView.swift */,
+				5D5BC8D82D0AE17300B4A5F3 /* ThemedLessonListView.swift */,
 				4EB514EB2D0ACD1F00F3E833 /* ModuleFive */,
 				4EB514EA2D0ACD1400F3E833 /* ModuleFour */,
 				4EB514DF2D0AC7EB00F3E833 /* ModuleThree */,
@@ -613,6 +617,7 @@
 				4E5BF5EC2D049E2800F26B1D /* FourthToneLessonView.swift in Sources */,
 				4EB874BC2D077F030002D0DA /* AirportLessonListView.swift in Sources */,
 				A76F46AD2CD040B200182ABE /* Badge.swift in Sources */,
+				5D5BC8D92D0AE18200B4A5F3 /* ThemedLessonListView.swift in Sources */,
 				4E5BF5EA2D049E1600F26B1D /* ThirdToneLessonView.swift in Sources */,
 				4EBFD0122CFCF61700856425 /* LessonContentView.swift in Sources */,
 				4E5BF5E62D049DC300F26B1D /* FirstToneLessonView.swift in Sources */,

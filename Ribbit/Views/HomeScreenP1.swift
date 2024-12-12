@@ -11,43 +11,27 @@ import SwiftUI
 struct HomeScreenP1: View {
     var body: some View {
         ZStack {
-            Color(hex: "FFFAF3")
-                .ignoresSafeArea()
+            // Make sure the image scales to fill the entire screen
+            Image("welcome")
+                .resizable()
+                .scaledToFill()
+                .edgesIgnoringSafeArea(.all)
             
-            VStack(spacing: 30) {
-                Spacer()
-                
-                VStack(spacing: 10) {
-                    Text("Welcome to")
-                        .font(.title)
-                        .foregroundColor(Color(hex: "#554C5D"))
-                    
-                    Text("RIBBIT")
-                        .font(.system(size: 70, weight: .semibold))
-                        .foregroundColor(Color(hex: "917FA2"))
-                        .padding(.bottom, 10)
-                    
-                    Text("A language learning app that helps you visualize your pronunciation")
-                        .font(.system(size: 16))
-                        .foregroundColor(Color(hex: "554C5D"))
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, 30)
-                }
-                .padding(.bottom, 20)
-
-                NavigationLink(destination: MainTabView()) {
-                      Text("Next")
-                          .font(.system(size: 18, weight: .medium))
-                          .foregroundColor(.white)
-                          .padding(.vertical, 12)
-                          .padding(.horizontal, 50)
-                          .background(Color(hex: "917FA2"))
-                          .cornerRadius(12)
-                }
-                  .padding(.bottom, 220)
-                  .padding(.top, 50)
-                  .navigationBarBackButtonHidden(true)
+            // NavigationLink to go to the next screen
+            NavigationLink(destination: MainTabView()) {
+                Text("Next")
+                    .font(.system(size: 18, weight: .medium))
+                    .foregroundColor(.mainDark)
+                    .padding(.vertical, 15)
+                    .padding(.horizontal, 40)
+                    .background(.offWhite)
+                    .cornerRadius(12)
             }
+            .padding(.bottom, 220)
+            .padding(.top, 50)
+            .position(x: UIScreen.main.bounds.width / 2, y: 720)
+            .navigationBarBackButtonHidden(true)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity) // Ensure full screen frame
     }
 }
