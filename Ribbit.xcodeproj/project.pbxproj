@@ -14,6 +14,7 @@
 		4E90E30B2D52813400247D60 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 4E90E30A2D52813400247D60 /* FirebaseCore */; };
 		4E90E30D2D52813400247D60 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4E90E30C2D52813400247D60 /* FirebaseFirestore */; };
 		4E90E30F2D52813400247D60 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4E90E30E2D52813400247D60 /* FirebaseStorage */; };
+		4E9234142D5A46EE00919B96 /* VoiceCalibrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9234132D5A46E900919B96 /* VoiceCalibrationView.swift */; };
 		4EB514DA2D0AC47000F3E833 /* Module2Lesson1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB514D92D0AC46700F3E833 /* Module2Lesson1View.swift */; };
 		4EB514DC2D0AC6CF00F3E833 /* Module2Lesson2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB514DB2D0AC6CD00F3E833 /* Module2Lesson2View.swift */; };
 		4EB514DE2D0AC73400F3E833 /* Module2Lesson3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB514DD2D0AC72E00F3E833 /* Module2Lesson3View.swift */; };
@@ -111,6 +112,7 @@
 		4E5BF5E72D049DDA00F26B1D /* SecondToneLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondToneLessonView.swift; sourceTree = "<group>"; };
 		4E5BF5E92D049E1100F26B1D /* ThirdToneLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdToneLessonView.swift; sourceTree = "<group>"; };
 		4E5BF5EB2D049E2000F26B1D /* FourthToneLessonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthToneLessonView.swift; sourceTree = "<group>"; };
+		4E9234132D5A46E900919B96 /* VoiceCalibrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCalibrationView.swift; sourceTree = "<group>"; };
 		4EB514D92D0AC46700F3E833 /* Module2Lesson1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module2Lesson1View.swift; sourceTree = "<group>"; };
 		4EB514DB2D0AC6CD00F3E833 /* Module2Lesson2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module2Lesson2View.swift; sourceTree = "<group>"; };
 		4EB514DD2D0AC72E00F3E833 /* Module2Lesson3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module2Lesson3View.swift; sourceTree = "<group>"; };
@@ -389,6 +391,7 @@
 		A76F46A02CD03B5600182ABE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4E9234132D5A46E900919B96 /* VoiceCalibrationView.swift */,
 				4EB5151C2D0AEF3C00F3E833 /* AirportLessonListView.swift */,
 				4EB874BB2D077EFB0002D0DA /* AirportLessonListView.swift */,
 				4EB514EB2D0ACD1F00F3E833 /* ModuleFive */,
@@ -663,6 +666,7 @@
 				A77BB50F2CDBDE3A0060E5C3 /* HomeScreenP1.swift in Sources */,
 				4E5BF5E82D049DE000F26B1D /* SecondToneLessonView.swift in Sources */,
 				A735400E2CD69D4000EAE9FA /* PinyinTable.swift in Sources */,
+				4E9234142D5A46EE00919B96 /* VoiceCalibrationView.swift in Sources */,
 				A73540142CD6A4CD00EAE9FA /* PinyinViewP6.swift in Sources */,
 				CB72A4E12CDD5A6600644FB9 /* populateDatabase.swift in Sources */,
 				A76F46B32CD1D75900182ABE /* PinyinViewP1.swift in Sources */,

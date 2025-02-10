@@ -27,15 +27,17 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   @Published var collectedStars: Int = 0
   @Published var totalCollectedStars: Int = 0
   @Published var isPlaying: Bool = false
+  @Published var isCalibrating: Bool = false
+  @Published var f0Range: (low: Double, high: Double)?
 
   var hasSentAPIRequest = false // Flag to prevent multiple API calls
   var audioPlayer: AVAudioPlayer?
   var audioRecorder: AVAudioRecorder?
   var timer: Timer?
-  let word: Word
+  let word: Word?
   
   
-  init(word: Word) {
+  init(word: Word? = nil) {
     self.word = word
     super.init() // Call the superclass initializer
     setupAudioSession() // Setup audio player
@@ -63,23 +65,6 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
         }
       }
     }
-  }
-  
-  private func formantsValid(_ response: FormantsResponse) -> Bool {
-      let actualF1 = response.formants.F1
-      let actualF2 = response.formants.F2
-      let expectedF1 = word.transcriptionCheck.F1
-      let expectedF2 = word.transcriptionCheck.F2
-
-      let isF1Valid = abs(actualF1 - expectedF1) <= 300
-      let isF2Valid = abs(actualF2 - expectedF2) <= 500
-
-      print("Formant Analysis:")
-      print("Actual F1: \(actualF1), Expected F1: \(expectedF1), Difference: \(abs(actualF1 - expectedF1))")
-      print("Actual F2: \(actualF2), Expected F2: \(expectedF2), Difference: \(abs(actualF2 - expectedF2))")
-      print("F1 Valid: \(isF1Valid), F2 Valid: \(isF2Valid)")
-
-      return isF1Valid && isF2Valid
   }
 
   
@@ -131,6 +116,11 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   }
   
   func playRecording() {
+      guard let word = word else {
+          print("Error: No word provided.")
+          return
+      }
+      
       guard !isPlaying, let audioPlayer = try? AVAudioPlayer(contentsOf: urlForRecording) else {
           print("Audio is already playing or failed to initialize audio player.")
           return
@@ -139,13 +129,14 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
       self.audioPlayer = audioPlayer
       audioPlayer.delegate = self
       audioPlayer.play()
-      isPlaying = true // Set the flag to true
+      isPlaying = true
       status = .playing
       playingUserAudio = true
 
       // Reset and start animation
       animationProgress = 0.0
       startAnimation(duration: audioDuration)
+
       collectedStars = calculateHighlightedStars(userPitchValues: pitchValues, correctValues: word.samplePitchVectors)
   }
 
@@ -218,6 +209,12 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
           return
       }
 
+      guard let word = word else {
+          print("Error: No word provided.")
+          completion("No word data available.")
+          return
+      }
+
       guard !hasSentAPIRequest else {
           print("API call already in progress. Skipping duplicate.")
           return
@@ -234,7 +231,7 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
                       Character 1 pitch values: \(response["character_1"] ?? [])
                       Character 2 pitch values: \(response["character_2"] ?? [])
                       """
-                                      
+
                   case .failure(let error):
                       print("Two-character processing error: \(error.localizedDescription)")
                       self.feedbackMessage = "Failed to process two-character pitch analysis."
@@ -245,56 +242,35 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
           return
       }
 
-      hasSentAPIRequest = true // Mark the API request as in-progress
+      hasSentAPIRequest = true // Mark the API request as in progress
 
-      let formantReferences = (F1: word.transcriptionCheck.F1, F2: word.transcriptionCheck.F2)
-      sendFormantsToAPI(referenceFormants: formantReferences) { [weak self] result in
-          guard let self = self else { return }
+      sendPitchToAPI(samplePitch: word.samplePitchVectors) { pitchResult in
           DispatchQueue.main.async {
-              switch result {
-              case .success(let formants):
-                  if self.formantsValid(formants) {
-                      self.feedbackMessage = "" // Clear feedback for successful formant match
-                      self.sendPitchToAPI(samplePitch: self.word.samplePitchVectors) { pitchResult in
-                          switch pitchResult {
-                          case .success(let response):
-                              DispatchQueue.main.async {
-                                  self.pitchValues = response.pitch_values
-                                  let newStars = self.calculateHighlightedStars(
-                                      userPitchValues: self.pitchValues,
-                                      correctValues: self.word.samplePitchVectors
-                                  )
-                                  
-                                  if self.collectedStars == 0 {
-                                      // Add new stars only if they haven't been added yet
-                                      self.collectedStars = newStars
-                                      self.totalCollectedStars += newStars
-                                  }
-                                  
-                                  self.feedbackMessage = """
-                                  \(response.feedback.average_feedback). Aim to keep the difference below 10. 
-                                  
-                                  Section feedback: 
-                                  \(response.feedback.section_feedback.joined(separator: "\n"))
-                                  """
-                                  
-                                  self.playRecording() // Start playback immediately
-                                  self.hasSentAPIRequest = false // Reset the flag
-                              }
-                          case .failure(let error):
-                              print("Pitch API error: \(error.localizedDescription)")
-                              self.feedbackMessage = "Pitch analysis failed. Try again."
-                              self.hasSentAPIRequest = false // Reset the flag
-                          }
-                      }
-                  } else {
-                      // Show feedback to the user for invalid formants
-                      self.feedbackMessage = "Try again to reproduce the sound you hear."
-                      self.hasSentAPIRequest = false
+              switch pitchResult {
+              case .success(let response):
+                  self.pitchValues = response.pitch_values
+                  let newStars = self.calculateHighlightedStars(
+                      userPitchValues: self.pitchValues,
+                      correctValues: word.samplePitchVectors
+                  )
+
+                  if self.collectedStars == 0 {
+                      self.collectedStars = newStars
+                      self.totalCollectedStars += newStars
                   }
+
+                  self.feedbackMessage = """
+                  \(response.feedback.average_feedback). Aim to keep the difference below 10. 
+
+                  Section feedback: 
+                  \(response.feedback.section_feedback.joined(separator: "\n"))
+                  """
+
+                  self.playRecording() // Start playback immediately
+                  self.hasSentAPIRequest = false
               case .failure(let error):
-                  print("Formants API error: \(error.localizedDescription)")
-                  self.feedbackMessage = "Formant analysis failed. Try again."
+                  print("Pitch API error: \(error.localizedDescription)")
+                  self.feedbackMessage = "Pitch analysis failed. Try again."
                   self.hasSentAPIRequest = false
               }
           }
@@ -380,54 +356,6 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   }
   
   
-  func sendFormantsToAPI(referenceFormants: (F1: Double, F2: Double), completion: @escaping (Result<FormantsResponse, Error>) -> Void) {
-      let url = URL(string: "https://jacksun815.pythonanywhere.com/check_formants")!
-      var request = URLRequest(url: url)
-      request.httpMethod = "POST"
-      
-      let boundary = "Boundary-\(UUID().uuidString)"
-      request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-      
-      var data = Data()
-      data.append("--\(boundary)\r\n".data(using: .utf8)!)
-      data.append("Content-Disposition: form-data; name=\"audio\"; filename=\"\(urlForRecording.lastPathComponent)\"\r\n".data(using: .utf8)!)
-      data.append("Content-Type: audio/wav\r\n\r\n".data(using: .utf8)!)
-      data.append(try! Data(contentsOf: urlForRecording))
-      data.append("\r\n".data(using: .utf8)!)
-      
-      let referenceFormantsJSON = """
-      {"F1": \(referenceFormants.F1), "F2": \(referenceFormants.F2)}
-      """
-      data.append("--\(boundary)\r\n".data(using: .utf8)!)
-      data.append("Content-Disposition: form-data; name=\"reference_formants\"\r\n\r\n".data(using: .utf8)!)
-      data.append(referenceFormantsJSON.data(using: .utf8)!)
-      data.append("\r\n".data(using: .utf8)!)
-      data.append("--\(boundary)--\r\n".data(using: .utf8)!)
-      
-      request.httpBody = data
-      
-      let task = URLSession.shared.dataTask(with: request) { data, response, error in
-          if let error = error {
-              completion(.failure(error))
-              return
-          }
-          
-          guard let data = data else {
-              completion(.failure(NSError(domain: "No data", code: 0, userInfo: nil)))
-              return
-          }
-          
-          do {
-              let decoder = JSONDecoder()
-              let response = try decoder.decode(FormantsResponse.self, from: data)
-              completion(.success(response))
-          } catch {
-              completion(.failure(error))
-          }
-      }
-      task.resume()
-  }
-  
   func sendTwoCharactersToAPI(completion: @escaping (Result<[String: [Double]], Error>) -> Void) {
       let url = URL(string: "https://jacksun815.pythonanywhere.com/process_two_characters")!
       var request = URLRequest(url: url)
@@ -462,6 +390,94 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
               completion(.success(json ?? [:]))
           } catch {
               completion(.failure(error))
+          }
+      }
+      task.resume()
+  }
+  
+  // API Call for Voice Calibration 
+  struct F0Response: Codable {
+      let f0_low: Double
+      let f0_high: Double
+      let low_time: Double
+      let high_time: Double
+      let recommended_range: RecommendedRange
+
+      struct RecommendedRange: Codable {
+          let low: Double
+          let high: Double
+      }
+  }
+  func startVoiceCalibration() {
+      setupRecorder()
+      
+      if let recorder = audioRecorder, recorder.prepareToRecord() {
+          isCalibrating = true
+          recorder.record()
+          status = .recording
+      } else {
+          print("Recorder not ready for calibration.")
+      }
+  }
+
+  func stopVoiceCalibration() {
+      audioRecorder?.stop()
+      isCalibrating = false
+      status = .recordingStopped
+
+      guard FileManager.default.fileExists(atPath: urlForRecording.path) else {
+          print("Calibration file not found.")
+          return
+      }
+
+      uploadCalibrationAudio()
+  }
+  private func uploadCalibrationAudio() {
+      guard let audioData = try? Data(contentsOf: urlForRecording) else {
+          print("Failed to read recorded file")
+          return
+      }
+
+      let url = URL(string: "https://jacksun815.pythonanywhere.com/voice_calibration")!
+      var request = URLRequest(url: url)
+      request.httpMethod = "POST"
+      
+      let boundary = "Boundary-\(UUID().uuidString)"
+      request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+      
+      var data = Data()
+      data.append("--\(boundary)\r\n".data(using: .utf8)!)
+      data.append("Content-Disposition: form-data; name=\"audio\"; filename=\"recording.wav\"\r\n".data(using: .utf8)!)
+      data.append("Content-Type: audio/wav\r\n\r\n".data(using: .utf8)!)
+      data.append(audioData)
+      data.append("\r\n".data(using: .utf8)!)
+      data.append("--\(boundary)--\r\n".data(using: .utf8)!)
+      
+      request.httpBody = data
+
+      let task = URLSession.shared.dataTask(with: request) { data, response, error in
+          if let error = error {
+              print("Voice Calibration API error: \(error.localizedDescription)")
+              return
+          }
+
+          guard let data = data else {
+              print("No data received from calibration API.")
+              return
+          }
+
+          do {
+              let decoder = JSONDecoder()
+              let result = try decoder.decode(F0Response.self, from: data)
+              DispatchQueue.main.async {
+                  self.f0Range = (low: result.f0_low, high: result.f0_high)
+                  print("✅ Detected Pitch Range: \(self.f0Range!.low)Hz - \(self.f0Range!.high)Hz")
+              }
+          } catch {
+              print("❌ Error decoding F0 response: \(error.localizedDescription)")
+              if let jsonString = String(data: data, encoding: .utf8) {
+                  print("Received JSON: \(jsonString)") // Debugging: print the received JSON
+              }
           }
       }
       task.resume()
@@ -518,6 +534,7 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
     return count
   }
 }
+
       
     
     

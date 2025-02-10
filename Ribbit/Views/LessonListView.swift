@@ -39,6 +39,28 @@ struct LessonListView: View {
                         .cornerRadius(12)
                         .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color(hex: "#917FA2"), lineWidth: 3))
                     }
+                    NavigationLink(destination: VoiceCalibrationView()) {
+                        VStack(alignment: .center) {
+                            Image(systemName: "waveform")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 100, height: 100)
+                                .foregroundColor(.blue)
+                            Text("Voice Calibration")
+                                .font(.title)
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(Color(hex: "554C5D"))
+                            Text("Determine your pitch range")
+                                .font(.title2)
+                                .foregroundColor(Color(hex: "2B5B81"))
+                        }
+                        .frame(maxWidth: 312, maxHeight: 240)
+                        .padding()
+                        .background(.white)
+                        .cornerRadius(12)
+                        .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color(hex: "#917FA2"), lineWidth: 3))
+                    }
+
 
                     // Tone Lessons Section
                     Text("Tone Lessons")
