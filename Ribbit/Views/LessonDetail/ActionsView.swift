@@ -3,13 +3,6 @@
 //  Ribbit
 //
 //  Created by Jessie Chen on 11/6/24.
-//
-//
-//  ActionsView.swift
-//  Ribbit
-//
-//  Created by Jessie Chen on 11/6/24.
-//
 
 import SwiftUI
 import AVFoundation
@@ -22,6 +15,8 @@ struct ActionsView: View {
     @State private var showAlert = false
     @State private var finishedRecording = false
     @State private var showLessonComplete = false
+    @State private var countdown = 0 // Countdown timer state
+    @State private var isCountingDown = false // Controls countdown status
 
     let word: Word
     let moduleId: String // Module ID for the lesson
@@ -30,10 +25,22 @@ struct ActionsView: View {
 
     var body: some View {
         VStack(spacing: 20) {
-            Text(statusText)
-                .font(.body)
-                .foregroundColor(Color(hex: "#96C7C9"))
-                .padding(.bottom, 20)
+            if isCountingDown {
+                // Countdown Timer Display
+                Text("\(countdown)")
+                    .font(.largeTitle)
+                    .foregroundColor(Color(hex: "3A8ACA"))
+                    .fontWeight(.bold)
+                    .scaleEffect(1.5)
+                    .transition(.scale)
+                    .padding(.bottom, 10)
+            } else {
+                Text(statusText)
+                    .font(.body)
+                    .foregroundColor(audio.status == .recording ? .red :
+                                     (audio.status == .playing ? .blue : Color(hex: "#96C7C9")))
+                    .padding(.bottom, 20)
+            }
 
             HStack(spacing: 50) {
                 if (finishedRecording || audio.hasRecorded) && audio.status != .playing {
@@ -90,14 +97,19 @@ struct ActionsView: View {
                         }
                     }
                 } else {
-                    // Record Button
-                    Button(action: handleRecordButton) {
-                        Image(systemName: audio.status == .recording ? "stop.circle" : "mic.circle")
-                            .resizable()
-                            .frame(width: 60, height: 60)
-                            .foregroundColor(Color(hex: "#917FA2"))
-                    }
-                }
+                    // Record Button with Countdown
+                  // Record Button with Countdown
+                  Button(action: {
+                      handleRecordButton()
+                  }) {
+                      Image(systemName: audio.status == .recording ? "stop.circle" : "mic.circle")
+                          .resizable()
+                          .frame(width: 60, height: 60)
+                          .foregroundColor(isCountingDown ? .gray : Color(hex: "#917FA2"))
+                  }
+                  .disabled(isCountingDown) // Prevent pressing during countdown
+                  }
+                
             }
         }
     }
@@ -122,12 +134,29 @@ struct ActionsView: View {
                 finishedRecording = true
             }
         } else {
-            audio.startRecording(for: 2) { message in
-                alertMessage = message
-                showAlert = true
-            }
+            startCountdown()
         }
     }
+
+  private func startCountdown() {
+      countdown = 3
+      isCountingDown = true
+
+      Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+          DispatchQueue.main.async {
+              if self.countdown > 1 {
+                  self.countdown -= 1
+              } else {
+                  timer.invalidate()
+                  self.isCountingDown = false
+                  self.audio.startRecording(for: 5) { message in // Extend to 5 seconds
+                      alertMessage = message
+                      showAlert = true
+                  }
+              }
+          }
+      }
+  }
 
     private func handleNextButton() {
         if viewModel.currentIndex + 1 < viewModel.words.count {
