@@ -61,14 +61,15 @@ struct LessonDetailView: View {
                         WordView(audio: audio, word: word)
                             .padding(.bottom, 20)
 
-                        VisualizationView(
-                            audio: audio,
-                            word: word,
-                            correctVector: word.samplePitchVectors,
-                            userVector: audio.pitchValues,
-                            module: moduleId
-                        )
-                        .padding(.bottom, 25)
+                        // Determine the schematic image based on lessonId
+
+                        if let schematicImageName = getSchematicImageName(for: lessonId) {
+                            Image(schematicImageName)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 250)
+                                .padding(.bottom, 25)
+                        }
 
                         // Actions section
                       ActionsView(audio: audio, viewModel: viewModel, word: word, moduleId: self.moduleId, lessonId: self.lessonId)
@@ -96,5 +97,15 @@ struct LessonDetailView: View {
             }
         }
         .navigationBarBackButtonHidden(true) // Hide default navigation back button
+    }
+}
+// Helper function to determine the correct schematic image name
+private func getSchematicImageName(for lessonId: String) -> String? {
+    switch lessonId {
+        case "lesson1": return "schematic_tone1"
+        case "lesson2": return "schematic_tone2"
+        case "lesson3": return "schematic_tone3"
+        case "lesson4": return "schematic_tone4"
+        default: return nil // Return nil if no valid lesson ID is found
     }
 }
