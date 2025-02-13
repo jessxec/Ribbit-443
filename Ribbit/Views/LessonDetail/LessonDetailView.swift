@@ -4,7 +4,6 @@
 //
 //  Created by Jessie Chen on 10/30/24.
 //
-
 import SwiftUI
 
 struct LessonDetailView: View {
@@ -14,7 +13,7 @@ struct LessonDetailView: View {
     let lessonCount: Int // Total number of words in the lesson
     let currentIndex: Int // Current word index
     let nextWordAction: () -> Void // Callback for the next word action
-
+    @State private var isStaticMode = false
     @StateObject private var audio: WordAudioController // StateObject for managing audio-related state
     @ObservedObject var viewModel: WordViewModel // ObservedObject for managing lesson data
 
@@ -42,12 +41,23 @@ struct LessonDetailView: View {
             VStack {
                 // Top progress bar
                 ProgressBarBackButton(currentPage: currentIndex + 1, totalPages: lessonCount)
-                    .padding(.bottom, 10)
+                    .padding(.bottom, 5)
+
+                // Toggle switch for Static / Animated mode
+                HStack(spacing: 10) {
+                     Text(isStaticMode ? "Static Mode" : "Animated Mode")
+                         .font(.subheadline)
+                         .bold()
+                         .foregroundColor(.gray)
+
+                     Toggle("", isOn: $isStaticMode)
+                         .toggleStyle(CustomToggleStyle())
+                 }
+                 .padding(.bottom, 15)
 
                 Text("Word \(currentIndex + 1) of \(lessonCount)")
                     .font(.subheadline)
                     .foregroundColor(.gray)
-                    .padding(.top, 10)
 
                 Spacer()
 
@@ -61,17 +71,28 @@ struct LessonDetailView: View {
                         WordView(audio: audio, word: word)
                             .padding(.bottom, 20)
 
-                        VisualizationView(
-                            audio: audio,
-                            word: word,
-                            correctVector: word.samplePitchVectors,
-                            userVector: audio.pitchValues,
-                            module: moduleId
-                        )
-                        .padding(.bottom, 25)
+                        if isStaticMode {
+                            StaticVisualizationView(
+                                audio: audio,
+                                word: word,
+                                correctVector: word.samplePitchVectors,
+                                userVector: audio.pitchValues,
+                                module: moduleId
+                            )
+                            .padding(.bottom, 25)
+                        } else {
+                            VisualizationView(
+                                audio: audio,
+                                word: word,
+                                correctVector: word.samplePitchVectors,
+                                userVector: audio.pitchValues,
+                                module: moduleId
+                            )
+                            .padding(.bottom, 25)
+                        }
 
                         // Actions section
-                      ActionsView(audio: audio, viewModel: viewModel, word: word, moduleId: self.moduleId, lessonId: self.lessonId)
+                        ActionsView(audio: audio, viewModel: viewModel, word: word, moduleId: self.moduleId, lessonId: self.lessonId)
                             .padding(.bottom, 30)
 
                         if let feedbackMessage = audio.feedbackMessage, !feedbackMessage.isEmpty {
@@ -96,5 +117,37 @@ struct LessonDetailView: View {
             }
         }
         .navigationBarBackButtonHidden(true) // Hide default navigation back button
+    }
+}
+
+struct CustomToggleStyle: ToggleStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 30)
+                .frame(width: 64, height: 34)
+                .foregroundColor(configuration.isOn ? Color(hex: "#183153") : Color(hex: "#73C0FC"))
+                .animation(.easeInOut(duration: 0.3), value: configuration.isOn)
+
+            Circle()
+                .frame(width: 30, height: 30)
+                .foregroundColor(Color(hex: "#e8e8e8"))
+                .offset(x: configuration.isOn ? 15 : -15)
+                .animation(.spring(), value: configuration.isOn)
+                .onTapGesture { configuration.isOn.toggle() }
+
+            if configuration.isOn {
+                Image(systemName: "swift")
+                    .foregroundColor(.orange)
+                    .offset(x: -20)
+                    .transition(.opacity)
+            } else {
+                Image(systemName: "swiftdata")
+                    .foregroundColor(.blue)
+                    .offset(x: 20)
+                    .transition(.opacity)
+            }
+        }
+        .frame(width: 64, height: 34)
+        .onTapGesture { configuration.isOn.toggle() }
     }
 }

@@ -90,10 +90,9 @@ struct ProgressPageView: View {
 
             Spacer() // Allow space to grow, but tab bar will be at the bottom
         }
-        .padding()
         .background(Color.offWhite)
-        .frame(maxHeight: .infinity) // Makes sure the view fills the available space but keeps the tab bar at the bottom
-        .edgesIgnoringSafeArea(.bottom) // Ensures the tab bar isn't pushed up by any content
+//        .frame(maxHeight: .infinity) // Makes sure the view fills the available space but keeps the tab bar at the bottom
+//        .edgesIgnoringSafeArea(.bottom) // Ensures the tab bar isn't pushed up by any content
     }
 }
 
