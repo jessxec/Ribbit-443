@@ -28,12 +28,16 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   @Published var totalCollectedStars: Int = 0
   @Published var isPlaying: Bool = false
   @Published var isCalibrating: Bool = false
+  @Published var isPlayingSampleAudio: Bool = false
   @Published var f0Range: (low: Double, high: Double)?
 
+
   var hasSentAPIRequest = false // Flag to prevent multiple API calls
+  var hasPlayedBackRecording = false // Prevents duplicate playback
   var audioPlayer: AVAudioPlayer?
   var audioRecorder: AVAudioRecorder?
   var timer: Timer?
+  var animationTimer: Timer? // Track existing animation timer
   let word: Word?
   
   
@@ -84,35 +88,40 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   
   // MARK: Playing Audio
   func playSampleWord(for samplePath: String) {
-    let storageRef = Storage.storage().reference().child("\(samplePath)")
-    
-    // Create a unique temporary URL for this audio file
-    let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("\(UUID().uuidString).m4a")
-    
-    storageRef.write(toFile: tempURL) { [weak self] url, error in
-      guard let self = self, error == nil else {
-        print("Error fetching audio URL from Firebase: \(error?.localizedDescription ?? "Unknown error")")
-        return
+      print("🔊 playSampleWord() called for \(samplePath)")
+
+      let storageRef = Storage.storage().reference().child("\(samplePath)")
+      let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("\(UUID().uuidString).m4a")
+
+      storageRef.write(toFile: tempURL) { [weak self] url, error in
+          guard let self = self, error == nil else {
+              print("Error fetching audio URL from Firebase: \(error?.localizedDescription ?? "Unknown error")")
+              return
+          }
+
+          guard FileManager.default.fileExists(atPath: tempURL.path) else {
+              print("Downloaded file does not exist at path: \(tempURL.path)")
+              return
+          }
+
+          do {
+              self.audioPlayer = try AVAudioPlayer(contentsOf: tempURL)
+              self.audioPlayer?.delegate = self
+              self.audioPlayer?.play()
+              self.status = .playing
+              self.playingUserAudio = false
+              self.isPlayingSampleAudio = true // Set flag for sample audio
+
+              print("✅ Audio started playing, triggering animation...")
+
+              // Reset animation progress for sample audio
+              self.animationProgress = 0.0
+              self.startAnimation(duration: self.audioDuration)
+
+          } catch {
+              print("Error playing audio: \(error.localizedDescription)")
+          }
       }
-      
-      // Check if file exists at tempURL
-      guard FileManager.default.fileExists(atPath: tempURL.path) else {
-        print("Downloaded file does not exist at path: \(tempURL.path)")
-        return
-      }
-      
-      do {
-        self.audioPlayer = try AVAudioPlayer(contentsOf: tempURL)
-        self.audioPlayer?.delegate = self
-        self.audioPlayer?.play()
-        self.status = .playing
-        playingUserAudio = false
-        startAnimation(duration: audioDuration)
-        print(playingUserAudio)
-      } catch {
-        print("Error playing audio: \(error.localizedDescription)")
-      }
-    }
   }
   
   func playRecording() {
@@ -120,7 +129,7 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
           print("Error: No word provided.")
           return
       }
-      
+
       guard !isPlaying, let audioPlayer = try? AVAudioPlayer(contentsOf: urlForRecording) else {
           print("Audio is already playing or failed to initialize audio player.")
           return
@@ -133,14 +142,17 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
       status = .playing
       playingUserAudio = true
 
-      // Reset and start animation
-      animationProgress = 0.0
-      startAnimation(duration: audioDuration)
+      // ✅ Ensure animation only starts if it's not already running
+      if animationTimer == nil {
+          print("🎬 Triggering animation from playRecording()")
+          animationProgress = 0.0 // Reset animation progress for playback
+          startAnimation(duration: audioDuration)
+      } else {
+          print("🚨 Skipping animation because it was already running.")
+      }
 
       collectedStars = calculateHighlightedStars(userPitchValues: pitchValues, correctValues: word.samplePitchVectors)
   }
-
-
   
   // MARK: play asset audio files
   func playAssetAudio(forTone tone: Int) {
@@ -220,29 +232,7 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
           return
       }
 
-      if word.samplePitchVectors.count > 20 {
-          // Call `process_two_characters` if there are more than 20 pitch values
-          sendTwoCharactersToAPI { result in
-              DispatchQueue.main.async {
-                  switch result {
-                  case .success(let response):
-                      print("Two-character processing results: \(response)")
-                      self.feedbackMessage = """
-                      Character 1 pitch values: \(response["character_1"] ?? [])
-                      Character 2 pitch values: \(response["character_2"] ?? [])
-                      """
-
-                  case .failure(let error):
-                      print("Two-character processing error: \(error.localizedDescription)")
-                      self.feedbackMessage = "Failed to process two-character pitch analysis."
-                  }
-                  self.hasSentAPIRequest = false // Reset the flag
-              }
-          }
-          return
-      }
-
-      hasSentAPIRequest = true // Mark the API request as in progress
+      hasSentAPIRequest = true // Mark API request as in progress
 
       sendPitchToAPI(samplePitch: word.samplePitchVectors) { pitchResult in
           DispatchQueue.main.async {
@@ -266,7 +256,14 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
                   \(response.feedback.section_feedback.joined(separator: "\n"))
                   """
 
-                  self.playRecording() // Start playback immediately
+                  // ✅ Ensure playback happens only once
+                  if !self.hasPlayedBackRecording {
+                      self.hasPlayedBackRecording = true // Set flag before playback
+                      self.playRecording()
+                  } else {
+                      print("🚨 Preventing duplicate playback")
+                  }
+
                   self.hasSentAPIRequest = false
               case .failure(let error):
                   print("Pitch API error: \(error.localizedDescription)")
@@ -280,14 +277,15 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
 
 
 
-
   func startRecording(for duration: TimeInterval, completion: @escaping (String) -> Void) {
       setupRecorder()
-      
-      // Reset stars and state to avoid overcounting
+
+      // Reset flags and state
+      hasPlayedBackRecording = false
+      hasSentAPIRequest = false
       totalCollectedStars -= collectedStars
       collectedStars = 0
-      hasSentAPIRequest = false
+      animationProgress = 0.0 // Reset animation progress for new recording
 
       if let recorder = audioRecorder, recorder.prepareToRecord() {
           recorder.record()
@@ -491,27 +489,36 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   }
   
   func startAnimation(duration: TimeInterval) {
-    // Reset progress
-    animationProgress = 0.0
-    
-    // Timer interval to increment progress
-    let timerInterval = 0.01
-    let increment = timerInterval / duration
-    
-    Timer.scheduledTimer(withTimeInterval: timerInterval, repeats: true) { timer in
-      if self.animationProgress < 1.0 {
-        self.animationProgress += increment
-      } else {
-        self.animationProgress = 1.0
-        timer.invalidate() // Stop the timer when done
+      // Prevent multiple animations
+      guard animationTimer == nil else {
+          print("🚨 Animation already running, skipping duplicate.")
+          return
       }
-    }
+
+      print("🎬 Starting animation for \(duration) seconds")
+
+      animationProgress = 0.0 // Reset animation progress for new playback
+      let timerInterval = 0.01
+      let increment = timerInterval / duration
+
+      animationTimer = Timer.scheduledTimer(withTimeInterval: timerInterval, repeats: true) { timer in
+          if self.animationProgress < 1.0 {
+              self.animationProgress += increment
+          } else {
+              self.animationProgress = 1.0
+              timer.invalidate()
+              self.animationTimer = nil // Reset timer
+              print("✅ Animation completed")
+          }
+      }
   }
   
   func resetAnimation() {
-    isPlaying = false
-    animationProgress = 0.0
-    print("end: \(animationProgress)")
+      isPlaying = false
+      if isPlayingSampleAudio {
+          animationProgress = 0.0 // Reset animation progress for sample audio
+      }
+      print("end: \(animationProgress)")
   }
   
   func resetForNextWord() {
@@ -543,12 +550,17 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
     extension WordAudioController {
       // MARK: AVAudioPlayerDelegate Method
       func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        if flag {
-          print("Audio finished playing")
-          DispatchQueue.main.async {
-            self.status = .stopped
+          if flag {
+              print("🔚 Audio finished playing")
+              DispatchQueue.main.async {
+                  self.status = .stopped
+                  self.isPlaying = false
+                  self.animationTimer = nil // Reset animation timer
+
+                  // Reset the sample audio flag
+                  self.isPlayingSampleAudio = false
+              }
           }
-        }
       }
       
       // MARK: AVAudioRecorderDelegate Method

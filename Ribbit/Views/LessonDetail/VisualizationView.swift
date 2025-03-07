@@ -206,7 +206,7 @@ struct LineGraph: View {
                 }
             }
             .stroke(color
-                .opacity(0.58), lineWidth: 15)
+                .opacity(0.58), lineWidth: 8)
           
         }
     }

@@ -51,10 +51,8 @@ struct WordView: View {
     private func togglePlayback() {
         if audio.status == .playing {
             audio.stopPlayback()
-
         } else {
-          audio.playSampleWord(for: word.audioPath)
+            audio.playSampleWord(for: word.audioPath)
         }
     }
-
 }
