@@ -127,36 +127,21 @@ struct ActionsView: View {
     }
 
     private func handleRecordButton() {
-        if audio.status == .recording {
-            audio.stopRecording { message in
-                alertMessage = message
-                showAlert = true
-                finishedRecording = true
-            }
-        } else {
-            startCountdown()
-        }
-    }
-
-  private func startCountdown() {
-      countdown = 3
-      isCountingDown = true
-
-      Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-          DispatchQueue.main.async {
-              if self.countdown > 1 {
-                  self.countdown -= 1
-              } else {
-                  timer.invalidate()
-                  self.isCountingDown = false
-                  self.audio.startRecording(for: 5) { message in // Extend to 5 seconds
-                      alertMessage = message
-                      showAlert = true
-                  }
-              }
+      if audio.status == .recording {
+          audio.stopRecording { message in
+              alertMessage = message
+              showAlert = true
+              finishedRecording = true
+          }
+      } else {
+          audio.startRecording(for: 5) { message in
+              alertMessage = message
+              showAlert = true
           }
       }
-  }
+    }
+
+  
 
     private func handleNextButton() {
         if viewModel.currentIndex + 1 < viewModel.words.count {
