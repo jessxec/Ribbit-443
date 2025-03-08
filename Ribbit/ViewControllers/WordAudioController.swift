@@ -125,6 +125,7 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
   }
   
   func playRecording() {
+      print("🎬 playRecording called")
       guard let word = word else {
           print("Error: No word provided.")
           return
@@ -212,6 +213,12 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
     }
   }
   func stopRecording(completion: @escaping (String) -> Void) {
+      guard !hasSentAPIRequest else {
+          print("🛑 stopRecording already in progress. Skipping duplicate.")
+          return
+      }
+      
+      print("🛑 stopRecording called")
       audioRecorder?.stop()
       status = .recordingStopped
 
@@ -224,11 +231,6 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
       guard let word = word else {
           print("Error: No word provided.")
           completion("No word data available.")
-          return
-      }
-
-      guard !hasSentAPIRequest else {
-          print("API call already in progress. Skipping duplicate.")
           return
       }
 
@@ -276,7 +278,6 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
 
 
 
-
   func startRecording(for duration: TimeInterval, completion: @escaping (String) -> Void) {
       setupRecorder()
 
@@ -299,7 +300,7 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
           status = .recordingStopped
           completion("Error")
       }
-  }
+  } 
 
 
 
@@ -345,7 +346,39 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
           do {
               let decoder = JSONDecoder()
               let response = try decoder.decode(PitchResponse.self, from: data)
-              completion(.success(response))
+              DispatchQueue.main.async {
+                  // Print the pitch values for debugging
+                  print("🎯 Pitch values received from API: \(response.pitch_values)")
+                  
+                  self.pitchValues = response.pitch_values
+                  let newStars = self.calculateHighlightedStars(
+                      userPitchValues: self.pitchValues,
+                      correctValues: samplePitch
+                  )
+
+                  if self.collectedStars == 0 {
+                      self.collectedStars = newStars
+                      self.totalCollectedStars += newStars
+                  }
+
+                  self.feedbackMessage = """
+                  \(response.feedback.average_feedback). Aim to keep the difference below 10. 
+
+                  Section feedback: 
+                  \(response.feedback.section_feedback.joined(separator: "\n"))
+                  """
+
+                  // ✅ Ensure playback happens only once
+                  if !self.hasPlayedBackRecording {
+                      self.hasPlayedBackRecording = true // Set flag before playback
+                      self.playRecording()
+                  } else {
+                      print("🚨 Preventing duplicate playback")
+                  }
+
+                  self.hasSentAPIRequest = false
+                  completion(.success(response))
+              }
           } catch {
               completion(.failure(error))
           }

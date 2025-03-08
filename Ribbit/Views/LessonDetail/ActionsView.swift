@@ -126,20 +126,25 @@ struct ActionsView: View {
         }
     }
 
-    private func handleRecordButton() {
+  private func handleRecordButton() {
       if audio.status == .recording {
+          // Invalidate the timer to prevent automatic stop
+          audio.timer?.invalidate()
+          
+          // Stop the recording manually
           audio.stopRecording { message in
               alertMessage = message
               showAlert = true
               finishedRecording = true
           }
       } else {
+          // Start a new recording
           audio.startRecording(for: 5) { message in
               alertMessage = message
               showAlert = true
           }
       }
-    }
+  }
 
   
 
