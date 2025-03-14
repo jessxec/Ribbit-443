@@ -119,7 +119,7 @@ struct DrawStars: View {
         let starX = geometry.size.width * CGFloat(index) / 4
         let adjustedValue = dataPoints[starIndex] - baseline
         let starY = geometry.size.height * (0.5 + CGFloat(adjustedValue) / CGFloat(rangeY))
-        let isStarHighlighted = userPitchValues.indices.contains(starIndex) && abs(userPitchValues[starIndex] - dataPoints[starIndex]) <= 15
+        let isStarHighlighted = userPitchValues.indices.contains(starIndex) && abs(userPitchValues[starIndex] - dataPoints[starIndex]) <= 25
         
         Image(systemName: "star.fill")
           .resizable()

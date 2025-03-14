@@ -53,8 +53,15 @@ struct Formants: Codable {
 }
 
 struct PitchResponse: Codable {
+    let detected_tone: Int
+    let average_feedback: String
+    let tone_pattern_feedback: TonePatternFeedback
     let pitch_values: [Double]
-    let feedback: PitchFeedback
+}
+
+struct TonePatternFeedback: Codable {
+    let section_feedback: [String]
+    let tone_pattern_feedback: String
 }
 
 struct PitchFeedback: Codable {

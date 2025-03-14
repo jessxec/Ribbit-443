@@ -252,11 +252,11 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
                   }
 
                   self.feedbackMessage = """
-                  \(response.feedback.average_feedback). Aim to keep the difference below 10. 
+                   \(response.average_feedback). Aim to keep the difference below 10. 
 
-                  Section feedback: 
-                  \(response.feedback.section_feedback.joined(separator: "\n"))
-                  """
+                   Section feedback: 
+                   \(response.tone_pattern_feedback.section_feedback.joined(separator: "\n"))
+                   """
 
                   // ✅ Ensure playback happens only once
                   if !self.hasPlayedBackRecording {
@@ -312,78 +312,123 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
       let url = URL(string: "https://jacksun815.pythonanywhere.com/process_audio")!
       var request = URLRequest(url: url)
       request.httpMethod = "POST"
-      
+    
+
+    
       let boundary = "Boundary-\(UUID().uuidString)"
       request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-      
+
       var data = Data()
-      data.append("--\(boundary)\r\n".data(using: .utf8)!)
-      data.append("Content-Disposition: form-data; name=\"audio\"; filename=\"\(urlForRecording.lastPathComponent)\"\r\n".data(using: .utf8)!)
-      data.append("Content-Type: audio/wav\r\n\r\n".data(using: .utf8)!)
-      data.append(try! Data(contentsOf: urlForRecording))
-      data.append("\r\n".data(using: .utf8)!)
-      
-      let samplePitchString = samplePitch.map { "\($0)" }.joined(separator: ",")
-      data.append("--\(boundary)\r\n".data(using: .utf8)!)
-      data.append("Content-Disposition: form-data; name=\"sample_pitch\"\r\n\r\n".data(using: .utf8)!)
-      data.append("[\(samplePitchString)]".data(using: .utf8)!)
-      data.append("\r\n".data(using: .utf8)!)
-      data.append("--\(boundary)--\r\n".data(using: .utf8)!)
-      
-      request.httpBody = data
-      
-      let task = URLSession.shared.dataTask(with: request) { data, response, error in
-          if let error = error {
-              completion(.failure(error))
-              return
-          }
-          
-          guard let data = data else {
-              completion(.failure(NSError(domain: "No data", code: 0, userInfo: nil)))
-              return
-          }
-          
-          do {
-              let decoder = JSONDecoder()
-              let response = try decoder.decode(PitchResponse.self, from: data)
-              DispatchQueue.main.async {
-                  // Print the pitch values for debugging
-                  print("🎯 Pitch values received from API: \(response.pitch_values)")
-                  
-                  self.pitchValues = response.pitch_values
-                  let newStars = self.calculateHighlightedStars(
-                      userPitchValues: self.pitchValues,
-                      correctValues: samplePitch
-                  )
-
-                  if self.collectedStars == 0 {
-                      self.collectedStars = newStars
-                      self.totalCollectedStars += newStars
-                  }
-
-                  self.feedbackMessage = """
-                  \(response.feedback.average_feedback). Aim to keep the difference below 10. 
-
-                  Section feedback: 
-                  \(response.feedback.section_feedback.joined(separator: "\n"))
-                  """
-
-                  // ✅ Ensure playback happens only once
-                  if !self.hasPlayedBackRecording {
-                      self.hasPlayedBackRecording = true // Set flag before playback
-                      self.playRecording()
-                  } else {
-                      print("🚨 Preventing duplicate playback")
-                  }
-
-                  self.hasSentAPIRequest = false
-                  completion(.success(response))
-              }
-          } catch {
-              completion(.failure(error))
-          }
+      print("🛠 Sending request to API:", request)
+      print("🛠 Request Headers:", request.allHTTPHeaderFields ?? [:])
+      print("🛠 Request Body Size:", data.count)
+      // Ensure word is available
+      guard let word = word else {
+          print("❌ Error: No word data available.")
+          completion(.failure(NSError(domain: "Word not found", code: 404, userInfo: nil)))
+          return
       }
-      task.resume()
+    
+
+      let recordedFileURL = self.urlForRecording
+      guard FileManager.default.fileExists(atPath: recordedFileURL.path) else {
+          print("❌ Error: Recorded file does not exist at path: \(recordedFileURL.path)")
+          completion(.failure(NSError(domain: "File not found", code: 404, userInfo: nil)))
+          return
+      }
+
+      do {
+          let audioData = try Data(contentsOf: recordedFileURL)
+
+          // ✅ Attach audio file
+          data.append("--\(boundary)\r\n".data(using: .utf8)!)
+          data.append("Content-Disposition: form-data; name=\"audio\"; filename=\"\(recordedFileURL.lastPathComponent)\"\r\n".data(using: .utf8)!)
+          data.append("Content-Type: audio/wav\r\n\r\n".data(using: .utf8)!)
+          data.append(audioData)
+          data.append("\r\n".data(using: .utf8)!)
+
+          // ✅ Attach character (word in Chinese)
+          data.append("--\(boundary)\r\n".data(using: .utf8)!)
+          data.append("Content-Disposition: form-data; name=\"character\"\r\n\r\n".data(using: .utf8)!)
+          data.append("\(word.word)".data(using: .utf8)!)
+          data.append("\r\n".data(using: .utf8)!)
+
+          // ✅ Attach sample pitch values
+          let samplePitchString = samplePitch.map { "\($0)" }.joined(separator: ",")
+          data.append("--\(boundary)\r\n".data(using: .utf8)!)
+          data.append("Content-Disposition: form-data; name=\"sample_pitch\"\r\n\r\n".data(using: .utf8)!)
+          data.append("[\(samplePitchString)]".data(using: .utf8)!)
+          data.append("\r\n".data(using: .utf8)!)
+          data.append("--\(boundary)--\r\n".data(using: .utf8)!)
+
+          request.httpBody = data
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("❌ API Request Error:", error.localizedDescription)
+                completion(.failure(error))
+                return
+            }
+
+            guard let data = data else {
+                print("🚨 No data received from API!")
+                completion(.failure(NSError(domain: "No data", code: 0, userInfo: nil)))
+                return
+            }
+
+            // ✅ PRINT RAW RESPONSE
+            if let responseString = String(data: data, encoding: .utf8) {
+                print("🌐 RAW API Response: ", responseString)
+            } else {
+                print("🚨 Failed to decode API response as a string")
+            }
+
+            do {
+                let decoder = JSONDecoder()
+                let response = try decoder.decode(PitchResponse.self, from: data)
+
+                DispatchQueue.main.async {
+                    print("🎯 Successfully Decoded Pitch Response!")
+                    print("🎯 Pitch values:", response.pitch_values)
+
+                    self.pitchValues = response.pitch_values
+                    let newStars = self.calculateHighlightedStars(
+                        userPitchValues: self.pitchValues,
+                        correctValues: samplePitch
+                    )
+
+                    if self.collectedStars == 0 {
+                        self.collectedStars = newStars
+                        self.totalCollectedStars += newStars
+                    }
+
+                    self.feedbackMessage = """
+                    \(response.average_feedback). Aim to keep the difference below 10. 
+
+                    Section feedback: 
+                    \(response.tone_pattern_feedback.section_feedback.joined(separator: "\n"))
+                    """
+
+                    if !self.hasPlayedBackRecording {
+                        self.hasPlayedBackRecording = true
+                        self.playRecording()
+                    } else {
+                        print("🚨 Preventing duplicate playback")
+                    }
+
+                    self.hasSentAPIRequest = false
+                    completion(.success(response))
+                }
+            } catch {
+                print("🚨 JSON Decoding Error:", error.localizedDescription)
+                completion(.failure(error))
+            }
+        }
+        task.resume()
+      } catch {
+          print("❌ Error reading recorded file: \(error.localizedDescription)")
+          completion(.failure(error))
+      }
   }
   
   
