@@ -6,132 +6,187 @@
 //
 
 import SwiftUI
+
+
 struct VisualizationView: View {
     @ObservedObject var audio: WordAudioController
     let word: Word
     var correctVector: [Double]
     var userVector: [Double]?
     let module: String
-  
-    @State private var highlightedStarsCount: Int = 0 // Track highlighted stars
+
+    @State private var highlightedStarsCount: Int = 0
 
     var body: some View {
         ZStack {
             Rectangle()
                 .frame(width: 300, height: 200)
-                .foregroundColor(backgroundColor
-                    .opacity(0.30))
+                .foregroundColor(backgroundColor.opacity(0.30))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
-                        .stroke(audio.playingUserAudio ? borderColor : Color.white, lineWidth: 5)
+                        .stroke(audio.playingUserAudio ? dynamicBorderColor : Color.white, lineWidth: 5)
                 )
 
-          LineGraph(dataPoints: correctVector, color: lineColor)
+            LineGraph(dataPoints: correctVector, color: lineColor)
                 .frame(width: 280, height: 180)
 
-          AnimatedGraph(dataPoints: audio.playingUserAudio ? (userVector ?? correctVector) : correctVector, sprite: spriteImg, progress: $audio.animationProgress, userAudio: audio.playingUserAudio)
-                .frame(width: 280, height: 180)
+            AnimatedGraph(
+                dataPoints: audio.playingUserAudio ? (userVector ?? correctVector) : correctVector,
+                sprite: spriteImg,
+                progress: $audio.animationProgress,
+                userAudio: audio.playingUserAudio
+            )
+            .frame(width: 280, height: 180)
 
-            DrawStars(dataPoints: correctVector, userPitchValues: audio.pitchValues, highlightedStarsCount: $highlightedStarsCount)
-                .frame(width: 280, height: 180)
+            DrawStars(
+                dataPoints: correctVector,
+                userPitchValues: audio.pitchValues,
+                highlightedStarsCount: $highlightedStarsCount
+            )
+            .frame(width: 280, height: 180)
+        }
+        .onChange(of: audio.pitchValues) { _ in
+            highlightedStarsCount = calculateStarsLitUp()
+        }
+        .onAppear {
+            highlightedStarsCount = calculateStarsLitUp()
         }
     }
-  
-  
-  private var backgroundColor: Color {
-    if module == "foundationsIsland" {
-      return Color(red: 94 / 255, green: 202 / 255, blue: 206 / 255)
-    } else if module == "airportModule" {
-      return Color(red: 94 / 255, green: 202 / 255, blue: 206 / 255)
-    } else if module == "cafeModule" {
-      return .paleYellow
-    } else if module == "campingModule" {
-      return .paleGreen
-    } else if module == "beachModule" {
-      return .paleTeal
-    } else {
-      return Color(red: 94 / 255, green: 202 / 255, blue: 206 / 255)
-    }
-  }
-  
-  private var lineColor: Color {
-    if module == "foundationsIsland" {
-      return Color(red: 141 / 255, green: 126 / 255, blue: 215 / 255)
-    } else if module == "airportModule" {
-      return .darkBlue
-    } else if module == "cafeModule" {
-      return .darkRed
-    } else if module == "campingModule" {
-      return .darkGreen
-    } else if module == "beachModule" {
-      return .darkTeal
-    } else {
-      return Color(red: 141 / 255, green: 126 / 255, blue: 215 / 255)
-    }
-    
-  }
 
-  private var spriteImg: String {
-    if module == "foundationsIsland" {
-      return "lotus"
-    } else if module == "airportModule" {
-      return "luggage"
-    } else if module == "cafeModule" {
-      return "cake"
-    } else if module == "campingModule" {
-      return "dragonfly"
-    } else if module == "beachModule" {
-      return "shell"
-    } else {
-      return "lotus"
-    }
-    
-  }
+    private func calculateStarsLitUp() -> Int {
+        let starCount = 5
+        let tolerance: Double = 15.0
 
-    private var borderColor: Color {
-        switch audio.collectedStars {
-        case 5:
-            return .green
-        case 3...4:
-            return .yellow
-        case 0...2:
-            return .red
-        default:
-            return .white
+        guard !audio.pitchValues.isEmpty else { return 0 }
+
+        var count = 0
+        for i in 0..<starCount {
+            let starIndex = (correctVector.count - 1) * i / (starCount - 1)
+            let targetPitch = correctVector[starIndex]
+
+            let userIndex = Int(Double(audio.pitchValues.count - 1) * Double(starIndex) / Double(correctVector.count - 1))
+            let userPitch = audio.pitchValues[userIndex]
+
+            if abs(userPitch - targetPitch) <= tolerance {
+                count += 1
+            }
+        }
+        return count
+    }
+
+    private var dynamicBorderColor: Color {
+        switch highlightedStarsCount {
+        case 5: return .green
+        case 3...4: return .yellow
+        case 1...2: return .red
+        default: return .white
+        }
+    }
+
+    private var backgroundColor: Color {
+        switch module {
+        case "foundationsIsland", "airportModule":
+            return Color(red: 94 / 255, green: 202 / 255, blue: 206 / 255)
+        case "cafeModule": return .paleYellow
+        case "campingModule": return .paleGreen
+        case "beachModule": return .paleTeal
+        default: return Color(red: 94 / 255, green: 202 / 255, blue: 206 / 255)
+        }
+    }
+
+    private var lineColor: Color {
+        switch module {
+        case "foundationsIsland": return Color(red: 141 / 255, green: 126 / 255, blue: 215 / 255)
+        case "airportModule": return .darkBlue
+        case "cafeModule": return .darkRed
+        case "campingModule": return .darkGreen
+        case "beachModule": return .darkTeal
+        default: return Color(red: 141 / 255, green: 126 / 255, blue: 215 / 255)
+        }
+    }
+
+    private var spriteImg: String {
+        switch module {
+        case "foundationsIsland": return "lotus"
+        case "airportModule": return "luggage"
+        case "cafeModule": return "cake"
+        case "campingModule": return "dragonfly"
+        case "beachModule": return "shell"
+        default: return "lotus"
         }
     }
 }
+
 
 struct DrawStars: View {
-  var dataPoints: [Double]
-  var userPitchValues: [Double]
-  @Binding var highlightedStarsCount: Int
-  
-  var body: some View {
-    GeometryReader { geometry in
-      let baseline = 150.0
-      let maxY = 0.0
-      let minY = 300.0
-      let rangeY = maxY - minY
-      
-      ForEach(0..<5, id: \.self) { index in
-        let starIndex = (dataPoints.count - 1) * index / 4
-        let starX = geometry.size.width * CGFloat(index) / 4
-        let adjustedValue = dataPoints[starIndex] - baseline
-        let starY = geometry.size.height * (0.5 + CGFloat(adjustedValue) / CGFloat(rangeY))
-        let isStarHighlighted = userPitchValues.indices.contains(starIndex) && abs(userPitchValues[starIndex] - dataPoints[starIndex]) <= 25
-        
-        Image(systemName: "star.fill")
-          .resizable()
-          .foregroundColor(isStarHighlighted ? .yellow : .white)
-          .frame(width: 25, height: 25)
-          .position(x: starX, y: starY)
-      }
+    var dataPoints: [Double]
+    var userPitchValues: [Double]
+    @Binding var highlightedStarsCount: Int
+
+    // Constants
+    let starCount = 5
+    let tolerance: Double = 15.0
+    let baseline: Double = 150.0
+    let minY: Double = 300.0
+    let maxY: Double = 0.0
+
+    var body: some View {
+        GeometryReader { geometry in
+            // Compute the star positions and highlight statuses using a helper function.
+            let starInfos = computeStarInfos(geometry: geometry)
+
+            // Update highlightedStarsCount when the view appears or when userPitchValues change.
+            Color.clear
+                .onAppear {
+                    highlightedStarsCount = starInfos.filter { $0.highlighted }.count
+                }
+                .onChange(of: userPitchValues) { _ in
+                    highlightedStarsCount = starInfos.filter { $0.highlighted }.count
+                }
+
+            // Render the stars.
+            ForEach(0..<starInfos.count, id: \.self) { i in
+                Image(systemName: "star.fill")
+                    .resizable()
+                    .foregroundColor(starInfos[i].highlighted ? .yellow : .white)
+                    .frame(width: 25, height: 25)
+                    .position(x: starInfos[i].x, y: starInfos[i].y)
+            }
+        }
     }
-  }
+
+    /// Computes the positions and highlight status of stars given the available geometry.
+    func computeStarInfos(geometry: GeometryProxy) -> [StarInfo] {
+        let rangeY = maxY - minY
+        var infos: [StarInfo] = []
+        for i in 0..<starCount {
+            let starIndex = (dataPoints.count - 1) * i / (starCount - 1)
+            let starX = geometry.size.width * CGFloat(i) / CGFloat(starCount - 1)
+            let adjustedValue = dataPoints[starIndex] - baseline
+            let starY = geometry.size.height * (0.5 + CGFloat(adjustedValue) / CGFloat(rangeY))
+            
+            // Map the star index from dataPoints to a corresponding index in userPitchValues
+            let userIndex: Int
+            if userPitchValues.isEmpty {
+                userIndex = 0
+            } else {
+                userIndex = Int(Double(userPitchValues.count - 1) * Double(starIndex) / Double(dataPoints.count - 1))
+            }
+            
+            let highlighted = (!userPitchValues.isEmpty) &&
+                (abs(userPitchValues[userIndex] - dataPoints[starIndex]) <= tolerance)
+            
+            infos.append(StarInfo(x: starX, y: starY, highlighted: highlighted))
+        }
+        return infos
+    }
+
+    struct StarInfo {
+        let x: CGFloat
+        let y: CGFloat
+        let highlighted: Bool
+    }
 }
-
-
 
 
 struct AnimatedGraph: View {

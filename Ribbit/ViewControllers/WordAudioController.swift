@@ -251,12 +251,7 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
                       self.totalCollectedStars += newStars
                   }
 
-                  self.feedbackMessage = """
-                   \(response.average_feedback). Aim to keep the difference below 10. 
-
-                   Section feedback: 
-                   \(response.tone_pattern_feedback.section_feedback.joined(separator: "\n"))
-                   """
+                  self.feedbackMessage = response.average_feedback
 
                   // ✅ Ensure playback happens only once
                   if !self.hasPlayedBackRecording {
@@ -402,13 +397,7 @@ class WordAudioController: NSObject, ObservableObject, AVAudioRecorderDelegate, 
                         self.totalCollectedStars += newStars
                     }
 
-                    self.feedbackMessage = """
-                    \(response.average_feedback). Aim to keep the difference below 10. 
-
-                    Section feedback: 
-                    \(response.tone_pattern_feedback.section_feedback.joined(separator: "\n"))
-                    """
-
+                    self.feedbackMessage = response.average_feedback
                     if !self.hasPlayedBackRecording {
                         self.hasPlayedBackRecording = true
                         self.playRecording()
