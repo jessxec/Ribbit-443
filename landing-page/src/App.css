@@ -1,0 +1,274 @@
+/* Additional custom styles for the Ribbit landing page */
+
+/* Hero section animations */
+.hero-fade-in {
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Feature card hover effects */
+.feature-card:hover .feature-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Gradient text effect */
+.gradient-text {
+  background: linear-gradient(135deg, #2B5B81 0%, #50B2B7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Floating animation for decorative elements */
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+.floating-delayed {
+  animation: float 3s ease-in-out infinite 1.5s;
+}
+
+/* App store button styles */
+.app-store-btn {
+  background: linear-gradient(135deg, #000 0%, #333 100%);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.app-store-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Testimonial card styles */
+.testimonial-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(182, 232, 223, 0.3);
+}
+
+.dark .testimonial-card {
+  background: rgba(31, 41, 55, 0.9);
+  border: 1px solid rgba(80, 178, 183, 0.3);
+}
+
+/* Responsive design helpers */
+@media (max-width: 768px) {
+  .hero-fade-in {
+    animation-duration: 0.8s;
+  }
+  
+  .feature-card {
+    padding: 1.5rem;
+  }
+}
+
+/* Custom focus styles for accessibility */
+.btn-primary:focus,
+.btn-secondary:focus,
+.app-store-btn:focus {
+  outline: 2px solid #50B2B7;
+  outline-offset: 2px;
+}
+
+/* Loading animation for images */
+.image-loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Ribbit-themed animations */
+.ribbit-bounce {
+  animation: ribbitBounce 2s ease-in-out infinite;
+}
+
+@keyframes ribbitBounce {
+  0%, 100% { 
+    transform: translateY(0px) scale(1); 
+  }
+  25% { 
+    transform: translateY(-8px) scale(1.05); 
+  }
+  50% { 
+    transform: translateY(-12px) scale(1.1); 
+  }
+  75% { 
+    transform: translateY(-8px) scale(1.05); 
+  }
+}
+
+.lily-pad-float {
+  animation: lilyPadFloat 4s ease-in-out infinite;
+}
+
+@keyframes lilyPadFloat {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-15px) rotate(2deg); 
+  }
+}
+
+.frog-hop {
+  animation: frogHop 3s ease-in-out infinite;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.frog-hop:hover {
+  transform: scale(1.1);
+}
+
+@keyframes frogHop {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px); 
+  }
+  25% { 
+    transform: translateY(-20px) translateX(10px); 
+  }
+  50% { 
+    transform: translateY(-10px) translateX(-5px); 
+  }
+  75% { 
+    transform: translateY(-25px) translateX(15px); 
+  }
+}
+
+.ripple-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(182, 232, 223, 0.3);
+  transform: translate(-50%, -50%);
+  animation: ripple 2s infinite;
+}
+
+@keyframes ripple {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 200px;
+    height: 200px;
+    opacity: 0;
+  }
+}
+
+.pond-waves {
+  background: linear-gradient(45deg, 
+    rgba(182, 232, 223, 0.1) 0%, 
+    rgba(197, 223, 118, 0.1) 25%, 
+    rgba(80, 178, 183, 0.1) 50%, 
+    rgba(182, 232, 223, 0.1) 75%, 
+    rgba(197, 223, 118, 0.1) 100%);
+  background-size: 400% 400%;
+  animation: pondWaves 8s ease-in-out infinite;
+}
+
+@keyframes pondWaves {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.fly-buzz {
+  animation: flyBuzz 1.5s ease-in-out infinite;
+}
+
+@keyframes flyBuzz {
+  0%, 100% { 
+    transform: translate(0, 0) rotate(0deg); 
+  }
+  25% { 
+    transform: translate(5px, -3px) rotate(2deg); 
+  }
+  50% { 
+    transform: translate(-3px, 5px) rotate(-1deg); 
+  }
+  75% { 
+    transform: translate(3px, -2px) rotate(1deg); 
+  }
+}
+
+.bubble-rise {
+  animation: bubbleRise 3s ease-in-out infinite;
+}
+
+@keyframes bubbleRise {
+  0% {
+    transform: translateY(0px) scale(0.8);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-20px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-40px) scale(0.8);
+    opacity: 0;
+  }
+}
+
+/* Interactive hover effects */
+.interactive-frog {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.interactive-frog:hover {
+  transform: scale(1.2) rotate(5deg);
+  filter: brightness(1.1);
+}
+
+.interactive-lily {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.interactive-lily:hover {
+  transform: scale(1.1) rotate(-3deg);
+  filter: saturate(1.2);
+}

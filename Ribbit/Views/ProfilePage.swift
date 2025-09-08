@@ -24,12 +24,12 @@ struct ProfilePage: View {
                 // Streak and username section
                 HStack {
                     VStack(alignment: .leading) {
-                        Text("Connor")
+                        Text("Thomas")
                             .font(.title)
                             .bold()
                             .foregroundColor(Color(hex: "#554C5D"))
                         
-                        Text("@connorxD")
+                        Text("@Thomas")
                             .foregroundColor(Color(hex: "#554C5D"))
                     }
                     .padding(.leading)

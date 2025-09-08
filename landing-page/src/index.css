@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import Ribbit's primary font - using system fonts that match iOS */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #FFFAF3;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5F0EA;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2B5B81;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #50B2B7;
+}
+
+/* Smooth transitions */
+* {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Custom button styles */
+.btn-primary {
+  @apply bg-ribbit-dark text-ribbit-off-white px-8 py-4 rounded-xl font-medium hover:bg-ribbit-dark-teal transform hover:scale-105 shadow-lg;
+}
+
+.btn-secondary {
+  @apply bg-ribbit-off-white text-ribbit-dark px-8 py-4 rounded-xl font-medium hover:bg-ribbit-pale-green transform hover:scale-105 shadow-lg border-2 border-ribbit-light-teal;
+}
+
+/* Card styles */
+.feature-card {
+  @apply bg-ribbit-off-white rounded-2xl p-8 shadow-lg hover:shadow-xl transform hover:-translate-y-2 border-2 border-ribbit-light-teal;
+}
+
+/* Dark mode styles */
+.dark {
+  background-color: #1a1a1a;
+}
+
+.dark .feature-card {
+  @apply bg-gray-800 border-gray-600;
+}

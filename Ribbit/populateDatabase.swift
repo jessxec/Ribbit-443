@@ -82,25 +82,7 @@ func createModules() async throws {
               replayAllowed: true,
               samplePitchVectors: [153.7, 152.5, 149.0, 148.3, 148.0, 148.2, 148.4, 149.2, 150.2, 151.1, 151.2, 150.2, 149.5, 149.7, 149.3, 149.6, 149.8, 148.8, 149.9, 153.3],
               userPitchVectors: []
-          ),
-          Word(
-              id: "word4",
-              pinyin: "yā",
-              word: "鸭",
-              translation: "Duck",
-              audioPath: "/audio/foundations/M1L1_ya1.wav",
-              starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
-              feedback: Feedback(
-                  incorrectPitch: "Keep your pitch level and even.",
-                  incorrectPronunciation: "Ensure you’re using a flat tone without inflection."
-              ),
-              transcriptionCheck: Formants(F1: 644.3, F2: 1564.2),
-              voiceProcessingCheck: nil,
-              starValue: 5,
-              replayAllowed: true,
-              samplePitchVectors: [139.7, 148.5, 148.9, 152.6, 155.5, 149.7, 148.5, 148.9, 149.2, 150.2, 151.1, 152.2, 150.8, 149.6, 149.1, 149.3, 150.2, 150.0, 151.0, 154.6],
-              userPitchVectors: []
-          ),
+          )
         ]
       ),
       Lesson(
@@ -166,42 +148,6 @@ func createModules() async throws {
                   starValue: 5,
                   replayAllowed: true,
                   samplePitchVectors: [140.8, 139.4, 137.9, 138.5, 138.2, 139.2, 139.7, 140.8, 141.5, 143.4, 145.5, 146.6, 149.0, 151.6, 154.6, 156.6, 158.7, 171.6, 182.1, 184.3],
-                  userPitchVectors: []
-              ),
-              Word(
-                  id: "word4",
-                  pinyin: "lí",
-                  word: "梨",
-                  translation: "Pear",
-                  audioPath: "/audio/foundations/M1L2_li2.wav",
-                  starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
-                  feedback: Feedback(
-                      incorrectPitch: "Your pitch should rise steadily.",
-                      incorrectPronunciation: "Ensure your tone rises sharply like a question."
-                  ),
-                  transcriptionCheck: Formants(F1: 312.2, F2: 2250.8),
-                  voiceProcessingCheck: nil,
-                  starValue: 5,
-                  replayAllowed: true,
-                  samplePitchVectors: [134.3, 140.0, 143.6, 144.7, 145.1, 143.8, 143.0, 142.5, 142.9, 143.5, 144.6, 146.7, 148.6, 151.9, 153.6, 154.7, 160.6, 167.7, 172.5, 174.8],
-                  userPitchVectors: []
-              ),
-              Word(
-                  id: "word5",
-                  pinyin: "dí",
-                  word: "笛",
-                  translation: "Flute",
-                  audioPath: "/audio/foundations/M1L2_di2.wav",
-                  starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
-                  feedback: Feedback(
-                      incorrectPitch: "Your pitch should rise steadily.",
-                      incorrectPronunciation: "Ensure your tone rises sharply like a question."
-                  ),
-                  transcriptionCheck: Formants(F1: 267.4, F2: 2352.8),
-                  voiceProcessingCheck: nil,
-                  starValue: 5,
-                  replayAllowed: true,
-                  samplePitchVectors: [157.8, 146.0, 145.1, 143.9, 140.8, 139.4, 138.7, 140.5, 141.6, 142.2, 143.2, 145.1, 147.3, 150.5, 152.7, 155.6, 160.3, 163.8, 170.1, 174.8],
                   userPitchVectors: []
               )
           ]
@@ -270,42 +216,6 @@ func createModules() async throws {
                   replayAllowed: true,
                   samplePitchVectors: [156.0, 158.6, 158.0, 156.8, 154.5, 151.1, 148.6, 143.4, 140.2, 138.8, 138.3, 140.7, 142.8, 144.2, 145.4, 148.1, 155.0, 158.1, 160.5, 161.6],
                   userPitchVectors: []
-              ),
-              Word(
-                  id: "word4",
-                  pinyin: "nǐ",
-                  word: "你",
-                  translation: "You",
-                  audioPath: "/audio/foundations/M1L3_ni3.wav",
-                  starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
-                  feedback: Feedback(
-                      incorrectPitch: "Ensure your pitch dips and rises slightly.",
-                      incorrectPronunciation: "Your tone should have a noticeable dip before rising slightly."
-                  ),
-                  transcriptionCheck: Formants(F1: 279.5, F2: 2207.2),
-                  voiceProcessingCheck: nil,
-                  starValue: 5,
-                  replayAllowed: true,
-                  samplePitchVectors: [153.6, 158.3, 157.3, 155.2, 152.6, 149.6, 145.2, 142.9, 140.7, 138.1, 137.3, 137.6, 138.1, 140.9, 145.3, 150.7, 154.1, 160.7, 168.3, 173.1],
-                  userPitchVectors: []
-              ),
-              Word(
-                  id: "word5",
-                  pinyin: "lǐ",
-                  word: "李",
-                  translation: "Plum / Last Name: Li",
-                  audioPath: "/audio/foundations/M1L3_li3.wav",
-                  starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
-                  feedback: Feedback(
-                      incorrectPitch: "Ensure your pitch dips and rises slightly.",
-                      incorrectPronunciation: "Your tone should have a noticeable dip before rising slightly."
-                  ),
-                  transcriptionCheck: Formants(F1: 261.0, F2: 2192.6),
-                  voiceProcessingCheck: nil,
-                  starValue: 5,
-                  replayAllowed: true,
-                  samplePitchVectors: [165.5, 155.1, 151.1, 147.9, 151.7, 150.0, 147.5, 144.2, 143.3, 141.7, 140.4, 139.3, 139.2, 140.9, 141.4, 146.6, 155.2, 161.5, 170.6, 167.7],
-                  userPitchVectors: []
               )
           ]
       ),
@@ -355,24 +265,6 @@ func createModules() async throws {
                   starValue: 5,
                   replayAllowed: true,
                   samplePitchVectors: [150.9, 149.0, 150.3, 152.5, 153.4, 153.2, 153.2, 154.6, 157.0, 157.4, 157.5, 157.0, 155.9, 154.1, 152.2, 150.0, 148.2, 146.1, 143.6, 143.6, 135.1, 127.1, 119.7, 112.7, 106.3, 100.2, 94.6, 89.3, 84.4],
-                  userPitchVectors: []
-              ),
-              Word(
-                  id: "word3",
-                  pinyin: "yì",
-                  word: "翼",
-                  translation: "Wing",
-                  audioPath: "/audio/foundations/M1L4_yi4.wav",
-                  starsForAccuracy: ["90-100": 5, "80-89": 4, "70-79": 3],
-                  feedback: Feedback(
-                      incorrectPitch: "Your pitch should fall sharply.",
-                      incorrectPronunciation: "Ensure your tone falls quickly and decisively."
-                  ),
-                  transcriptionCheck: Formants(F1: 252.3, F2: 2405.6),
-                  voiceProcessingCheck: nil,
-                  starValue: 5,
-                  replayAllowed: true,
-                  samplePitchVectors: [159.7, 164.8, 166.9, 171.1, 173.4, 175.0, 176.3, 177.8, 178.9, 178.9, 177.9, 176.7, 175.2, 173.0, 167.3, 165.1, 159.4, 156.9, 152.3, 150.0, 142.4, 137.8, 136.7, 128.9, 124.9, 121.9, 121.6, 115.5, 111.1, 111.1, 108.9, 106.7, 104.6, 102.5, 100.5, 98.5, 96.6, 94.7, 92.9],
                   userPitchVectors: []
               ),
               Word(

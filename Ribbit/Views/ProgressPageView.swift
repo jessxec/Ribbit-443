@@ -28,7 +28,7 @@ struct ProgressPageView: View {
             }
             .padding(.top, 140)
 
-            Text("Connor")
+            Text("Thomas")
                 .font(.largeTitle)
                 .fontWeight(.light)
                 .foregroundColor(.darkRed)
