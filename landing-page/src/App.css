@@ -107,7 +107,7 @@
 
 /* Ribbit-themed animations */
 .ribbit-bounce {
-  animation: ribbitBounce 2s ease-in-out infinite;
+  /* animation: ribbitBounce 2s ease-in-out infinite; */
 }
 
 @keyframes ribbitBounce {
@@ -126,7 +126,7 @@
 }
 
 .lily-pad-float {
-  animation: lilyPadFloat 4s ease-in-out infinite;
+  /* animation: lilyPadFloat 4s ease-in-out infinite; */
 }
 
 @keyframes lilyPadFloat {
@@ -139,7 +139,7 @@
 }
 
 .frog-hop {
-  animation: frogHop 3s ease-in-out infinite;
+  /* animation: frogHop 3s ease-in-out infinite; */
   cursor: pointer;
   transition: transform 0.2s ease;
 }
@@ -178,7 +178,7 @@
   border-radius: 50%;
   background: rgba(182, 232, 223, 0.3);
   transform: translate(-50%, -50%);
-  animation: ripple 2s infinite;
+  /* animation: ripple 2s infinite; */
 }
 
 @keyframes ripple {
@@ -215,7 +215,7 @@
 }
 
 .fly-buzz {
-  animation: flyBuzz 1.5s ease-in-out infinite;
+  /* animation: flyBuzz 1.5s ease-in-out infinite; */
 }
 
 @keyframes flyBuzz {
@@ -234,7 +234,7 @@
 }
 
 .bubble-rise {
-  animation: bubbleRise 3s ease-in-out infinite;
+  /* animation: bubbleRise 3s ease-in-out infinite; */
 }
 
 @keyframes bubbleRise {

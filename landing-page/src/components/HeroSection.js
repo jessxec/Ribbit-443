@@ -1,14 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 const HeroSection = ({ darkMode }) => {
-  const [frogClickCount, setFrogClickCount] = useState(0);
-  const [showRibbit, setShowRibbit] = useState(false);
-
-  const handleFrogClick = () => {
-    setFrogClickCount(prev => prev + 1);
-    setShowRibbit(true);
-    setTimeout(() => setShowRibbit(false), 1000);
-  };
 
   return (
     <section className={`relative min-h-screen flex items-center justify-center overflow-hidden pond-waves ${
@@ -32,10 +24,6 @@ const HeroSection = ({ darkMode }) => {
           <img src="/images/features/shell.png" alt="Shell" className="w-full h-full object-contain" />
         </div>
         
-        {/* Interactive singing frog */}
-        <div className="absolute bottom-20 right-10 w-16 h-16 frog-hop interactive-frog" onClick={handleFrogClick}>
-          <img src="/images/features/achievement-system.png" alt="Singing Frog" className="w-full h-full object-contain" />
-        </div>
 
         {/* Ripple effects */}
         <div className="absolute top-1/2 left-1/4 w-4 h-4 bg-ribbit-light-teal/20 rounded-full ripple-effect"></div>
@@ -48,14 +36,6 @@ const HeroSection = ({ darkMode }) => {
         <div className="absolute bottom-1/4 right-1/6 w-2 h-2 bg-ribbit-pale-green/30 rounded-full bubble-rise" style={{ animationDelay: '3s' }}></div>
       </div>
 
-      {/* Ribbit sound effect */}
-      {showRibbit && (
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
-          <div className="text-6xl font-bold text-ribbit-dark animate-bounce">
-            RIBBIT! 🐸
-          </div>
-        </div>
-      )}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -148,20 +128,6 @@ const HeroSection = ({ darkMode }) => {
                     Learning Modules
                   </div>
                 </div>
-                {frogClickCount > 0 && (
-                  <div className="text-center">
-                    <div className={`text-3xl font-bold ${
-                      darkMode ? 'text-white' : 'text-ribbit-dark'
-                    }`}>
-                      {frogClickCount}
-                    </div>
-                    <div className={`text-sm ${
-                      darkMode ? 'text-gray-400' : 'text-ribbit-dark/60'
-                    }`}>
-                      Frog Clicks 🐸
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
           </div>
